@@ -1,0 +1,1 @@
+# In this repo you'll find an desktop application for a Gym management with C++ and Qt
