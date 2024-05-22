@@ -36,6 +36,13 @@ create table if not exists CabeceraFactura(
 );
 
 
+create table if not exists Usuario(
+	id_usuario varchar(10),
+	usuario varchar(30) not null,
+    clave varchar(10) not null,
+    id_rol int, 
+    foreign key(id_rol) references Rol(id_rol)
+);
 
 create table if not exists DetalleFactura(
 	id_deta_fact int auto_increment primary key,
@@ -47,17 +54,21 @@ create table if not exists DetalleFactura(
     foreign key(id_paq) references Paquete(id_paq) 
 );
 
+
 select * from Rol;
 select * from Persona;
 select * from Paquete;
 select * from CabeceraFactura;
 select * from DetalleFactura;
+select * from Usuario;
+
+
 
 -- el valor de total deta será igual a id_paq * cantidad_paq, eso se calcula en el app c++
 insert into DetalleFactura(total_deta_fact, id_cab_fact, id_paq, cantidad_paq)
  values( 70.0, 1, 1, 2);
  
- insert into DetalleFactura(total_deta_fact, id_cab_fact, id_paq, cantidad_paq)
+insert into DetalleFactura(total_deta_fact, id_cab_fact, id_paq, cantidad_paq)
  values( 3.0, 1, 2, 1);
  
 call update_cabecera_factura(1);
@@ -92,6 +103,10 @@ insert into CabeceraFactura(fecha_cab_fact, total_cab_fact)
 
 insert into Paquete(paq_descripcion,paq_price)
  values( 'Entrenamiento Mensual', 35.0),( 'Entrenamiento Diario', 3.0)
+ 
+insert into Usuario(usuario, clave)
+values ("Ivan", left(uuid(),10) ),
+	   ("Administrador", "123456789A");
 */
 
 
