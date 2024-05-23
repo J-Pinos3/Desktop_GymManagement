@@ -6,6 +6,10 @@ SqlConnection::SqlConnection()
 
 }
 
+SqlConnection::~SqlConnection(){
+    db.close();
+    db.removeDatabase(QSqlDatabase::defaultConnection);
+}
 
 void SqlConnection::conOpen(){
     db = QSqlDatabase::addDatabase("QMYSQL");
@@ -27,5 +31,6 @@ void SqlConnection::conOpen(){
 
 void SqlConnection::conClose(){
     db.close();
+    db.removeDatabase(QSqlDatabase::defaultConnection);
     qDebug() << "Conexion Cerrada";
 }

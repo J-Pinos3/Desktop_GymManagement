@@ -18,6 +18,7 @@ public:
     ~MainWindow();
 
     void getRoles();
+    int getCurrentSelectedRolId(const std::string &descriptionRol);
 
 private slots:
     void on_btnLogearse_clicked();

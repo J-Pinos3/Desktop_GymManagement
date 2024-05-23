@@ -9,6 +9,7 @@ class SqlConnection
 {
 public:
     SqlConnection();
+    ~SqlConnection();
 
     void conOpen();
     void conClose();
