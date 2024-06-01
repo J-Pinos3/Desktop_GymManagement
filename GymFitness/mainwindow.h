@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <vector>
-#include "rol.h"
+#include "Models/rol.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,7 +17,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void getRoles();
     int getCurrentSelectedRolId(const std::string &descriptionRol);
 
 private slots:

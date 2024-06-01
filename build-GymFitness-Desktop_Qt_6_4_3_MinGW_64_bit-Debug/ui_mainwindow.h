@@ -150,7 +150,7 @@ public:
 "}\n"
 "\n"
 "QPushButton:hover:!pressed {\n"
-"background: #fca311; \n"
+"background: #ffd600; \n"
 "}"));
 
         horizontalLayout->addWidget(btnLogearse);
@@ -165,7 +165,7 @@ public:
 "}\n"
 "\n"
 "QPushButton:hover:!pressed {\n"
-"background: #fca311; \n"
+"background: #ffd600; \n"
 "}"));
 
         horizontalLayout->addWidget(btnRegistrarse);

@@ -205,7 +205,7 @@ QComboBox QListView {
 }
 
 QPushButton:hover:!pressed {
-background: #fca311; 
+background: #ffd600; 
 }</string>
         </property>
         <property name="text">
@@ -228,7 +228,7 @@ background: #fca311;
 }
 
 QPushButton:hover:!pressed {
-background: #fca311; 
+background: #ffd600; 
 }</string>
         </property>
         <property name="text">

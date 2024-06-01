@@ -9,14 +9,16 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Controllers/LoginControllers/logincontroller.cpp \
     main.cpp \
     mainwindow.cpp \
-    rol.cpp \
+    Models/rol.cpp \
     sqlconnection.cpp
 
 HEADERS += \
+    Controllers/LoginControllers/logincontroller.h \
     mainwindow.h \
-    rol.h \
+    Models/rol.h \
     sqlconnection.h
 
 FORMS += \
