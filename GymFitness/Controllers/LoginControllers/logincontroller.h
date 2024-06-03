@@ -5,11 +5,14 @@
 #include <vector>
 #include <string>
 #include <QMessageBox>
-
+#include <iomanip>
 #include "mainwindow.h"
 #include "Models/rol.h"
 #include "sqlconnection.h"
 
+#include <sstream>
+#include <openssl/sha.h>
+#include <openssl/err.h>
 class LoginController
 {
 public:
@@ -29,6 +32,8 @@ public:
     bool registerUser(const QString& email, const QString& password, int RolId,
                 SqlConnection *con);
 
+
+    std::string cipherMEssage(const std::string &sttr);
 private:
     LoginController(){}
 };

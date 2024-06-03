@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "sqlconnection.h"
 #include <vector>
+#include <string>
 #include <QMessageBox>
 
 #include "Controllers/LoginControllers/logincontroller.h"
@@ -48,7 +49,10 @@ void MainWindow::on_btnLogearse_clicked()
     LoginController& loginController = LoginController::getInstance();
 
 
-    int count = loginController.logInUser(email, password, rolId, &con);
+    QString cipheredPassword = QString::fromStdString( loginController.cipherMEssage( password.toStdString() ) );
+
+
+    int count = loginController.logInUser(email, cipheredPassword, rolId, &con);
 
     if(count == 1){
         QMessageBox::information(this, tr("Success"), tr("Welcome to Gold's Gym"));
@@ -75,7 +79,10 @@ void MainWindow::on_btnRegistrarse_clicked()
     rolId = getCurrentSelectedRolId(selectedRol.toStdString());
 
     LoginController& loginController = LoginController::getInstance();
-    bool executionResult = loginController.registerUser(email, password, rolId, &con);
+
+    QString cipheredPass = QString::fromStdString( loginController.cipherMEssage(password.toStdString())  );
+
+    bool executionResult = loginController.registerUser(email, cipheredPass, rolId, &con);
 
     if( executionResult ){
         QMessageBox::information(this, tr("Saved"), tr("User created successfully"));

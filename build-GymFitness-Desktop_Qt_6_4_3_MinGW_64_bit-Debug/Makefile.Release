@@ -16,10 +16,10 @@ CXX           = g++
 DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -O2 -std=gnu++1z -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I../GymFitness -I. -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -Irelease -I. -I/include -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ 
+INCPATH       = -I../GymFitness -I. -I"C:/Program Files/OpenSSL-Win64/include" -I"C:/Program Files/OpenSSL-Win64/bin" -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -Irelease -I. -I/include -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        C:\Qt\6.4.3\mingw_64\lib\libQt6Widgets.a C:\Qt\6.4.3\mingw_64\lib\libQt6Gui.a C:\Qt\6.4.3\mingw_64\lib\libQt6Sql.a C:\Qt\6.4.3\mingw_64\lib\libQt6Core.a -lmingw32 C:\Qt\6.4.3\mingw_64\lib\libQt6EntryPoint.a -lshell32  
+LIBS        =        -L"C:\Program Files\OpenSSL-Win64\lib\VC\x64\MD" -llibcrypto -llibssl -L"C:\Program Files\OpenSSL-Win64\bin\libcrypto-3-x64.dll" -L"C:\Program Files\OpenSSL-Win64\bin\libssl-3-x64.dll" C:\Qt\6.4.3\mingw_64\lib\libQt6Widgets.a C:\Qt\6.4.3\mingw_64\lib\libQt6Gui.a C:\Qt\6.4.3\mingw_64\lib\libQt6Sql.a C:\Qt\6.4.3\mingw_64\lib\libQt6Core.a -lmingw32 C:\Qt\6.4.3\mingw_64\lib\libQt6EntryPoint.a -lshell32  
 QMAKE         = C:\Qt\6.4.3\mingw_64\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -269,7 +269,7 @@ release/moc_mainwindow.cpp: ../GymFitness/mainwindow.h \
 		../GymFitness/Models/rol.h \
 		release/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\mainwindow.h -o release\moc_mainwindow.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/release/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -I"C:/Program Files/OpenSSL-Win64/include" -I"C:/Program Files/OpenSSL-Win64/bin" -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\mainwindow.h -o release\moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -294,7 +294,194 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ####### Compile
 
-release/logincontroller.o: ../GymFitness/Controllers/LoginControllers/logincontroller.cpp ../GymFitness/Controllers/LoginControllers/logincontroller.h
+release/logincontroller.o: ../GymFitness/Controllers/LoginControllers/logincontroller.cpp ../GymFitness/Controllers/LoginControllers/logincontroller.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/QString \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qtconfigmacros.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qforeach.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qstringfwd.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QComboBox \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qtguiglobal.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qtgui-config.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qtguiexports.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qwidget.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qobject.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qlist.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qiterator.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qbytearraylist.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qalgorithms.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qstringmatcher.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qcoreevent.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qscopedpointer.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qmetatype.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qcompare.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qscopeguard.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qdatastream.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qiodevicebase.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qiterable.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qmetacontainer.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qcontainerinfo.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qtaggedpointer.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qmath.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qobject_impl.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qbindingstorage.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qmargins.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qaction.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qkeysequence.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qicon.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qsize.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qpixmap.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qpaintdevice.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qrect.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qpoint.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qcolor.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qrgb.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qrgba64.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qshareddata.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qimage.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qpixelformat.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qtransform.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qpolygon.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qregion.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qline.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qvariant.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qdebug.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qtextstream.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qstringconverter_base.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qcontiguouscache.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qmap.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qshareddata_impl.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qset.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qhash.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qvarlengtharray.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qpalette.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qbrush.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qfont.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qfontmetrics.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qfontinfo.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qsizepolicy.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qcursor.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qbitmap.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qevent.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qiodevice.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qpointer.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qurl.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qeventpoint.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qvector2d.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qvectornd.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qpointingdevice.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qinputdevice.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qscreen.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/QList \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/QObject \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/QRect \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/QSize \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/QSizeF \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/QTransform \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qtabwidget.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QMessageBox \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qmessagebox.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qdialog.h \
+		../GymFitness/mainwindow.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QMainWindow \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qmainwindow.h \
+		../GymFitness/Models/rol.h \
+		../GymFitness/sqlconnection.h \
+		C:/Qt/6.4.3/mingw_64/include/QtSql/QSqlDatabase \
+		C:/Qt/6.4.3/mingw_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/6.4.3/mingw_64/include/QtSql/qtsqlglobal.h \
+		C:/Qt/6.4.3/mingw_64/include/QtSql/qtsql-config.h \
+		C:/Qt/6.4.3/mingw_64/include/QtSql/qtsqlexports.h \
+		C:/Qt/6.4.3/mingw_64/include/QtSql/QSqlError \
+		C:/Qt/6.4.3/mingw_64/include/QtSql/qsqlerror.h \
+		C:/Qt/6.4.3/mingw_64/include/QtSql/QSqlQuery \
+		C:/Qt/6.4.3/mingw_64/include/QtSql/qsqlquery.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/sha.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/macros.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/opensslconf.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/configuration.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/opensslv.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/e_os2.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/err.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/types.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/safestack.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/stack.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/bio.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/crypto.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/cryptoerr.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/symhacks.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/cryptoerr_legacy.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/core.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/ebcdic.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/bioerr.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/lhash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\logincontroller.o ..\GymFitness\Controllers\LoginControllers\logincontroller.cpp
 
 release/main.o: ../GymFitness/main.cpp ../GymFitness/mainwindow.h \
@@ -601,67 +788,6 @@ release/mainwindow.o: ../GymFitness/mainwindow.cpp ../GymFitness/mainwindow.h \
 		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qtabwidget.h \
 		../GymFitness/Models/rol.h \
 		ui_mainwindow.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/QVariant \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QApplication \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qapplication.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qeventloop.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qjnitypes.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qfuture.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qfutureinterface.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qmutex.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qtsan_impl.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qresultstore.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qfuture_impl.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qthreadpool.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qthread.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qrunnable.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qexception.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qpromise.h \
-		C:/Qt/6.4.3/mingw_64/include/QtGui/qguiapplication.h \
-		C:/Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
-		C:/Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QComboBox \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qcombobox.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qstyleoption.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/6.4.3/mingw_64/include/QtGui/qvalidator.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qregularexpression.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qslider.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qabstractslider.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qstyle.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qtabbar.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qrubberband.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qframe.h \
-		C:/Qt/6.4.3/mingw_64/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QHBoxLayout \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qlayout.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QLabel \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qlabel.h \
-		C:/Qt/6.4.3/mingw_64/include/QtGui/qpicture.h \
-		C:/Qt/6.4.3/mingw_64/include/QtGui/qtextdocument.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QLineEdit \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qlineedit.h \
-		C:/Qt/6.4.3/mingw_64/include/QtGui/qtextcursor.h \
-		C:/Qt/6.4.3/mingw_64/include/QtGui/qtextformat.h \
-		C:/Qt/6.4.3/mingw_64/include/QtGui/qpen.h \
-		C:/Qt/6.4.3/mingw_64/include/QtGui/qtextoption.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QPushButton \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QSpacerItem \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QStatusBar \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qstatusbar.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QVBoxLayout \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QWidget \
 		../GymFitness/sqlconnection.h \
 		C:/Qt/6.4.3/mingw_64/include/QtSql/QSqlDatabase \
 		C:/Qt/6.4.3/mingw_64/include/QtSql/qsqldatabase.h \
@@ -674,7 +800,43 @@ release/mainwindow.o: ../GymFitness/mainwindow.cpp ../GymFitness/mainwindow.h \
 		C:/Qt/6.4.3/mingw_64/include/QtSql/qsqlquery.h \
 		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QMessageBox \
 		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qmessagebox.h \
-		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qdialog.h
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qdialog.h \
+		../GymFitness/Controllers/LoginControllers/logincontroller.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/QString \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QComboBox \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/6.4.3/mingw_64/include/QtGui/qvalidator.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qregularexpression.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qslider.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qstyle.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/6.4.3/mingw_64/include/QtWidgets/qframe.h \
+		C:/Qt/6.4.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/sha.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/macros.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/opensslconf.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/configuration.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/opensslv.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/e_os2.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/err.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/types.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/safestack.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/stack.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/bio.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/crypto.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/cryptoerr.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/symhacks.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/cryptoerr_legacy.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/core.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/ebcdic.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/bioerr.h \
+		C:/Program\ Files/OpenSSL-Win64/include/openssl/lhash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\GymFitness\mainwindow.cpp
 
 release/rol.o: ../GymFitness/Models/rol.cpp ../GymFitness/Models/rol.h

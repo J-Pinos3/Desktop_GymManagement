@@ -24,6 +24,18 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
+
+# Añadir las rutas de inclusión
+INCLUDEPATH += "C:/Program Files/OpenSSL-Win64/include/"
+
+# Añadir las bibliotecas
+LIBS += -L"C:/Program Files/OpenSSL-Win64/lib/VC/x64/MD" -llibcrypto -llibssl
+
+LIBS += -L"C:/Program Files/OpenSSL-Win64/bin/libcrypto-3-x64.dll"
+LIBS += -L"C:/Program Files/OpenSSL-Win64/bin/libssl-3-x64.dll"
+INCLUDEPATH += "C:/Program Files/OpenSSL-Win64/bin"
+
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

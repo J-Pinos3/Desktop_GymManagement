@@ -39,7 +39,7 @@ create table if not exists CabeceraFactura(
 create table if not exists Usuario(
 	id_usuario varchar(10) primary key,
 	usuario varchar(30) not null,
-    clave varchar(10) not null,
+    clave varchar(100) not null,
     id_rol int, 
     foreign key(id_rol) references Rol(id_rol),
     unique(usuario)
