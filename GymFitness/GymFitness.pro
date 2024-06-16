@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     Controllers/LoginControllers/logincontroller.cpp \
+    View/gymoperations.cpp \
     main.cpp \
     mainwindow.cpp \
     Models/rol.cpp \
@@ -17,11 +18,13 @@ SOURCES += \
 
 HEADERS += \
     Controllers/LoginControllers/logincontroller.h \
+    View/gymoperations.h \
     mainwindow.h \
     Models/rol.h \
     sqlconnection.h
 
 FORMS += \
+    View/gymoperations.ui \
     mainwindow.ui
 
 
