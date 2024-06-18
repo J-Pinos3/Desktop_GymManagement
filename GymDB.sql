@@ -63,7 +63,7 @@ select * from CabeceraFactura;
 select * from DetalleFactura;
 select * from Usuario;
 
-
+-- delete from CabeceraFactura where id_cab_fact = 1;
 
 
 -- el valor de total deta será igual a id_paq * cantidad_paq, eso se calcula en el app c++
