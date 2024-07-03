@@ -96,7 +96,7 @@ QWidget#tabInicio QLineEdit{
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <widget class="QLineEdit" name="lineEdit">
+            <widget class="QLineEdit" name="txtPersonCodeSearchIntro">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -119,7 +119,7 @@ QWidget#tabInicio QLineEdit{
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="btnCustomerSearchIntro">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -155,7 +155,7 @@ QWidget#tabInicio QLineEdit{
           </layout>
          </item>
          <item>
-          <widget class="QTableWidget" name="tableWidget">
+          <widget class="QTableWidget" name="tblWidCustomersIntro">
            <property name="sizeAdjustPolicy">
             <enum>QAbstractScrollArea::AdjustIgnored</enum>
            </property>
@@ -177,6 +177,11 @@ QWidget#tabInicio QLineEdit{
            <column>
             <property name="text">
              <string>Fecha Inicio</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Rol</string>
             </property>
            </column>
           </widget>

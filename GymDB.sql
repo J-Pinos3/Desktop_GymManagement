@@ -7,25 +7,22 @@ create table if not exists Rol(
     unique(rol_descricion)
 );
 
-
 create table if not exists Persona(
 	cod_persona varchar(12) primary key,
     nombre varchar(20),
     apellido varchar(30),
+    peso numeric(6,2),
     fecha_registro date,
     id_rol int, 
     foreign key(id_rol) references Rol(id_rol)
 );
 
-
-
 create table if not exists Paquete(
 	id_paq int auto_increment primary key,
     paq_descripcion varchar(200) not null,
-    paq_price decimal(5,2) not null
+    paq_price decimal(5,2) not null,
+    paq_days int not null
 );
-
-
 
 create table if not exists CabeceraFactura(
 	id_cab_fact int auto_increment primary key,
@@ -34,7 +31,6 @@ create table if not exists CabeceraFactura(
     cod_persona varchar(12),
     foreign key(cod_persona) references Persona(cod_persona)
 );
-
 
 create table if not exists Usuario(
 	id_usuario varchar(10) primary key,
@@ -55,6 +51,15 @@ create table if not exists DetalleFactura(
     foreign key(id_paq) references Paquete(id_paq) 
 );
 
+create table if not exists PlanElegido(
+	id_plan_eleg int auto_increment primary key,
+    cod_persona varchar(12),
+    id_paq int,
+    fecha_pago date,
+    fecha_finalizacion date,
+    foreign key (cod_persona) references Persona(cod_persona),
+    foreign key (id_paq) references Paquete(id_paq)
+);
 
 select * from Rol;
 select * from Persona;
@@ -62,8 +67,10 @@ select * from Paquete;
 select * from CabeceraFactura;
 select * from DetalleFactura;
 select * from Usuario;
+select * from PlanElegido;
 
--- delete from CabeceraFactura where id_cab_fact = 1;
+-- delete from Paquete where id_paq in (1,2);
+
 
 
 -- el valor de total deta será igual a id_paq * cantidad_paq, eso se calcula en el app c++
@@ -91,6 +98,9 @@ delimiter ;
 
 
 /*
+SET FOREIGN_KEY_CHECKS=0; --disable them
+SET FOREIGN_KEY_CHECKS=1; --enable them
+
 insert into Rol(rol_descricion)
 values ('Cliente'),('Administrador'),('Entrenador'),('Nutricionista'),('Fisioterapeuta');
 
@@ -103,8 +113,10 @@ insert into Persona(cod_persona, nombre, apellido, fecha_registro)
 insert into CabeceraFactura(fecha_cab_fact, total_cab_fact)
  values( current_date(), 325.6 )
 
-insert into Paquete(paq_descripcion,paq_price)
- values( 'Entrenamiento Mensual', 35.0),( 'Entrenamiento Diario', 3.0)
+insert into Paquete(paq_descripcion,paq_price,paq_days)
+ values( 'Entrenamiento Mensual', 35.0, 30),( 'Entrenamiento Diario', 3.0, 1)
+		,( 'Entrenamiento Semanal', 20.0, 7),( 'Entrenamiento Anual', 900.0, 375)
+
  
 insert into Usuario(usuario, clave)
 values ("Ivan", left(uuid(),10) ),

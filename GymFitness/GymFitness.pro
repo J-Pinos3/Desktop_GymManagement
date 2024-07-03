@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     Controllers/LoginControllers/logincontroller.cpp \
+    Controllers/PersonControllers/personcontroller.cpp \
     Models/persona.cpp \
     View/gymoperations.cpp \
     main.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     Controllers/LoginControllers/logincontroller.h \
+    Controllers/PersonControllers/personcontroller.h \
     Models/persona.h \
     View/gymoperations.h \
     mainwindow.h \
