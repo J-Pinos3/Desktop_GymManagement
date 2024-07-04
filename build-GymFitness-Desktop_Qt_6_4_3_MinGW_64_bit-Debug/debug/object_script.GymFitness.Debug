@@ -1,0 +1,11 @@
+debug/logincontroller.o
+debug/personcontroller.o
+debug/persona.o
+debug/gymoperations.o
+debug/main.o
+debug/mainwindow.o
+debug/rol.o
+debug/sqlconnection.o
+debug/qrc_Resources.o
+debug/moc_gymoperations.o
+debug/moc_mainwindow.o

@@ -1,0 +1,11 @@
+release/logincontroller.o
+release/personcontroller.o
+release/persona.o
+release/gymoperations.o
+release/main.o
+release/mainwindow.o
+release/rol.o
+release/sqlconnection.o
+release/qrc_Resources.o
+release/moc_gymoperations.o
+release/moc_mainwindow.o

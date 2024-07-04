@@ -51,7 +51,7 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
@@ -137,6 +137,24 @@ QWidget#tabInicio QLineEdit{
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="btnAllCustomers">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Listar Clientes</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -184,6 +202,16 @@ QWidget#tabInicio QLineEdit{
              <string>Rol</string>
             </property>
            </column>
+           <column>
+            <property name="text">
+             <string>Fecha Pago</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha Caducación</string>
+            </property>
+           </column>
           </widget>
          </item>
         </layout>
@@ -193,13 +221,25 @@ QWidget#tabInicio QLineEdit{
      <widget class="QWidget" name="tabGestion">
       <property name="styleSheet">
        <string notr="true">QWidget#tabGestion QLineEdit{
-	padding-top: 3%;
-	padding-bottom: 4%;
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: white;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}
+
+QWidget#tabGestion QDateEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
 	padding-left: 5%;
 	width: 100%;
 	min-width:200px;
 	color: white;
 	font-size: 14px;
+	border: 1px solid #ffd600
 }
 
 QWidget#tabGestion QCheckBox{
@@ -247,7 +287,7 @@ QWidget#tabGestion QTableWidget{
               <number>0</number>
              </property>
              <item>
-              <widget class="QLineEdit" name="lineEdit_2">
+              <widget class="QLineEdit" name="txtManageName">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -260,6 +300,11 @@ QWidget#tabGestion QTableWidget{
                  <height>0</height>
                 </size>
                </property>
+               <property name="font">
+                <font>
+                 <pointsize>-1</pointsize>
+                </font>
+               </property>
                <property name="styleSheet">
                 <string notr="true"/>
                </property>
@@ -269,7 +314,7 @@ QWidget#tabGestion QTableWidget{
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_3">
+              <widget class="QLineEdit" name="txtManageLastName">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -285,7 +330,7 @@ QWidget#tabGestion QTableWidget{
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_4">
+              <widget class="QLineEdit" name="txtManageWeight">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -301,23 +346,14 @@ QWidget#tabGestion QTableWidget{
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_5">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <property name="placeholderText">
-                <string>Fecha de inscripción:</string>
+              <widget class="QDateEdit" name="manageInscriptionDate">
+               <property name="displayFormat">
+                <string>yyyy-MM-dd</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_6">
+              <widget class="QLineEdit" name="txtManageCode">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -339,7 +375,7 @@ QWidget#tabGestion QTableWidget{
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="checkBox_2">
+              <widget class="QCheckBox" name="cbxManageNew">
                <property name="text">
                 <string>Cliente Nuevo?</string>
                </property>
@@ -358,21 +394,21 @@ QWidget#tabGestion QTableWidget{
             <number>6</number>
            </property>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="btnManageSave">
              <property name="text">
               <string>Guardar</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_5">
+            <widget class="QPushButton" name="btnManageCancel">
              <property name="text">
               <string>Cancelar</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_6">
+            <widget class="QPushButton" name="btnManageSearch">
              <property name="text">
               <string>Buscar</string>
              </property>

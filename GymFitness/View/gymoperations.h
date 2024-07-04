@@ -2,7 +2,7 @@
 #define GYMOPERATIONS_H
 
 #include <QWidget>
-
+#include <QMessageBox>
 
 #include <vector>
 #include <string>
@@ -24,15 +24,26 @@ public:
     explicit GymOperations(QWidget *parent = nullptr);
     ~GymOperations();
 
+    void setCustomersRoleDescription();
     void listAllCustomers();
+
+    void getValuesfromManageFields(QString& nombre, QString& apellido,
+        QString& fechaRegistro, double& peso, int& rolId);
 
 private slots:
 
     void on_btnCustomerSearchIntro_clicked();
 
+    void on_btnAllCustomers_clicked();
+
+
+
+    void on_btnManageSave_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
+    std::vector<Rol> roles;
 };
 
 #endif // GYMOPERATIONS_H

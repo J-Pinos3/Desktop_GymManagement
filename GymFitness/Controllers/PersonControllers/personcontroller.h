@@ -8,6 +8,7 @@
 #include <iomanip>
 
 #include <Models/persona.h>
+#include <Models/rol.h>
 #include "sqlconnection.h"
 
 
@@ -21,12 +22,19 @@ public:
     }
 
 
-    //std::vector<Persona>
+    void getRolesForCustomers(SqlConnection *con, std::vector<Rol>& roles);
+
+
     void getAllUsers(SqlConnection *con, std::vector<Persona>& clientes);
 
-    ///this functions searches user by its code
-    ///only within the management tab
     Persona searchUser(SqlConnection *con, const QString& cod_persona);
+
+    bool registerCustomer(SqlConnection *con, const QString& nombre, const QString& apellido,
+        double peso, const QString& fechaRegistro, int rol);
+
+    void searchUsersWithFields(SqlConnection *con, std::vector<Persona>& clientes,
+        const QString& nombre = "", const QString& apellido = "",
+        const QString& codigo = "");
 private:
     PersonController(){};
 };
