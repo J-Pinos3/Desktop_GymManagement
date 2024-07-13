@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "sqlconnection.h"
+#include "View/gymoperations.h"
 #include <vector>
 #include <string>
 #include <QMessageBox>
@@ -56,12 +57,17 @@ void MainWindow::on_btnLogearse_clicked()
 
     if(count == 1){
         QMessageBox::information(this, tr("Success"), tr("Welcome to Gold's Gym"));
+        this->hide();
+        GymOperations* gymOperations = new GymOperations();
+        gymOperations->show();
 
     }else if(count > 1){
         QMessageBox::information(this, tr("Error"), tr("Duplicated User"));
     }else{
         QMessageBox::information(this, tr("Error"), tr("Wrong user or password"));
     }
+
+
 
 }
 

@@ -209,7 +209,7 @@ QWidget#tabInicio QLineEdit{
            </column>
            <column>
             <property name="text">
-             <string>Fecha Caducación</string>
+             <string>Fecha Límite</string>
             </property>
            </column>
           </widget>

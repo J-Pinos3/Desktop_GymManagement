@@ -48,17 +48,17 @@ public:
     QVBoxLayout *verticalLayout_5;
     QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout_4;
-    QLineEdit *lineEdit_2;
-    QLineEdit *lineEdit_3;
-    QLineEdit *lineEdit_4;
-    QDateEdit *dateEdit;
-    QLineEdit *lineEdit_6;
-    QCheckBox *checkBox_2;
+    QLineEdit *txtManageName;
+    QLineEdit *txtManageLastName;
+    QLineEdit *txtManageWeight;
+    QDateEdit *manageInscriptionDate;
+    QLineEdit *txtManageCode;
+    QCheckBox *cbxManageNew;
     QTableWidget *tableWidget_2;
     QHBoxLayout *horizontalLayout_2;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_5;
-    QPushButton *pushButton_6;
+    QPushButton *btnManageSave;
+    QPushButton *btnManageCancel;
+    QPushButton *btnManageSearch;
     QWidget *tabCitas;
     QVBoxLayout *verticalLayout_9;
     QHBoxLayout *horizontalLayout_8;
@@ -279,51 +279,51 @@ public:
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setObjectName("verticalLayout_4");
         verticalLayout_4->setContentsMargins(-1, -1, 0, -1);
-        lineEdit_2 = new QLineEdit(tabGestion);
-        lineEdit_2->setObjectName("lineEdit_2");
-        sizePolicy.setHeightForWidth(lineEdit_2->sizePolicy().hasHeightForWidth());
-        lineEdit_2->setSizePolicy(sizePolicy);
-        lineEdit_2->setMinimumSize(QSize(207, 0));
+        txtManageName = new QLineEdit(tabGestion);
+        txtManageName->setObjectName("txtManageName");
+        sizePolicy.setHeightForWidth(txtManageName->sizePolicy().hasHeightForWidth());
+        txtManageName->setSizePolicy(sizePolicy);
+        txtManageName->setMinimumSize(QSize(207, 0));
         QFont font2;
-        lineEdit_2->setFont(font2);
-        lineEdit_2->setStyleSheet(QString::fromUtf8(""));
+        txtManageName->setFont(font2);
+        txtManageName->setStyleSheet(QString::fromUtf8(""));
 
-        verticalLayout_4->addWidget(lineEdit_2);
+        verticalLayout_4->addWidget(txtManageName);
 
-        lineEdit_3 = new QLineEdit(tabGestion);
-        lineEdit_3->setObjectName("lineEdit_3");
-        sizePolicy.setHeightForWidth(lineEdit_3->sizePolicy().hasHeightForWidth());
-        lineEdit_3->setSizePolicy(sizePolicy);
-        lineEdit_3->setStyleSheet(QString::fromUtf8(""));
+        txtManageLastName = new QLineEdit(tabGestion);
+        txtManageLastName->setObjectName("txtManageLastName");
+        sizePolicy.setHeightForWidth(txtManageLastName->sizePolicy().hasHeightForWidth());
+        txtManageLastName->setSizePolicy(sizePolicy);
+        txtManageLastName->setStyleSheet(QString::fromUtf8(""));
 
-        verticalLayout_4->addWidget(lineEdit_3);
+        verticalLayout_4->addWidget(txtManageLastName);
 
-        lineEdit_4 = new QLineEdit(tabGestion);
-        lineEdit_4->setObjectName("lineEdit_4");
-        sizePolicy.setHeightForWidth(lineEdit_4->sizePolicy().hasHeightForWidth());
-        lineEdit_4->setSizePolicy(sizePolicy);
-        lineEdit_4->setStyleSheet(QString::fromUtf8(""));
+        txtManageWeight = new QLineEdit(tabGestion);
+        txtManageWeight->setObjectName("txtManageWeight");
+        sizePolicy.setHeightForWidth(txtManageWeight->sizePolicy().hasHeightForWidth());
+        txtManageWeight->setSizePolicy(sizePolicy);
+        txtManageWeight->setStyleSheet(QString::fromUtf8(""));
 
-        verticalLayout_4->addWidget(lineEdit_4);
+        verticalLayout_4->addWidget(txtManageWeight);
 
-        dateEdit = new QDateEdit(tabGestion);
-        dateEdit->setObjectName("dateEdit");
+        manageInscriptionDate = new QDateEdit(tabGestion);
+        manageInscriptionDate->setObjectName("manageInscriptionDate");
 
-        verticalLayout_4->addWidget(dateEdit);
+        verticalLayout_4->addWidget(manageInscriptionDate);
 
-        lineEdit_6 = new QLineEdit(tabGestion);
-        lineEdit_6->setObjectName("lineEdit_6");
-        sizePolicy.setHeightForWidth(lineEdit_6->sizePolicy().hasHeightForWidth());
-        lineEdit_6->setSizePolicy(sizePolicy);
-        lineEdit_6->setMinimumSize(QSize(207, 0));
-        lineEdit_6->setStyleSheet(QString::fromUtf8(""));
+        txtManageCode = new QLineEdit(tabGestion);
+        txtManageCode->setObjectName("txtManageCode");
+        sizePolicy.setHeightForWidth(txtManageCode->sizePolicy().hasHeightForWidth());
+        txtManageCode->setSizePolicy(sizePolicy);
+        txtManageCode->setMinimumSize(QSize(207, 0));
+        txtManageCode->setStyleSheet(QString::fromUtf8(""));
 
-        verticalLayout_4->addWidget(lineEdit_6);
+        verticalLayout_4->addWidget(txtManageCode);
 
-        checkBox_2 = new QCheckBox(tabGestion);
-        checkBox_2->setObjectName("checkBox_2");
+        cbxManageNew = new QCheckBox(tabGestion);
+        cbxManageNew->setObjectName("cbxManageNew");
 
-        verticalLayout_4->addWidget(checkBox_2);
+        verticalLayout_4->addWidget(cbxManageNew);
 
 
         horizontalLayout_3->addLayout(verticalLayout_4);
@@ -339,20 +339,20 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        pushButton_2 = new QPushButton(tabGestion);
-        pushButton_2->setObjectName("pushButton_2");
+        btnManageSave = new QPushButton(tabGestion);
+        btnManageSave->setObjectName("btnManageSave");
 
-        horizontalLayout_2->addWidget(pushButton_2);
+        horizontalLayout_2->addWidget(btnManageSave);
 
-        pushButton_5 = new QPushButton(tabGestion);
-        pushButton_5->setObjectName("pushButton_5");
+        btnManageCancel = new QPushButton(tabGestion);
+        btnManageCancel->setObjectName("btnManageCancel");
 
-        horizontalLayout_2->addWidget(pushButton_5);
+        horizontalLayout_2->addWidget(btnManageCancel);
 
-        pushButton_6 = new QPushButton(tabGestion);
-        pushButton_6->setObjectName("pushButton_6");
+        btnManageSearch = new QPushButton(tabGestion);
+        btnManageSearch->setObjectName("btnManageSearch");
 
-        horizontalLayout_2->addWidget(pushButton_6);
+        horizontalLayout_2->addWidget(btnManageSearch);
 
 
         verticalLayout_5->addLayout(horizontalLayout_2);
@@ -585,7 +585,7 @@ public:
 
         retranslateUi(GymOperations);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(GymOperations);
@@ -610,17 +610,17 @@ public:
         QTableWidgetItem *___qtablewidgetitem5 = tblWidCustomersIntro->horizontalHeaderItem(5);
         ___qtablewidgetitem5->setText(QCoreApplication::translate("GymOperations", "Fecha Pago", nullptr));
         QTableWidgetItem *___qtablewidgetitem6 = tblWidCustomersIntro->horizontalHeaderItem(6);
-        ___qtablewidgetitem6->setText(QCoreApplication::translate("GymOperations", "Fecha Caducaci\303\263n", nullptr));
+        ___qtablewidgetitem6->setText(QCoreApplication::translate("GymOperations", "Fecha L\303\255mite", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabInicio), QCoreApplication::translate("GymOperations", "Inicio", nullptr));
-        lineEdit_2->setPlaceholderText(QCoreApplication::translate("GymOperations", "Nombre:", nullptr));
-        lineEdit_3->setPlaceholderText(QCoreApplication::translate("GymOperations", "Apellido:", nullptr));
-        lineEdit_4->setPlaceholderText(QCoreApplication::translate("GymOperations", "Peso:", nullptr));
-        dateEdit->setDisplayFormat(QCoreApplication::translate("GymOperations", "yyyy-MM-dd", nullptr));
-        lineEdit_6->setPlaceholderText(QCoreApplication::translate("GymOperations", "C\303\263digo:", nullptr));
-        checkBox_2->setText(QCoreApplication::translate("GymOperations", "Cliente Nuevo?", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("GymOperations", "Guardar", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("GymOperations", "Buscar", nullptr));
+        txtManageName->setPlaceholderText(QCoreApplication::translate("GymOperations", "Nombre:", nullptr));
+        txtManageLastName->setPlaceholderText(QCoreApplication::translate("GymOperations", "Apellido:", nullptr));
+        txtManageWeight->setPlaceholderText(QCoreApplication::translate("GymOperations", "Peso:", nullptr));
+        manageInscriptionDate->setDisplayFormat(QCoreApplication::translate("GymOperations", "yyyy-MM-dd", nullptr));
+        txtManageCode->setPlaceholderText(QCoreApplication::translate("GymOperations", "C\303\263digo:", nullptr));
+        cbxManageNew->setText(QCoreApplication::translate("GymOperations", "Cliente Nuevo?", nullptr));
+        btnManageSave->setText(QCoreApplication::translate("GymOperations", "Guardar", nullptr));
+        btnManageCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
+        btnManageSearch->setText(QCoreApplication::translate("GymOperations", "Buscar", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabGestion), QCoreApplication::translate("GymOperations", "Gesti\303\263n", nullptr));
         checkBox_3->setText(QCoreApplication::translate("GymOperations", "Nueva Cita", nullptr));
         pushButton_3->setText(QCoreApplication::translate("GymOperations", "Guardar", nullptr));

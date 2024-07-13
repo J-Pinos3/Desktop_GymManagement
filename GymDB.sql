@@ -71,6 +71,13 @@ select * from PlanElegido;
 
 -- delete from Paquete where id_paq in (1,2);
 
+-- query to show person info and remaining dates in its package
+select
+	P.cod_persona, concat(P.nombre," ",P.apellido),
+	P.peso, P.fecha_registro, P.id_rol,
+    plan.fecha_pago, plan.fecha_finalizacion
+from Persona as P
+left join PlanElegido as plan on plan.cod_persona = P.cod_persona;
 
 
 -- el valor de total deta será igual a id_paq * cantidad_paq, eso se calcula en el app c++
@@ -117,6 +124,7 @@ insert into Paquete(paq_descripcion,paq_price,paq_days)
  values( 'Entrenamiento Mensual', 35.0, 30),( 'Entrenamiento Diario', 3.0, 1)
 		,( 'Entrenamiento Semanal', 20.0, 7),( 'Entrenamiento Anual', 900.0, 375)
 
+update Persona set id_rol = 1 where cod_persona = 'b8f61438-4';
  
 insert into Usuario(usuario, clave)
 values ("Ivan", left(uuid(),10) ),
@@ -124,13 +132,11 @@ values ("Ivan", left(uuid(),10) ),
 */
 
 
-
 /*
 select concat(p.nombre," ",p.apellido) as nombre_completo, rol.rol_descricion 
 from Persona as p, Rol as rol
 where p.id_rol = rol.id_rol;
 */
-
 
 
 /*

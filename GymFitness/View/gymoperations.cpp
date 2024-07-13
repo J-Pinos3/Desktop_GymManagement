@@ -28,11 +28,11 @@ void GymOperations::getValuesfromManageFields(QString& nombre, QString& apellido
         ? "" : ui->txtManageLastName->text();
 
     fechaRegistro = ui->manageInscriptionDate->date().isNull() || ui->manageInscriptionDate->date().toString().isEmpty()
-        ? "0000-00-00" :  ui->manageInscriptionDate->date().toString();
+        ? "0000-00-00" :  ui->manageInscriptionDate->date().toString("yyyy-MM-dd");
 
     peso = ui->txtManageWeight->text().toDouble() < 0.0 ? 0.0 : ui->txtManageWeight->text().toDouble();
 
-    rolId = 2;
+    rolId = 1;
 }
 
 void GymOperations::setCustomersRoleDescription(){
@@ -139,29 +139,32 @@ void GymOperations::on_btnAllCustomers_clicked()
 }
 
 
-
-
 void GymOperations::on_btnManageSave_clicked()
 {
     QString nombre = "", apellido = "", fechaRegistro = "";
     double peso = 0.0;
-    int rolId= 2;
+    int rolId= 1;
 
     SqlConnection con;
     PersonController& personController = PersonController::getInstance();
 
+    //if cbx is checked, it means create a new user, so dont enter user code
     if( ui->cbxManageNew->isChecked() == true ){
-        ui->txtManageCode->setEnabled(false);//generate one
+        ui->txtManageCode->setReadOnly(true);//generate one
 
         getValuesfromManageFields(nombre, apellido, fechaRegistro, peso, rolId);
-        bool executionResult = personController.registerCustomer(&con, nombre, apellido, peso, fechaRegistro, rolId);
-
-        if(executionResult){
+        //bool executionResult = personController.registerCustomer(&con, nombre, apellido, peso, fechaRegistro, rolId);
+        qDebug() << fechaRegistro << "\n";
+        //if(executionResult){
+        if(true){
             QMessageBox::information(this, tr("Saved"), tr("Customer added successfully"));
             listAllCustomers();
         }else{
             QMessageBox::information(this, tr("Error"), tr("Customer couldn't be created"));
         }
+    }else{
+        //if not cbx is not checked, it means update or search user so enter user code
+        ui->txtManageCode->setReadOnly(false);
     }
 }
 
