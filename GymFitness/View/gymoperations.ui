@@ -51,7 +51,7 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
@@ -231,6 +231,7 @@ QWidget#tabInicio QLineEdit{
 	border: 1px solid #ffd600
 }
 
+
 QWidget#tabGestion QDateEdit{
 	padding-top: 2%;
 	padding-bottom: 3%;
@@ -264,9 +265,9 @@ QWidget#tabGestion QPushButton {
 
 
 QWidget#tabGestion QTableWidget{
-	padding-left: 20px;
-	background-color: #9BEC00;
+	background-color: #d1d1d1;
 }
+
 
 </string>
       </property>
@@ -384,7 +385,43 @@ QWidget#tabGestion QTableWidget{
             </layout>
            </item>
            <item>
-            <widget class="QTableWidget" name="tableWidget_2"/>
+            <widget class="QTableWidget" name="tblWidManage">
+             <column>
+              <property name="text">
+               <string>Código</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Nombre</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Peso</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Fecha Inicio</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Rol</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Fecha Pago</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Fecha Límite</string>
+              </property>
+             </column>
+            </widget>
            </item>
           </layout>
          </item>
@@ -434,14 +471,17 @@ QWidget#tabGestion QTableWidget{
 
 
 QWidget#tabCitas QLineEdit{
-	padding-top: 3%;
-	padding-bottom: 4%;
+	padding-top: 2%;
+	padding-bottom: 3%;
 	padding-left: 5%;
 	width: 100%;
 	min-width:200px;
 	color: white;
-	font-size: 14px;
+	font-size: 16px;
+	border: 1px solid #ffd600
 }
+
+
 
 QWidget#tabCitas QCheckBox{
 	padding-top: 3%;
@@ -454,8 +494,18 @@ QWidget#tabCitas QCheckBox{
 
 
 QWidget#tabCitas QTableWidget{
-	padding-left: 20px;
-	background-color: #9BEC00;
+	background-color: #d1d1d1;
+}
+
+QWidget#tabCitas QDateTimeEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: white;
+	font-size: 14px;
+	border: 1px solid #ffd600
 }
 </string>
       </property>
@@ -468,7 +518,20 @@ QWidget#tabCitas QTableWidget{
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
-            <widget class="QLineEdit" name="lineEdit_10">
+            <widget class="QLineEdit" name="txtAppointUserCode">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="placeholderText">
+              <string>Código</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateTimeEdit" name="appointDate">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -478,20 +541,10 @@ QWidget#tabCitas QTableWidget{
             </widget>
            </item>
            <item>
-            <widget class="QDateTimeEdit" name="dateTimeEdit">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-            </widget>
+            <widget class="QComboBox" name="cbxAppointService"/>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_2"/>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="checkBox_3">
+            <widget class="QCheckBox" name="cbxAppointNew">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -506,23 +559,58 @@ QWidget#tabCitas QTableWidget{
           </layout>
          </item>
          <item>
-          <widget class="QTableWidget" name="tableWidget_4"/>
+          <widget class="QTableWidget" name="tblWidAppoint">
+           <column>
+            <property name="text">
+             <string>Servicio</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Código Usuario</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nombre</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha Sesión</string>
+            </property>
+           </column>
+          </widget>
          </item>
         </layout>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="btnAppointSave">
            <property name="text">
             <string>Guardar</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="btnAppointCancel">
            <property name="text">
             <string>Cancelar</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnAppointSearch">
+           <property name="text">
+            <string>Buscar</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnAppointAll">
+           <property name="text">
+            <string>Todas las Citas</string>
            </property>
           </widget>
          </item>

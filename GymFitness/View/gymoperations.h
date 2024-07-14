@@ -40,6 +40,12 @@ private slots:
 
     void on_btnManageSave_clicked();
 
+    void on_cbxManageNew_stateChanged(int arg1);
+
+    void on_btnManageCancel_clicked();
+
+    void on_btnManageSearch_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;

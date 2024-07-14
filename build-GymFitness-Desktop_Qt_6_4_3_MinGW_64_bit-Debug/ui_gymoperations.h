@@ -54,7 +54,7 @@ public:
     QDateEdit *manageInscriptionDate;
     QLineEdit *txtManageCode;
     QCheckBox *cbxManageNew;
-    QTableWidget *tableWidget_2;
+    QTableWidget *tblWidManage;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *btnManageSave;
     QPushButton *btnManageCancel;
@@ -264,9 +264,9 @@ public:
 "\n"
 "\n"
 "QWidget#tabGestion QTableWidget{\n"
-"	padding-left: 20px;\n"
-"	background-color: #9BEC00;\n"
+"	background-color: #d1d1d1;\n"
 "}\n"
+"\n"
 "\n"
 ""));
         gridLayout = new QGridLayout(tabGestion);
@@ -328,10 +328,26 @@ public:
 
         horizontalLayout_3->addLayout(verticalLayout_4);
 
-        tableWidget_2 = new QTableWidget(tabGestion);
-        tableWidget_2->setObjectName("tableWidget_2");
+        tblWidManage = new QTableWidget(tabGestion);
+        if (tblWidManage->columnCount() < 7)
+            tblWidManage->setColumnCount(7);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        tblWidManage->setHorizontalHeaderItem(0, __qtablewidgetitem7);
+        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        tblWidManage->setHorizontalHeaderItem(1, __qtablewidgetitem8);
+        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+        tblWidManage->setHorizontalHeaderItem(2, __qtablewidgetitem9);
+        QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
+        tblWidManage->setHorizontalHeaderItem(3, __qtablewidgetitem10);
+        QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
+        tblWidManage->setHorizontalHeaderItem(4, __qtablewidgetitem11);
+        QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
+        tblWidManage->setHorizontalHeaderItem(5, __qtablewidgetitem12);
+        QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
+        tblWidManage->setHorizontalHeaderItem(6, __qtablewidgetitem13);
+        tblWidManage->setObjectName("tblWidManage");
 
-        horizontalLayout_3->addWidget(tableWidget_2);
+        horizontalLayout_3->addWidget(tblWidManage);
 
 
         verticalLayout_5->addLayout(horizontalLayout_3);
@@ -618,6 +634,20 @@ public:
         manageInscriptionDate->setDisplayFormat(QCoreApplication::translate("GymOperations", "yyyy-MM-dd", nullptr));
         txtManageCode->setPlaceholderText(QCoreApplication::translate("GymOperations", "C\303\263digo:", nullptr));
         cbxManageNew->setText(QCoreApplication::translate("GymOperations", "Cliente Nuevo?", nullptr));
+        QTableWidgetItem *___qtablewidgetitem7 = tblWidManage->horizontalHeaderItem(0);
+        ___qtablewidgetitem7->setText(QCoreApplication::translate("GymOperations", "C\303\263digo", nullptr));
+        QTableWidgetItem *___qtablewidgetitem8 = tblWidManage->horizontalHeaderItem(1);
+        ___qtablewidgetitem8->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
+        QTableWidgetItem *___qtablewidgetitem9 = tblWidManage->horizontalHeaderItem(2);
+        ___qtablewidgetitem9->setText(QCoreApplication::translate("GymOperations", "Peso", nullptr));
+        QTableWidgetItem *___qtablewidgetitem10 = tblWidManage->horizontalHeaderItem(3);
+        ___qtablewidgetitem10->setText(QCoreApplication::translate("GymOperations", "Fecha Inicio", nullptr));
+        QTableWidgetItem *___qtablewidgetitem11 = tblWidManage->horizontalHeaderItem(4);
+        ___qtablewidgetitem11->setText(QCoreApplication::translate("GymOperations", "Rol", nullptr));
+        QTableWidgetItem *___qtablewidgetitem12 = tblWidManage->horizontalHeaderItem(5);
+        ___qtablewidgetitem12->setText(QCoreApplication::translate("GymOperations", "Fecha Pago", nullptr));
+        QTableWidgetItem *___qtablewidgetitem13 = tblWidManage->horizontalHeaderItem(6);
+        ___qtablewidgetitem13->setText(QCoreApplication::translate("GymOperations", "Fecha L\303\255mite", nullptr));
         btnManageSave->setText(QCoreApplication::translate("GymOperations", "Guardar", nullptr));
         btnManageCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
         btnManageSearch->setText(QCoreApplication::translate("GymOperations", "Buscar", nullptr));

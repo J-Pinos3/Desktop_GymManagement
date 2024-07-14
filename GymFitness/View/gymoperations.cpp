@@ -86,6 +86,7 @@ void GymOperations::listAllCustomers(){
 }
 
 
+//INTRO TAB
 void GymOperations::on_btnCustomerSearchIntro_clicked()
 {
     QString userRoleDescription = "";
@@ -132,13 +133,13 @@ void GymOperations::on_btnCustomerSearchIntro_clicked()
     //añadir los campos de la tabla plan elegido
 }
 
-
 void GymOperations::on_btnAllCustomers_clicked()
 {
     listAllCustomers();
 }
 
 
+//MANAGEMENT TAB
 void GymOperations::on_btnManageSave_clicked()
 {
     QString nombre = "", apellido = "", fechaRegistro = "";
@@ -148,23 +149,85 @@ void GymOperations::on_btnManageSave_clicked()
     SqlConnection con;
     PersonController& personController = PersonController::getInstance();
 
-    //if cbx is checked, it means create a new user, so dont enter user code
-    if( ui->cbxManageNew->isChecked() == true ){
-        ui->txtManageCode->setReadOnly(true);//generate one
-
-        getValuesfromManageFields(nombre, apellido, fechaRegistro, peso, rolId);
-        //bool executionResult = personController.registerCustomer(&con, nombre, apellido, peso, fechaRegistro, rolId);
-        qDebug() << fechaRegistro << "\n";
-        //if(executionResult){
-        if(true){
-            QMessageBox::information(this, tr("Saved"), tr("Customer added successfully"));
-            listAllCustomers();
-        }else{
-            QMessageBox::information(this, tr("Error"), tr("Customer couldn't be created"));
-        }
+    getValuesfromManageFields(nombre, apellido, fechaRegistro, peso, rolId);
+    bool executionResult = personController.registerCustomer(&con, nombre, apellido, peso, fechaRegistro, rolId);
+    qDebug() << fechaRegistro << "\n";
+    if(executionResult){
+        QMessageBox::information(this, tr("Saved"), tr("Customer added successfully"));
+        listAllCustomers();
     }else{
-        //if not cbx is not checked, it means update or search user so enter user code
+        QMessageBox::information(this, tr("Error"), tr("Customer couldn't be created"));
+    }
+
+}
+
+void GymOperations::on_btnManageCancel_clicked()
+{
+    ui->txtManageName->setText("");
+    ui->txtManageLastName->setText("");
+    ui->txtManageWeight->setText("0.0");
+    ui->txtManageCode->setText("");
+    ui->manageInscriptionDate->setDate( QDate::currentDate() );
+}
+
+void GymOperations::on_btnManageSearch_clicked()
+{
+    QString nombre = "", apellido = "", codigo = "", fechaRegistro = "";
+    QString userRoleDescription = "";
+    double peso = 0.0;
+    int rolId= 1;
+
+    std::vector<Rol>::iterator it = roles.begin();
+    SqlConnection con;
+    PersonController& personController = PersonController::getInstance();
+
+    codigo = ui->txtManageCode->text();
+    getValuesfromManageFields(nombre, apellido, fechaRegistro, peso, rolId);
+    personas.clear();
+    ui->tblWidManage->clearContents();
+    personController.searchUsersWithFields(&con, personas, nombre, apellido, codigo);
+
+    ui->tblWidManage->setRowCount(personas.size());
+
+    for(size_t i = 0; i < personas.size(); i++){
+        ui->tblWidManage->setItem(
+        i, 0, new QTableWidgetItem( QString::fromStdString(personas[i].getCodigo()) ));
+
+        ui->tblWidManage->setItem(
+        i, 1, new QTableWidgetItem( QString::fromStdString(personas[i].getNombre() + " " + personas[i].getApellido()) ));
+
+        ui->tblWidManage->setItem(
+        i, 2, new QTableWidgetItem( QString::number(personas[i].getPeso()) ));
+
+        ui->tblWidManage->setItem(
+        i, 3, new QTableWidgetItem( QString::fromStdString(personas[i].getFechaRegistro()) ));
+
+        for( ; it != roles.end(); it++){
+            if( (*it).getId() == personas[i].getRol() ){
+                userRoleDescription = QString::fromStdString( it->getDescription() );
+            }
+        }
+
+        ui->tblWidManage->setItem(
+        i, 4, new QTableWidgetItem(userRoleDescription));
+    }
+    //añadir los campos de la tabla plan elegido
+}
+
+
+//CHECKBOX MANAGE NEW SIGNAL STATECHANGED
+void GymOperations::on_cbxManageNew_stateChanged(int arg1)
+{
+    //if cbx is checked, it means create a new user, so dont enter user code
+    if(arg1 == Qt::Checked){
+        ui->txtManageCode->setReadOnly(true);
+    }else{
+    //if cbx is unchecked, it means search or update a user data, so do enter user code
         ui->txtManageCode->setReadOnly(false);
     }
 }
+
+
+
+
 
