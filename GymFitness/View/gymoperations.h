@@ -46,6 +46,16 @@ private slots:
 
     void on_btnManageSearch_clicked();
 
+    void on_cbxAppointNew_stateChanged(int arg1);
+
+    void on_btnAppointSave_clicked();
+
+    void on_btnAppointCancel_clicked();
+
+    void on_btnAppointSearch_clicked();
+
+    void on_btnAppointAll_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;

@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>GymOperations</class>
  <widget class="QWidget" name="GymOperations">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>855</width>
-    <height>509</height>
+    <width>1092</width>
+    <height>645</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -51,7 +54,7 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
@@ -250,6 +253,7 @@ QWidget#tabGestion QCheckBox{
 	width: 100%;
 	color: white;
 	font-size: 14px;
+	border: 1px solid #ffd600;
 }
 
 QWidget#tabGestion QPushButton {
@@ -490,6 +494,7 @@ QWidget#tabCitas QCheckBox{
 	width: 60%;
 	color: white;
 	font-size: 14px;
+	border: 1px solid #ffd600;
 }
 
 
@@ -626,20 +631,21 @@ QWidget#tabCitas QDateTimeEdit{
 	padding-bottom: 4%;
 	padding-right: 7%;
 	padding-left: 7%;
-	margin-right: 20px;
+	
 	border-radius: 3px;
 }
 
 
 
 QWidget#tabPagos QLineEdit{
-	padding-top: 3%;
-	padding-bottom: 4%;
+	padding-top: 2%;
+	padding-bottom: 3%;
 	padding-left: 5%;
 	width: 100%;
 	min-width:200px;
 	color: white;
-	font-size: 14px;
+	font-size: 16px;
+	border: 1px solid #ffd600
 }
 
 QWidget#tabPagos QCheckBox{
@@ -649,16 +655,36 @@ QWidget#tabPagos QCheckBox{
 	width: 60%;
 	color: white;
 	font-size: 14px;
+	border: 1px solid #ffd600;
 }
 
 
 QWidget#tabPagos QTableWidget{
-	padding-left: 20px;
-	background-color: #9BEC00;
+	background-color: #d1d1d1;
 }
 
 
-</string>
+QWidget#tabPagos QDateTimeEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width: 200px;
+	color: white;
+	font-size: 14px;
+	border: 1px solid #ffd600;
+}
+
+QWidget#tabPagos QSpinBox{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width: 200px;
+	color: white;
+	font-size: 14px;
+	border: 1px solid #ffd600;
+}</string>
       </property>
       <attribute name="title">
        <string>Pagos</string>
@@ -667,14 +693,98 @@ QWidget#tabPagos QTableWidget{
        <item row="0" column="0">
         <layout class="QVBoxLayout" name="verticalLayout_7">
          <item>
+          <widget class="QTableWidget" name="tblWidPaymentInvoice">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <column>
+            <property name="text">
+             <string>Id Cabecera</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha de Pago</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Codigo Usuario</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nombre</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Abono</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="btnPaymentNewInvoice">
+             <property name="text">
+              <string>Nueva Factura</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnPaymentAllInvoices">
+             <property name="text">
+              <string>Todas las Facturas</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnPaymentSearchInvoice">
+             <property name="text">
+              <string>Buscar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <property name="spacing">
-              <number>9</number>
+              <number>6</number>
              </property>
              <item>
-              <widget class="QLineEdit" name="lineEdit_7">
+              <widget class="QLineEdit" name="invoiceNumber">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="readOnly">
+                <bool>false</bool>
+               </property>
+               <property name="placeholderText">
+                <string>Factura N° 10 </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtPaymentUserCode">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -693,30 +803,42 @@ QWidget#tabPagos QTableWidget{
               </widget>
              </item>
              <item>
-              <widget class="QDateTimeEdit" name="dateTimeEdit_2">
+              <widget class="QDateEdit" name="paymentDatePay"/>
+             </item>
+             <item>
+              <widget class="QComboBox" name="cbxPaymentPackage"/>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="sbPaymentQuantity">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="minimumSize">
+                <size>
+                 <width>207</width>
+                 <height>0</height>
+                </size>
+               </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox"/>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="spinBox">
+              <widget class="QLineEdit" name="txtPaymentAmount">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="placeholderText">
+                <string>$00.00</string>
+               </property>
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="checkBox">
+              <widget class="QCheckBox" name="checkPaymentPartial">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -729,7 +851,7 @@ QWidget#tabPagos QTableWidget{
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_9">
+              <widget class="QLineEdit" name="txtPaymentPartialPay">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -744,21 +866,62 @@ QWidget#tabPagos QTableWidget{
             </layout>
            </item>
            <item>
-            <widget class="QTableWidget" name="tableWidget_3"/>
+            <widget class="QTableWidget" name="tblWidPaymentLine">
+             <column>
+              <property name="text">
+               <string>Id Detalle</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Paquete</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Cantidad</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Total</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Fecha de Pago</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Fecha Límite</string>
+              </property>
+             </column>
+            </widget>
            </item>
           </layout>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <property name="spacing">
+            <number>7</number>
+           </property>
            <item>
-            <widget class="QPushButton" name="pushButton_7">
+            <widget class="QPushButton" name="btnPaymentSaveAll">
              <property name="text">
-              <string>Aceptar</string>
+              <string>Guardar Todo</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_8">
+            <widget class="QPushButton" name="btnPaymentAddLine">
+             <property name="text">
+              <string>Agregar Detalle</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnPaymentCancel">
              <property name="text">
               <string>Cancelar</string>
              </property>

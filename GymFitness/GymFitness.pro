@@ -11,7 +11,11 @@ CONFIG += c++17
 SOURCES += \
     Controllers/LoginControllers/logincontroller.cpp \
     Controllers/PersonControllers/personcontroller.cpp \
+    Controllers/AppointmentControllers/appointmentcontroller.cpp \
+    Controllers/PaymentControllers/paymentcontrollers.cpp \
+    Models/paqueteentreno.cpp \
     Models/persona.cpp \
+    Models/planelegido.cpp \
     View/gymoperations.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -21,7 +25,11 @@ SOURCES += \
 HEADERS += \
     Controllers/LoginControllers/logincontroller.h \
     Controllers/PersonControllers/personcontroller.h \
+    Controllers/AppointmentControllers/appointmentcontroller.h \
+    Controllers/PaymentControllers/paymentcontrollers.h \
+    Models/paqueteentreno.h \
     Models/persona.h \
+    Models/planelegido.h \
     View/gymoperations.h \
     mainwindow.h \
     Models/rol.h \

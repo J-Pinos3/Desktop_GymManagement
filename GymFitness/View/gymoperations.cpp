@@ -228,6 +228,34 @@ void GymOperations::on_cbxManageNew_stateChanged(int arg1)
 }
 
 
+//APPOINTMENTS TAB
+void GymOperations::on_btnAppointSave_clicked()
+{
+
+}
+
+void GymOperations::on_btnAppointCancel_clicked()
+{
+
+}
+
+void GymOperations::on_btnAppointSearch_clicked()
+{
+
+}
+
+void GymOperations::on_btnAppointAll_clicked()
+{
+
+}
+
+
+//CHECKBOX APPOINT NEW STATECHANGED
+void GymOperations::on_cbxAppointNew_stateChanged(int arg1)
+{
+
+}
+
 
 
 

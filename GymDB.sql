@@ -45,21 +45,22 @@ create table if not exists DetalleFactura(
 	id_deta_fact int auto_increment primary key,
     total_deta_fact decimal(5,2),
     id_cab_fact int,
-    id_paq int, 
-    cantidad_paq int,
+    id_plan_eleg int, 
     foreign key(id_cab_fact) references CabeceraFactura(id_cab_fact),
-    foreign key(id_paq) references Paquete(id_paq) 
+    foreign key(id_plan_eleg) references PlanElegido(id_plan_eleg) 
 );
 
 create table if not exists PlanElegido(
 	id_plan_eleg int auto_increment primary key,
     cod_persona varchar(12),
     id_paq int,
+    catidad_paq int,
     fecha_pago date,
     fecha_finalizacion date,
     foreign key (cod_persona) references Persona(cod_persona),
     foreign key (id_paq) references Paquete(id_paq)
 );
+
 
 select * from Rol;
 select * from Persona;
@@ -106,7 +107,7 @@ delimiter ;
 
 /*
 SET FOREIGN_KEY_CHECKS=0; --disable them
-SET FOREIGN_KEY_CHECKS=1; --enable them
+SET FOREIGN_KEY_CHECKS=1; --enable them*
 
 insert into Rol(rol_descricion)
 values ('Cliente'),('Administrador'),('Entrenador'),('Nutricionista'),('Fisioterapeuta');

@@ -1,13 +1,11 @@
+#pragma once
 /********************************************************************************
-** Form generated from reading UI file 'gymoperations.ui'
+** Form generated from reading UI file ''
 **
 ** Created by: Qt User Interface Compiler version 6.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
-
-#ifndef UI_GYMOPERATIONS_H
-#define UI_GYMOPERATIONS_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -63,35 +61,42 @@ public:
     QVBoxLayout *verticalLayout_9;
     QHBoxLayout *horizontalLayout_8;
     QVBoxLayout *verticalLayout_8;
-    QLineEdit *lineEdit_10;
-    QDateTimeEdit *dateTimeEdit;
-    QComboBox *comboBox_2;
-    QCheckBox *checkBox_3;
-    QTableWidget *tableWidget_4;
+    QLineEdit *txtAppointUserCode;
+    QDateTimeEdit *appointDate;
+    QComboBox *cbxAppointService;
+    QCheckBox *cbxAppointNew;
+    QTableWidget *tblWidAppoint;
     QHBoxLayout *horizontalLayout_7;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
+    QPushButton *btnAppointSave;
+    QPushButton *btnAppointCancel;
+    QPushButton *btnAppointSearch;
+    QPushButton *btnAppointAll;
     QWidget *tabPagos;
     QGridLayout *gridLayout_2;
     QVBoxLayout *verticalLayout_7;
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *verticalLayout_6;
-    QLineEdit *lineEdit_7;
-    QDateTimeEdit *dateTimeEdit_2;
-    QComboBox *comboBox;
-    QSpinBox *spinBox;
-    QCheckBox *checkBox;
-    QLineEdit *lineEdit_9;
-    QTableWidget *tableWidget_3;
+    QLineEdit *invoiceNumber;
+    QLineEdit *txtPaymentUserCode;
+    QDateEdit *paymentDatePay;
+    QComboBox *cbxPaymentPackage;
+    QSpinBox *sbPaymentQuantity;
+    QLineEdit *txtPaymentAmount;
+    QCheckBox *checkPaymentPartial;
+    QLineEdit *txtPaymentPartialPay;
+    QTableWidget *tblWidPayment;
     QHBoxLayout *horizontalLayout_6;
-    QPushButton *pushButton_7;
-    QPushButton *pushButton_8;
+    QPushButton *newInvoice;
+    QPushButton *btnPaymentSave;
+    QPushButton *btnPaymentCancel;
+    QPushButton *btnPaymentSearch;
+    QPushButton *btnPaymentAll;
 
     void setupUi(QWidget *GymOperations)
     {
         if (GymOperations->objectName().isEmpty())
             GymOperations->setObjectName("GymOperations");
-        GymOperations->resize(855, 509);
+        GymOperations->resize(981, 555);
         GymOperations->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 0, 0);"));
         verticalLayout = new QVBoxLayout(GymOperations);
         verticalLayout->setSpacing(6);
@@ -231,6 +236,7 @@ public:
 "	border: 1px solid #ffd600\n"
 "}\n"
 "\n"
+"\n"
 "QWidget#tabGestion QDateEdit{\n"
 "	padding-top: 2%;\n"
 "	padding-bottom: 3%;\n"
@@ -249,6 +255,7 @@ public:
 "	width: 100%;\n"
 "	color: white;\n"
 "	font-size: 14px;\n"
+"	border: 1px solid #ffd600;\n"
 "}\n"
 "\n"
 "QWidget#tabGestion QPushButton {\n"
@@ -391,14 +398,17 @@ public:
 "\n"
 "\n"
 "QWidget#tabCitas QLineEdit{\n"
-"	padding-top: 3%;\n"
-"	padding-bottom: 4%;\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 3%;\n"
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width:200px;\n"
 "	color: white;\n"
-"	font-size: 14px;\n"
+"	font-size: 16px;\n"
+"	border: 1px solid #ffd600\n"
 "}\n"
+"\n"
+"\n"
 "\n"
 "QWidget#tabCitas QCheckBox{\n"
 "	padding-top: 3%;\n"
@@ -407,12 +417,23 @@ public:
 "	width: 60%;\n"
 "	color: white;\n"
 "	font-size: 14px;\n"
+"	border: 1px solid #ffd600;\n"
 "}\n"
 "\n"
 "\n"
 "QWidget#tabCitas QTableWidget{\n"
-"	padding-left: 20px;\n"
-"	background-color: #9BEC00;\n"
+"	background-color: #d1d1d1;\n"
+"}\n"
+"\n"
+"QWidget#tabCitas QDateTimeEdit{\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 3%;\n"
+"	padding-left: 5%;\n"
+"	width: 100%;\n"
+"	min-width:200px;\n"
+"	color: white;\n"
+"	font-size: 14px;\n"
+"	border: 1px solid #ffd600\n"
 "}\n"
 ""));
         verticalLayout_9 = new QVBoxLayout(tabCitas);
@@ -421,54 +442,74 @@ public:
         horizontalLayout_8->setObjectName("horizontalLayout_8");
         verticalLayout_8 = new QVBoxLayout();
         verticalLayout_8->setObjectName("verticalLayout_8");
-        lineEdit_10 = new QLineEdit(tabCitas);
-        lineEdit_10->setObjectName("lineEdit_10");
-        sizePolicy.setHeightForWidth(lineEdit_10->sizePolicy().hasHeightForWidth());
-        lineEdit_10->setSizePolicy(sizePolicy);
+        txtAppointUserCode = new QLineEdit(tabCitas);
+        txtAppointUserCode->setObjectName("txtAppointUserCode");
+        sizePolicy.setHeightForWidth(txtAppointUserCode->sizePolicy().hasHeightForWidth());
+        txtAppointUserCode->setSizePolicy(sizePolicy);
 
-        verticalLayout_8->addWidget(lineEdit_10);
+        verticalLayout_8->addWidget(txtAppointUserCode);
 
-        dateTimeEdit = new QDateTimeEdit(tabCitas);
-        dateTimeEdit->setObjectName("dateTimeEdit");
-        sizePolicy.setHeightForWidth(dateTimeEdit->sizePolicy().hasHeightForWidth());
-        dateTimeEdit->setSizePolicy(sizePolicy);
+        appointDate = new QDateTimeEdit(tabCitas);
+        appointDate->setObjectName("appointDate");
+        sizePolicy.setHeightForWidth(appointDate->sizePolicy().hasHeightForWidth());
+        appointDate->setSizePolicy(sizePolicy);
 
-        verticalLayout_8->addWidget(dateTimeEdit);
+        verticalLayout_8->addWidget(appointDate);
 
-        comboBox_2 = new QComboBox(tabCitas);
-        comboBox_2->setObjectName("comboBox_2");
+        cbxAppointService = new QComboBox(tabCitas);
+        cbxAppointService->setObjectName("cbxAppointService");
 
-        verticalLayout_8->addWidget(comboBox_2);
+        verticalLayout_8->addWidget(cbxAppointService);
 
-        checkBox_3 = new QCheckBox(tabCitas);
-        checkBox_3->setObjectName("checkBox_3");
-        sizePolicy.setHeightForWidth(checkBox_3->sizePolicy().hasHeightForWidth());
-        checkBox_3->setSizePolicy(sizePolicy);
+        cbxAppointNew = new QCheckBox(tabCitas);
+        cbxAppointNew->setObjectName("cbxAppointNew");
+        sizePolicy.setHeightForWidth(cbxAppointNew->sizePolicy().hasHeightForWidth());
+        cbxAppointNew->setSizePolicy(sizePolicy);
 
-        verticalLayout_8->addWidget(checkBox_3);
+        verticalLayout_8->addWidget(cbxAppointNew);
 
 
         horizontalLayout_8->addLayout(verticalLayout_8);
 
-        tableWidget_4 = new QTableWidget(tabCitas);
-        tableWidget_4->setObjectName("tableWidget_4");
+        tblWidAppoint = new QTableWidget(tabCitas);
+        if (tblWidAppoint->columnCount() < 4)
+            tblWidAppoint->setColumnCount(4);
+        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
+        tblWidAppoint->setHorizontalHeaderItem(0, __qtablewidgetitem14);
+        QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
+        tblWidAppoint->setHorizontalHeaderItem(1, __qtablewidgetitem15);
+        QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
+        tblWidAppoint->setHorizontalHeaderItem(2, __qtablewidgetitem16);
+        QTableWidgetItem *__qtablewidgetitem17 = new QTableWidgetItem();
+        tblWidAppoint->setHorizontalHeaderItem(3, __qtablewidgetitem17);
+        tblWidAppoint->setObjectName("tblWidAppoint");
 
-        horizontalLayout_8->addWidget(tableWidget_4);
+        horizontalLayout_8->addWidget(tblWidAppoint);
 
 
         verticalLayout_9->addLayout(horizontalLayout_8);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName("horizontalLayout_7");
-        pushButton_3 = new QPushButton(tabCitas);
-        pushButton_3->setObjectName("pushButton_3");
+        btnAppointSave = new QPushButton(tabCitas);
+        btnAppointSave->setObjectName("btnAppointSave");
 
-        horizontalLayout_7->addWidget(pushButton_3);
+        horizontalLayout_7->addWidget(btnAppointSave);
 
-        pushButton_4 = new QPushButton(tabCitas);
-        pushButton_4->setObjectName("pushButton_4");
+        btnAppointCancel = new QPushButton(tabCitas);
+        btnAppointCancel->setObjectName("btnAppointCancel");
 
-        horizontalLayout_7->addWidget(pushButton_4);
+        horizontalLayout_7->addWidget(btnAppointCancel);
+
+        btnAppointSearch = new QPushButton(tabCitas);
+        btnAppointSearch->setObjectName("btnAppointSearch");
+
+        horizontalLayout_7->addWidget(btnAppointSearch);
+
+        btnAppointAll = new QPushButton(tabCitas);
+        btnAppointAll->setObjectName("btnAppointAll");
+
+        horizontalLayout_7->addWidget(btnAppointAll);
 
 
         verticalLayout_9->addLayout(horizontalLayout_7);
@@ -489,13 +530,14 @@ public:
 "\n"
 "\n"
 "QWidget#tabPagos QLineEdit{\n"
-"	padding-top: 3%;\n"
-"	padding-bottom: 4%;\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 3%;\n"
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width:200px;\n"
 "	color: white;\n"
-"	font-size: 14px;\n"
+"	font-size: 16px;\n"
+"	border: 1px solid #ffd600\n"
 "}\n"
 "\n"
 "QWidget#tabPagos QCheckBox{\n"
@@ -505,16 +547,37 @@ public:
 "	width: 60%;\n"
 "	color: white;\n"
 "	font-size: 14px;\n"
+"	border: 1px solid #ffd600;\n"
 "}\n"
 "\n"
 "\n"
 "QWidget#tabPagos QTableWidget{\n"
-"	padding-left: 20px;\n"
-"	background-color: #9BEC00;\n"
+"	background-color: #d1d1d1;\n"
 "}\n"
 "\n"
 "\n"
-""));
+"QWidget#tabPagos QDateTimeEdit{\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 3%;\n"
+"	padding-left: 5%;\n"
+"	width: 100%;\n"
+"	min-width: 200px;\n"
+"	color: white;\n"
+"	font-size: 14px;\n"
+"	border: 1px solid #ffd600;\n"
+"}\n"
+"\n"
+"QWidget#tabPagos QSpinBox{\n"
+"	padding-top"
+                        ": 2%;\n"
+"	padding-bottom: 3%;\n"
+"	padding-left: 5%;\n"
+"	width: 100%;\n"
+"	min-width: 200px;\n"
+"	color: white;\n"
+"	font-size: 14px;\n"
+"	border: 1px solid #ffd600;\n"
+"}"));
         gridLayout_2 = new QGridLayout(tabPagos);
         gridLayout_2->setObjectName("gridLayout_2");
         verticalLayout_7 = new QVBoxLayout();
@@ -522,71 +585,113 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName("horizontalLayout_4");
         verticalLayout_6 = new QVBoxLayout();
-        verticalLayout_6->setSpacing(9);
+        verticalLayout_6->setSpacing(6);
         verticalLayout_6->setObjectName("verticalLayout_6");
-        lineEdit_7 = new QLineEdit(tabPagos);
-        lineEdit_7->setObjectName("lineEdit_7");
-        sizePolicy.setHeightForWidth(lineEdit_7->sizePolicy().hasHeightForWidth());
-        lineEdit_7->setSizePolicy(sizePolicy);
-        lineEdit_7->setMinimumSize(QSize(207, 0));
+        invoiceNumber = new QLineEdit(tabPagos);
+        invoiceNumber->setObjectName("lineEdit");
+        sizePolicy.setHeightForWidth(invoiceNumber->sizePolicy().hasHeightForWidth());
+        invoiceNumber->setSizePolicy(sizePolicy);
 
-        verticalLayout_6->addWidget(lineEdit_7);
+        verticalLayout_6->addWidget(invoiceNumber);
 
-        dateTimeEdit_2 = new QDateTimeEdit(tabPagos);
-        dateTimeEdit_2->setObjectName("dateTimeEdit_2");
-        sizePolicy.setHeightForWidth(dateTimeEdit_2->sizePolicy().hasHeightForWidth());
-        dateTimeEdit_2->setSizePolicy(sizePolicy);
+        txtPaymentUserCode = new QLineEdit(tabPagos);
+        txtPaymentUserCode->setObjectName("txtPaymentUserCode");
+        sizePolicy.setHeightForWidth(txtPaymentUserCode->sizePolicy().hasHeightForWidth());
+        txtPaymentUserCode->setSizePolicy(sizePolicy);
+        txtPaymentUserCode->setMinimumSize(QSize(207, 0));
 
-        verticalLayout_6->addWidget(dateTimeEdit_2);
+        verticalLayout_6->addWidget(txtPaymentUserCode);
 
-        comboBox = new QComboBox(tabPagos);
-        comboBox->setObjectName("comboBox");
+        paymentDatePay = new QDateEdit(tabPagos);
+        paymentDatePay->setObjectName("paymentDatePay");
 
-        verticalLayout_6->addWidget(comboBox);
+        verticalLayout_6->addWidget(paymentDatePay);
 
-        spinBox = new QSpinBox(tabPagos);
-        spinBox->setObjectName("spinBox");
-        sizePolicy.setHeightForWidth(spinBox->sizePolicy().hasHeightForWidth());
-        spinBox->setSizePolicy(sizePolicy);
+        cbxPaymentPackage = new QComboBox(tabPagos);
+        cbxPaymentPackage->setObjectName("cbxPaymentPackage");
 
-        verticalLayout_6->addWidget(spinBox);
+        verticalLayout_6->addWidget(cbxPaymentPackage);
 
-        checkBox = new QCheckBox(tabPagos);
-        checkBox->setObjectName("checkBox");
-        sizePolicy.setHeightForWidth(checkBox->sizePolicy().hasHeightForWidth());
-        checkBox->setSizePolicy(sizePolicy);
+        sbPaymentQuantity = new QSpinBox(tabPagos);
+        sbPaymentQuantity->setObjectName("sbPaymentQuantity");
+        sizePolicy.setHeightForWidth(sbPaymentQuantity->sizePolicy().hasHeightForWidth());
+        sbPaymentQuantity->setSizePolicy(sizePolicy);
+        sbPaymentQuantity->setMinimumSize(QSize(207, 0));
 
-        verticalLayout_6->addWidget(checkBox);
+        verticalLayout_6->addWidget(sbPaymentQuantity);
 
-        lineEdit_9 = new QLineEdit(tabPagos);
-        lineEdit_9->setObjectName("lineEdit_9");
-        sizePolicy.setHeightForWidth(lineEdit_9->sizePolicy().hasHeightForWidth());
-        lineEdit_9->setSizePolicy(sizePolicy);
+        txtPaymentAmount = new QLineEdit(tabPagos);
+        txtPaymentAmount->setObjectName("txtPaymentAmount");
+        sizePolicy.setHeightForWidth(txtPaymentAmount->sizePolicy().hasHeightForWidth());
+        txtPaymentAmount->setSizePolicy(sizePolicy);
 
-        verticalLayout_6->addWidget(lineEdit_9);
+        verticalLayout_6->addWidget(txtPaymentAmount);
+
+        checkPaymentPartial = new QCheckBox(tabPagos);
+        checkPaymentPartial->setObjectName("checkPaymentPartial");
+        sizePolicy.setHeightForWidth(checkPaymentPartial->sizePolicy().hasHeightForWidth());
+        checkPaymentPartial->setSizePolicy(sizePolicy);
+
+        verticalLayout_6->addWidget(checkPaymentPartial);
+
+        txtPaymentPartialPay = new QLineEdit(tabPagos);
+        txtPaymentPartialPay->setObjectName("txtPaymentPartialPay");
+        sizePolicy.setHeightForWidth(txtPaymentPartialPay->sizePolicy().hasHeightForWidth());
+        txtPaymentPartialPay->setSizePolicy(sizePolicy);
+
+        verticalLayout_6->addWidget(txtPaymentPartialPay);
 
 
         horizontalLayout_4->addLayout(verticalLayout_6);
 
-        tableWidget_3 = new QTableWidget(tabPagos);
-        tableWidget_3->setObjectName("tableWidget_3");
+        tblWidPayment = new QTableWidget(tabPagos);
+        if (tblWidPayment->columnCount() < 6)
+            tblWidPayment->setColumnCount(6);
+        QTableWidgetItem *__qtablewidgetitem18 = new QTableWidgetItem();
+        tblWidPayment->setHorizontalHeaderItem(0, __qtablewidgetitem18);
+        QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
+        tblWidPayment->setHorizontalHeaderItem(1, __qtablewidgetitem19);
+        QTableWidgetItem *__qtablewidgetitem20 = new QTableWidgetItem();
+        tblWidPayment->setHorizontalHeaderItem(2, __qtablewidgetitem20);
+        QTableWidgetItem *__qtablewidgetitem21 = new QTableWidgetItem();
+        tblWidPayment->setHorizontalHeaderItem(3, __qtablewidgetitem21);
+        QTableWidgetItem *__qtablewidgetitem22 = new QTableWidgetItem();
+        tblWidPayment->setHorizontalHeaderItem(4, __qtablewidgetitem22);
+        QTableWidgetItem *__qtablewidgetitem23 = new QTableWidgetItem();
+        tblWidPayment->setHorizontalHeaderItem(5, __qtablewidgetitem23);
+        tblWidPayment->setObjectName("tblWidPayment");
 
-        horizontalLayout_4->addWidget(tableWidget_3);
+        horizontalLayout_4->addWidget(tblWidPayment);
 
 
         verticalLayout_7->addLayout(horizontalLayout_4);
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName("horizontalLayout_6");
-        pushButton_7 = new QPushButton(tabPagos);
-        pushButton_7->setObjectName("pushButton_7");
+        newInvoice = new QPushButton(tabPagos);
+        newInvoice->setObjectName("pushButton");
+        
+        horizontalLayout_6->addWidget(newInvoice);
 
-        horizontalLayout_6->addWidget(pushButton_7);
+        btnPaymentSave = new QPushButton(tabPagos);
+        btnPaymentSave->setObjectName("btnPaymentSave");
 
-        pushButton_8 = new QPushButton(tabPagos);
-        pushButton_8->setObjectName("pushButton_8");
+        horizontalLayout_6->addWidget(btnPaymentSave);
 
-        horizontalLayout_6->addWidget(pushButton_8);
+        btnPaymentCancel = new QPushButton(tabPagos);
+        btnPaymentCancel->setObjectName("btnPaymentCancel");
+
+        horizontalLayout_6->addWidget(btnPaymentCancel);
+
+        btnPaymentSearch = new QPushButton(tabPagos);
+        btnPaymentSearch->setObjectName("btnPaymentSearch");
+
+        horizontalLayout_6->addWidget(btnPaymentSearch);
+
+        btnPaymentAll = new QPushButton(tabPagos);
+        btnPaymentAll->setObjectName("btnPaymentAll");
+
+        horizontalLayout_6->addWidget(btnPaymentAll);
 
 
         verticalLayout_7->addLayout(horizontalLayout_6);
@@ -601,7 +706,7 @@ public:
 
         retranslateUi(GymOperations);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(GymOperations);
@@ -652,15 +757,43 @@ public:
         btnManageCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
         btnManageSearch->setText(QCoreApplication::translate("GymOperations", "Buscar", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabGestion), QCoreApplication::translate("GymOperations", "Gesti\303\263n", nullptr));
-        checkBox_3->setText(QCoreApplication::translate("GymOperations", "Nueva Cita", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("GymOperations", "Guardar", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
+        txtAppointUserCode->setPlaceholderText(QCoreApplication::translate("GymOperations", "C\303\263digo", nullptr));
+        cbxAppointNew->setText(QCoreApplication::translate("GymOperations", "Nueva Cita", nullptr));
+        QTableWidgetItem *___qtablewidgetitem14 = tblWidAppoint->horizontalHeaderItem(0);
+        ___qtablewidgetitem14->setText(QCoreApplication::translate("GymOperations", "Servicio", nullptr));
+        QTableWidgetItem *___qtablewidgetitem15 = tblWidAppoint->horizontalHeaderItem(1);
+        ___qtablewidgetitem15->setText(QCoreApplication::translate("GymOperations", "C\303\263digo Usuario", nullptr));
+        QTableWidgetItem *___qtablewidgetitem16 = tblWidAppoint->horizontalHeaderItem(2);
+        ___qtablewidgetitem16->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
+        QTableWidgetItem *___qtablewidgetitem17 = tblWidAppoint->horizontalHeaderItem(3);
+        ___qtablewidgetitem17->setText(QCoreApplication::translate("GymOperations", "Fecha Sesi\303\263n", nullptr));
+        btnAppointSave->setText(QCoreApplication::translate("GymOperations", "Guardar", nullptr));
+        btnAppointCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
+        btnAppointSearch->setText(QCoreApplication::translate("GymOperations", "Buscar", nullptr));
+        btnAppointAll->setText(QCoreApplication::translate("GymOperations", "Todas las Citas", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabCitas), QCoreApplication::translate("GymOperations", "Citas", nullptr));
-        lineEdit_7->setPlaceholderText(QCoreApplication::translate("GymOperations", "C\303\263digo:", nullptr));
-        checkBox->setText(QCoreApplication::translate("GymOperations", "Abono", nullptr));
-        lineEdit_9->setPlaceholderText(QCoreApplication::translate("GymOperations", "Cantidad a abonar", nullptr));
-        pushButton_7->setText(QCoreApplication::translate("GymOperations", "Aceptar", nullptr));
-        pushButton_8->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
+        invoiceNumber->setPlaceholderText(QCoreApplication::translate("GymOperations", "Factura N\302\260 10 ", nullptr));
+        txtPaymentUserCode->setPlaceholderText(QCoreApplication::translate("GymOperations", "C\303\263digo:", nullptr));
+        txtPaymentAmount->setPlaceholderText(QCoreApplication::translate("GymOperations", "$00.00", nullptr));
+        checkPaymentPartial->setText(QCoreApplication::translate("GymOperations", "Abono", nullptr));
+        txtPaymentPartialPay->setPlaceholderText(QCoreApplication::translate("GymOperations", "Cantidad a abonar", nullptr));
+        QTableWidgetItem *___qtablewidgetitem18 = tblWidPayment->horizontalHeaderItem(0);
+        ___qtablewidgetitem18->setText(QCoreApplication::translate("GymOperations", "Id", nullptr));
+        QTableWidgetItem *___qtablewidgetitem19 = tblWidPayment->horizontalHeaderItem(1);
+        ___qtablewidgetitem19->setText(QCoreApplication::translate("GymOperations", "Paquete", nullptr));
+        QTableWidgetItem *___qtablewidgetitem20 = tblWidPayment->horizontalHeaderItem(2);
+        ___qtablewidgetitem20->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
+        QTableWidgetItem *___qtablewidgetitem21 = tblWidPayment->horizontalHeaderItem(3);
+        ___qtablewidgetitem21->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
+        QTableWidgetItem *___qtablewidgetitem22 = tblWidPayment->horizontalHeaderItem(4);
+        ___qtablewidgetitem22->setText(QCoreApplication::translate("GymOperations", "Abono", nullptr));
+        QTableWidgetItem *___qtablewidgetitem23 = tblWidPayment->horizontalHeaderItem(5);
+        ___qtablewidgetitem23->setText(QCoreApplication::translate("GymOperations", "Fecha de Pago", nullptr));
+        newInvoice->setText(QCoreApplication::translate("GymOperations", "PushButton", nullptr));
+        btnPaymentSave->setText(QCoreApplication::translate("GymOperations", "Aceptar", nullptr));
+        btnPaymentCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
+        btnPaymentSearch->setText(QCoreApplication::translate("GymOperations", "Buscar", nullptr));
+        btnPaymentAll->setText(QCoreApplication::translate("GymOperations", "Todos los Pagos", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabPagos), QCoreApplication::translate("GymOperations", "Pagos", nullptr));
     } // retranslateUi
 
@@ -672,4 +805,3 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_GYMOPERATIONS_H
