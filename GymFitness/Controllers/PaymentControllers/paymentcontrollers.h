@@ -11,12 +11,14 @@
 #include <Models/persona.h>
 #include <Models/rol.h>
 #include <Models/paqueteentreno.h>
+#include <Models/factura.h>
+#include <Models/detallefactura.h>
 #include "sqlconnection.h"
 
 class PaymentControllers
 {
 public:
-    //todo CREAR EL MODELO DE DATOS FACTURA EN CODIGO C++
+
     static PaymentControllers& getInstance(){
         static PaymentControllers instance;
         return instance;
@@ -25,19 +27,22 @@ public:
     void getTrainingPackages(SqlConnection *con, std::vector<PaqueteEntreno>& planesEntreno );
 
 
+    //todo funcion para actualizar la cabecera vacía
     //INVOICES
     bool createEmptyPaymentInvoice(SqlConnection *con, const QString& cod_persona,
-        const QString& fecha_pago, bool abono = false, int cantidad_abono = 0, double total = 0.0 );
+        const QString& fecha_pago, double total = 0.0 );
 
-    void getAllPaymentInvoices(SqlConnection *con, std::vector<!FACTURA!>& facturas);
+    void getAllPaymentInvoices(SqlConnection *con, std::vector<Factura>& facturas);
 
 
 
-    //INVOICE LINES
-    bool createInvoiceLine(SqlConnection *con, int cod_Factura,int id_paquete, int cantidad,
-        int sub_total, const QString& fecha_pago, const QString& fecha_limite);
+    //INVOICE LINES                                    codigo cabeza factura(invoice)
+    bool createInvoiceLine(SqlConnection *con,int sub_total, int cod_Factura,
+        int id_invoice_line_detalle,int id_paquete,int cantidad,
+        const QString& fecha_pago, const QString& fecha_limite);
 
-    void getAllInvoiceLines(SqlConnection *con, int cod_factura);
+    void getAllInvoiceLines(SqlConnection *con, int cod_factura,
+        std::vector<DetalleFactura>& lineas);
 
 /**¿¿¿????¡¿??
  * void getUserPaymentOrders(SqlConnection *con, std::vector<Factura>& pagosCliente);

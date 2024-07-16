@@ -13,6 +13,8 @@ SOURCES += \
     Controllers/PersonControllers/personcontroller.cpp \
     Controllers/AppointmentControllers/appointmentcontroller.cpp \
     Controllers/PaymentControllers/paymentcontrollers.cpp \
+    Models/detallefactura.cpp \
+    Models/factura.cpp \
     Models/paqueteentreno.cpp \
     Models/persona.cpp \
     Models/planelegido.cpp \
@@ -27,6 +29,8 @@ HEADERS += \
     Controllers/PersonControllers/personcontroller.h \
     Controllers/AppointmentControllers/appointmentcontroller.h \
     Controllers/PaymentControllers/paymentcontrollers.h \
+    Models/detallefactura.h \
+    Models/factura.h \
     Models/paqueteentreno.h \
     Models/persona.h \
     Models/planelegido.h \

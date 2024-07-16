@@ -45,19 +45,17 @@ create table if not exists DetalleFactura(
 	id_deta_fact int auto_increment primary key,
     total_deta_fact decimal(5,2),
     id_cab_fact int,
-    id_plan_eleg int, 
-    foreign key(id_cab_fact) references CabeceraFactura(id_cab_fact),
-    foreign key(id_plan_eleg) references PlanElegido(id_plan_eleg) 
+    foreign key(id_cab_fact) references CabeceraFactura(id_cab_fact)
 );
 
 create table if not exists PlanElegido(
 	id_plan_eleg int auto_increment primary key,
-    cod_persona varchar(12),
+    id_deta_fact int,
     id_paq int,
     catidad_paq int,
     fecha_pago date,
     fecha_finalizacion date,
-    foreign key (cod_persona) references Persona(cod_persona),
+    foreign key (id_deta_fact) references DetalleFactura(id_deta_fact),
     foreign key (id_paq) references Paquete(id_paq)
 );
 
@@ -73,13 +71,14 @@ select * from PlanElegido;
 -- delete from Paquete where id_paq in (1,2);
 
 -- query to show person info and remaining dates in its package
+/*
 select
 	P.cod_persona, concat(P.nombre," ",P.apellido),
 	P.peso, P.fecha_registro, P.id_rol,
     plan.fecha_pago, plan.fecha_finalizacion
 from Persona as P
 left join PlanElegido as plan on plan.cod_persona = P.cod_persona;
-
+*/
 
 -- el valor de total deta será igual a id_paq * cantidad_paq, eso se calcula en el app c++
 insert into DetalleFactura(total_deta_fact, id_cab_fact, id_paq, cantidad_paq)
