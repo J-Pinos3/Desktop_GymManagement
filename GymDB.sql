@@ -104,6 +104,20 @@ end //
 delimiter ;
 
 
+
+delimiter $$
+create procedure update_detalle_factura(in current_detalle int)
+begin
+	declare sub_total decimal default 0.0;
+    select sum( Paq.paq_price * Pe.catidad_paq )
+    from PlanElegido as Pe
+    inner join Paquete as Paq on Paq.id_paq = Pe.id_paq
+    where Pe.id_deta_fact = current_detalle
+    into sub_total;
+    update DetalleFactura set total_deta_fact = sub_total where DetalleFactura.id_deta_fact = current_detalle;
+end $$
+delimiter ;
+
 /*
 SET FOREIGN_KEY_CHECKS=0; --disable them
 SET FOREIGN_KEY_CHECKS=1; --enable them*

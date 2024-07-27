@@ -29,17 +29,23 @@ public:
 
     //todo funcion para actualizar la cabecera vacía
     //INVOICES
-    bool createEmptyPaymentInvoice(SqlConnection *con, const QString& cod_persona,
-        const QString& fecha_pago, double total = 0.0 );
+    bool createEmptyPaymentInvoice(SqlConnection *con, const Factura& facturaNueva);
+
+    bool updatePaymentInvoice(SqlConnection *con, int id_cab_fact);
 
     void getAllPaymentInvoices(SqlConnection *con, std::vector<Factura>& facturas);
 
 
 
-    //INVOICE LINES                                    codigo cabeza factura(invoice)
-    bool createInvoiceLine(SqlConnection *con,int sub_total, int cod_Factura,
-        int id_invoice_line_detalle,int id_paquete,int cantidad,
+    //INVOICE LINES
+    bool createEmptyInvoiceLine(SqlConnection *con, const DetalleFactura& linea);
+
+    bool createInvoiceLineInfo(SqlConnection *con,int id_det_linea,
+        int id_paquete, int cantidad,
         const QString& fecha_pago, const QString& fecha_limite);
+
+    bool updateInvoiceLineInfo(SqlConnection *con, int id_det_linea);
+
 
     void getAllInvoiceLines(SqlConnection *con, int cod_factura,
         std::vector<DetalleFactura>& lineas);

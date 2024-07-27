@@ -56,6 +56,16 @@ private slots:
 
     void on_btnAppointAll_clicked();
 
+
+
+    void on_btnPaymentNewInvoice_clicked();
+
+    void on_btnPaymentAddLine_clicked();
+
+    void on_btnSaveLine_clicked();
+
+    void on_btnPaymentSaveAll_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;

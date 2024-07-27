@@ -249,13 +249,32 @@ void GymOperations::on_btnAppointAll_clicked()
 
 }
 
-
 //CHECKBOX APPOINT NEW STATECHANGED
 void GymOperations::on_cbxAppointNew_stateChanged(int arg1)
 {
 
 }
 
+//PAYMENTS TAB
+void GymOperations::on_btnPaymentNewInvoice_clicked()
+{
+
+}
+
+void GymOperations::on_btnPaymentAddLine_clicked()
+{
+
+}
 
 
+void GymOperations::on_btnSaveLine_clicked()
+{
+
+}
+
+
+void GymOperations::on_btnPaymentSaveAll_clicked()
+{
+    //This function should call teh stored procedure to update the invoice header
+}
 

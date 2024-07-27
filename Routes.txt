@@ -1,0 +1,15 @@
+Todo:
+	1) Añadir los listeners de los botones del tab de pagos
+	6) Testing de las funciones creadas con MySQL
+
+
+
+Progress:
+
+
+
+Completed: 
+	2) Crear las funciones para actualizar el detalle de factura en c++
+	3) Crear las funciones para actualizar la cabecera de factura en c++
+	4) Con sql crear los stored procedure para actualizar el total del detalle de factura
+	5) Con sql crear los stored procedure para actualizar el total de la cabecera de factura (YA ESTABA)

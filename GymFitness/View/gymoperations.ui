@@ -934,6 +934,13 @@ QWidget#tabPagos QSpinBox{
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="btnSaveLine">
+             <property name="text">
+              <string>Guardar Detalle</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="btnPaymentCancel">
              <property name="text">
               <string>Cancelar</string>
