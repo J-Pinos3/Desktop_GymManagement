@@ -68,7 +68,21 @@ select * from DetalleFactura;
 select * from Usuario;
 select * from PlanElegido;
 
--- delete from Paquete where id_paq in (1,2);
+-- TEST COMPLETE SALE
+insert into CabeceraFactura(fecha_cab_fact, total_cab_fact, cod_persona)
+ values( current_date(), 0.0, 'b8f61438-4');
+ 
+insert into DetalleFactura(total_deta_fact, id_cab_fact)
+ values( 0.0, 2);
+-- 3 Entrenamiento Semanal	20.00	7
+ 
+ insert into PlanElegido(id_deta_fact, id_paq, catidad_paq, fecha_pago, fecha_finalizacion)
+ values( 1, 3, 2, current_date(), '2024-08-20');
+ 
+ call update_detalle_factura(1);
+-- TEST COMPLETE SALE
+
+
 
 -- query to show person info and remaining dates in its package
 /*
