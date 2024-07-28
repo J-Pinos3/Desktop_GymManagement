@@ -10,6 +10,7 @@ GymOperations::GymOperations(QWidget *parent) :
 
     setCustomersRoleDescription();
     listAllCustomers();
+    getTrainingPackages();
 }
 
 GymOperations::~GymOperations()
@@ -41,6 +42,8 @@ void GymOperations::setCustomersRoleDescription(){
 
     personController.getRolesForCustomers(&con, roles);
 }
+
+
 
 void GymOperations::listAllCustomers(){
 
@@ -228,7 +231,7 @@ void GymOperations::on_cbxManageNew_stateChanged(int arg1)
 }
 
 
-//APPOINTMENTS TAB
+//APPOINTMENTS TAB ALL EMPTY FOR THE MOMENT
 void GymOperations::on_btnAppointSave_clicked()
 {
 
@@ -255,14 +258,47 @@ void GymOperations::on_cbxAppointNew_stateChanged(int arg1)
 
 }
 
+
 //PAYMENTS TAB
 void GymOperations::on_btnPaymentNewInvoice_clicked()
 {
+    SqlConnection con;
+    Factura nuevaFactura;
+    PaymentControllers paymentController = PaymentControllers::getInstance();
 
+    nuevaFactura.setFechaCabFactura(
+        this->ui->paymentDatePay->date().isNull() || this->ui->paymentDatePay->date().toString().isEmpty()
+        ? "0000-00-00" : this->ui->paymentDatePay->date().toString("yyyy-MM-dd").toStdString()
+    );
+
+    nuevaFactura.setTotalFactura(0.0);
+    nuevaFactura.setCodPersona(this->ui->txtPaymentUserCode->text().toStdString());
+
+    bool executionResult = paymentController.createEmptyPaymentInvoice(&con, nuevaFactura);
+
+    if(executionResult){
+        QMessageBox::information(this, tr("Saved"), tr("Empty invoice created Succesfully"));
+        /// TODO once created the payment invoice, get its data into the table
+    }else{
+        QMessageBox::information(this, tr("Error"), tr("Couldn't create empty invoice"));
+    }
 }
 
 void GymOperations::on_btnPaymentAddLine_clicked()
 {
+    SqlConnection con;
+    DetalleFactura nuevoDetalle(0, 0.0,
+    this->ui->invoiceLineNumber->text().toInt());
+    PaymentControllers paymentController = PaymentControllers::getInstance();
+
+    bool executionResult = paymentController.createEmptyInvoiceLine(&con,nuevoDetalle);
+
+    if(executionResult){
+        QMessageBox::information(this, tr("Saved"), tr("Empty invoice line created Succesfully"));
+        /// TODO once created the invoice line, get its data into the table
+    }else{
+        QMessageBox::information(this, tr("Error"), tr("Couldn't create empty invoice line"));
+    }
 
 }
 
@@ -278,3 +314,25 @@ void GymOperations::on_btnPaymentSaveAll_clicked()
     //This function should call teh stored procedure to update the invoice header
 }
 
+void GymOperations::getTrainingPackages(){
+    SqlConnection con;
+    PaymentControllers paymentController = PaymentControllers::getInstance();
+
+    paymentController.getTrainingPackages(&con, paquetes);
+
+    QList<QString> packagesList;
+    if( !paquetes.empty() ){
+        for(int i = 0; i < paquetes.size(); i++){
+            packagesList.append(
+             QString::fromStdString(paquetes[i].getDescriptionPaquete()) +
+             ", " + QString::number(paquetes[i].getDiasPaquete()) +
+             "días, USD" + QString::number( paquetes[i].getPrecioPaquete() ) + " $."
+            );
+        }
+    }
+
+    if( !packagesList.isEmpty() ){
+        this->ui->cbxPaymentPackage->addItems( packagesList );
+    }
+
+}

@@ -8,7 +8,8 @@ class PlanElegido
 public:
     PlanElegido(int id_plan = 0, const std::string& codigo_pers = "",
     int id_paquete = 0, int cantidad_paquete = 0,
-    const std::string& fech_pago = "", const std::string& fech_fin = "");
+    const std::string& fech_pago = "", const std::string& fech_fin = "",
+    const std::string& descrip = "");
 
     int getIdPlanElegido() const;
     std::string getCodigoPersona() const;
@@ -16,6 +17,7 @@ public:
     int getCantidadPaquete() const;
     std::string getFechaPago() const;
     std::string getFechaFin() const;
+    std::string getDescripcionCmpleta() const;
 
     void setIdPlanElegido(int id_plan_eleg);
     void setCodigoPersona(std::string codigo);
@@ -23,6 +25,7 @@ public:
     void setCantidadPaquete(int cantidad);
     void setFechaPago(std::string fecha_pago);
     void setFechaFin(std::string fecha_fin);
+    void setDescripcionCompleta(std::string descrip);
 
 private:
     int id_plan_elegido;
@@ -31,6 +34,7 @@ private:
     int cantidad_paq;
     std::string fecha_pago;
     std::string fecha_finalizacion;
+    std::string descripcion_completa;
 };
 
 #endif // PLANELEGIDO_H

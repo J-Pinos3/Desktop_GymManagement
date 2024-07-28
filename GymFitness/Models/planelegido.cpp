@@ -25,6 +25,8 @@ std::string PlanElegido::getFechaPago() const{ return fecha_pago; }
 
 std::string PlanElegido::getFechaFin() const{ return fecha_finalizacion; }
 
+std::string PlanElegido::getDescripcionCmpleta() const{ return descripcion_completa; }
+
 
 void PlanElegido::setIdPlanElegido(int id_plan_eleg){
     this->id_plan_elegido = id_plan_eleg;
@@ -48,4 +50,8 @@ void PlanElegido::setFechaPago(std::string fecha_pago){
 
 void PlanElegido::setFechaFin(std::string fecha_fin){
     this->fecha_finalizacion = fecha_fin;
+}
+
+void PlanElegido::setDescripcionCompleta(std::string descrip){
+    this->descripcion_completa = descrip;
 }

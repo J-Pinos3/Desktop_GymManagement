@@ -8,8 +8,12 @@
 #include <string>
 
 #include "Controllers/PersonControllers/personcontroller.h"
+#include "Controllers/PaymentControllers/paymentcontrollers.h"
 #include "Models/persona.h"
 #include "Models/rol.h"
+#include "Models/paqueteentreno.h"
+#include "Models/factura.h"
+#include "Models/detallefactura.h"
 #include "sqlconnection.h"
 
 namespace Ui {
@@ -26,6 +30,8 @@ public:
 
     void setCustomersRoleDescription();
     void listAllCustomers();
+
+    void getTrainingPackages();
 
     void getValuesfromManageFields(QString& nombre, QString& apellido,
         QString& fechaRegistro, double& peso, int& rolId);
@@ -70,6 +76,7 @@ private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
     std::vector<Rol> roles;
+    std::vector<PaqueteEntreno> paquetes;
 };
 
 #endif // GYMOPERATIONS_H

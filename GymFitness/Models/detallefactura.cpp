@@ -1,11 +1,12 @@
 #include "detallefactura.h"
 
 DetalleFactura::DetalleFactura(int id_det_fac, double total_det_fac,
-        int id_cab_fac)
+        int id_cab_fac, const PlanElegido& plan_eleg)
 {
     this->id_deta_factura = id_det_fac;
     this->total_deta_factura = total_det_fac;
     this->id_cab_factura = id_cab_fac;
+    this->plan = plan_eleg;
 }
 
 int DetalleFactura::getIdDetalleFact() const{ return id_deta_factura; }

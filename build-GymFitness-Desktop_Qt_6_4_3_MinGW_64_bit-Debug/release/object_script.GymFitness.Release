@@ -1,6 +1,12 @@
 release/logincontroller.o
 release/personcontroller.o
+release/appointmentcontroller.o
+release/paymentcontrollers.o
+release/detallefactura.o
+release/factura.o
+release/paqueteentreno.o
 release/persona.o
+release/planelegido.o
 release/gymoperations.o
 release/main.o
 release/mainwindow.o

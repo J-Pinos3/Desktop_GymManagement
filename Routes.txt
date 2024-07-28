@@ -1,15 +1,32 @@
 Todo:
-	1) Añadir los listeners de los botones del tab de pagos
-	6) Testing de las funciones creadas con MySQL
+
+
+	13) tras hacer clic en una de las facturas, poner sus campos en la parte inferior para añadir los detalles de factura
+
 
 
 
 Progress:
 
+	7) Testing de las funciones creadas con MySQL
+		Probados los stored procedures al menos de Detalle factura con plan elegido y si funciona 
+		de momento
 
 
-Completed: 
+	
+
+
+Completed:
+	1) Añadir los listeners de los botones del tab de pagos 
 	2) Crear las funciones para actualizar el detalle de factura en c++
 	3) Crear las funciones para actualizar la cabecera de factura en c++
 	4) Con sql crear los stored procedure para actualizar el total del detalle de factura
 	5) Con sql crear los stored procedure para actualizar el total de la cabecera de factura (YA ESTABA)
+	6) Llenar el combo box de los planes de entreno en el tab de citas
+
+	8) Llamar a la función createEmptyInvoice del payment controller dentro de GymOperations
+	9) Llamar a la función createEmptyLine del payment controller dentro de GymOperations
+	10) Una vez creada la factura (cabecera) vacía, mostrarla en su tabla (traer los datos|las facturas)
+		Ya existe la función que trae todas las cabeceras
+	11) Traer todos los detalles (líneas) que pertenecen a una cabecera con código sql
+	12) Crear la función en c++ para traer todos los detalles de una cabecera

@@ -72,6 +72,7 @@ bool PaymentControllers::updatePaymentInvoice(SqlConnection *con, int id_cab_fac
     return execution;
 }
 
+
 void PaymentControllers::getAllPaymentInvoices(SqlConnection *con, std::vector<Factura>& facturas){
     con->conOpen();
 
@@ -184,7 +185,50 @@ bool PaymentControllers::updateInvoiceLineInfo(SqlConnection *con, int id_det_li
 }
 
 
+void PaymentControllers::getAllInvoiceLines(SqlConnection *con, int cod_factura,
+        std::vector<DetalleFactura>& lineas){
 
+    con->conOpen();
+
+    PlanElegido planActual;
+
+    QString sqlSentence;
+    sqlSentence.append(
+    "SELECT"
+    "   Detf.id_deta_fact, concat(Paq.paq_descripcion,\" \", Paq.paq_price) as Descripcion,"
+    "   Ple.cantidad_paq, Detf.total_deta_fact, Ple.fecha_pago, Ple.fecha_finalizacion"
+    "FROM DetalleFactura as Detf"
+    "INNER JOIN PlanElegido as Ple on Detf.id_deta_fact = Ple.id_deta_fact"
+    "INNER JOIN Paquete as Paq on Ple.id_paq = Paq.id_paq"
+    "WHERE Detf.id_cab_fact = " + QString::number(cod_factura) + "; ");
+
+    QSqlQuery query;
+    query.prepare(sqlSentence);
+
+    if(query.exec()){
+        while( query.next() ){
+            planActual.setDescripcionCompleta(
+                query.value("Descripcion").toString().toStdString()  );
+            planActual.setCantidadPaquete(
+                query.value("Ple.cantidad_paq").toInt()  );
+            planActual.setFechaPago(
+                query.value("Ple.fecha_pago").toString().toStdString() );
+            planActual.setFechaFin(
+                query.value("Ple.fecha_finalizacion").toString().toStdString()  );
+
+            lineas.push_back(
+                DetalleFactura(
+                    query.value("Detf.id_deta_fact").toInt(),
+                    query.value("Detf.total_deta_fact").toDouble(),
+                    cod_factura,
+                    planActual
+                )
+            );
+        }
+    }
+
+    con->conClose();
+}
 
 
 

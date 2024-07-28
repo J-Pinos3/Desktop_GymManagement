@@ -684,6 +684,21 @@ QWidget#tabPagos QSpinBox{
 	color: white;
 	font-size: 14px;
 	border: 1px solid #ffd600;
+}
+
+
+QWidget#tabPagos QComboBox{
+	padding-left: 20;
+	height: 30;
+	background-color: white;
+}
+
+QWidget#tabPagos QComboBox::open {
+	background-color: yellow;
+}
+
+QWidget#tabPagos QComboBox QListView {
+	background-color: white;
 }</string>
       </property>
       <attribute name="title">

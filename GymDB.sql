@@ -69,6 +69,16 @@ select * from Usuario;
 select * from PlanElegido;
 
 -- delete from Paquete where id_paq in (1,2);
+-- query para mostrar el detalle de factura (según la cabecera actual) y mostrar los datos del paquete elegido
+select
+	Detf.id_deta_fact, concat(Paq.paq_descripcion, " ",Paq.paq_price),
+    Ple.catidad_paq, Detf.total_deta_fact, Ple.fecha_pago, Ple.fecha_finalizacion
+from DetalleFactura as Detf
+inner join PlanElegido as Ple on Detf.id_deta_fact = Ple.id_deta_fact
+inner join Paquete as Paq on Ple.id_paq = Paq.id_paq
+where Detf.id_cab_fact = 2;
+
+
 
 -- query to show person info and remaining dates in its package
 /*

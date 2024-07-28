@@ -50,9 +50,7 @@ public:
     void getAllInvoiceLines(SqlConnection *con, int cod_factura,
         std::vector<DetalleFactura>& lineas);
 
-/**¿¿¿????¡¿??
- * void getUserPaymentOrders(SqlConnection *con, std::vector<Factura>& pagosCliente);
-*/
+
 private:
     PaymentControllers(){};
 };

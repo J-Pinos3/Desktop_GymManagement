@@ -1,6 +1,12 @@
 debug/logincontroller.o
 debug/personcontroller.o
+debug/appointmentcontroller.o
+debug/paymentcontrollers.o
+debug/detallefactura.o
+debug/factura.o
+debug/paqueteentreno.o
 debug/persona.o
+debug/planelegido.o
 debug/gymoperations.o
 debug/main.o
 debug/mainwindow.o
