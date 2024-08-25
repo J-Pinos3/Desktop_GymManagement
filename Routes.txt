@@ -1,7 +1,27 @@
 Todo:
+	FIE4) No se ve el mensaje de los QMessageBox
+	FIE5) Al hacer clic en los campos de una tabla, el fondo negro hace que no se vean las letras, hay que seleccionarlas para que se vean
+	FIE3) Al clickar el botón de nueva factura vacía sale error porque no hay el código del cliente, validar eso
 
 
-	13) tras hacer clic en una de las facturas, poner sus campos en la parte inferior para añadir los detalles de factura
+		El error es que al crear la línea, no se está creando también el objeto-línea en la tabla plan elegido (aunque sea vacío) para esa cabecera de factura y 
+		para esa línea, no hay un plan, por eso no sale en el sqlquery
+		Para 21 y 22(talvéz) crearé una función que traiga solo los detalles de factua y los muestre en la tabla y en el campo de txt código dealle
+	21) Tras crear un nuevo detalle de factura para una cabecera dada, los datos pueden ser nulos si la cabecera es nueva
+		si la lista de la consulta de los detalles para esa factura esta vacía, solo mostrar el id en el campo de código del detalle
+		o solo mostrar unos campos provisionales en la tabla
+		
+	22) Tras crear un nuevo detalle de factura para una cabecera dada, si ya existían datos para esa cabecera (no es nueva)
+		mostrar la lista con los detalles existentes y si no se muestra el nuevo detalle en la consulta, solo mostrar el id en el campo de código del detalle
+		o solo mostrar unos campos provisionales en la tabla
+	
+	
+
+
+
+Fix-Error:
+	
+	
 
 
 
@@ -12,8 +32,13 @@ Progress:
 		Probados los stored procedures al menos de Detalle factura con plan elegido y si funciona 
 		de momento
 
+ 
+		
 
 	
+	
+
+
 
 
 Completed:
@@ -30,3 +55,24 @@ Completed:
 		Ya existe la función que trae todas las cabeceras
 	11) Traer todos los detalles (líneas) que pertenecen a una cabecera con código sql
 	12) Crear la función en c++ para traer todos los detalles de una cabecera
+
+	13) Trabajar en la función en la ui de crear el plan elegido para un detalle de factura dado
+	14) Trabajar en la función que llama el procedimiento almacenado que actualiza la cabecera
+	15) Trabajar en la función que llama el procedimiento almacenado que actualiza la detalle
+	16) Traer de bd todas las cabeceras de factura y mostrar en UI
+	17) Tras crear un detalle, mostrar todos los detalles de una factura en específico en la UI
+	18) tras hacer clic en una de las facturas, poner sus campos en la parte inferior para añadir los detalles de factura
+	19) Crear una función en el paymentController para traer solo los detalles de una cabecera de factura 
+		Ya existe, es la función getAllInvoiceLines
+	20) Crear la función en la ui para que tras crear un detalle vacío se muestren todos los detalles de esa factura
+		con el método creado en 19)
+	21) Crear una función que cree un plan elegido vacío, eso tras crear una línea (detalle de factura)
+	22) Implementar la función de crear un plan elegido vacío en GymOperations
+	23) Corregir el query sql que trae los detalles para una factura dada
+	24) Corregir la función que trae los detalles de una factura en c++ en PaymentController
+
+
+
+	FIE1) Tras crear un detalle (línea), no se está mostrando en la UI
+	FIE2) Tras crear un detalle, no se está mostrando en la tabla de los detalles para una factura dada
+		Solo se muestra si hay datos

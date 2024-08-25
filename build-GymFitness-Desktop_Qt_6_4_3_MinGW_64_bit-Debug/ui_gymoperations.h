@@ -83,9 +83,9 @@ public:
     QPushButton *btnPaymentSearchInvoice;
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *verticalLayout_6;
-    QLineEdit *invoiceLineNumber;
+    QLineEdit *invoiceNumber;
     QLineEdit *txtPaymentUserCode;
-    QLineEdit *txt;
+    QLineEdit *invoiceInfoLineNumber;
     QDateEdit *paymentDatePay;
     QComboBox *cbxPaymentPackage;
     QSpinBox *sbPaymentQuantity;
@@ -655,13 +655,13 @@ public:
         verticalLayout_6 = new QVBoxLayout();
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setObjectName("verticalLayout_6");
-        invoiceLineNumber = new QLineEdit(tabPagos);
-        invoiceLineNumber->setObjectName("invoiceLineNumber");
-        sizePolicy.setHeightForWidth(invoiceLineNumber->sizePolicy().hasHeightForWidth());
-        invoiceLineNumber->setSizePolicy(sizePolicy);
-        invoiceLineNumber->setReadOnly(false);
+        invoiceNumber = new QLineEdit(tabPagos);
+        invoiceNumber->setObjectName("invoiceNumber");
+        sizePolicy.setHeightForWidth(invoiceNumber->sizePolicy().hasHeightForWidth());
+        invoiceNumber->setSizePolicy(sizePolicy);
+        invoiceNumber->setReadOnly(false);
 
-        verticalLayout_6->addWidget(invoiceLineNumber);
+        verticalLayout_6->addWidget(invoiceNumber);
 
         txtPaymentUserCode = new QLineEdit(tabPagos);
         txtPaymentUserCode->setObjectName("txtPaymentUserCode");
@@ -671,12 +671,12 @@ public:
 
         verticalLayout_6->addWidget(txtPaymentUserCode);
 
-        txt = new QLineEdit(tabPagos);
-        txt->setObjectName("txt");
-        sizePolicy.setHeightForWidth(txt->sizePolicy().hasHeightForWidth());
-        txt->setSizePolicy(sizePolicy);
+        invoiceInfoLineNumber = new QLineEdit(tabPagos);
+        invoiceInfoLineNumber->setObjectName("invoiceInfoLineNumber");
+        sizePolicy.setHeightForWidth(invoiceInfoLineNumber->sizePolicy().hasHeightForWidth());
+        invoiceInfoLineNumber->setSizePolicy(sizePolicy);
 
-        verticalLayout_6->addWidget(txt);
+        verticalLayout_6->addWidget(invoiceInfoLineNumber);
 
         paymentDatePay = new QDateEdit(tabPagos);
         paymentDatePay->setObjectName("paymentDatePay");
@@ -859,9 +859,10 @@ public:
         btnPaymentNewInvoice->setText(QCoreApplication::translate("GymOperations", "Nueva Factura", nullptr));
         btnPaymentAllInvoices->setText(QCoreApplication::translate("GymOperations", "Todas las Facturas", nullptr));
         btnPaymentSearchInvoice->setText(QCoreApplication::translate("GymOperations", "Buscar", nullptr));
-        invoiceLineNumber->setPlaceholderText(QCoreApplication::translate("GymOperations", "Factura N\302\260 10 ", nullptr));
+        invoiceNumber->setPlaceholderText(QCoreApplication::translate("GymOperations", "Factura N\302\260 10 ", nullptr));
         txtPaymentUserCode->setPlaceholderText(QCoreApplication::translate("GymOperations", "C\303\263digo del cliente:", nullptr));
-        txt->setPlaceholderText(QCoreApplication::translate("GymOperations", "Detalle N\302\260 22", nullptr));
+        invoiceInfoLineNumber->setPlaceholderText(QCoreApplication::translate("GymOperations", "Detalle N\302\260 22", nullptr));
+        paymentDatePay->setDisplayFormat(QCoreApplication::translate("GymOperations", "yyyy/MM/dd", nullptr));
         txtPaymentAmount->setPlaceholderText(QCoreApplication::translate("GymOperations", "$00.00", nullptr));
         checkPaymentPartial->setText(QCoreApplication::translate("GymOperations", "Abono", nullptr));
         txtPaymentPartialPay->setPlaceholderText(QCoreApplication::translate("GymOperations", "Cantidad a abonar", nullptr));

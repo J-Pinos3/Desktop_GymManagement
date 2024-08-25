@@ -783,7 +783,7 @@ QWidget#tabPagos QComboBox QListView {
               <number>6</number>
              </property>
              <item>
-              <widget class="QLineEdit" name="invoiceLineNumber">
+              <widget class="QLineEdit" name="invoiceNumber">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -818,7 +818,7 @@ QWidget#tabPagos QComboBox QListView {
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="txt">
+              <widget class="QLineEdit" name="invoiceInfoLineNumber">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -831,7 +831,11 @@ QWidget#tabPagos QComboBox QListView {
               </widget>
              </item>
              <item>
-              <widget class="QDateEdit" name="paymentDatePay"/>
+              <widget class="QDateEdit" name="paymentDatePay">
+               <property name="displayFormat">
+                <string>yyyy/MM/dd</string>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QComboBox" name="cbxPaymentPackage"/>

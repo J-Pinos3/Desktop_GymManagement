@@ -88,7 +88,7 @@ void PaymentControllers::getAllPaymentInvoices(SqlConnection *con, std::vector<F
                 Factura(
                     query.value("id_cab_fact").toInt(),
                     query.value("fecha_cab_fact").toString().toStdString(),
-                    query.value("total_cab_factura").toDouble(),
+                    query.value("total_cab_fact").toDouble(),
                     query.value("cod_persona").toString().toStdString()
                 )
             );
@@ -185,22 +185,64 @@ bool PaymentControllers::updateInvoiceLineInfo(SqlConnection *con, int id_det_li
 }
 
 
-void PaymentControllers::getAllInvoiceLines(SqlConnection *con, int cod_factura,
-        std::vector<DetalleFactura>& lineas){
+bool PaymentControllers::createEmptyLineInfo(SqlConnection *con){
 
     con->conOpen();
+    //LAST_INSERT_ID is the id of the just created invoice line
+    QString sqlSentence;
+    sqlSentence.append(
+    "INSERT INTO PlanElegido"
+    "(id_deta_fact, id_paq, catidad_paq, fecha_pago, fecha_finalizacion)"
+    "VALUES( LAST_INSERT_ID(), 1, 0, '2001-01-01', '2001-01-01';" );
 
+    QSqlQuery query;
+    query.prepare(sqlSentence);
+
+    bool execution = query.exec();
+
+    if(!query.lastError().text().isNull()){
+        qDebug() <<"Error creating empty plan(line info): "
+        << query.lastError().text();
+    }
+
+    con->conClose();
+    return execution;
+}
+
+
+
+void PaymentControllers::getAllInvoiceLines(
+        SqlConnection *con, int cod_factura,
+        std::vector<DetalleFactura>& lineas){
+
+
+    con->conOpen();
     PlanElegido planActual;
 
     QString sqlSentence;
     sqlSentence.append(
-    "SELECT"
-    "   Detf.id_deta_fact, concat(Paq.paq_descripcion,\" \", Paq.paq_price) as Descripcion,"
-    "   Ple.cantidad_paq, Detf.total_deta_fact, Ple.fecha_pago, Ple.fecha_finalizacion"
-    "FROM DetalleFactura as Detf"
-    "INNER JOIN PlanElegido as Ple on Detf.id_deta_fact = Ple.id_deta_fact"
-    "INNER JOIN Paquete as Paq on Ple.id_paq = Paq.id_paq"
-    "WHERE Detf.id_cab_fact = " + QString::number(cod_factura) + "; ");
+    "SELECT\n"
+    "Detf.id_deta_fact,"
+    "COALESCE( concat(Paq.paq_descripcion,\' \', Paq.paq_price), \'---\') as Descripcion\n"
+    "COALESCE(Ple.catidad_paq, -1) as Cantidad,\n"
+    "COALESCE(Detf.total_deta_fact, -10.00) as TotalDetalle,\n"
+    "COALESCE(Ple.fecha_pago, \'---\') as FechaPago,\n"
+    "COALESCE(Ple.fecha_finalizacion, \'---\') as FechaFin,\n"
+    "FROM DetalleFactura as Detf\n"
+    "LEFT JOIN PlanElegido as Ple on Ple.id_deta_fact = Detf.id_deta_fact\n"
+    "LEFT JOIN Paquete as Paq on Ple.id_paq = Paq.id_paq\n"
+    "WHERE Detf.id_cab_fact = " + QString::number(cod_factura) + ";");
+
+    /*
+    sqlSentence.append(
+        "SELECT\n"
+        "Detf.id_deta_fact, concat(Paq.paq_descripcion,\' \', Paq.paq_price) as Descripcion,\n"
+        "Ple.catidad_paq, Detf.total_deta_fact, Ple.fecha_pago, Ple.fecha_finalizacion\n"
+        "FROM DetalleFactura as Detf\n"
+        "INNER JOIN PlanElegido as Ple on Detf.id_deta_fact = Ple.id_deta_fact\n"
+        "INNER JOIN Paquete as Paq on Ple.id_paq = Paq.id_paq\n"
+        "WHERE Detf.id_cab_fact = " + QString::number(cod_factura) + ";");
+        */
 
     QSqlQuery query;
     query.prepare(sqlSentence);
@@ -210,27 +252,75 @@ void PaymentControllers::getAllInvoiceLines(SqlConnection *con, int cod_factura,
             planActual.setDescripcionCompleta(
                 query.value("Descripcion").toString().toStdString()  );
             planActual.setCantidadPaquete(
-                query.value("Ple.cantidad_paq").toInt()  );
+                query.value("Cantidad").toString().toInt()  );
             planActual.setFechaPago(
-                query.value("Ple.fecha_pago").toString().toStdString() );
+                query.value("FechaPago").toString().toStdString() );
             planActual.setFechaFin(
-                query.value("Ple.fecha_finalizacion").toString().toStdString()  );
+                query.value("FechaFin").toString().toStdString()  );
 
             lineas.push_back(
                 DetalleFactura(
-                    query.value("Detf.id_deta_fact").toInt(),
-                    query.value("Detf.total_deta_fact").toDouble(),
+                    query.value("Detf.id_deta_fact").toString().toInt(),
+                    query.value("TotalDetalle").toString().toDouble(),
                     cod_factura,
                     planActual
                 )
             );
+
+            qDebug() << query.value("Descripcion").toString() << " --- "
+            << query.value("Cantidad").toString().toInt()
+             << "  ---  " << planActual.getCantidadPaquete() << " ---\n"
+            << " --- " << query.value("Detf.id_deta_fact").toString().toInt() << "\n" ;
         }
+    }else{
+         qDebug() <<"Error getting lines from that header " <<": " << query.lastError().text();
     }
 
     con->conClose();
 }
 
 
+///↓ is not used because I've fixed the query
+/// in the PaymentControllers::getAllInvoiceLines function
+void PaymentControllers::getEmptyInvoiceLines(
+    SqlConnection *con, int cod_factura,
+    std::vector<DetalleFactura>& lineas ){
+
+    con->conOpen();
+
+    PlanElegido planActualVacio;
+    QString sqlSentence;
+    sqlSentence.append(
+    "SELECT * from DetalleFactura WHERE id_cab_fact = "
+    + QString::number(cod_factura) + ";");
+
+    QSqlQuery query;
+    query.prepare(sqlSentence);
+
+
+    if( query.exec() ){
+        while( query.next() ){
+            planActualVacio.setDescripcionCompleta("---");
+            planActualVacio.setCantidadPaquete(0);
+            planActualVacio.setFechaPago("2001-01-01");
+            planActualVacio.setFechaFin("2001-01-01");
+
+            lineas.push_back(
+                DetalleFactura(
+                    query.value("id_deta_fact").toString().toInt(),
+                    query.value("total_deta_fact").toString().toDouble(),
+                    cod_factura,
+                    planActualVacio
+                )
+            );
+        }
+    }else{
+        qDebug() <<"Error getting lines from that header " <<": " << query.lastError().text();
+    }
+
+
+    con->conClose();
+}
 
 
 

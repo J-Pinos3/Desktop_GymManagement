@@ -33,8 +33,16 @@ public:
 
     void getTrainingPackages();
 
+    int getCurrentSelectedPackageId(const std::string &descriptionPackage);
+
     void getValuesfromManageFields(QString& nombre, QString& apellido,
         QString& fechaRegistro, double& peso, int& rolId);
+
+    void getAllPaymentInvoicesFromDB();
+
+    void getInvoiceLinesByInvoiceId(const int currentHeaderId);
+
+    void getEmptyLinesByInvoiceId(const int currentHeaderId);
 
 private slots:
 
@@ -72,11 +80,17 @@ private slots:
 
     void on_btnPaymentSaveAll_clicked();
 
+    void on_btnPaymentAllInvoices_clicked();
+
+    void on_tblWidPaymentInvoice_cellActivated(int row, int column);
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
     std::vector<Rol> roles;
     std::vector<PaqueteEntreno> paquetes;
+    std::vector<Factura> cabeceraFacturas;
+    std::vector<DetalleFactura> detallesFactura;
 };
 
 #endif // GYMOPERATIONS_H

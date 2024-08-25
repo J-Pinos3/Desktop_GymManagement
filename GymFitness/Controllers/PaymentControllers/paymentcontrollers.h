@@ -46,10 +46,15 @@ public:
 
     bool updateInvoiceLineInfo(SqlConnection *con, int id_det_linea);
 
+    //2024/08/2023 when creating an ampty line, alse create the chosen plan
+    bool createEmptyLineInfo(SqlConnection *con);
+
 
     void getAllInvoiceLines(SqlConnection *con, int cod_factura,
         std::vector<DetalleFactura>& lineas);
 
+    void getEmptyInvoiceLines(SqlConnection *con, int cod_factura,
+        std::vector<DetalleFactura>& lineas );
 
 private:
     PaymentControllers(){};

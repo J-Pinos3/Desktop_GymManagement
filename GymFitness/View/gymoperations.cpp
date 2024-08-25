@@ -8,6 +8,8 @@ GymOperations::GymOperations(QWidget *parent) :
 
     ui->setupUi(this);
 
+    connect( ui->tblWidPaymentInvoice, SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidPaymentInvoice_cellActivated(int, int)) );
+
     setCustomersRoleDescription();
     listAllCustomers();
     getTrainingPackages();
@@ -16,6 +18,15 @@ GymOperations::GymOperations(QWidget *parent) :
 GymOperations::~GymOperations()
 {
     delete ui;
+}
+
+int GymOperations::getCurrentSelectedPackageId(const std::string &descriptionPackage){
+    std::vector<PaqueteEntreno>::iterator it = paquetes.begin();
+    for( it; it != paquetes.end(); it++ ){
+        if(it->getDescriptionPaquete() == descriptionPackage){
+            return it->getIdPaquete();
+        }
+    }
 }
 
 void GymOperations::getValuesfromManageFields(QString& nombre, QString& apellido,
@@ -277,27 +288,48 @@ void GymOperations::on_btnPaymentNewInvoice_clicked()
     bool executionResult = paymentController.createEmptyPaymentInvoice(&con, nuevaFactura);
 
     if(executionResult){
-        QMessageBox::information(this, tr("Saved"), tr("Empty invoice created Succesfully"));
+        QMessageBox::information(this, "Saved", "Empty invoice created Succesfully");
         /// TODO once created the payment invoice, get its data into the table
     }else{
-        QMessageBox::information(this, tr("Error"), tr("Couldn't create empty invoice"));
+        QMessageBox::information(this, "Error", "Couldn't create empty invoice");
     }
 }
 
 void GymOperations::on_btnPaymentAddLine_clicked()
 {
+    QMessageBox msg = QMessageBox();
     SqlConnection con;
-    DetalleFactura nuevoDetalle(0, 0.0,
-    this->ui->invoiceLineNumber->text().toInt());
+    int currentInvoice = 0;
+    currentInvoice = this->ui->invoiceNumber->text().toInt();
+    DetalleFactura nuevoDetalle(0, 0.0, currentInvoice );
     PaymentControllers paymentController = PaymentControllers::getInstance();
 
     bool executionResult = paymentController.createEmptyInvoiceLine(&con,nuevoDetalle);
 
+    //bool executionEmptyChosenPlan = paymentController.createEmptyLineInfo(&con);
+
     if(executionResult){
-        QMessageBox::information(this, tr("Saved"), tr("Empty invoice line created Succesfully"));
+
+        msg.setWindowTitle("Saved");
+        msg.setText("Empty invoice line created Succesfully");
+        msg.setIcon(QMessageBox::Information);
+        msg.setStyleSheet("color:white;background:black");
+        msg.exec();
+        //QMessageBox::information(this, "Saved", "Empty invoice line created Succesfully");
+
+
+        getInvoiceLinesByInvoiceId(currentInvoice);
+
+
+
         /// TODO once created the invoice line, get its data into the table
     }else{
-        QMessageBox::information(this, tr("Error"), tr("Couldn't create empty invoice line"));
+        msg.setWindowTitle("Error");
+        msg.setText("Couldn't create empty invoice line");
+        msg.setIcon(QMessageBox::Warning);
+        msg.setStyleSheet("color:white;background:black");
+        msg.exec();
+        //QMessageBox::information(this, "Error", "Couldn't create empty invoice line");
     }
 
 }
@@ -305,14 +337,77 @@ void GymOperations::on_btnPaymentAddLine_clicked()
 
 void GymOperations::on_btnSaveLine_clicked()
 {
+    SqlConnection con;
+    int currentInvoiceLineId = 0;
+    PaymentControllers paymentController = PaymentControllers::getInstance();
+    QString selectedPackage = this->ui->cbxPaymentPackage->currentText();
+    QStringList tokens = selectedPackage.split(", ");
 
+    QString packageDescription = tokens[0];
+    QRegularExpression sep("días");
+    int packageDays = tokens[1].remove(sep).toInt();
+
+    QDate paymentDate = this->ui->paymentDatePay->date() ;
+    QDate limitDate = this->ui->paymentDatePay->date().addDays(packageDays);
+
+    QString formatedPaymentDate = QString::number( paymentDate.year() ) +
+            "-" + QString::number( paymentDate.month() ) +
+            "-" + QString::number( paymentDate.day() );
+
+    QString formatedLimitDate = QString::number( limitDate.year() ) +
+            "-" + QString::number( limitDate.month() ) +
+            "-" + QString::number( limitDate.day() );
+
+    //qDebug() << "PaymentDate: " << paymentDate <<" LimitDate: " << limitDate <<"\n";
+    //PaymentDate:  "Fri Aug 9 2024"  LimitDate:  "Sat Aug 10 2024" this output when used QDate[Object].toString
+    //else just get the numbers
+    currentInvoiceLineId = this->ui->invoiceInfoLineNumber->text().toInt();
+
+
+    bool executionResult = paymentController
+        .createInvoiceLineInfo(&con,
+        currentInvoiceLineId,
+        getCurrentSelectedPackageId(selectedPackage.toStdString()),
+        this->ui->sbPaymentQuantity->text().toInt(),
+        formatedPaymentDate, formatedLimitDate
+        );
+
+    if(executionResult){
+        QMessageBox::information(this, tr("Saved"), "Line info created Succesfully");
+        //update this current line
+
+        bool updateLineResult = paymentController
+        .updateInvoiceLineInfo(&con, currentInvoiceLineId);
+        if(updateLineResult){
+            QMessageBox::information(this, "Saved", "Line total updated succesfully");
+        }else{
+            QMessageBox::information(this, "Error", "Couldn't update the total of this line");
+        }
+
+
+        /// TODO once created the invoice line, get its data into the table
+    }else{
+        QMessageBox::information(this, "Error", "Couldn't create line info");
+    }
 }
 
 
 void GymOperations::on_btnPaymentSaveAll_clicked()
 {
+    SqlConnection con;
+    int currentHeader = 0;
+    PaymentControllers paymentController = PaymentControllers::getInstance();
+    currentHeader = this->ui->invoiceNumber->text().toInt();
+
+    bool executionResult = paymentController.updatePaymentInvoice(&con, currentHeader);
+    if( executionResult ){
+        QMessageBox::information(this, "Saved", "Invoice Header update succesfully");
+    }else{
+        QMessageBox::information(this, "Error", "Couldn't update header with its lines");
+    }
     //This function should call teh stored procedure to update the invoice header
 }
+
 
 void GymOperations::getTrainingPackages(){
     SqlConnection con;
@@ -336,3 +431,175 @@ void GymOperations::getTrainingPackages(){
     }
 
 }
+
+
+void GymOperations::getAllPaymentInvoicesFromDB(){
+    SqlConnection con;
+    PaymentControllers paymentController = PaymentControllers::getInstance();
+
+    cabeceraFacturas.clear();
+    paymentController.getAllPaymentInvoices(&con, cabeceraFacturas);
+
+    ui->tblWidPaymentInvoice->clearContents();
+    ui->tblWidPaymentInvoice->setRowCount( cabeceraFacturas.size() );
+
+    for(size_t i =0; i < cabeceraFacturas.size(); i++){
+        ui->tblWidPaymentInvoice->setItem(
+            i,0, new QTableWidgetItem( QString::number( cabeceraFacturas[i].getIdCabFactura() ) )
+        );
+
+        ui->tblWidPaymentInvoice->setItem(
+            i,1, new QTableWidgetItem( QString::fromStdString( cabeceraFacturas[i].getFechaCabFactura() ) )
+        );
+
+        ui->tblWidPaymentInvoice->setItem(
+            i,2, new QTableWidgetItem( QString::fromStdString( cabeceraFacturas[i].getCodPersona() ) )
+        );
+
+        ui->tblWidPaymentInvoice->setItem(
+            i,3, new QTableWidgetItem( "---" )
+        );
+
+        ui->tblWidPaymentInvoice->setItem(
+            i,4, new QTableWidgetItem( QString::number( cabeceraFacturas[i].getTotalCabFactura() ) )
+        );
+
+        ui->tblWidPaymentInvoice->setItem(
+            i,5, new QTableWidgetItem( QString::number( 000.11 ) )
+        );
+    }
+}
+
+
+
+void GymOperations::on_btnPaymentAllInvoices_clicked()
+{
+    getAllPaymentInvoicesFromDB();
+}
+
+void GymOperations::getInvoiceLinesByInvoiceId(const int currentHeaderId){
+    //todo also call this function after the user selecs 1 invoice from the
+    //top table
+    SqlConnection con;
+    PaymentControllers paymentController = PaymentControllers::getInstance();
+
+    detallesFactura.clear();
+    paymentController.getAllInvoiceLines(&con, currentHeaderId,
+    detallesFactura);
+
+    ui->tblWidPaymentLine->clearContents();
+    ui->tblWidPaymentLine->setRowCount( detallesFactura.size() );
+
+    const int ERROR_FLAG = -1;
+
+    for(size_t i = 0; i < detallesFactura.size(); i++){
+        qDebug() << detallesFactura[i].getIdDetalleFact() << " *** "
+            << currentHeaderId << " *** "
+            << detallesFactura[i].getTotalDetalleFact() << "\n";
+
+        ui->tblWidPaymentLine->setItem(
+            i, 0, new QTableWidgetItem( detallesFactura[i].getIdDetalleFact() <= 0
+            ? QString::number(ERROR_FLAG) : QString::number(detallesFactura[i].getIdDetalleFact() ))
+        );
+
+        ui->tblWidPaymentLine->setItem(
+            i, 1, new QTableWidgetItem( QString::fromStdString(
+            detallesFactura[i].plan.getDescripcionCmpleta() == "" ? "---" : detallesFactura[i].plan.getDescripcionCmpleta() )  )
+        );
+
+        ui->tblWidPaymentLine->setItem(
+            i, 2, new QTableWidgetItem( detallesFactura[i].plan.getCantidadPaquete() < 0
+            ? QString::number(ERROR_FLAG) : QString::number( detallesFactura[i].plan.getCantidadPaquete() ))
+        );
+
+        ui->tblWidPaymentLine->setItem(
+            i, 3, new QTableWidgetItem( detallesFactura[i].getTotalDetalleFact() < 0.0
+            ? QString::number(ERROR_FLAG) : QString::number(detallesFactura[i].getTotalDetalleFact() ))
+        );
+
+        ui->tblWidPaymentLine->setItem(
+            i, 4, new QTableWidgetItem( QString::fromStdString(
+            detallesFactura[i].plan.getFechaPago() == "" ? "0000-00-00" : detallesFactura[i].plan.getFechaPago()  )  )
+        );
+
+        ui->tblWidPaymentLine->setItem(
+            i, 5, new QTableWidgetItem( QString::fromStdString(
+            detallesFactura[i].plan.getFechaFin() == "" ? "0000-00-00" : detallesFactura[i].plan.getFechaFin()  )  )
+        );
+
+    }
+}
+
+
+///↓ is not used because I've fixed the query
+/// in the PaymentControllers::getAllInvoiceLines function
+void GymOperations::getEmptyLinesByInvoiceId(const int currentHeaderId){
+    SqlConnection con;
+    PaymentControllers paymentController = PaymentControllers::getInstance();
+
+    detallesFactura.clear();
+    paymentController.getEmptyInvoiceLines(&con, currentHeaderId, detallesFactura);
+
+    ui->tblWidPaymentLine->clearContents();
+    ui->tblWidPaymentLine->setRowCount( detallesFactura.size() );
+
+    for(size_t i = 0; i < detallesFactura.size(); i++){
+
+        ui->tblWidPaymentLine->setItem(
+            i, 0, new QTableWidgetItem( QString::number(detallesFactura[i].getIdDetalleFact()) )
+        );
+
+        ui->tblWidPaymentLine->setItem(
+            i, 1, new QTableWidgetItem( QString::fromStdString(detallesFactura[i].plan.getDescripcionCmpleta()) )
+        );
+
+        ui->tblWidPaymentLine->setItem(
+            i, 2, new QTableWidgetItem( QString::number(detallesFactura[i].plan.getCantidadPaquete()) )
+        );
+
+        ui->tblWidPaymentLine->setItem(
+            i, 3, new QTableWidgetItem( QString::number(detallesFactura[i].getTotalDetalleFact()) )
+        );
+
+        ui->tblWidPaymentLine->setItem(
+            i, 4, new QTableWidgetItem( QString::fromStdString(detallesFactura[i].plan.getFechaPago()) )
+        );
+
+        ui->tblWidPaymentLine->setItem(
+            i, 5, new QTableWidgetItem( QString::fromStdString(detallesFactura[i].plan.getFechaFin()) )
+        );
+
+    }
+
+}
+
+
+
+
+void GymOperations::on_tblWidPaymentInvoice_cellActivated(int row, int column)
+{
+    QString currentCabeceraTxt = ui->tblWidPaymentInvoice->item(row,0)->text();
+    QString userCodeTxt = ui->tblWidPaymentInvoice->item(row,2)->text();
+    QString paymentTotalTxt = ui->tblWidPaymentInvoice->item(row,4)->text();
+    QString partialPaymentTxt = ui->tblWidPaymentInvoice->item(row,5)->text();
+
+
+    currentCabeceraTxt.isNull() || currentCabeceraTxt.isEmpty() ?
+        ui->invoiceNumber->setText("---") : ui->invoiceNumber->setText(currentCabeceraTxt);
+
+    userCodeTxt.isNull() || userCodeTxt.isEmpty() ?
+        ui->txtPaymentUserCode->setText("---") : ui->txtPaymentUserCode->setText(userCodeTxt);
+
+    paymentTotalTxt.isNull() || paymentTotalTxt.isEmpty() ?
+        ui->txtPaymentAmount->setText("00.0") : ui->txtPaymentAmount->setText(paymentTotalTxt);
+
+    partialPaymentTxt.isNull() || partialPaymentTxt.isEmpty() ?
+        ui->txtPaymentPartialPay->setText("00.0") : ui->txtPaymentPartialPay->setText(partialPaymentTxt);
+
+    getInvoiceLinesByInvoiceId( ui->invoiceNumber->text().toInt() );
+    if(detallesFactura.size() <= 0 ){
+        getEmptyLinesByInvoiceId( ui->invoiceNumber->text().toInt() );
+    }
+
+}
+

@@ -2,7 +2,8 @@
 
 PlanElegido::PlanElegido(int id_plan, const std::string& codigo_pers,
     int id_paquete, int cantidad_paquete,
-    const std::string& fech_pago, const std::string& fech_fin)
+    const std::string& fech_pago, const std::string& fech_fin,
+    const std::string& descrip)
 {
     this->id_plan_elegido = id_plan;
     this->cod_persona = codigo_pers;
@@ -10,6 +11,7 @@ PlanElegido::PlanElegido(int id_plan, const std::string& codigo_pers,
     this->cantidad_paq = cantidad_paquete;
     this->fecha_pago = fech_pago;
     this->fecha_finalizacion = fech_fin;
+    this->descripcion_completa = descrip;
 }
 
 

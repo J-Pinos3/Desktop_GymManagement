@@ -68,27 +68,41 @@ select * from DetalleFactura;
 select * from Usuario;
 select * from PlanElegido;
 
--- delete from Paquete where id_paq in (1,2);
--- query para mostrar el detalle de factura (según la cabecera actual) y mostrar los datos del paquete elegido
+-- query mejorada para mostrar los detalles de factura según la cabecera actual
 select
-	Detf.id_deta_fact, concat(Paq.paq_descripcion, " ",Paq.paq_price),
+	Detf.id_deta_fact,
+    concat(Paq.paq_descripcion, " ",Paq.paq_price) as Descripcion,
+    coalesce(Ple.id_paq, -1) as IdPaquete,
+    coalesce(Ple.catidad_paq, -1) as Cantidad,
+    Detf.total_deta_fact,
+    Ple.fecha_pago, Ple.fecha_finalizacion
+from DetalleFactura as Detf
+-- and Paq.id_paq = Ple.id_paq ;
+left join PlanElegido as Ple on Ple.id_deta_fact = Detf.id_deta_fact
+left join Paquete as Paq on Ple.id_paq = Paq.id_paq
+where Detf.id_cab_fact = 7;
+
+-- query para mostrar el detalle de factura (según la cabecera actual) y mostrar los datos del paquete elegido
+/*
+select
+	Detf.id_deta_fact, concat(Paq.paq_descripcion, " ",Paq.paq_price) as Descripcion,
     Ple.catidad_paq, Detf.total_deta_fact, Ple.fecha_pago, Ple.fecha_finalizacion
 from DetalleFactura as Detf
 inner join PlanElegido as Ple on Detf.id_deta_fact = Ple.id_deta_fact
 inner join Paquete as Paq on Ple.id_paq = Paq.id_paq
-where Detf.id_cab_fact = 2;
-
-
-
--- query to show person info and remaining dates in its package
-/*
-select
-	P.cod_persona, concat(P.nombre," ",P.apellido),
-	P.peso, P.fecha_registro, P.id_rol,
-    plan.fecha_pago, plan.fecha_finalizacion
-from Persona as P
-left join PlanElegido as plan on plan.cod_persona = P.cod_persona;
+where Detf.id_cab_fact = 7;
 */
+
+
+select * from DetalleFactura where id_cab_fact = 7;
+
+insert into PlanElegido(id_deta_fact, id_paq, catidad_paq, fecha_pago, fecha_finalizacion)
+values(2,1,1,'2021-01-01','2021-01-02'); -- también para el detalle 3 de la factura 3
+call update_detalle_factura(3);
+-- update DetalleFactura set total_deta_fact = 0.0 where id_cab_fact = 3;
+
+
+
 
 -- el valor de total deta será igual a id_paq * cantidad_paq, eso se calcula en el app c++
 insert into DetalleFactura(total_deta_fact, id_cab_fact, id_paq, cantidad_paq)
@@ -97,7 +111,7 @@ insert into DetalleFactura(total_deta_fact, id_cab_fact, id_paq, cantidad_paq)
 insert into DetalleFactura(total_deta_fact, id_cab_fact, id_paq, cantidad_paq)
  values( 3.0, 1, 2, 1);
  
-call update_cabecera_factura(1);
+call update_cabecera_factura(3);
  
  
 
@@ -124,6 +138,9 @@ begin
     inner join Paquete as Paq on Paq.id_paq = Pe.id_paq
     where Pe.id_deta_fact = current_detalle
     into sub_total;
+    IF sub_total < 0.0 THEN
+		set sub_total = 0.0;
+	END IF;
     update DetalleFactura set total_deta_fact = sub_total where DetalleFactura.id_deta_fact = current_detalle;
 end $$
 delimiter ;
