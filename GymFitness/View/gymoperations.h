@@ -84,6 +84,8 @@ private slots:
 
     void on_tblWidPaymentInvoice_cellActivated(int row, int column);
 
+    void on_tblWidPaymentLine_cellActivated(int row, int column);
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;

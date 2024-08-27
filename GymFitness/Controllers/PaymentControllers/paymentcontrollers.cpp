@@ -122,6 +122,7 @@ bool PaymentControllers::createEmptyInvoiceLine(SqlConnection *con, const Detall
     return execution;
 }//CREATE EMPTY INVOICE LINE
 
+
 bool PaymentControllers::createInvoiceLineInfo(SqlConnection *con, int id_det_linea,
     int id_paquete, int cantidad,
     const QString& fecha_pago, const QString& fecha_limite){
@@ -136,7 +137,7 @@ bool PaymentControllers::createInvoiceLineInfo(SqlConnection *con, int id_det_li
     "(id_deta_fact, id_paq, catidad_paq, fecha_pago, fecha_finalizacion)"
     "VALUES(" + QString::number(id_det_linea) + ", " + QString::number(id_paquete) +
     ", " + QString::number(cantidad) + ", '" + fecha_pago +
-    "', '" + fecha_limite + "') ");
+    "', '" + fecha_limite + "'); ");
 
     QSqlQuery query;
     query.prepare(sqlSentence);
@@ -184,7 +185,7 @@ bool PaymentControllers::updateInvoiceLineInfo(SqlConnection *con, int id_det_li
     return execution;
 }
 
-
+//not used directly
 bool PaymentControllers::createEmptyLineInfo(SqlConnection *con){
 
     con->conOpen();
@@ -223,13 +224,13 @@ void PaymentControllers::getAllInvoiceLines(
     sqlSentence.append(
     "SELECT\n"
     "Detf.id_deta_fact,"
-    "COALESCE( concat(Paq.paq_descripcion,\' \', Paq.paq_price), \'---\') as Descripcion\n"
+    "COALESCE( concat(Paq.paq_descripcion,\' \', Paq.paq_price), \'---\') as Descripcion,\n"
     "COALESCE(Ple.catidad_paq, -1) as Cantidad,\n"
     "COALESCE(Detf.total_deta_fact, -10.00) as TotalDetalle,\n"
     "COALESCE(Ple.fecha_pago, \'---\') as FechaPago,\n"
-    "COALESCE(Ple.fecha_finalizacion, \'---\') as FechaFin,\n"
+    "COALESCE(Ple.fecha_finalizacion, \'---\') as FechaFin\n"
     "FROM DetalleFactura as Detf\n"
-    "LEFT JOIN PlanElegido as Ple on Ple.id_deta_fact = Detf.id_deta_fact\n"
+    "LEFT JOIN PlanElegido as Ple on Detf.id_deta_fact = Ple.id_deta_fact\n"
     "LEFT JOIN Paquete as Paq on Ple.id_paq = Paq.id_paq\n"
     "WHERE Detf.id_cab_fact = " + QString::number(cod_factura) + ";");
 

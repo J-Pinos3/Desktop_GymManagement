@@ -21,9 +21,6 @@ Todo:
 
 Fix-Error:
 	
-	
-
-
 
 
 Progress:
@@ -32,12 +29,11 @@ Progress:
 		Probados los stored procedures al menos de Detalle factura con plan elegido y si funciona 
 		de momento
 
- 
-		
+
+ 	28) Corregir el sql query o la función C++ para buscar un cliente por su código en el intro tab
+
 
 	
-	
-
 
 
 
@@ -70,6 +66,11 @@ Completed:
 	22) Implementar la función de crear un plan elegido vacío en GymOperations
 	23) Corregir el query sql que trae los detalles para una factura dada
 	24) Corregir la función que trae los detalles de una factura en c++ en PaymentController
+	25) Crear la funcionalidad de que cuando de clic a la tabla de abajo (detalles de factura), las celdas necesarias aparezcan 
+		en los campos de texto de la derecha	
+	26) Al pulsar el botón de guardar detalle, sale error, se debería corregir el query sql o la función createInvoiceLineInfo
+		Se corregió el parámetro que se mandaba a la función createInvoiceLineInfo TEST IT
+	27) Tras actualizar una cabecera, mostrar todas las cabeceras de nuevo
 
 
 

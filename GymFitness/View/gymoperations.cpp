@@ -9,6 +9,7 @@ GymOperations::GymOperations(QWidget *parent) :
     ui->setupUi(this);
 
     connect( ui->tblWidPaymentInvoice, SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidPaymentInvoice_cellActivated(int, int)) );
+    connect( ui->tblWidPaymentLine,    SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidPaymentLine_cellActivated(int, int)) );
 
     setCustomersRoleDescription();
     listAllCustomers();
@@ -109,6 +110,7 @@ void GymOperations::on_btnCustomerSearchIntro_clicked()
 
     QString userCode = "";
     userCode = ui->txtPersonCodeSearchIntro->text();
+    qDebug() << "\tUSER CODE: " <<  userCode <<"\n";
 
     ui->tblWidCustomersIntro->clearContents();
 
@@ -317,12 +319,8 @@ void GymOperations::on_btnPaymentAddLine_clicked()
         msg.exec();
         //QMessageBox::information(this, "Saved", "Empty invoice line created Succesfully");
 
-
         getInvoiceLinesByInvoiceId(currentInvoice);
 
-
-
-        /// TODO once created the invoice line, get its data into the table
     }else{
         msg.setWindowTitle("Error");
         msg.setText("Couldn't create empty invoice line");
@@ -363,11 +361,17 @@ void GymOperations::on_btnSaveLine_clicked()
     //else just get the numbers
     currentInvoiceLineId = this->ui->invoiceInfoLineNumber->text().toInt();
 
+    int packageId = getCurrentSelectedPackageId(packageDescription.toStdString());
+    qDebug() << "\n\t--------------------------\n"
+    << currentInvoiceLineId << " ** " << packageId << "\n"
+    << this->ui->sbPaymentQuantity->text().toInt() << "\n"
+    << formatedPaymentDate << " ** " << formatedLimitDate
+    << "\n\t--------------------------\n\n";
 
     bool executionResult = paymentController
         .createInvoiceLineInfo(&con,
         currentInvoiceLineId,
-        getCurrentSelectedPackageId(selectedPackage.toStdString()),
+        packageId,
         this->ui->sbPaymentQuantity->text().toInt(),
         formatedPaymentDate, formatedLimitDate
         );
@@ -389,6 +393,7 @@ void GymOperations::on_btnSaveLine_clicked()
     }else{
         QMessageBox::information(this, "Error", "Couldn't create line info");
     }
+
 }
 
 
@@ -402,6 +407,7 @@ void GymOperations::on_btnPaymentSaveAll_clicked()
     bool executionResult = paymentController.updatePaymentInvoice(&con, currentHeader);
     if( executionResult ){
         QMessageBox::information(this, "Saved", "Invoice Header update succesfully");
+        getAllPaymentInvoicesFromDB();
     }else{
         QMessageBox::information(this, "Error", "Couldn't update header with its lines");
     }
@@ -476,6 +482,7 @@ void GymOperations::on_btnPaymentAllInvoices_clicked()
 {
     getAllPaymentInvoicesFromDB();
 }
+
 
 void GymOperations::getInvoiceLinesByInvoiceId(const int currentHeaderId){
     //todo also call this function after the user selecs 1 invoice from the
@@ -601,5 +608,29 @@ void GymOperations::on_tblWidPaymentInvoice_cellActivated(int row, int column)
         getEmptyLinesByInvoiceId( ui->invoiceNumber->text().toInt() );
     }
 
+}
+
+
+void GymOperations::on_tblWidPaymentLine_cellActivated(int row, int column)
+{
+
+    QString invoiceLineId = ui->tblWidPaymentLine->item(row, 0)->text();
+    QString paqDescription = ui->tblWidPaymentLine->item(row, 1)->text();
+    QString paqQuantity = ui->tblWidPaymentLine->item(row, 2)->text();
+    QString lineTotal = ui->tblWidPaymentLine->item(row, 3)->text();
+    QString paymentDoneDate = ui->tblWidPaymentLine->item(row, 4)->text();
+
+    invoiceLineId.isNull() || invoiceLineId.isEmpty() ?
+        ui->invoiceInfoLineNumber->setText("---") : ui->invoiceInfoLineNumber->setText(invoiceLineId);
+
+    paqQuantity.isNull() || paqQuantity.isEmpty() ?
+        ui->sbPaymentQuantity->setValue(0) : ui->sbPaymentQuantity->setValue( paqQuantity.toInt() );
+
+    lineTotal.isNull() || lineTotal.isEmpty() ?
+        ui->txtPaymentAmount->setText("00.0") : ui->txtPaymentAmount->setText( lineTotal );
+
+    paymentDoneDate.isNull() || paymentDoneDate.isEmpty() || paymentDoneDate.contains("---") ?
+        ui->paymentDatePay->setDate( QDate::fromString("2001/01/01", "yyyy-MM-dd") )
+        :  ui->paymentDatePay->setDate( QDate::fromString(paymentDoneDate, "yyyy-MM-dd") );
 }
 

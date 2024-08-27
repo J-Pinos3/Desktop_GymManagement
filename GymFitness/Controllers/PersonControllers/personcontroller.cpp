@@ -63,8 +63,7 @@ Persona PersonController::searchUser(SqlConnection *con, const QString& cod_pers
     con->conOpen();
     QString sqlSentence;
     sqlSentence.append(
-    "SELECT * FROM Persona WHERE "
-    "cod_persona = '" + cod_persona + "'");
+    "SELECT * FROM Persona WHERE cod_persona = '" + cod_persona + "';");
 
     QSqlQuery query;
     query.prepare(sqlSentence);
@@ -74,10 +73,6 @@ Persona PersonController::searchUser(SqlConnection *con, const QString& cod_pers
 
     if(query.exec()){
         while(query.next()){
-            results++;
-        }
-
-        if(results == 1){
             buscado.setCodigo(
                 query.value("cod_persona").toString().toStdString());
 
@@ -93,19 +88,22 @@ Persona PersonController::searchUser(SqlConnection *con, const QString& cod_pers
             buscado.setPeso(query.value("peso").toDouble());
 
             buscado.setRol( query.value("id_rol").toInt());
-        }else{
-            buscado.setCodigo("0000");
-
-            buscado.setNombre("Jhon");
-
-            buscado.setApellido("Doe");
-
-            buscado.setFechaRegistro("2024-04-25");
-
-            buscado.setPeso(0.0);
-
-            buscado.setRol(0);
         }
+
+    }else{
+    qDebug() <<"Error searching that user: "<< query.lastError().text();
+
+        buscado.setCodigo("0000");
+
+        buscado.setNombre("Jhon");
+
+        buscado.setApellido("Doe");
+
+        buscado.setFechaRegistro("2024-04-25");
+
+        buscado.setPeso(0.0);
+
+        buscado.setRol(0);
     }
 
     con->conClose();

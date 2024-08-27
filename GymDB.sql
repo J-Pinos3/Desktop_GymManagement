@@ -80,7 +80,7 @@ from DetalleFactura as Detf
 -- and Paq.id_paq = Ple.id_paq ;
 left join PlanElegido as Ple on Ple.id_deta_fact = Detf.id_deta_fact
 left join Paquete as Paq on Ple.id_paq = Paq.id_paq
-where Detf.id_cab_fact = 7;
+where Detf.id_cab_fact = 3;
 
 -- query para mostrar el detalle de factura (según la cabecera actual) y mostrar los datos del paquete elegido
 /*
@@ -95,24 +95,28 @@ where Detf.id_cab_fact = 7;
 
 
 select * from DetalleFactura where id_cab_fact = 7;
+select * from Paquete where id_paq = 3;
 
 insert into PlanElegido(id_deta_fact, id_paq, catidad_paq, fecha_pago, fecha_finalizacion)
 values(2,1,1,'2021-01-01','2021-01-02'); -- también para el detalle 3 de la factura 3
 call update_detalle_factura(3);
 -- update DetalleFactura set total_deta_fact = 0.0 where id_cab_fact = 3;
 
+insert into PlanElegido (id_deta_fact, id_paq, catidad_paq, fecha_pago, fecha_finalizacion)
+values(16, 3, 1 ,'2024-8-25','2024-9-1');
+call update_detalle_factura(16);
 
 
 
 -- el valor de total deta será igual a id_paq * cantidad_paq, eso se calcula en el app c++
 insert into DetalleFactura(total_deta_fact, id_cab_fact, id_paq, cantidad_paq)
  values( 70.0, 1, 1, 2);
- 
 insert into DetalleFactura(total_deta_fact, id_cab_fact, id_paq, cantidad_paq)
  values( 3.0, 1, 2, 1);
- 
 call update_cabecera_factura(3);
  
+ 
+select * from Persona where  cod_persona = 'b8f61438-4';
  
 
 delimiter //

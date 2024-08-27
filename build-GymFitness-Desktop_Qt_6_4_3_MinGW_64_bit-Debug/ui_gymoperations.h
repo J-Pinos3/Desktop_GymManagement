@@ -778,7 +778,7 @@ public:
 
         retranslateUi(GymOperations);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(GymOperations);
