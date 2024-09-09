@@ -3,22 +3,20 @@ Todo:
 	FIE5) Al hacer clic en los campos de una tabla, el fondo negro hace que no se vean las letras, hay que seleccionarlas para que se vean
 	FIE3) Al clickar el botón de nueva factura vacía sale error porque no hay el código del cliente, validar eso
 
-
-		El error es que al crear la línea, no se está creando también el objeto-línea en la tabla plan elegido (aunque sea vacío) para esa cabecera de factura y 
-		para esa línea, no hay un plan, por eso no sale en el sqlquery
-		Para 21 y 22(talvéz) crearé una función que traiga solo los detalles de factua y los muestre en la tabla y en el campo de txt código dealle
-	21) Tras crear un nuevo detalle de factura para una cabecera dada, los datos pueden ser nulos si la cabecera es nueva
-		si la lista de la consulta de los detalles para esa factura esta vacía, solo mostrar el id en el campo de código del detalle
-		o solo mostrar unos campos provisionales en la tabla
-		
-	22) Tras crear un nuevo detalle de factura para una cabecera dada, si ya existían datos para esa cabecera (no es nueva)
-		mostrar la lista con los detalles existentes y si no se muestra el nuevo detalle en la consulta, solo mostrar el id en el campo de código del detalle
-		o solo mostrar unos campos provisionales en la tabla
-	
-	
+	TD1) Descartar de momento la funcionalidad del abono y mostrar con 0
+	TD2) En el tab de pagos, bloquear el modo de editar el campo del total de la factura, eso no se debe tocar, 
+		se hace el çalculo en el programa
 
 
 
+	TD10) Mejorar los colores y efectos en la UI
+
+	34) Crear la tabla sql para el servicio de cita que ofrece el gimnasio (fisio o nutricionismo)
+	35) Crear la tabla sql llamada cita	
+
+
+	39) El modelo de datos detalle de factura por composición, ahora necesita tener el objeto
+		ServicioElegido, similar a PlanElegido
 Fix-Error:
 	
 
@@ -29,8 +27,8 @@ Progress:
 		Probados los stored procedures al menos de Detalle factura con plan elegido y si funciona 
 		de momento
 
+	33) Cambiar la UI del tab citas, se va a poner una tabla con las facturas y otra con los detalles
 
- 	28) Corregir el sql query o la función C++ para buscar un cliente por su código en el intro tab
 
 
 	
@@ -72,7 +70,11 @@ Completed:
 		Se corregió el parámetro que se mandaba a la función createInvoiceLineInfo TEST IT
 	27) Tras actualizar una cabecera, mostrar todas las cabeceras de nuevo
 
-
+ 	28) Corregir el sql query o la función C++ para buscar un cliente por su código en el intro tab
+	29) Tras guardar un detalle (o actualizarlo) se deben mostrar de nuevo los detalles de esa factura
+	30) A la clase Factura, se le añade por composición un objecto de tipo Persona
+	31) Modificar el query para mostrar los datos del cliente cuando se traen las facturas
+	32) Modificar la función PaymentControllers::getAllPaymentInvoices para traer todos los campos
 
 	FIE1) Tras crear un detalle (línea), no se está mostrando en la UI
 	FIE2) Tras crear un detalle, no se está mostrando en la tabla de los detalles para una factura dada

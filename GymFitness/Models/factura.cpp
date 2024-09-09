@@ -1,12 +1,14 @@
 #include "factura.h"
 
 Factura::Factura(int id_cab_fac , const std::string& fecha_cab_fac,
-        double total_cab_fac, const std::string& cod_pers)
+        double total_cab_fac, const std::string& cod_pers,
+        const Persona& cliente_actual)
 {
     this->id_cab_factura = id_cab_fac;
     this->fecha_cab_factura = fecha_cab_fac;
     this->total_cab_factura = total_cab_fac;
     this->cod_persona = cod_pers;
+    this->cliente = cliente_actual;
 }
 
 

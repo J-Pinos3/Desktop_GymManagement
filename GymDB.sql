@@ -60,6 +60,23 @@ create table if not exists PlanElegido(
 );
 
 
+-- servicio del gimnasio
+create table if not exists Servicio(
+	id_serv int auto_increment primary key,
+    serv_titulo varchar(200),
+    serv_price numeric(5,2)
+);
+-- pago del servicio
+create table if not exists ServicioElegido(
+	id_serv_elegido int auto_increment primary key,
+    id_deta_fact int,
+    id_serv int,
+    num_sesiones int,
+    fecha_serv date,
+    foreign key (id_deta_fact) references DetalleFactura(id_deta_fact),
+    foreign key (id_serv) references Servicio(id_serv)
+);
+
 select * from Rol;
 select * from Persona;
 select * from Paquete;
@@ -67,6 +84,15 @@ select * from CabeceraFactura;
 select * from DetalleFactura;
 select * from Usuario;
 select * from PlanElegido;
+
+-- query para mostrar las faturas + los datos del cliente
+select 
+	CabFac.id_cab_fact, CabFac.fecha_cab_fact, 
+    CabFac.total_cab_fact, Pers.cod_persona,
+    Pers.nombre, Pers.apellido
+from CabeceraFactura as CabFac, Persona as Pers
+where Pers.cod_persona = CabFac.cod_persona;
+
 
 -- query mejorada para mostrar los detalles de factura según la cabecera actual
 select

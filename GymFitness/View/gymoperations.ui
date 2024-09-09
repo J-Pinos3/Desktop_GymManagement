@@ -54,7 +54,7 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
@@ -519,60 +519,28 @@ QWidget#tabCitas QDateTimeEdit{
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_9">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <layout class="QVBoxLayout" name="verticalLayout_11">
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_8">
-           <item>
-            <widget class="QLineEdit" name="txtAppointUserCode">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="placeholderText">
-              <string>Código</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDateTimeEdit" name="appointDate">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="cbxAppointService"/>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="cbxAppointNew">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Nueva Cita</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QTableWidget" name="tblWidAppoint">
+          <widget class="QTableWidget" name="tableWidget">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <column>
             <property name="text">
-             <string>Servicio</string>
+             <string>Id Cabecera</string>
             </property>
            </column>
            <column>
             <property name="text">
-             <string>Código Usuario</string>
+             <string>Fecha de  Pago</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Codigo Usuario</string>
             </property>
            </column>
            <column>
@@ -582,42 +550,146 @@ QWidget#tabCitas QDateTimeEdit{
            </column>
            <column>
             <property name="text">
-             <string>Fecha Sesión</string>
+             <string>Total</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Abono</string>
             </property>
            </column>
           </widget>
          </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
-          <widget class="QPushButton" name="btnAppointSave">
-           <property name="text">
-            <string>Guardar</string>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <property name="topMargin">
+            <number>0</number>
            </property>
-          </widget>
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_3">
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QPushButton" name="btnAppointCancel">
-           <property name="text">
-            <string>Cancelar</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <widget class="QLineEdit" name="txtAppointUserCode">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="placeholderText">
+                <string>Código</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateTimeEdit" name="appointDate">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="cbxAppointService"/>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="cbxAppointNew">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Nueva Cita</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tblWidAppoint">
+             <column>
+              <property name="text">
+               <string>Servicio</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Código Usuario</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Nombre</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Fecha Sesión</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="QPushButton" name="btnAppointSearch">
-           <property name="text">
-            <string>Buscar</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnAppointAll">
-           <property name="text">
-            <string>Todas las Citas</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <widget class="QPushButton" name="btnAppointSave">
+             <property name="text">
+              <string>Guardar</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAppointCancel">
+             <property name="text">
+              <string>Cancelar</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAppointSearch">
+             <property name="text">
+              <string>Buscar</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAppointAll">
+             <property name="text">
+              <string>Todas las Citas</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>

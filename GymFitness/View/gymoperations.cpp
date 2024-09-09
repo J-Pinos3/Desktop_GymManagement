@@ -345,6 +345,9 @@ void GymOperations::on_btnSaveLine_clicked()
     QRegularExpression sep("días");
     int packageDays = tokens[1].remove(sep).toInt();
 
+    int currentInvoice = 0;
+    currentInvoice = this->ui->invoiceNumber->text().toInt();
+
     QDate paymentDate = this->ui->paymentDatePay->date() ;
     QDate limitDate = this->ui->paymentDatePay->date().addDays(packageDays);
 
@@ -388,7 +391,7 @@ void GymOperations::on_btnSaveLine_clicked()
             QMessageBox::information(this, "Error", "Couldn't update the total of this line");
         }
 
-
+        getInvoiceLinesByInvoiceId(currentInvoice);
         /// TODO once created the invoice line, get its data into the table
     }else{
         QMessageBox::information(this, "Error", "Couldn't create line info");
@@ -463,7 +466,9 @@ void GymOperations::getAllPaymentInvoicesFromDB(){
         );
 
         ui->tblWidPaymentInvoice->setItem(
-            i,3, new QTableWidgetItem( "---" )
+            i,3, new QTableWidgetItem(
+                QString::fromStdString( cabeceraFacturas[i].cliente.getNombre() + " " + cabeceraFacturas[i].cliente.getApellido()  )
+            )
         );
 
         ui->tblWidPaymentInvoice->setItem(
