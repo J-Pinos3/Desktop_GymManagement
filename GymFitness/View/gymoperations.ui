@@ -51,16 +51,18 @@
 	padding-left: 20%;
 	border: 1px solid black
 }
+
 </string>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
        <string notr="true">QWidget#tabInicio QTableWidget {
     background-color: #d1d1d1;
 }
+
 
 QWidget#tabInicio QHeaderView::Section {
     background-color: #00baff;
@@ -69,6 +71,8 @@ QWidget#tabInicio QHeaderView::Section {
 	font-size:16px;
 	font-style: bold;
 }
+
+
 
 QWidget#tabInicio QPushButton {
     background-color: #ffd600;
@@ -469,9 +473,10 @@ QWidget#tabGestion QTableWidget{
 	padding-bottom: 4%;
 	padding-right: 7%;
 	padding-left: 7%;
-	margin-right: 20px;
+
 	border-radius: 3px;
 }
+
 
 
 QWidget#tabCitas QLineEdit{
@@ -512,7 +517,33 @@ QWidget#tabCitas QDateTimeEdit{
 	font-size: 14px;
 	border: 1px solid #ffd600
 }
-</string>
+
+
+QWidget#tabCitas QSpinBox{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width: 200px;
+	color: white;
+	font-size: 14px;
+	border: 1px solid #ffd600;
+}
+
+
+QWidget#tabCitas QComboBox{
+	padding-left: 20;
+	height: 30;
+	background-color: white;
+}
+
+QWidget#tabCitas QComboBox::open {
+	background-color: yellow;
+}
+
+QWidget#tabCitas QComboBox QListView {
+	background-color: white;
+}</string>
       </property>
       <attribute name="title">
        <string>Citas</string>
@@ -568,21 +599,21 @@ QWidget#tabCitas QDateTimeEdit{
            <item>
             <widget class="QPushButton" name="pushButton">
              <property name="text">
-              <string>PushButton</string>
+              <string>Nueva Factura</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_3">
              <property name="text">
-              <string>PushButton</string>
+              <string>Todas las Facturas</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_2">
              <property name="text">
-              <string>PushButton</string>
+              <string>Buscar Factura</string>
              </property>
             </widget>
            </item>
@@ -593,6 +624,19 @@ QWidget#tabCitas QDateTimeEdit{
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_8">
              <item>
+              <widget class="QLineEdit" name="appointInvoiceNumber">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="placeholderText">
+                <string>Factura N° 10</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QLineEdit" name="txtAppointUserCode">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -601,7 +645,7 @@ QWidget#tabCitas QDateTimeEdit{
                 </sizepolicy>
                </property>
                <property name="placeholderText">
-                <string>Código</string>
+                <string>Código del Cliente</string>
                </property>
               </widget>
              </item>
@@ -616,7 +660,36 @@ QWidget#tabCitas QDateTimeEdit{
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="cbxAppointService"/>
+              <widget class="QLineEdit" name="appointNumber">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="placeholderText">
+                <string>Cita N° 22</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="combxAppointService"/>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="sbAppointQuantity"/>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="appointPayAmmount">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="placeholderText">
+                <string>$00.00</string>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QCheckBox" name="cbxAppointNew">
@@ -637,12 +710,22 @@ QWidget#tabCitas QDateTimeEdit{
             <widget class="QTableWidget" name="tblWidAppoint">
              <column>
               <property name="text">
+               <string>Id Cita</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
                <string>Servicio</string>
               </property>
              </column>
              <column>
               <property name="text">
-               <string>Código Usuario</string>
+               <string>Número de Sesiones</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Total</string>
               </property>
              </column>
              <column>
@@ -841,7 +924,7 @@ QWidget#tabPagos QComboBox QListView {
            <item>
             <widget class="QPushButton" name="btnPaymentSearchInvoice">
              <property name="text">
-              <string>Buscar</string>
+              <string>Buscar Factura</string>
              </property>
             </widget>
            </item>

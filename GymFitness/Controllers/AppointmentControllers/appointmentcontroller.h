@@ -8,6 +8,9 @@
 #include <string>
 #include <iomanip>
 
+//added 18/09/2024
+#include "Controllers/PaymentControllers/paymentcontrollers.h"
+
 #include <Models/persona.h>
 #include <Models/rol.h>
 #include <Models/paqueteentreno.h>

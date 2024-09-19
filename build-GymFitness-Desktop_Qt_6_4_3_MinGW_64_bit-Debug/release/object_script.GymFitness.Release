@@ -7,6 +7,8 @@ release/factura.o
 release/paqueteentreno.o
 release/persona.o
 release/planelegido.o
+release/servicio.o
+release/servicioelegido.o
 release/gymoperations.o
 release/main.o
 release/mainwindow.o

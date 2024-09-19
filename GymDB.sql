@@ -72,7 +72,7 @@ create table if not exists ServicioElegido(
     id_deta_fact int,
     id_serv int,
     num_sesiones int,
-    fecha_serv date,
+    fecha_serv datetime,
     foreign key (id_deta_fact) references DetalleFactura(id_deta_fact),
     foreign key (id_serv) references Servicio(id_serv)
 );
@@ -84,6 +84,8 @@ select * from CabeceraFactura;
 select * from DetalleFactura;
 select * from Usuario;
 select * from PlanElegido;
+select * from Servicio;
+select * from ServicioElegido;
 
 -- query para mostrar las faturas + los datos del cliente
 select 

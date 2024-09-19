@@ -6,16 +6,24 @@ Todo:
 	TD1) Descartar de momento la funcionalidad del abono y mostrar con 0
 	TD2) En el tab de pagos, bloquear el modo de editar el campo del total de la factura, eso no se debe tocar, 
 		se hace el çalculo en el programa
-
-
-
 	TD10) Mejorar los colores y efectos en la UI
 
-	34) Crear la tabla sql para el servicio de cita que ofrece el gimnasio (fisio o nutricionismo)
-	35) Crear la tabla sql llamada cita	
 
+		NO SE PUEDE HEREDAR POR QUE LAS CLASES SON SINGLETONS
+	37) Crear los métodos de la clase AppointmentController y esta clase debería heredar de la clase PaymentControllers
+		métodos como: 
+			createEmptyPaymentInvoice,
+			updatePaymentInvoice,
+			getAllPaymentInvoices,
+			updateInvoiceLineInfo,
+			
+		y sobreescribir métodos como: 
+			createEmptyInvoiceLine (la nueva sesión de terapia a pagar)
+			createInvoiceLineInfo,
+			getAllInvoiceLines
+			
 
-	39) El modelo de datos detalle de factura por composición, ahora necesita tener el objeto
+	38) El modelo de datos detalle de factura por composición, ahora necesita tener el objeto
 		ServicioElegido, similar a PlanElegido
 Fix-Error:
 	
@@ -27,7 +35,8 @@ Progress:
 		Probados los stored procedures al menos de Detalle factura con plan elegido y si funciona 
 		de momento
 
-	33) Cambiar la UI del tab citas, se va a poner una tabla con las facturas y otra con los detalles
+
+		La lógica para crear la cita, será similar a la lógica de crear un nuevo detalle de factura
 
 
 
@@ -75,6 +84,11 @@ Completed:
 	30) A la clase Factura, se le añade por composición un objecto de tipo Persona
 	31) Modificar el query para mostrar los datos del cliente cuando se traen las facturas
 	32) Modificar la función PaymentControllers::getAllPaymentInvoices para traer todos los campos
+	33) Cambiar la UI del tab citas, se va a poner una tabla con las facturas y otra con los detalles citas
+	34) Crear la tabla sql para el servicio de cita que ofrece el gimnasio (fisio o nutricionismo)
+	35) Crear la tabla sql llamada cita (Servicio Elegido, similar a plan elegido)
+	36) Crear los modelos de datos servicio y servicio elegido
+
 
 	FIE1) Tras crear un detalle (línea), no se está mostrando en la UI
 	FIE2) Tras crear un detalle, no se está mostrando en la tabla de los detalles para una factura dada

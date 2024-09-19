@@ -18,6 +18,8 @@ SOURCES += \
     Models/paqueteentreno.cpp \
     Models/persona.cpp \
     Models/planelegido.cpp \
+    Models/servicio.cpp \
+    Models/servicioelegido.cpp \
     View/gymoperations.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -34,6 +36,8 @@ HEADERS += \
     Models/paqueteentreno.h \
     Models/persona.h \
     Models/planelegido.h \
+    Models/servicio.h \
+    Models/servicioelegido.h \
     View/gymoperations.h \
     mainwindow.h \
     Models/rol.h \
