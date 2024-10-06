@@ -1,3 +1,8 @@
+Fixed -Error: (FIE#)
+	FIE1) Tras crear un detalle (línea), no se está mostrando en la UI
+	FIE2) Tras crear un detalle, no se está mostrando en la tabla de los detalles para una factura dada
+		Solo se muestra si hay datos
+
 Todo:
 	FIE4) No se ve el mensaje de los QMessageBox
 	FIE5) Al hacer clic en los campos de una tabla, el fondo negro hace que no se vean las letras, hay que seleccionarlas para que se vean
@@ -9,38 +14,15 @@ Todo:
 	TD10) Mejorar los colores y efectos en la UI
 
 
-		NO SE PUEDE HEREDAR POR QUE LAS CLASES SON SINGLETONS
-	37) Crear los métodos de la clase AppointmentController y esta clase debería heredar de la clase PaymentControllers
-		métodos como: 
-			createEmptyPaymentInvoice,
-			updatePaymentInvoice,
-			getAllPaymentInvoices,
-			updateInvoiceLineInfo,
-			
-		y sobreescribir métodos como: 
-			createEmptyInvoiceLine (la nueva sesión de terapia a pagar)
-			createInvoiceLineInfo,
-			getAllInvoiceLines
-			
-
-	38) El modelo de datos detalle de factura por composición, ahora necesita tener el objeto
-		ServicioElegido, similar a PlanElegido
-Fix-Error:
-	
 
 
 Progress:
 
-	7) Testing de las funciones creadas con MySQL
-		Probados los stored procedures al menos de Detalle factura con plan elegido y si funciona 
-		de momento
+	7) Testing de las funciones creadas con MySQL Probados los stored procedures al menos de Detalle factura con plan elegido y si funciona de momento
+**La lógica para crear la cita, será similar a la lógica de crear un nuevo detalle de factura
+	44) Testing del proceso de generar una factura con un servicio o también con entreno con sql de momento funciona
 
 
-		La lógica para crear la cita, será similar a la lógica de crear un nuevo detalle de factura
-
-
-
-	
 
 
 
@@ -88,8 +70,30 @@ Completed:
 	34) Crear la tabla sql para el servicio de cita que ofrece el gimnasio (fisio o nutricionismo)
 	35) Crear la tabla sql llamada cita (Servicio Elegido, similar a plan elegido)
 	36) Crear los modelos de datos servicio y servicio elegido
+	37) El modelo de datos detalle de factura por composición, ahora necesita tener el objeto
+		ServicioElegido, similar a PlanElegido
+		NO SE PUEDE HEREDAR POR QUE LAS CLASES SON SINGLETONS
+	38) Declarar los métodos de la clase AppointmentController similares a los de la clase PaymentControllers
+		métodos como: 
+			createEmptyPaymentInvoice,  	ya
+			updatePaymentInvoice,	    	ya
+			getAllPaymentInvoices,  	ya
+			updateInvoiceLineInfo,		ya
+			
+		y sobreescribir métodos como: 
+			createEmptyInvoiceLine (la nueva sesión de terapia a pagar)	ya
+			createInvoiceLineInfo,						ya
+			getAllInvoiceLines						ya
 
-
-	FIE1) Tras crear un detalle (línea), no se está mostrando en la UI
-	FIE2) Tras crear un detalle, no se está mostrando en la tabla de los detalles para una factura dada
-		Solo se muestra si hay datos
+	39) Crear la función el AppintmentController para traer los servicios
+	40) Crear el sql query para crear el la información de la línea (info del detalle) es decir insertar en ServicioElegido (LA FUNCIÓN createInvoiceLineInfoAP)
+	42) Crear la función en AppointmentController para actualizar la cabecera de factura llamando al procedure update_cabecera_factura
+	41) Crear la función en AppointmentController para crear una línea, detalle de factura vacía
+	42) Crear el sql query para traer todos los detalles (líneas que son de los servicios) porque en el payment controller
+		en la tabla de las líneas, estas son detalles de factura también, pero muestran los datos del paquete elegido,
+		ahora se deben mostrar los datos del servicio elegido
+	43) Crear un stored procedure con sql que actualice el detalle de factura pero considerando el ServicioElegido, ya no el plan 			elegido
+	45) en gym operations, crear la función para mostrar los servicios del gym en el combo box
+	46) Crear la función en gymoperations para crear una nueva factura vacía
+	47) Crear la función en gymoperations para traer todas las facturas tras clikar el botón todas las facturas
+	48) Crear la función en gymoperations para crear una nueva línea-dewtalle(cita) vacía

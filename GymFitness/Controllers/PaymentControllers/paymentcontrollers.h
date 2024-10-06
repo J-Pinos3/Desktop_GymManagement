@@ -27,7 +27,7 @@ public:
     void getTrainingPackages(SqlConnection *con, std::vector<PaqueteEntreno>& planesEntreno );
 
 
-    //todo funcion para actualizar la cabecera vacía
+    //todo funcion para actualizar la cabecera vacía NO ES NECESARIO
     //INVOICES
     bool createEmptyPaymentInvoice(SqlConnection *con, const Factura& facturaNueva);
 
@@ -47,6 +47,7 @@ public:
     bool updateInvoiceLineInfo(SqlConnection *con, int id_det_linea);
 
     //2024/08/2023 when creating an ampty line, alse create the chosen plan
+    //2024/09/19 NOT USED
     bool createEmptyLineInfo(SqlConnection *con);
 
 

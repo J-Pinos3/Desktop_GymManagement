@@ -55,7 +55,7 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
@@ -552,7 +552,7 @@ QWidget#tabCitas QComboBox QListView {
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_11">
          <item>
-          <widget class="QTableWidget" name="tableWidget">
+          <widget class="QTableWidget" name="tblWidAppointInvoice">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -597,21 +597,21 @@ QWidget#tabCitas QComboBox QListView {
             <number>0</number>
            </property>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="btnAppointNewInvoice">
              <property name="text">
               <string>Nueva Factura</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="btnAppointAllInvoices">
              <property name="text">
               <string>Todas las Facturas</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="btnAppointSearchInvoice">
              <property name="text">
               <string>Buscar Factura</string>
              </property>
@@ -707,7 +707,7 @@ QWidget#tabCitas QComboBox QListView {
             </layout>
            </item>
            <item>
-            <widget class="QTableWidget" name="tblWidAppoint">
+            <widget class="QTableWidget" name="tblWidAppointLine">
              <column>
               <property name="text">
                <string>Id Cita</string>
@@ -747,7 +747,21 @@ QWidget#tabCitas QComboBox QListView {
            <item>
             <widget class="QPushButton" name="btnAppointSave">
              <property name="text">
-              <string>Guardar</string>
+              <string>Guardar Todo</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAppointAdd">
+             <property name="text">
+              <string>Agregar Cita</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAppointSave_2">
+             <property name="text">
+              <string>Guardar Cita</string>
              </property>
             </widget>
            </item>
@@ -755,20 +769,6 @@ QWidget#tabCitas QComboBox QListView {
             <widget class="QPushButton" name="btnAppointCancel">
              <property name="text">
               <string>Cancelar</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btnAppointSearch">
-             <property name="text">
-              <string>Buscar</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="btnAppointAll">
-             <property name="text">
-              <string>Todas las Citas</string>
              </property>
             </widget>
            </item>

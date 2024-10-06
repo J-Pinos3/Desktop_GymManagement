@@ -14,6 +14,7 @@ GymOperations::GymOperations(QWidget *parent) :
     setCustomersRoleDescription();
     listAllCustomers();
     getTrainingPackages();
+    getAllGymServices();
 }
 
 GymOperations::~GymOperations()
@@ -244,32 +245,7 @@ void GymOperations::on_cbxManageNew_stateChanged(int arg1)
 }
 
 
-//APPOINTMENTS TAB ALL EMPTY FOR THE MOMENT
-void GymOperations::on_btnAppointSave_clicked()
-{
 
-}
-
-void GymOperations::on_btnAppointCancel_clicked()
-{
-
-}
-
-void GymOperations::on_btnAppointSearch_clicked()
-{
-
-}
-
-void GymOperations::on_btnAppointAll_clicked()
-{
-
-}
-
-//CHECKBOX APPOINT NEW STATECHANGED
-void GymOperations::on_cbxAppointNew_stateChanged(int arg1)
-{
-
-}
 
 
 //PAYMENTS TAB
@@ -482,7 +458,6 @@ void GymOperations::getAllPaymentInvoicesFromDB(){
 }
 
 
-
 void GymOperations::on_btnPaymentAllInvoices_clicked()
 {
     getAllPaymentInvoicesFromDB();
@@ -543,8 +518,7 @@ void GymOperations::getInvoiceLinesByInvoiceId(const int currentHeaderId){
 }
 
 
-///↓ is not used because I've fixed the query
-/// in the PaymentControllers::getAllInvoiceLines function
+///↓ is not used because I've fixed the query in the PaymentControllers::getAllInvoiceLines function
 void GymOperations::getEmptyLinesByInvoiceId(const int currentHeaderId){
     SqlConnection con;
     PaymentControllers paymentController = PaymentControllers::getInstance();
@@ -584,8 +558,6 @@ void GymOperations::getEmptyLinesByInvoiceId(const int currentHeaderId){
     }
 
 }
-
-
 
 
 void GymOperations::on_tblWidPaymentInvoice_cellActivated(int row, int column)
@@ -638,4 +610,147 @@ void GymOperations::on_tblWidPaymentLine_cellActivated(int row, int column)
         ui->paymentDatePay->setDate( QDate::fromString("2001/01/01", "yyyy-MM-dd") )
         :  ui->paymentDatePay->setDate( QDate::fromString(paymentDoneDate, "yyyy-MM-dd") );
 }
+
+
+void GymOperations::getAllGymServices(){
+    SqlConnection con;
+    AppointmentController appointmentController = AppointmentController::getInstance();
+
+    appointmentController.getGymServices(&con, servicios);
+    QList<QString> servicesList;
+    if( !servicios.empty() ){
+        for( int i = 0; i < servicios.size(); i++ ){
+            servicesList.append(
+                QString::fromStdString( servicios[i].getTituloServicio() ) +
+                ", USD" + QString::number( servicios[i].getPrecioServicio() )
+                + " $."
+            );
+        }
+    }
+
+    if( !servicesList.empty() ){
+        this->ui->combxAppointService->addItems(servicesList);
+    }
+}
+
+//APPOINTMENTS TAB
+
+
+void GymOperations::on_btnAppointNewInvoice_clicked()
+{
+    QMessageBox msg = QMessageBox();
+    SqlConnection con;
+    Factura nuevaFactura;
+
+    QDateTime appoDate = this->ui->appointDate->dateTime();
+    QString dateString = appoDate.toString("yyyy-MM-dd  HH:mm:ss");
+    dateString = dateString.sliced(0, dateString.indexOf(" ") );
+
+                        //2024-09-22
+    qDebug() << "Appointment String Date: " << dateString <<
+    "\nAppointment Date: " << this->ui->appointDate->dateTime().toString(); //Sun Sep 22 19:46:00 2024
+
+
+    AppointmentController appointmentController = AppointmentController::getInstance();
+    nuevaFactura.setFechaCabFactura( dateString.toStdString() );
+    nuevaFactura.setTotalFactura(0.0);
+    nuevaFactura.setCodPersona( this->ui->txtAppointUserCode->text().toStdString() );
+
+
+    bool executionResult = appointmentController.createEmptyPaymentInvoiceAP(&con, nuevaFactura);
+    if(executionResult){
+        msg.setWindowTitle("Saved"); msg.setText("Empty invoice created succesfully");
+        msg.setIcon( QMessageBox::Information );
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
+
+    }else{
+        msg.setWindowTitle("Error"); msg.setText("Couldn't create empty invoice");
+        msg.setIcon( QMessageBox::Warning );
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
+    }
+}
+
+
+void GymOperations::getAllAppointmentInvoicesFromDB(){
+    SqlConnection con;
+    AppointmentController appointmentController = AppointmentController::getInstance();
+
+    citasFacturas.clear();
+    appointmentController.getAllPaymentInvoicesAP(&con, citasFacturas);
+
+    ui->tblWidAppointInvoice->clearContents();
+    ui->tblWidAppointInvoice->setRowCount( cabeceraFacturas.size() );
+
+    for(size_t i = 0; i < citasFacturas.size(); i++){
+        ui->tblWidAppointInvoice->setItem(
+            i,0, new QTableWidgetItem( QString::number( citasFacturas[i].getIdCabFactura() ) )
+        );
+
+        ui->tblWidAppointInvoice->setItem(
+            i,1, new QTableWidgetItem( QString::fromStdString( citasFacturas[i].getFechaCabFactura() ) )
+        );
+
+        ui->tblWidAppointInvoice->setItem(
+            i,2, new QTableWidgetItem( QString::fromStdString( citasFacturas[i].getCodPersona() ) )
+        );
+
+        ui->tblWidAppointInvoice->setItem(
+            i, 3, new QTableWidgetItem(
+                QString::fromStdString( citasFacturas[i].cliente.getNombre() + " " + citasFacturas[i].cliente.getApellido() )
+            )
+        );
+
+        ui->tblWidAppointInvoice->setItem(
+            i,4, new QTableWidgetItem( QString::number( citasFacturas[i].getTotalCabFactura() ) )
+        );
+
+        ui->tblWidAppointInvoice->setItem(
+            i, 5, new QTableWidgetItem( QString::number(0.00) )
+        );
+    }
+}
+
+
+void GymOperations::on_btnAppointAllInvoices_clicked()
+{
+    getAllAppointmentInvoicesFromDB();
+}
+
+
+void GymOperations::on_btnAppointAdd_clicked()
+{
+    QMessageBox msg = QMessageBox();
+    SqlConnection con;
+    int currentInvoice = 0;
+    currentInvoice = ui->appointInvoiceNumber->text().toInt();
+    DetalleFactura nuevoDetalle(0, 0.0, currentInvoice);
+
+    AppointmentController appointmentController = AppointmentController::getInstance();
+
+    bool executionResult = appointmentController.createEmptyInvoiceLineAP(&con, nuevoDetalle);
+
+    if(executionResult){
+        msg.setWindowTitle("Saved");
+        msg.setText("Empty appointment created succesfully");
+        msg.setIcon(QMessageBox::Information);
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
+
+        ///TODO: función para traer los detalles-líneas (citas) de esa factura
+
+    }else{
+        msg.setWindowTitle("Error");
+        msg.setText("Couldn't create an empty appointment");
+        msg.setIcon(QMessageBox::Warning);
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
+    }
+}
+
+
+
+
+
 

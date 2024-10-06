@@ -2,12 +2,16 @@
 #define DETALLEFACTURA_H
 
 #include "Models/planelegido.h"
+#include "Models/servicioelegido.h"
 
 class DetalleFactura
 {
 public:
     DetalleFactura(int id_det_fac = 0, double total_det_fac = 0.0,
-        int id_cab_fac = 0, const PlanElegido& plan_eleg = PlanElegido());
+        int id_cab_fac = 0, const PlanElegido& plan_eleg = PlanElegido(),
+        const ServicioElegido& serv_eleg = ServicioElegido());
+
+
 
     int getIdDetalleFact() const;
     double getTotalDetalleFact() const;
@@ -18,6 +22,7 @@ public:
     void setIdCabFactura(int id_cab_fac);
 
     PlanElegido plan;
+    ServicioElegido servicio;
 private:
     int id_deta_factura;
     double total_deta_factura;

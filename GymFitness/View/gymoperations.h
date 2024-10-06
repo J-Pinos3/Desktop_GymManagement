@@ -9,11 +9,13 @@
 
 #include "Controllers/PersonControllers/personcontroller.h"
 #include "Controllers/PaymentControllers/paymentcontrollers.h"
+#include "Controllers/AppointmentControllers/appointmentcontroller.h"
 #include "Models/persona.h"
 #include "Models/rol.h"
 #include "Models/paqueteentreno.h"
 #include "Models/factura.h"
 #include "Models/detallefactura.h"
+#include "Models/servicio.h"
 #include "sqlconnection.h"
 
 namespace Ui {
@@ -35,6 +37,8 @@ public:
 
     int getCurrentSelectedPackageId(const std::string &descriptionPackage);
 
+    void getAllGymServices();
+
     void getValuesfromManageFields(QString& nombre, QString& apellido,
         QString& fechaRegistro, double& peso, int& rolId);
 
@@ -43,6 +47,9 @@ public:
     void getInvoiceLinesByInvoiceId(const int currentHeaderId);
 
     void getEmptyLinesByInvoiceId(const int currentHeaderId);
+
+    //invoices in appointment tab
+    void getAllAppointmentInvoicesFromDB();
 
 private slots:
 
@@ -60,15 +67,10 @@ private slots:
 
     void on_btnManageSearch_clicked();
 
-    void on_cbxAppointNew_stateChanged(int arg1);
 
-    void on_btnAppointSave_clicked();
 
-    void on_btnAppointCancel_clicked();
 
-    void on_btnAppointSearch_clicked();
 
-    void on_btnAppointAll_clicked();
 
 
 
@@ -86,6 +88,14 @@ private slots:
 
     void on_tblWidPaymentLine_cellActivated(int row, int column);
 
+
+
+    void on_btnAppointNewInvoice_clicked();
+
+    void on_btnAppointAllInvoices_clicked();
+
+    void on_btnAppointAdd_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
@@ -93,6 +103,9 @@ private:
     std::vector<PaqueteEntreno> paquetes;
     std::vector<Factura> cabeceraFacturas;
     std::vector<DetalleFactura> detallesFactura;
+    std::vector<Factura> citasFacturas;
+    std::vector<DetalleFactura> citasDetalles;
+    std::vector<Servicio> servicios;
 };
 
 #endif // GYMOPERATIONS_H

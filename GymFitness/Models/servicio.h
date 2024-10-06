@@ -6,7 +6,9 @@
 class Servicio{
 
 public:
-    Servicio(): id_serv(0), serv_titulo(""), precio(0.0) {};
+    Servicio(int id_servicio = 0, const std::string& titulo = "",
+    double precio = 0.0):
+    id_serv(id_servicio), serv_titulo(titulo), precio(precio) {};
 
     int getIdServicio() const;
     std::string getTituloServicio() const;
