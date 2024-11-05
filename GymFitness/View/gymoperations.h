@@ -39,6 +39,8 @@ public:
 
     void getAllGymServices();
 
+    int getCurrentSelectedGymServiceId(const std::string &tituloServicio);
+
     void getValuesfromManageFields(QString& nombre, QString& apellido,
         QString& fechaRegistro, double& peso, int& rolId);
 
@@ -48,8 +50,12 @@ public:
 
     void getEmptyLinesByInvoiceId(const int currentHeaderId);
 
+
     //invoices in appointment tab
     void getAllAppointmentInvoicesFromDB();
+
+    void getAppointLinesByInvoiceId(const int currentHeaderId);
+
 
 private slots:
 
@@ -96,6 +102,12 @@ private slots:
 
     void on_btnAppointAdd_clicked();
 
+    void on_btnSaveAppoint_clicked();
+
+    void on_tblWidAppointInvoice_cellActivated(int row, int column);
+
+    void on_tblWidAppointLine_cellActivated(int row, int column);
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
@@ -103,7 +115,7 @@ private:
     std::vector<PaqueteEntreno> paquetes;
     std::vector<Factura> cabeceraFacturas;
     std::vector<DetalleFactura> detallesFactura;
-    std::vector<Factura> citasFacturas;
+    std::vector<Factura> citasFacturas;//not used
     std::vector<DetalleFactura> citasDetalles;
     std::vector<Servicio> servicios;
 };

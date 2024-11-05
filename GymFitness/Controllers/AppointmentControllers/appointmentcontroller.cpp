@@ -1,5 +1,6 @@
 #include "appointmentcontroller.h"
 
+
 void AppointmentController::getGymServices(SqlConnection *con, std::vector<Servicio>& servicios){
 
     con->conOpen();
@@ -182,12 +183,15 @@ void AppointmentController::getAllInvoiceLines(SqlConnection *con, int cod_factu
     "SELECT\n"
     "Detf.id_deta_fact,"
     "COALESCE( concat(Servi.serv_titulo,\' \', Servi.serv_price), \'---\') as Descripcion,\n"
-    "COALESCE( Servel.num_sesiones, -1.0) as Cantidad,\n"
+    "COALESCE( Servel.num_sesiones, -1) as Cantidad,\n"
     "COALESCE( Detf.total_deta_fact,-1.0) as TotalDetalle,\n"
-    "COALESCE( Servel.fecha_serv, \'---\') as FechaServicio\n"
+    "COALESCE( Servel.fecha_serv, \'---\') as FechaServicio,\n"
+    "COALESCE( concat(Pers.nombre,\' \', Pers.apellido), \'---\') as Nombre\n"
     "FROM DetalleFactura as Detf\n"
-    "LEFT JOIN ServicioElegido AS Servel on Detf.id_deta_fact = Servel.id_deta_fact\n"
+    "LEFT JOIN ServicioElegido as Servel on Detf.id_deta_fact = Servel.id_deta_fact\n"
     "LEFT JOIN Servicio as Servi on Servel.id_serv = Servi.id_serv\n"
+    "LEFT JOIN CabeceraFactura as CabFact on Detf.id_cab_fact = CabFact.id_cab_fact\n"
+    "LEFT JOIN Persona as Pers on CabFact.cod_persona = Pers.cod_persona\n"
     "WHERE Detf.id_cab_fact = " + QString::number(cod_factura) + ";");
 
     QSqlQuery query;
@@ -208,7 +212,8 @@ void AppointmentController::getAllInvoiceLines(SqlConnection *con, int cod_factu
                     query.value("TotalDetalle").toDouble(),
                     cod_factura,
                     PlanElegido(),
-                    servicioActual
+                    servicioActual,
+                    query.value("Nombre").toString().toStdString()
                 )
             );
         }
@@ -221,7 +226,25 @@ void AppointmentController::getAllInvoiceLines(SqlConnection *con, int cod_factu
 }
 
 
+bool AppointmentController::updateInvoiceLineInfoAP(SqlConnection *con,
+    int id_det_linea){
+    con->conOpen();
+    QString sqlSentence;
+    sqlSentence.append(
+    "CALL update_detalle_servicio_factura(" + QString::number(id_det_linea) + ")");
 
+    QSqlQuery query;
+    query.prepare(sqlSentence);
+
+    bool execution = query.exec();
+    if( !query.lastError().text().isNull() ){
+        qDebug() <<"Error updating line(appointment)" << id_det_linea
+        <<": " << query.lastError().text();
+    }
+
+    con->conClose();
+    return execution;
+}
 
 
 

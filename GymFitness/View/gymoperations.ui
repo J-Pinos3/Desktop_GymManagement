@@ -745,7 +745,7 @@ QWidget#tabCitas QComboBox QListView {
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
-            <widget class="QPushButton" name="btnAppointSave">
+            <widget class="QPushButton" name="btnAppointSaveAll">
              <property name="text">
               <string>Guardar Todo</string>
              </property>
@@ -759,7 +759,7 @@ QWidget#tabCitas QComboBox QListView {
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="btnAppointSave_2">
+            <widget class="QPushButton" name="btnSaveAppoint">
              <property name="text">
               <string>Guardar Cita</string>
              </property>

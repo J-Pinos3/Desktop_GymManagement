@@ -43,10 +43,10 @@ public:
     bool createInvoiceLineInfoAP(SqlConnection *con, int id_det_linea,
     int id_serv, int sesiones, const QString& fecha_serv); //ya
 
-    bool updateInvoiceLineInfoAP(SqlConnection *con, int id_det_linea);
+    bool updateInvoiceLineInfoAP(SqlConnection *con, int id_det_linea); //ya
 
     void getAllInvoiceLines(SqlConnection *con, int cod_factura,
-        std::vector<DetalleFactura>& lineas);
+        std::vector<DetalleFactura>& lineas); //ya
 
 
 private:

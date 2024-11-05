@@ -14,6 +14,7 @@ Todo:
 	TD10) Mejorar los colores y efectos en la UI
 
 
+	59) Corregir la forma en como se almacenan los valores de dinero y el servicio en los combobox
 
 
 Progress:
@@ -24,6 +25,8 @@ Progress:
 
 
 
+	57) Tras hacer clic en la tabla de las citas (líneas), los datos se deben mostrar en los campos de la izquierda
+	58) Al clicar en la tabla de las citas(detalles), el servicio y la fecha, no se están poniendo en los campos de la izquierda
 
 
 Completed:
@@ -97,3 +100,12 @@ Completed:
 	46) Crear la función en gymoperations para crear una nueva factura vacía
 	47) Crear la función en gymoperations para traer todas las facturas tras clikar el botón todas las facturas
 	48) Crear la función en gymoperations para crear una nueva línea-dewtalle(cita) vacía
+	49) Crear la función que recibe el nombre del servicio y devuelve el id del servicio elegido
+	50) Crear la función que actualiza el detalle (cita) vació con los datos seleccionados
+	51) Dentro de la función anterior traer los datos para crear el servicio elegido en bd
+	52) Crear la función para traer todos los detalles(líneas-citas) para una cabecera de factura dada
+
+	53) Corregir la función AppointmentController::getAllInvoiceLines porque en su consulta sql, se debe traer el nombre de la persona
+	54) Modificar la función  GymOperations::getAppointLinesByInvoiceId para que en ella e muestre el nombre del paciente
+	55) Añadir el listener para cuando se da clic en la tabla de las cabeceras en los appoints
+	56) Añadir el listener para cuando se da clic en la tabla de lines-detalles(citas) en los appoints

@@ -112,6 +112,22 @@ from CabeceraFactura as CabFac, Persona as Pers
 where Pers.cod_persona = CabFac.cod_persona;
 
 
+-- query mejorada para mostrar los detalles citas de algún servicio según la cabecera actual
+select 
+	Detf.id_deta_fact,
+    concat(Servi.serv_titulo, ' ', Servi.serv_price),
+    coalesce(Servel.num_sesiones,-1) as numSesiones,
+    Detf.total_deta_fact,
+    Servel.fecha_serv,
+    concat( Pers.nombre, ' ', Pers.apellido )
+    from DetalleFactura as Detf
+    left join ServicioElegido as Servel on Detf.id_deta_fact = Servel.id_deta_fact
+    left join Servicio as Servi on Servel.id_serv = Servi.id_serv
+    left join CabeceraFactura as CabFact on Detf.id_cab_fact = CabFact.id_cab_fact
+    left join Persona as Pers on CabFact.cod_persona = Pers.cod_persona
+    where Detf.id_cab_fact = 8;
+-- fin del query
+
 -- query mejorada para mostrar los detalles de factura según la cabecera actual
 select
 	Detf.id_deta_fact,

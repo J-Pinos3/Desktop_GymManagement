@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_GymOperations_t {
-    uint offsetsAndSizes[40];
+    uint offsetsAndSizes[48];
     char stringdata0[14];
     char stringdata1[34];
     char stringdata2[1];
@@ -47,6 +47,10 @@ struct qt_meta_stringdata_GymOperations_t {
     char stringdata17[35];
     char stringdata18[32];
     char stringdata19[33];
+    char stringdata20[25];
+    char stringdata21[26];
+    char stringdata22[38];
+    char stringdata23[35];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_GymOperations_t::offsetsAndSizes) + ofs), len 
@@ -71,7 +75,11 @@ Q_CONSTINIT static const qt_meta_stringdata_GymOperations_t qt_meta_stringdata_G
         QT_MOC_LITERAL(377, 6),  // "column"
         QT_MOC_LITERAL(384, 34),  // "on_tblWidPaymentLine_cellActi..."
         QT_MOC_LITERAL(419, 31),  // "on_btnAppointNewInvoice_clicked"
-        QT_MOC_LITERAL(451, 32)   // "on_btnAppointAllInvoices_clicked"
+        QT_MOC_LITERAL(451, 32),  // "on_btnAppointAllInvoices_clicked"
+        QT_MOC_LITERAL(484, 24),  // "on_btnAppointAdd_clicked"
+        QT_MOC_LITERAL(509, 25),  // "on_btnSaveAppoint_clicked"
+        QT_MOC_LITERAL(535, 37),  // "on_tblWidAppointInvoice_cellA..."
+        QT_MOC_LITERAL(573, 34)   // "on_tblWidAppointLine_cellActi..."
     },
     "GymOperations",
     "on_btnCustomerSearchIntro_clicked",
@@ -92,7 +100,11 @@ Q_CONSTINIT static const qt_meta_stringdata_GymOperations_t qt_meta_stringdata_G
     "column",
     "on_tblWidPaymentLine_cellActivated",
     "on_btnAppointNewInvoice_clicked",
-    "on_btnAppointAllInvoices_clicked"
+    "on_btnAppointAllInvoices_clicked",
+    "on_btnAppointAdd_clicked",
+    "on_btnSaveAppoint_clicked",
+    "on_tblWidAppointInvoice_cellActivated",
+    "on_tblWidAppointLine_cellActivated"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -103,7 +115,7 @@ Q_CONSTINIT static const uint qt_meta_data_GymOperations[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      19,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -111,21 +123,25 @@ Q_CONSTINIT static const uint qt_meta_data_GymOperations[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  104,    2, 0x08,    1 /* Private */,
-       3,    0,  105,    2, 0x08,    2 /* Private */,
-       4,    0,  106,    2, 0x08,    3 /* Private */,
-       5,    1,  107,    2, 0x08,    4 /* Private */,
-       7,    0,  110,    2, 0x08,    6 /* Private */,
-       8,    0,  111,    2, 0x08,    7 /* Private */,
-       9,    0,  112,    2, 0x08,    8 /* Private */,
-      10,    0,  113,    2, 0x08,    9 /* Private */,
-      11,    0,  114,    2, 0x08,   10 /* Private */,
-      12,    0,  115,    2, 0x08,   11 /* Private */,
-      13,    0,  116,    2, 0x08,   12 /* Private */,
-      14,    2,  117,    2, 0x08,   13 /* Private */,
-      17,    2,  122,    2, 0x08,   16 /* Private */,
-      18,    0,  127,    2, 0x08,   19 /* Private */,
-      19,    0,  128,    2, 0x08,   20 /* Private */,
+       1,    0,  128,    2, 0x08,    1 /* Private */,
+       3,    0,  129,    2, 0x08,    2 /* Private */,
+       4,    0,  130,    2, 0x08,    3 /* Private */,
+       5,    1,  131,    2, 0x08,    4 /* Private */,
+       7,    0,  134,    2, 0x08,    6 /* Private */,
+       8,    0,  135,    2, 0x08,    7 /* Private */,
+       9,    0,  136,    2, 0x08,    8 /* Private */,
+      10,    0,  137,    2, 0x08,    9 /* Private */,
+      11,    0,  138,    2, 0x08,   10 /* Private */,
+      12,    0,  139,    2, 0x08,   11 /* Private */,
+      13,    0,  140,    2, 0x08,   12 /* Private */,
+      14,    2,  141,    2, 0x08,   13 /* Private */,
+      17,    2,  146,    2, 0x08,   16 /* Private */,
+      18,    0,  151,    2, 0x08,   19 /* Private */,
+      19,    0,  152,    2, 0x08,   20 /* Private */,
+      20,    0,  153,    2, 0x08,   21 /* Private */,
+      21,    0,  154,    2, 0x08,   22 /* Private */,
+      22,    2,  155,    2, 0x08,   23 /* Private */,
+      23,    2,  160,    2, 0x08,   26 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -143,6 +159,10 @@ Q_CONSTINIT static const uint qt_meta_data_GymOperations[] = {
     QMetaType::Void, QMetaType::Int, QMetaType::Int,   15,   16,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   15,   16,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   15,   16,
 
        0        // eod
 };
@@ -190,7 +210,19 @@ Q_CONSTINIT const QMetaObject GymOperations::staticMetaObject = { {
         // method 'on_btnAppointNewInvoice_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnAppointAllInvoices_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_btnAppointAdd_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_btnSaveAppoint_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_tblWidAppointInvoice_cellActivated'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_tblWidAppointLine_cellActivated'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
 } };
@@ -216,6 +248,10 @@ void GymOperations::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 12: _t->on_tblWidPaymentLine_cellActivated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 13: _t->on_btnAppointNewInvoice_clicked(); break;
         case 14: _t->on_btnAppointAllInvoices_clicked(); break;
+        case 15: _t->on_btnAppointAdd_clicked(); break;
+        case 16: _t->on_btnSaveAppoint_clicked(); break;
+        case 17: _t->on_tblWidAppointInvoice_cellActivated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 18: _t->on_tblWidAppointLine_cellActivated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         default: ;
         }
     }
@@ -240,13 +276,13 @@ int GymOperations::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 19;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 19)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 15;
+        _id -= 19;
     }
     return _id;
 }

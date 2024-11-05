@@ -79,10 +79,10 @@ public:
     QCheckBox *cbxAppointNew;
     QTableWidget *tblWidAppointLine;
     QHBoxLayout *horizontalLayout_7;
-    QPushButton *btnAppointSave;
+    QPushButton *btnAppointSaveAll;
+    QPushButton *btnAppointAdd;
+    QPushButton *btnSaveAppoint;
     QPushButton *btnAppointCancel;
-    QPushButton *btnAppointSearch;
-    QPushButton *btnAppointAll;
     QWidget *tabPagos;
     QGridLayout *gridLayout_2;
     QVBoxLayout *verticalLayout_7;
@@ -618,25 +618,25 @@ public:
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName("horizontalLayout_7");
-        btnAppointSave = new QPushButton(tabCitas);
-        btnAppointSave->setObjectName("btnAppointSave");
+        btnAppointSaveAll = new QPushButton(tabCitas);
+        btnAppointSaveAll->setObjectName("btnAppointSaveAll");
 
-        horizontalLayout_7->addWidget(btnAppointSave);
+        horizontalLayout_7->addWidget(btnAppointSaveAll);
+
+        btnAppointAdd = new QPushButton(tabCitas);
+        btnAppointAdd->setObjectName("btnAppointAdd");
+
+        horizontalLayout_7->addWidget(btnAppointAdd);
+
+        btnSaveAppoint = new QPushButton(tabCitas);
+        btnSaveAppoint->setObjectName("btnSaveAppoint");
+
+        horizontalLayout_7->addWidget(btnSaveAppoint);
 
         btnAppointCancel = new QPushButton(tabCitas);
         btnAppointCancel->setObjectName("btnAppointCancel");
 
         horizontalLayout_7->addWidget(btnAppointCancel);
-
-        btnAppointSearch = new QPushButton(tabCitas);
-        btnAppointSearch->setObjectName("btnAppointSearch");
-
-        horizontalLayout_7->addWidget(btnAppointSearch);
-
-        btnAppointAll = new QPushButton(tabCitas);
-        btnAppointAll->setObjectName("btnAppointAll");
-
-        horizontalLayout_7->addWidget(btnAppointAll);
 
 
         verticalLayout_11->addLayout(horizontalLayout_7);
@@ -980,10 +980,10 @@ public:
         ___qtablewidgetitem24->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
         QTableWidgetItem *___qtablewidgetitem25 = tblWidAppointLine->horizontalHeaderItem(5);
         ___qtablewidgetitem25->setText(QCoreApplication::translate("GymOperations", "Fecha Sesi\303\263n", nullptr));
-        btnAppointSave->setText(QCoreApplication::translate("GymOperations", "Guardar Todo", nullptr));
-        btnAppointCancel->setText(QCoreApplication::translate("GymOperations", "Agregar Cita", nullptr));
-        btnAppointSearch->setText(QCoreApplication::translate("GymOperations", "Guardar Cita", nullptr));
-        btnAppointAll->setText(QCoreApplication::translate("GymOperations", "Todas las Citas", nullptr));
+        btnAppointSaveAll->setText(QCoreApplication::translate("GymOperations", "Guardar Todo", nullptr));
+        btnAppointAdd->setText(QCoreApplication::translate("GymOperations", "Agregar Cita", nullptr));
+        btnSaveAppoint->setText(QCoreApplication::translate("GymOperations", "Guardar Cita", nullptr));
+        btnAppointCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabCitas), QCoreApplication::translate("GymOperations", "Citas", nullptr));
         QTableWidgetItem *___qtablewidgetitem26 = tblWidPaymentInvoice->horizontalHeaderItem(0);
         ___qtablewidgetitem26->setText(QCoreApplication::translate("GymOperations", "Id Cabecera", nullptr));

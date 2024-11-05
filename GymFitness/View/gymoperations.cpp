@@ -10,6 +10,8 @@ GymOperations::GymOperations(QWidget *parent) :
 
     connect( ui->tblWidPaymentInvoice, SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidPaymentInvoice_cellActivated(int, int)) );
     connect( ui->tblWidPaymentLine,    SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidPaymentLine_cellActivated(int, int)) );
+    connect( ui->tblWidAppointInvoice, SIGNAL(cellClicked(int, int)), this, SLOT(on_tblWidAppointInvoice_cellActivated(int, int)) );
+    connect( ui->tblWidAppointLine, SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidAppointLine_cellActivated(int, int)) );
 
     setCustomersRoleDescription();
     listAllCustomers();
@@ -29,6 +31,16 @@ int GymOperations::getCurrentSelectedPackageId(const std::string &descriptionPac
             return it->getIdPaquete();
         }
     }
+}
+
+int GymOperations::getCurrentSelectedGymServiceId(const std::string &tituloServicio){
+    std::vector<Servicio>::iterator it = servicios.begin();
+    for(; it != servicios.end(); it++){
+        if(it->getTituloServicio() == tituloServicio){
+            return (*it).getIdServicio();
+        }
+    }
+
 }
 
 void GymOperations::getValuesfromManageFields(QString& nombre, QString& apellido,
@@ -681,7 +693,7 @@ void GymOperations::getAllAppointmentInvoicesFromDB(){
     appointmentController.getAllPaymentInvoicesAP(&con, citasFacturas);
 
     ui->tblWidAppointInvoice->clearContents();
-    ui->tblWidAppointInvoice->setRowCount( cabeceraFacturas.size() );
+    ui->tblWidAppointInvoice->setRowCount( citasFacturas.size() );
 
     for(size_t i = 0; i < citasFacturas.size(); i++){
         ui->tblWidAppointInvoice->setItem(
@@ -713,6 +725,56 @@ void GymOperations::getAllAppointmentInvoicesFromDB(){
 }
 
 
+void GymOperations::getAppointLinesByInvoiceId(const int currentHeaderId){
+    SqlConnection con;
+    AppointmentController appointmentController = AppointmentController::getInstance();
+
+    citasDetalles.clear();
+    appointmentController.getAllInvoiceLines(&con, currentHeaderId,
+    citasDetalles);
+
+    ui->tblWidAppointLine->clearContents();
+    ui->tblWidAppointLine->setRowCount( citasDetalles.size() );
+
+    const int ERROR_FLAG = -1;
+
+    for( size_t i = 0; i < citasDetalles.size(); i++){
+        ui->tblWidAppointLine->setItem(
+            i,0, new QTableWidgetItem( citasDetalles[i].getIdDetalleFact() <= 0
+            ? QString::number(ERROR_FLAG) : QString::number(citasDetalles[i].getIdDetalleFact()) )
+        );
+
+        ui->tblWidAppointLine->setItem(
+            i, 1, new QTableWidgetItem(
+                QString::fromStdString(
+                citasDetalles[i].servicio.getTituloServ() == "" ? "---" : citasDetalles[i].servicio.getTituloServ()) )
+        );
+
+        ui->tblWidAppointLine->setItem(
+            i, 2, new QTableWidgetItem( citasDetalles[i].servicio.getNumSesiones() < 0
+            ? QString::number(ERROR_FLAG) : QString::number( citasDetalles[i].servicio.getNumSesiones() ))
+        );
+
+        ui->tblWidAppointLine->setItem(
+            i,3, new QTableWidgetItem ( citasDetalles[i].getTotalDetalleFact() < 0.0
+            ? QString::number(ERROR_FLAG) : QString::number(citasDetalles[i].getTotalDetalleFact()) )
+        );
+
+        ui->tblWidAppointLine->setItem(
+            i,4, new QTableWidgetItem (
+            QString::fromStdString( citasDetalles[i].getNombrePaciente() )
+            )
+        );
+
+        ui->tblWidAppointLine->setItem(
+            i,5, new QTableWidgetItem (
+            QString::fromStdString( citasDetalles[i].servicio.getFechaServ() )
+            )
+        );
+
+    }
+}
+
 void GymOperations::on_btnAppointAllInvoices_clicked()
 {
     getAllAppointmentInvoicesFromDB();
@@ -738,7 +800,7 @@ void GymOperations::on_btnAppointAdd_clicked()
         msg.setStyleSheet("color:white; background:black");
         msg.exec();
 
-        ///TODO: función para traer los detalles-líneas (citas) de esa factura
+        getAppointLinesByInvoiceId(currentInvoice);
 
     }else{
         msg.setWindowTitle("Error");
@@ -750,7 +812,123 @@ void GymOperations::on_btnAppointAdd_clicked()
 }
 
 
+void GymOperations::on_btnSaveAppoint_clicked()
+{
+    QMessageBox msg = QMessageBox();
+    SqlConnection con;
+    int currentInvoiceLineId = 0;
+    int numSesiones = 0;
+    int currentInvoice = 0;
+    AppointmentController appointmentController = AppointmentController::getInstance();
+
+    QString selectedService = this->ui->combxAppointService->currentText();
+    QString packageTitle = selectedService.split(", ")[0];
+    currentInvoiceLineId = this->ui->appointNumber->text().toInt();
+
+    QDateTime appointDate = this->ui->appointDate->dateTime();
+    QString dateAppointment = appointDate.toString("yyyy-MM-dd HH:mm:ss");
+
+    currentInvoice = this->ui->appointInvoiceNumber->text().toInt();
+
+    numSesiones = this->ui->sbAppointQuantity->text().toInt();
+    int serviceId = getCurrentSelectedGymServiceId(packageTitle.toStdString()) ;
+    /*qDebug() << "\n\t--------------------------\n"
+     * << currentInvoiceLineId << " ---- " << serviceId << "\n" << packageTitle << " ---- " << appointDate.toString("yyyy-MM-dd HH:mm:ss"); */
+
+    bool executionResult = appointmentController
+    .createInvoiceLineInfoAP(&con,currentInvoiceLineId,
+    serviceId, numSesiones, dateAppointment);
+
+    if(executionResult){
+        msg.setWindowTitle("Saved");
+        msg.setText("Appoint created succesfully");
+        msg.setIcon(QMessageBox::Information);
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
+
+        //añadir la función para actualizar el detalle (cita)
+        bool updateAppointResult = appointmentController
+        .updateInvoiceLineInfoAP(&con, currentInvoiceLineId);
+        if( updateAppointResult ){
+            msg.setWindowTitle("Saved");
+            msg.setText("Appoint total updated succesfully");
+            msg.setIcon(QMessageBox::Information);
+            msg.setStyleSheet("color:white; background:black");
+            msg.exec();
+        }else{
+            msg.setWindowTitle("Error");
+            msg.setText("Couldn't update the total of this appointment");
+            msg.setIcon(QMessageBox::Information);
+            msg.setStyleSheet("color:white; background:black");
+            msg.exec();
+        }
+        //añadir la función para traer todas las citas (lineas - detalles) para esta factura
+        getAppointLinesByInvoiceId(currentInvoice);
+    }else{
+        msg.setWindowTitle("Error");
+        msg.setText("Couldn't create an appoint");
+        msg.setIcon(QMessageBox::Critical);
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
+    }
+}
 
 
+void GymOperations::on_tblWidAppointInvoice_cellActivated(int row, int column)
+{
+    QString currentCabeceraTxt = ui->tblWidAppointInvoice->item(row,0)->text();
+    QString userCodeTxt = ui->tblWidAppointInvoice->item(row,2)->text();
+    QString paymentTotal = ui->tblWidAppointInvoice->item(row,4)->text();
 
+    currentCabeceraTxt.isNull() || currentCabeceraTxt.isEmpty() ?
+    ui->appointInvoiceNumber->setText("---") : ui->appointInvoiceNumber->setText( currentCabeceraTxt );
+
+    userCodeTxt.isNull() || userCodeTxt.isEmpty() ?
+    ui->txtAppointUserCode->setText("---") : ui->txtAppointUserCode->setText(userCodeTxt);
+
+    paymentTotal.isNull() || paymentTotal.isEmpty() ?
+    ui->appointPayAmmount->setText("0.00") : ui->appointPayAmmount->setText(paymentTotal) ;
+
+    getAppointLinesByInvoiceId(currentCabeceraTxt.toInt());
+}
+
+
+void GymOperations::on_tblWidAppointLine_cellActivated(int row, int column)
+{
+    QString invoiceLineId = ui->tblWidAppointLine->item(row,0)->text();
+    QString servDescription = ui->tblWidAppointLine->item(row,1)->text();
+    QString numSessions = ui->tblWidAppointLine->item(row,2)->text();
+    QString lineTotal = ui->tblWidAppointLine->item(row,3)->text();
+    QString sessionDate = ui->tblWidAppointLine->item(row,5)->text();
+
+    invoiceLineId.isNull() || invoiceLineId.isEmpty() ?  ui->appointNumber->setText("---") : ui->appointNumber->setText(invoiceLineId);
+
+    numSessions.isNull() || numSessions.isEmpty() || (numSessions.toInt() == -1) ?
+        ui->sbAppointQuantity->setValue(0) : ui->sbAppointQuantity->setValue(numSessions.toInt());
+
+    lineTotal.isNull() || lineTotal.isEmpty() || (lineTotal.toInt() == -1) ?
+        ui->appointPayAmmount->setText( "$ 0.00" ) : ui->appointPayAmmount->setText( lineTotal );
+
+    sessionDate.replace("-","/")        ;
+    sessionDate.isNull() || sessionDate.isEmpty() ?
+        ui->appointDate->setDateTime(QDateTime::currentDateTime()) : ui->appointDate->setDateTime( QDateTime::fromString(sessionDate) );
+
+    int serviceIndex = 0;
+
+    if( !servDescription.isNull() || !servDescription.isEmpty() ){
+        serviceIndex = ui->combxAppointService->findText(servDescription, Qt::MatchContains);
+        if(serviceIndex != -1){
+            ui->combxAppointService->setCurrentIndex(serviceIndex);
+        }else{
+            ui->combxAppointService->setCurrentIndex(0);
+        }
+    }
+
+
+        //descfription in combobox is shown as: Sesión de Fisioterapia, USD25 $.
+    qDebug() << "Description: " << servDescription << "\n"//Sesión de Nutricionismo 25.00
+            << "Session Date: " << sessionDate << "\n\n";//2024/09/23 11:30:45
+
+
+}
 
