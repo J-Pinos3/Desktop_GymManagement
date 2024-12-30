@@ -629,7 +629,7 @@ void GymOperations::getAllGymServices(){
     AppointmentController appointmentController = AppointmentController::getInstance();
 
     appointmentController.getGymServices(&con, servicios);
-    QList<QString> servicesList;
+    //QList<QString> servicesList;
     if( !servicios.empty() ){
         for( int i = 0; i < servicios.size(); i++ ){
             servicesList.append(
@@ -899,7 +899,10 @@ void GymOperations::on_tblWidAppointLine_cellActivated(int row, int column)
     QString servDescription = ui->tblWidAppointLine->item(row,1)->text();
     QString numSessions = ui->tblWidAppointLine->item(row,2)->text();
     QString lineTotal = ui->tblWidAppointLine->item(row,3)->text();
-    QString sessionDate = ui->tblWidAppointLine->item(row,5)->text();
+    QDateTime sessionDate = QDateTime::fromString(
+        ui->tblWidAppointLine->item(row,5)->text(),
+        "yyyy-MM-dd HH:mm:ss");
+
 
     invoiceLineId.isNull() || invoiceLineId.isEmpty() ?  ui->appointNumber->setText("---") : ui->appointNumber->setText(invoiceLineId);
 
@@ -909,26 +912,58 @@ void GymOperations::on_tblWidAppointLine_cellActivated(int row, int column)
     lineTotal.isNull() || lineTotal.isEmpty() || (lineTotal.toInt() == -1) ?
         ui->appointPayAmmount->setText( "$ 0.00" ) : ui->appointPayAmmount->setText( lineTotal );
 
-    sessionDate.replace("-","/")        ;
-    sessionDate.isNull() || sessionDate.isEmpty() ?
-        ui->appointDate->setDateTime(QDateTime::currentDateTime()) : ui->appointDate->setDateTime( QDateTime::fromString(sessionDate) );
+    //sessionDate.replace("-","/")        ;
+    //sessionDate.isNull() || sessionDate.isEmpty() ? ui->appointDate->setDateTime(QDateTime::currentDateTime()) : ui->appointDate->setDateTime( QDateTime::fromString(sessionDate) );
 
     int serviceIndex = 0;
 
-    if( !servDescription.isNull() || !servDescription.isEmpty() ){
-        serviceIndex = ui->combxAppointService->findText(servDescription, Qt::MatchContains);
-        if(serviceIndex != -1){
-            ui->combxAppointService->setCurrentIndex(serviceIndex);
-        }else{
-            ui->combxAppointService->setCurrentIndex(0);
+
+    QStringList serviceTitle = servDescription.split(' ');
+
+    try {
+        for(int i = 0; i < servicesList.size();i++){
+
+            if( serviceTitle.size() >= 2 && servicesList[i].contains(serviceTitle[2]) ){
+
+                serviceIndex = i;
+                break;
+            }else{
+                serviceIndex = 0;
+            }
         }
+    } catch ( std::out_of_range ex) {
+        qDebug() << "Error showing empty appoint line " <<   ex.what() << "\n";
     }
 
 
+    ui->combxAppointService->setCurrentIndex(serviceIndex);
+
+
+
+    ui->appointDate->setDateTime(sessionDate);  //ui->appointDate->setDateTime( QDateTime::fromString(sessionDate) );
+
+    //qDebug() << serviceIndex << "\t" << serviceTitle[2];
         //descfription in combobox is shown as: Sesión de Fisioterapia, USD25 $.
-    qDebug() << "Description: " << servDescription << "\n"//Sesión de Nutricionismo 25.00
-            << "Session Date: " << sessionDate << "\n\n";//2024/09/23 11:30:45
+    //qDebug() << "Description: " << servDescription << "\n"//Sesión de Nutricionismo 25.00 << "Session Date: " << sessionDate << "\n\n";//2024/09/23 11:30:45
 
 
+}
+
+
+void GymOperations::on_btnAppointSaveAll_clicked()
+{
+    SqlConnection con;
+    int currentHeader = 0;
+    AppointmentController appointmentController = AppointmentController::getInstance();
+    currentHeader = ui->appointInvoiceNumber->text().toInt();
+
+    bool executionResult = appointmentController.updatePaymentInvoiceAP(&con, currentHeader);
+
+    if(executionResult){
+        QMessageBox::information(this,"Saved","Invoice Header updated succesfully");
+        getAllAppointmentInvoicesFromDB();
+    }else{
+        QMessageBox::information(this,"Error","Couldn't update header with its lines");
+    }
 }
 

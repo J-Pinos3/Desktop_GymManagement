@@ -108,6 +108,8 @@ private slots:
 
     void on_tblWidAppointLine_cellActivated(int row, int column);
 
+    void on_btnAppointSaveAll_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
@@ -115,9 +117,10 @@ private:
     std::vector<PaqueteEntreno> paquetes;
     std::vector<Factura> cabeceraFacturas;
     std::vector<DetalleFactura> detallesFactura;
-    std::vector<Factura> citasFacturas;//not used
+    std::vector<Factura> citasFacturas;
     std::vector<DetalleFactura> citasDetalles;
     std::vector<Servicio> servicios;
+    QList<QString> servicesList;
 };
 
 #endif // GYMOPERATIONS_H

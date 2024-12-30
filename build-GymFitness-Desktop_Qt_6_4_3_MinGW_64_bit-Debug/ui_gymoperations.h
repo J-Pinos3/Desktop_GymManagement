@@ -506,7 +506,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
         tblWidAppointInvoice->setHorizontalHeaderItem(5, __qtablewidgetitem19);
         tblWidAppointInvoice->setObjectName("tblWidAppointInvoice");
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(tblWidAppointInvoice->sizePolicy().hasHeightForWidth());
@@ -557,6 +557,7 @@ public:
         appointDate->setObjectName("appointDate");
         sizePolicy.setHeightForWidth(appointDate->sizePolicy().hasHeightForWidth());
         appointDate->setSizePolicy(sizePolicy);
+        appointDate->setCalendarPopup(true);
 
         verticalLayout_8->addWidget(appointDate);
 

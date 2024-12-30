@@ -554,7 +554,7 @@ QWidget#tabCitas QComboBox QListView {
          <item>
           <widget class="QTableWidget" name="tblWidAppointInvoice">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -656,6 +656,9 @@ QWidget#tabCitas QComboBox QListView {
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -865,7 +868,7 @@ QWidget#tabPagos QComboBox QListView {
          <item>
           <widget class="QTableWidget" name="tblWidPaymentInvoice">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>

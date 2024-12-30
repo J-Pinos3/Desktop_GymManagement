@@ -16,7 +16,8 @@ Todo:
 
 	59) Corregir la forma en como se almacenan los valores de dinero y el servicio en los combobox
 
-
+	
+	XX) EN el tab de citas, solo se deberían traer las cabeceras o líneas que sean de citas.
 Progress:
 
 	7) Testing de las funciones creadas con MySQL Probados los stored procedures al menos de Detalle factura con plan elegido y si funciona de momento
@@ -25,8 +26,8 @@ Progress:
 
 
 
-	57) Tras hacer clic en la tabla de las citas (líneas), los datos se deben mostrar en los campos de la izquierda
-	58) Al clicar en la tabla de las citas(detalles), el servicio y la fecha, no se están poniendo en los campos de la izquierda
+	61) Crear la función para guardar todos los detalles y así actualizar esa cabecera de factura
+	62) Crear un pop up de calendario para el tab de citas y así elegir la cita
 
 
 Completed:
@@ -109,3 +110,6 @@ Completed:
 	54) Modificar la función  GymOperations::getAppointLinesByInvoiceId para que en ella e muestre el nombre del paciente
 	55) Añadir el listener para cuando se da clic en la tabla de las cabeceras en los appoints
 	56) Añadir el listener para cuando se da clic en la tabla de lines-detalles(citas) en los appoints
+	57) Tras hacer clic en la tabla de las citas (líneas), los datos se deben mostrar en los campos de la izquierda
+	58) Al clicar en la tabla de las citas(detalles), el servicio y la fecha, no se están poniendo en los campos de la izquierda
+	60) Corregir la excepción de cuando una cita está vacía y se le da clic para mostrarla en los campos de la izquierda
