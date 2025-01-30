@@ -55,7 +55,7 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
@@ -1127,6 +1127,60 @@ QWidget#tabPagos QComboBox QListView {
           </layout>
          </item>
         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabFacturas">
+      <property name="styleSheet">
+       <string notr="true">QWidget#tabFacturas QPushButton {
+    background-color: #ffd600;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+
+	border-radius: 3px;
+}
+
+
+QWidget#tabFacturas QTableWidget{
+	background-color: #d1d1d1;
+}
+</string>
+      </property>
+      <attribute name="title">
+       <string>Facturas</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item>
+          <widget class="QTableWidget" name="tblAllInvoices">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="tblInvoiceLines"/>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButton">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Generar PDf de la Factura</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

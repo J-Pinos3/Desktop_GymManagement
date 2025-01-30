@@ -1,13 +1,11 @@
+#pragma once
 /********************************************************************************
-** Form generated from reading UI file 'gymoperations.ui'
+** Form generated from reading UI file ''
 **
 ** Created by: Qt User Interface Compiler version 6.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
-
-#ifndef UI_GYMOPERATIONS_H
-#define UI_GYMOPERATIONS_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -108,6 +106,12 @@ public:
     QPushButton *btnPaymentAddLine;
     QPushButton *btnSaveLine;
     QPushButton *btnPaymentCancel;
+    QWidget *tabFacturas;
+    QGridLayout *gridLayout_3;
+    QHBoxLayout *horizontalLayout_9;
+    QTableWidget *tblAllInvoices;
+    QTableWidget *tblInvoiceLines;
+    QPushButton *pushButton;
 
     void setupUi(QWidget *GymOperations)
     {
@@ -892,13 +896,50 @@ public:
         gridLayout_2->addLayout(verticalLayout_7, 0, 0, 1, 1);
 
         tabWidget->addTab(tabPagos, QString());
+        tabFacturas = new QWidget();
+        tabFacturas->setObjectName("tabFacturas");
+        tabFacturas->setStyleSheet(QString::fromUtf8("QWidget#tabFacturas QPushButton {\n"
+"    background-color: #ffd600;\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 4%;\n"
+"	padding-right: 7%;\n"
+"	padding-left: 7%;\n"
+"\n"
+"	border-radius: 3px;\n"
+"}\n"
+""));
+        gridLayout_3 = new QGridLayout(tabFacturas);
+        gridLayout_3->setObjectName("gridLayout_3");
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setObjectName("horizontalLayout_9");
+        horizontalLayout_9->setContentsMargins(-1, -1, -1, 10);
+        tblAllInvoices = new QTableWidget(tabFacturas);
+        tblAllInvoices->setObjectName("tblAllInvoices");
+        tblAllInvoices->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+
+        horizontalLayout_9->addWidget(tblAllInvoices);
+
+        tblInvoiceLines = new QTableWidget(tabFacturas);
+        tblInvoiceLines->setObjectName("tableWidget_2");
+
+        horizontalLayout_9->addWidget(tblInvoiceLines);
+
+
+        gridLayout_3->addLayout(horizontalLayout_9, 0, 0, 1, 1);
+
+        pushButton = new QPushButton(tabFacturas);
+        pushButton->setObjectName("pushButton");
+
+        gridLayout_3->addWidget(pushButton, 1, 0, 1, 1);
+
+        tabWidget->addTab(tabFacturas, QString());
 
         verticalLayout->addWidget(tabWidget);
 
 
         retranslateUi(GymOperations);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(GymOperations);
@@ -1025,6 +1066,8 @@ public:
         btnSaveLine->setText(QCoreApplication::translate("GymOperations", "Guardar Detalle", nullptr));
         btnPaymentCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabPagos), QCoreApplication::translate("GymOperations", "Pagos", nullptr));
+        pushButton->setText(QCoreApplication::translate("GymOperations", "Generar PDf de la FActura", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tabFacturas), QCoreApplication::translate("GymOperations", "Facturas", nullptr));
     } // retranslateUi
 
 };
@@ -1035,4 +1078,3 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_GYMOPERATIONS_H
