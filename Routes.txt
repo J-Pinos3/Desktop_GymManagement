@@ -15,9 +15,10 @@ Todo:
 
 
 	59) Corregir la forma en como se almacenan los valores de dinero y el servicio en los combobox
-
 	
+
 	XX) EN el tab de citas, solo se deberían traer las cabeceras o líneas que sean de citas.
+	
 Progress:
 
 	7) Testing de las funciones creadas con MySQL Probados los stored procedures al menos de Detalle factura con plan elegido y si funciona de momento
@@ -26,8 +27,9 @@ Progress:
 
 
 
-	61) Crear la función para guardar todos los detalles y así actualizar esa cabecera de factura
-	62) Crear un pop up de calendario para el tab de citas y así elegir la cita
+	66) Diseñar el pdf que contiene los datos de la factura
+	67) Modificar las funciones que traen todas las facturas, de modo que
+	en el tab citas, solo estén las facturas para citas
 
 
 Completed:
@@ -113,3 +115,8 @@ Completed:
 	57) Tras hacer clic en la tabla de las citas (líneas), los datos se deben mostrar en los campos de la izquierda
 	58) Al clicar en la tabla de las citas(detalles), el servicio y la fecha, no se están poniendo en los campos de la izquierda
 	60) Corregir la excepción de cuando una cita está vacía y se le da clic para mostrarla en los campos de la izquierda
+	61) Crear la función para guardar todos los detalles y así actualizar esa cabecera de factura
+	62) En el tab de facturas, crear la función para para traer todas las facturas del lado izquierdo
+	63) Corregir en el report controller la función para traer los detalles de cada cabecera	
+	64) Crear un nuevo modelo de datos para los detalles del reporte para ser más organizado
+	65) Implementar la clase DetalleReporte en el reportController y traer los datos en la tabla

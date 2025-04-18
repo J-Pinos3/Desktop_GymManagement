@@ -1162,25 +1162,105 @@ QWidget#tabFacturas QTableWidget{
            <property name="styleSheet">
             <string notr="true"/>
            </property>
+           <column>
+            <property name="text">
+             <string>Id Cabecera</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha de Pago</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Código de Usuario</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nombres</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </column>
           </widget>
          </item>
          <item>
-          <widget class="QTableWidget" name="tblInvoiceLines"/>
+          <widget class="QTableWidget" name="tblInvoiceLines">
+           <column>
+            <property name="text">
+             <string>Id Detalle</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Total Detalle</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Detalle</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Usuario</string>
+            </property>
+           </column>
+          </widget>
          </item>
         </layout>
        </item>
        <item row="1" column="0">
-        <widget class="QPushButton" name="pushButton">
-         <property name="font">
-          <font>
-           <pointsize>14</pointsize>
-           <bold>true</bold>
-          </font>
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <property name="spacing">
+          <number>6</number>
          </property>
-         <property name="text">
-          <string>Generar PDf de la Factura</string>
+         <property name="leftMargin">
+          <number>0</number>
          </property>
-        </widget>
+         <property name="topMargin">
+          <number>5</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="btnAllInvoicesReport">
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Todas las Facturas</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnGenerateReport">
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Generar PDF de la Factura</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>

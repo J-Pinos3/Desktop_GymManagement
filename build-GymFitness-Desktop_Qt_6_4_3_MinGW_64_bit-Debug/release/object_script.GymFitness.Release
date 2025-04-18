@@ -2,7 +2,9 @@ release/logincontroller.o
 release/personcontroller.o
 release/appointmentcontroller.o
 release/paymentcontrollers.o
+release/reportcontroller.o
 release/detallefactura.o
+release/detallereporte.o
 release/factura.o
 release/paqueteentreno.o
 release/persona.o

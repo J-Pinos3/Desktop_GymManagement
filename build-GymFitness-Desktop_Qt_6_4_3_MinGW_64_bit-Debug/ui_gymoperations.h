@@ -1,11 +1,13 @@
-#pragma once
 /********************************************************************************
-** Form generated from reading UI file ''
+** Form generated from reading UI file 'gymoperations.ui'
 **
 ** Created by: Qt User Interface Compiler version 6.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
+
+#ifndef UI_GYMOPERATIONS_H
+#define UI_GYMOPERATIONS_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -111,7 +113,9 @@ public:
     QHBoxLayout *horizontalLayout_9;
     QTableWidget *tblAllInvoices;
     QTableWidget *tblInvoiceLines;
-    QPushButton *pushButton;
+    QHBoxLayout *horizontalLayout_11;
+    QPushButton *btnAllInvoicesReport;
+    QPushButton *btnGenerateReport;
 
     void setupUi(QWidget *GymOperations)
     {
@@ -907,6 +911,11 @@ public:
 "\n"
 "	border-radius: 3px;\n"
 "}\n"
+"\n"
+"\n"
+"QWidget#tabFacturas QTableWidget{\n"
+"	background-color: #d1d1d1;\n"
+"}\n"
 ""));
         gridLayout_3 = new QGridLayout(tabFacturas);
         gridLayout_3->setObjectName("gridLayout_3");
@@ -914,23 +923,64 @@ public:
         horizontalLayout_9->setObjectName("horizontalLayout_9");
         horizontalLayout_9->setContentsMargins(-1, -1, -1, 10);
         tblAllInvoices = new QTableWidget(tabFacturas);
+        if (tblAllInvoices->columnCount() < 5)
+            tblAllInvoices->setColumnCount(5);
+        QTableWidgetItem *__qtablewidgetitem38 = new QTableWidgetItem();
+        tblAllInvoices->setHorizontalHeaderItem(0, __qtablewidgetitem38);
+        QTableWidgetItem *__qtablewidgetitem39 = new QTableWidgetItem();
+        tblAllInvoices->setHorizontalHeaderItem(1, __qtablewidgetitem39);
+        QTableWidgetItem *__qtablewidgetitem40 = new QTableWidgetItem();
+        tblAllInvoices->setHorizontalHeaderItem(2, __qtablewidgetitem40);
+        QTableWidgetItem *__qtablewidgetitem41 = new QTableWidgetItem();
+        tblAllInvoices->setHorizontalHeaderItem(3, __qtablewidgetitem41);
+        QTableWidgetItem *__qtablewidgetitem42 = new QTableWidgetItem();
+        tblAllInvoices->setHorizontalHeaderItem(4, __qtablewidgetitem42);
         tblAllInvoices->setObjectName("tblAllInvoices");
-        tblAllInvoices->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 127);"));
+        tblAllInvoices->setStyleSheet(QString::fromUtf8(""));
 
         horizontalLayout_9->addWidget(tblAllInvoices);
 
         tblInvoiceLines = new QTableWidget(tabFacturas);
-        tblInvoiceLines->setObjectName("tableWidget_2");
+        if (tblInvoiceLines->columnCount() < 5)
+            tblInvoiceLines->setColumnCount(5);
+        QTableWidgetItem *__qtablewidgetitem43 = new QTableWidgetItem();
+        tblInvoiceLines->setHorizontalHeaderItem(0, __qtablewidgetitem43);
+        QTableWidgetItem *__qtablewidgetitem44 = new QTableWidgetItem();
+        tblInvoiceLines->setHorizontalHeaderItem(1, __qtablewidgetitem44);
+        QTableWidgetItem *__qtablewidgetitem45 = new QTableWidgetItem();
+        tblInvoiceLines->setHorizontalHeaderItem(2, __qtablewidgetitem45);
+        QTableWidgetItem *__qtablewidgetitem46 = new QTableWidgetItem();
+        tblInvoiceLines->setHorizontalHeaderItem(3, __qtablewidgetitem46);
+        QTableWidgetItem *__qtablewidgetitem47 = new QTableWidgetItem();
+        tblInvoiceLines->setHorizontalHeaderItem(4, __qtablewidgetitem47);
+        tblInvoiceLines->setObjectName("tblInvoiceLines");
 
         horizontalLayout_9->addWidget(tblInvoiceLines);
 
 
         gridLayout_3->addLayout(horizontalLayout_9, 0, 0, 1, 1);
 
-        pushButton = new QPushButton(tabFacturas);
-        pushButton->setObjectName("pushButton");
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setSpacing(6);
+        horizontalLayout_11->setObjectName("horizontalLayout_11");
+        horizontalLayout_11->setContentsMargins(0, 5, -1, 0);
+        btnAllInvoicesReport = new QPushButton(tabFacturas);
+        btnAllInvoicesReport->setObjectName("btnAllInvoicesReport");
+        QFont font3;
+        font3.setPointSize(14);
+        font3.setBold(true);
+        btnAllInvoicesReport->setFont(font3);
 
-        gridLayout_3->addWidget(pushButton, 1, 0, 1, 1);
+        horizontalLayout_11->addWidget(btnAllInvoicesReport);
+
+        btnGenerateReport = new QPushButton(tabFacturas);
+        btnGenerateReport->setObjectName("btnGenerateReport");
+        btnGenerateReport->setFont(font3);
+
+        horizontalLayout_11->addWidget(btnGenerateReport);
+
+
+        gridLayout_3->addLayout(horizontalLayout_11, 1, 0, 1, 1);
 
         tabWidget->addTab(tabFacturas, QString());
 
@@ -1066,7 +1116,28 @@ public:
         btnSaveLine->setText(QCoreApplication::translate("GymOperations", "Guardar Detalle", nullptr));
         btnPaymentCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabPagos), QCoreApplication::translate("GymOperations", "Pagos", nullptr));
-        pushButton->setText(QCoreApplication::translate("GymOperations", "Generar PDf de la FActura", nullptr));
+        QTableWidgetItem *___qtablewidgetitem38 = tblAllInvoices->horizontalHeaderItem(0);
+        ___qtablewidgetitem38->setText(QCoreApplication::translate("GymOperations", "Id Cabecera", nullptr));
+        QTableWidgetItem *___qtablewidgetitem39 = tblAllInvoices->horizontalHeaderItem(1);
+        ___qtablewidgetitem39->setText(QCoreApplication::translate("GymOperations", "Fecha de Pago", nullptr));
+        QTableWidgetItem *___qtablewidgetitem40 = tblAllInvoices->horizontalHeaderItem(2);
+        ___qtablewidgetitem40->setText(QCoreApplication::translate("GymOperations", "C\303\263digo de Usuario", nullptr));
+        QTableWidgetItem *___qtablewidgetitem41 = tblAllInvoices->horizontalHeaderItem(3);
+        ___qtablewidgetitem41->setText(QCoreApplication::translate("GymOperations", "Nombres", nullptr));
+        QTableWidgetItem *___qtablewidgetitem42 = tblAllInvoices->horizontalHeaderItem(4);
+        ___qtablewidgetitem42->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
+        QTableWidgetItem *___qtablewidgetitem43 = tblInvoiceLines->horizontalHeaderItem(0);
+        ___qtablewidgetitem43->setText(QCoreApplication::translate("GymOperations", "Id Detalle", nullptr));
+        QTableWidgetItem *___qtablewidgetitem44 = tblInvoiceLines->horizontalHeaderItem(1);
+        ___qtablewidgetitem44->setText(QCoreApplication::translate("GymOperations", "Total Detalle", nullptr));
+        QTableWidgetItem *___qtablewidgetitem45 = tblInvoiceLines->horizontalHeaderItem(2);
+        ___qtablewidgetitem45->setText(QCoreApplication::translate("GymOperations", "Detalle", nullptr));
+        QTableWidgetItem *___qtablewidgetitem46 = tblInvoiceLines->horizontalHeaderItem(3);
+        ___qtablewidgetitem46->setText(QCoreApplication::translate("GymOperations", "Fecha", nullptr));
+        QTableWidgetItem *___qtablewidgetitem47 = tblInvoiceLines->horizontalHeaderItem(4);
+        ___qtablewidgetitem47->setText(QCoreApplication::translate("GymOperations", "Usuario", nullptr));
+        btnAllInvoicesReport->setText(QCoreApplication::translate("GymOperations", "Todas las Facturas", nullptr));
+        btnGenerateReport->setText(QCoreApplication::translate("GymOperations", "Generar PDF de la Factura", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabFacturas), QCoreApplication::translate("GymOperations", "Facturas", nullptr));
     } // retranslateUi
 
@@ -1078,3 +1149,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
+#endif // UI_GYMOPERATIONS_H

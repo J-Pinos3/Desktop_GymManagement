@@ -10,6 +10,7 @@
 #include "Controllers/PersonControllers/personcontroller.h"
 #include "Controllers/PaymentControllers/paymentcontrollers.h"
 #include "Controllers/AppointmentControllers/appointmentcontroller.h"
+#include "Controllers/ReportsControllers/reportcontroller.h"
 #include "Models/persona.h"
 #include "Models/rol.h"
 #include "Models/paqueteentreno.h"
@@ -56,6 +57,13 @@ public:
 
     void getAppointLinesByInvoiceId(const int currentHeaderId);
 
+
+    //create pdf report
+    void createPDf(const std::vector<DetalleReporte>& lineas);
+
+
+    //adjust the sice of the table of invoices for report
+    void adjustReportInvoiceTable(QTableWidget *tableWidget);
 
 private slots:
 
@@ -110,6 +118,14 @@ private slots:
 
     void on_btnAppointSaveAll_clicked();
 
+    void on_btnGenerateReport_clicked();
+
+
+
+    void on_btnAllInvoicesReport_clicked();
+
+    void on_tblAllInvoices_cellActivated(int row, int column);
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
@@ -121,6 +137,8 @@ private:
     std::vector<DetalleFactura> citasDetalles;
     std::vector<Servicio> servicios;
     QList<QString> servicesList;
+    std::vector<Factura> facturasReporte;
+    std::vector<DetalleReporte> detallesReporte;
 };
 
 #endif // GYMOPERATIONS_H

@@ -13,7 +13,9 @@ SOURCES += \
     Controllers/PersonControllers/personcontroller.cpp \
     Controllers/AppointmentControllers/appointmentcontroller.cpp \
     Controllers/PaymentControllers/paymentcontrollers.cpp \
+    Controllers/ReportsControllers/reportcontroller.cpp \
     Models/detallefactura.cpp \
+    Models/detallereporte.cpp \
     Models/factura.cpp \
     Models/paqueteentreno.cpp \
     Models/persona.cpp \
@@ -31,7 +33,9 @@ HEADERS += \
     Controllers/PersonControllers/personcontroller.h \
     Controllers/AppointmentControllers/appointmentcontroller.h \
     Controllers/PaymentControllers/paymentcontrollers.h \
+    Controllers/ReportsControllers/reportcontroller.h \
     Models/detallefactura.h \
+    Models/detallereporte.h \
     Models/factura.h \
     Models/paqueteentreno.h \
     Models/persona.h \

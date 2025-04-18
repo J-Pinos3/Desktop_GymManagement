@@ -1,6 +1,12 @@
 #include "gymoperations.h"
 #include "ui_gymoperations.h"
 
+#include <QPdfWriter>
+#include <QPainter>
+
+#include <QFont>
+#include <QFileDialog>
+
 GymOperations::GymOperations(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GymOperations)
@@ -12,6 +18,7 @@ GymOperations::GymOperations(QWidget *parent) :
     connect( ui->tblWidPaymentLine,    SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidPaymentLine_cellActivated(int, int)) );
     connect( ui->tblWidAppointInvoice, SIGNAL(cellClicked(int, int)), this, SLOT(on_tblWidAppointInvoice_cellActivated(int, int)) );
     connect( ui->tblWidAppointLine, SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidAppointLine_cellActivated(int, int)) );
+    connect(ui->tblAllInvoices, SIGNAL(cellClicked(int,int)), this, SLOT(on_tblAllInvoices_cellActivated(int, int)) );
 
     setCustomersRoleDescription();
     listAllCustomers();
@@ -775,6 +782,7 @@ void GymOperations::getAppointLinesByInvoiceId(const int currentHeaderId){
     }
 }
 
+
 void GymOperations::on_btnAppointAllInvoices_clicked()
 {
     getAllAppointmentInvoicesFromDB();
@@ -965,5 +973,230 @@ void GymOperations::on_btnAppointSaveAll_clicked()
     }else{
         QMessageBox::information(this,"Error","Couldn't update header with its lines");
     }
+}
+
+//reportery
+void GymOperations::createPDf(const std::vector<DetalleReporte>& lineas)
+{
+    QString nombre = QString::fromStdString( lineas[0].getNombreCliente() );
+
+
+    // Ruta donde se guardará el PDF
+    QString filePath = QFileDialog::getSaveFileName(nullptr, "Guardar PDF", "", "PDF (*.pdf)");
+    if (filePath.isEmpty()) return;
+
+    // Crear el escritor PDF
+    QPdfWriter pdfWriter(filePath);
+    pdfWriter.setPageSize(QPageSize(QPageSize::A4));
+    pdfWriter.setResolution(96);  // DPI del PDF
+    pdfWriter.setPageMargins(QMargins(0,0,0,0), QPageLayout::Millimeter);
+
+    // Crear un pintor para dibujar en el PDF
+    QPainter painter(&pdfWriter);
+    QPixmap gymLogo(":images/Images/GoldsGym1.png");
+
+    QPageSize pageSize = QPageSize(QPageSize::A4);
+    QRect pageRect = pageSize.rectPixels(pdfWriter.resolution());
+
+    int headerHeight = 200;
+    double totalPrice = 0.0;
+    QString totalPriceStr;
+
+    painter.fillRect(0,0, pageRect.width()+1, headerHeight,  QColor("black"));
+
+    painter.drawPixmap(2, 2,220,190, gymLogo);
+
+
+    int startY = headerHeight+50; //posicion inicial para los detalles
+    int lineHeight = 20; //ancho de cada linea de detalle
+
+    int columnaId = 38;
+    int columnaDetalle = 250;
+    int columnaTotal = 70;
+    int columnaFecha= 120;
+
+    painter.setFont( QFont("Arial",14, QFont::Bold) );
+
+    QString currentDate = QDate::currentDate().toString("yyyy-MM-dd");
+    QString message = "Fecha: " + currentDate;
+    painter.drawText(20, startY, message);
+
+    startY += 20;
+    QString nombreCliente = "Cliente: " + QString::fromStdString( lineas[0].getNombreCliente() );
+    painter.drawText(20, startY, nombreCliente);
+
+    startY += 30;
+
+    painter.setFont( QFont("Arial",11, QFont::Normal) );
+    //cabecera de la tabla
+    painter.drawText(20, startY, columnaId, lineHeight, Qt::AlignLeft, "ID");
+    painter.drawText(20+columnaId, startY, columnaDetalle, lineHeight, Qt::AlignLeft, "Producto");
+    painter.drawText(20+columnaId+columnaDetalle, startY,columnaFecha,
+        lineHeight, Qt::AlignLeft, "Fecha");
+    painter.drawText(20+columnaId+columnaDetalle+columnaFecha, startY, columnaTotal,
+        lineHeight, Qt::AlignLeft, "Sub Total");
+
+    //mover startY para mostrar los detalles
+    startY += lineHeight +10;
+
+    for(const auto& detalle : lineas){
+        QString id= QString::number( detalle.getIdDetalleReporte() );
+        QString detalleReporte = QString::fromStdString( detalle.getDetalleReporte() );
+        QString subTotal = QString::number( detalle.getTotalDetalleReporte() );
+        QString fecha = QString::fromStdString( detalle.getFecha() );
+        fecha = fecha.mid(0,10);
+        subTotal+=".00";
+        totalPrice += detalle.getTotalDetalleReporte() ;
+
+        painter.drawText(20, startY, columnaId, lineHeight, Qt::AlignCenter, id);
+        painter.drawText(20+columnaId, startY, columnaDetalle,
+            lineHeight, Qt::AlignLeft, detalleReporte);
+        painter.drawText(20+columnaId+columnaDetalle, startY,
+            columnaFecha, lineHeight, Qt::AlignLeft, fecha);
+        painter.drawText(20+columnaId+columnaDetalle+columnaFecha, startY, columnaTotal,
+            lineHeight, Qt::AlignLeft, subTotal);
+
+        startY += lineHeight;
+    }
+
+    startY += 10;
+    totalPriceStr = QString::number(totalPrice) + ".00";
+    painter.drawText(20+columnaId+columnaDetalle+columnaFecha, startY,
+    columnaTotal, lineHeight, Qt::AlignLeft, totalPriceStr);
+    painter.end();
+
+
+
+
+    /*
+    const QString fileName("C:/Users/Usuario/Downloads/mydoc.pdf");
+    QPdfWriter pdfWriter(fileName);
+    pdfWriter.setPageSize(QPageSize(QPageSize::A4));
+    QPainter painter(&pdfWriter);
+    */
+
+}
+
+void GymOperations::on_btnGenerateReport_clicked()
+{
+    if( !detallesReporte.empty() ){
+        createPDf(detallesReporte);
+    }
+
+}
+
+
+
+void GymOperations::on_btnAllInvoicesReport_clicked()
+{
+    SqlConnection con;
+    ReportController reportController = ReportController::getInstance();
+
+    facturasReporte.clear();
+    reportController.getAllInvoices(&con, facturasReporte);
+
+    ui->tblAllInvoices->clearContents();
+    ui->tblAllInvoices->setRowCount( facturasReporte.size() );
+
+    for(size_t i = 0; i < facturasReporte.size(); i++){
+        ui->tblAllInvoices->setItem(
+            i, 0, new QTableWidgetItem( QString::number(facturasReporte[i].getIdCabFactura()) )
+        );
+
+        ui->tblAllInvoices->setItem(
+            i, 1, new QTableWidgetItem( QString::fromStdString(facturasReporte[i].getFechaCabFactura()) )
+        );
+
+        ui->tblAllInvoices->setItem(
+            i, 2, new QTableWidgetItem( QString::fromStdString(facturasReporte[i].getCodPersona()) )
+        );
+
+        ui->tblAllInvoices->setItem(
+            i, 3, new QTableWidgetItem(
+                QString::fromStdString( facturasReporte[i].cliente.getNombre() + " " + facturasReporte[i].cliente.getApellido() )
+            )
+        );
+
+        ui->tblAllInvoices->setItem(
+            i, 4, new QTableWidgetItem( QString::number( facturasReporte[i].getTotalCabFactura() ) )
+        );
+    }
+
+    adjustReportInvoiceTable( ui->tblAllInvoices );
+}
+
+
+void GymOperations::adjustReportInvoiceTable(QTableWidget *tableWidget){
+    int filas = tableWidget->rowCount();
+    for(int fila = 0; fila < filas; fila++){
+        QTableWidgetItem* col0 = tableWidget->item(fila, 0);
+        if( col0 ){
+            col0->setTextAlignment(Qt::AlignCenter);
+        }
+
+        QTableWidgetItem* col4 = tableWidget->item(fila, 4);
+        if( col4 ){
+            col4->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+}
+
+
+void GymOperations::on_tblAllInvoices_cellActivated(int row, int column)
+{
+    int currentCabeceraID = ui->tblAllInvoices->item(row,0)->text().toInt();
+    qDebug()<< "Id chosen for report: " << currentCabeceraID << "\n";
+
+    SqlConnection con;
+    ReportController reportController = ReportController::getInstance();
+
+    detallesReporte.clear();
+    reportController.getInvoiceLinesById(&con, currentCabeceraID, detallesReporte);
+
+    ui->tblInvoiceLines->clearContents();
+    ui->tblInvoiceLines->setRowCount( detallesReporte.size() );
+
+    const int ERROR_FLAG = -1;
+
+    for(size_t i = 0; i < detallesReporte.size(); i++){
+        ui->tblInvoiceLines->setItem(
+            i, 0, new QTableWidgetItem( detallesReporte[i].getIdDetalleReporte() < 0
+            ? QString::number(ERROR_FLAG) : QString::number(detallesReporte[i].getIdDetalleReporte()) )
+        );
+
+        ui->tblInvoiceLines->setItem(
+            i, 1, new QTableWidgetItem( detallesReporte[i].getTotalDetalleReporte() < 0.0
+            ? QString::number(ERROR_FLAG) : QString::number( detallesReporte[i].getTotalDetalleReporte() ) )
+        );
+
+        ui->tblInvoiceLines->setItem(
+            i, 2, new QTableWidgetItem(
+                QString::fromStdString(
+                    detallesReporte[i].getDetalleReporte() == "" ? "---"
+                    : detallesReporte[i].getDetalleReporte()) )
+        );
+
+        QString fecha = QString::fromStdString(
+                detallesReporte[i].getFecha() );
+        fecha = fecha.mid(0,10);
+
+        ui->tblInvoiceLines->setItem(
+            i, 3, new QTableWidgetItem(
+            fecha == "" ? "---" : fecha
+                /* QString::fromStdString( detallesReporte[i].getFecha()
+                 == "" ? "---": detallesReporte[i].getFecha()) */
+            )
+        );
+
+        ui->tblInvoiceLines->setItem(
+            i, 4, new QTableWidgetItem(
+                QString::fromStdString(
+                    detallesReporte[i].getNombreCliente() == "" ? "---"
+                    : detallesReporte[i].getNombreCliente()) )
+        );
+    }
+
 }
 

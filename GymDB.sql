@@ -85,6 +85,54 @@ select * from PlanElegido;
 select * from Servicio;
 select * from ServicioElegido;
 
+/* 17/04/2024 query para traer solo las facturas que sean de planes de ENTRENO del GYM
+1	Entrenamiento Mensual	35.00	30   tabla paquete
+2	Entrenamiento Diario	3.00	1
+*/
+select distinct
+	CabFac.id_cab_fact,
+    CabFac.fecha_cab_fact,
+	CabFac.total_cab_fact,
+    Pers.cod_persona,
+    Pers.nombre, Pers.apellido
+from CabeceraFactura as CabFac
+inner join Persona as Pers on Pers.cod_persona = CabFac.cod_persona
+left join DetalleFactura as DetF on CabFac.id_cab_fact = DetF.id_cab_fact
+where DetF.id_deta_fact in ( select  id_deta_fact from PlanElegido  );
+
+
+/* 14/04/2025 query para traer solo las facturas que sean de algún servicio del gym
+1	Sesión de Fisioterapia	25.00		tabla servicio
+2	Sesión de Nutricionismo	25.00       FUNCIONA
+*/
+select distinct
+	CabFac.id_cab_fact,
+    CabFac.fecha_cab_fact,
+	CabFac.total_cab_fact,
+    Pers.cod_persona,
+    Pers.nombre, Pers.apellido
+from CabeceraFactura as CabFac
+inner join Persona as Pers on Pers.cod_persona = CabFac.cod_persona
+left join DetalleFactura as DetF on CabFac.id_cab_fact = DetF.id_cab_fact
+where DetF.id_deta_fact in ( select  id_deta_fact from ServicioElegido  );
+
+
+
+
+
+
+-- función para traer todas las facturas normales y de las citas
+select 
+CabFact.id_cab_fact, CabFact.fecha_cab_fact,
+CabFact.total_cab_fact, Pers.cod_persona
+from CabeceraFactura as CabFact, Persona as Pers
+where Pers.cod_persona = CabFact.cod_persona;
+
+
+-- 25/03/2025 query para traer facturas en específico, o solo las de servicios o solo las de pagos normales
+select * from PlanElegido;
+
+
 -- inicio test factura de servicios 21-09-2024 todos los cambios fueron a la factura con id = 8, primero una venta de 50 usd y luego otra venta (sesión) de 25 total 75usd correcto
 insert into CabeceraFactura(fecha_cab_fact, total_cab_fact)
  values( current_date(), 0.00 ); -- id18  update CabeceraFactura set cod_persona = '1afad6f5-6' where id_cab_fact = 9;
@@ -103,14 +151,23 @@ call update_cabecera_factura(8);
 -- fin test factura de servicios 21-09-2024
 
 
--- query para mostrar las faturas + los datos del cliente
-select 
-	CabFac.id_cab_fact, CabFac.fecha_cab_fact, 
-    CabFac.total_cab_fact, Pers.cod_persona,
-    Pers.nombre, Pers.apellido
-from CabeceraFactura as CabFac, Persona as Pers
-where Pers.cod_persona = CabFac.cod_persona;
-
+-- query para mostrar laS líneas de una cabecera elegida en general para el reporte AÑADIR EL NOMBRE DEL SERVICIO O EL PLAN
+select
+	Detf.id_deta_fact,
+    Detf.total_deta_fact,
+    if (Servel.num_sesiones <> -1 or Servel.num_sesiones is not null, Servi.serv_titulo , Paq.paq_descripcion) as Detalle ,
+    if (Servel.num_sesiones <> -1 or Servel.num_sesiones is not null, Servel.fecha_serv, Ple.fecha_pago) as Fecha ,
+    concat(Pers.nombre, ' ', Pers.apellido)
+from DetalleFactura as Detf
+left join CabeceraFactura as CabFact on Detf.id_cab_fact = CabFact.id_cab_fact
+left join Persona as Pers on CabFact.cod_persona = Pers.cod_persona
+left join ServicioElegido as Servel on Detf.id_deta_fact = Servel.id_deta_fact
+left join Servicio as Servi on Servel.id_serv = Servi.id_serv
+left join PlanElegido as Ple on Ple.id_deta_fact = Detf.id_deta_fact
+left join Paquete as Paq on Ple.id_paq = Paq.id_paq
+where Detf.id_cab_fact = 8;
+-- fin del query que muestra las líneas de cada factura, para los reportes
+select * from CabeceraFactura;
 
 -- query mejorada para mostrar los detalles citas de algún servicio según la cabecera actual
 select 
@@ -125,8 +182,9 @@ select
     left join Servicio as Servi on Servel.id_serv = Servi.id_serv
     left join CabeceraFactura as CabFact on Detf.id_cab_fact = CabFact.id_cab_fact
     left join Persona as Pers on CabFact.cod_persona = Pers.cod_persona
-    where Detf.id_cab_fact = 8;
+    where Detf.id_cab_fact = 3;
 -- fin del query
+
 
 -- query mejorada para mostrar los detalles de factura según la cabecera actual
 select
@@ -141,6 +199,7 @@ from DetalleFactura as Detf
 left join PlanElegido as Ple on Ple.id_deta_fact = Detf.id_deta_fact
 left join Paquete as Paq on Ple.id_paq = Paq.id_paq
 where Detf.id_cab_fact = 3;
+
 
 -- query para mostrar el detalle de factura (según la cabecera actual) y mostrar los datos del paquete elegido
 /*

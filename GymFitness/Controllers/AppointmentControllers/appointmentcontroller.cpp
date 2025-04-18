@@ -76,15 +76,17 @@ void AppointmentController::getAllPaymentInvoicesAP(SqlConnection *con, std::vec
 
     QString sqlSentence;
     sqlSentence.append(
-    "SELECT\n"
+    "SELECT DISTINCT\n"
     "CabFac.id_cab_fact,\n"
     "CabFac.fecha_cab_fact,\n"
     "CabFac.total_cab_fact,\n"
     "Pers.cod_persona,\n"
     "Pers.nombre,\n"
     "Pers.apellido\n"
-    "FROM CabeceraFactura as CabFac, Persona as Pers\n"
-    "WHERE Pers.cod_persona = CabFac.cod_persona");
+    "FROM CabeceraFactura as CabFac\n"
+    "INNER JOIN Persona as Pers on Pers.cod_persona = CabFac.cod_persona\n"
+    "LEFT JOIN DetalleFactura as DetF on CabFac.id_cab_fact = Detf.id_cab_fact\n"
+    "WHERE DetF.id_deta_fact in (select id_deta_fact from ServicioElegido )");
 
     Persona clienteActual;
     QSqlQuery query;

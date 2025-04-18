@@ -2,7 +2,9 @@ debug/logincontroller.o
 debug/personcontroller.o
 debug/appointmentcontroller.o
 debug/paymentcontrollers.o
+debug/reportcontroller.o
 debug/detallefactura.o
+debug/detallereporte.o
 debug/factura.o
 debug/paqueteentreno.o
 debug/persona.o
