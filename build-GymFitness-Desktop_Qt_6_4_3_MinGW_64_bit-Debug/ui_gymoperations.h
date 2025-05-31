@@ -116,6 +116,14 @@ public:
     QHBoxLayout *horizontalLayout_11;
     QPushButton *btnAllInvoicesReport;
     QPushButton *btnGenerateReport;
+    QWidget *tabCorreos;
+    QVBoxLayout *verticalLayout_12;
+    QVBoxLayout *verticalLayout_10;
+    QLineEdit *lineEdit;
+    QTableWidget *tableWidget;
+    QHBoxLayout *horizontalLayout_12;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
 
     void setupUi(QWidget *GymOperations)
     {
@@ -983,13 +991,49 @@ public:
         gridLayout_3->addLayout(horizontalLayout_11, 1, 0, 1, 1);
 
         tabWidget->addTab(tabFacturas, QString());
+        tabCorreos = new QWidget();
+        tabCorreos->setObjectName("tabCorreos");
+        verticalLayout_12 = new QVBoxLayout(tabCorreos);
+        verticalLayout_12->setObjectName("verticalLayout_12");
+        verticalLayout_10 = new QVBoxLayout();
+        verticalLayout_10->setObjectName("verticalLayout_10");
+        lineEdit = new QLineEdit(tabCorreos);
+        lineEdit->setObjectName("lineEdit");
+
+        verticalLayout_10->addWidget(lineEdit);
+
+        tableWidget = new QTableWidget(tabCorreos);
+        tableWidget->setObjectName("tableWidget");
+
+        verticalLayout_10->addWidget(tableWidget);
+
+        horizontalLayout_12 = new QHBoxLayout();
+        horizontalLayout_12->setObjectName("horizontalLayout_12");
+        horizontalLayout_12->setContentsMargins(0, 10, -1, 10);
+        pushButton = new QPushButton(tabCorreos);
+        pushButton->setObjectName("pushButton");
+
+        horizontalLayout_12->addWidget(pushButton);
+
+        pushButton_2 = new QPushButton(tabCorreos);
+        pushButton_2->setObjectName("pushButton_2");
+
+        horizontalLayout_12->addWidget(pushButton_2);
+
+
+        verticalLayout_10->addLayout(horizontalLayout_12);
+
+
+        verticalLayout_12->addLayout(verticalLayout_10);
+
+        tabWidget->addTab(tabCorreos, QString());
 
         verticalLayout->addWidget(tabWidget);
 
 
         retranslateUi(GymOperations);
 
-        tabWidget->setCurrentIndex(4);
+        tabWidget->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(GymOperations);
@@ -1139,6 +1183,10 @@ public:
         btnAllInvoicesReport->setText(QCoreApplication::translate("GymOperations", "Todas las Facturas", nullptr));
         btnGenerateReport->setText(QCoreApplication::translate("GymOperations", "Generar PDF de la Factura", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabFacturas), QCoreApplication::translate("GymOperations", "Facturas", nullptr));
+        lineEdit->setPlaceholderText(QCoreApplication::translate("GymOperations", "Correo: ", nullptr));
+        pushButton->setText(QCoreApplication::translate("GymOperations", "Enviar Factura", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("GymOperations", "Limpiar Todo", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tabCorreos), QCoreApplication::translate("GymOperations", "Correos", nullptr));
     } // retranslateUi
 
 };

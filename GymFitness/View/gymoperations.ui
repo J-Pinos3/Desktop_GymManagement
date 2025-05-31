@@ -55,7 +55,7 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
@@ -1259,6 +1259,89 @@ QWidget#tabFacturas QTableWidget{
             <string>Generar PDF de la Factura</string>
            </property>
           </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabCorreos">
+      <property name="styleSheet">
+       <string notr="true">QWidget#tabCorreos QPushButton {
+    background-color: #ffd600;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+	
+	border-radius: 3px;
+}
+
+
+
+QWidget#tabCorreos QLineEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: white;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}
+
+
+
+QWidget#tabCorreos QTableWidget{
+	background-color: #d1d1d1;
+}
+
+
+
+
+</string>
+      </property>
+      <attribute name="title">
+       <string>Correos</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_12">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_10">
+         <item>
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="placeholderText">
+            <string>Correo: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="tableWidget"/>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="text">
+              <string>Enviar Factura</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="text">
+              <string>Limpiar Todo</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>
