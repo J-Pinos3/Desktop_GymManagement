@@ -119,11 +119,11 @@ public:
     QWidget *tabCorreos;
     QVBoxLayout *verticalLayout_12;
     QVBoxLayout *verticalLayout_10;
-    QLineEdit *lineEdit;
-    QTableWidget *tableWidget;
+    QLineEdit *txtEmailAddress;
+    QTableWidget *tblEmailFiles;
     QHBoxLayout *horizontalLayout_12;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *btnSendEmail;
+    QPushButton *btnListFiles;
 
     void setupUi(QWidget *GymOperations)
     {
@@ -993,32 +993,65 @@ public:
         tabWidget->addTab(tabFacturas, QString());
         tabCorreos = new QWidget();
         tabCorreos->setObjectName("tabCorreos");
+        tabCorreos->setStyleSheet(QString::fromUtf8("QWidget#tabCorreos QPushButton {\n"
+"    background-color: #ffd600;\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 4%;\n"
+"	padding-right: 7%;\n"
+"	padding-left: 7%;\n"
+"	\n"
+"	border-radius: 3px;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"QWidget#tabCorreos QLineEdit{\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 3%;\n"
+"	padding-left: 5%;\n"
+"	width: 100%;\n"
+"	min-width:200px;\n"
+"	color: white;\n"
+"	font-size: 16px;\n"
+"	border: 1px solid #ffd600\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"QWidget#tabCorreos QTableWidget{\n"
+"	background-color: #d1d1d1;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+""));
         verticalLayout_12 = new QVBoxLayout(tabCorreos);
         verticalLayout_12->setObjectName("verticalLayout_12");
         verticalLayout_10 = new QVBoxLayout();
         verticalLayout_10->setObjectName("verticalLayout_10");
-        lineEdit = new QLineEdit(tabCorreos);
-        lineEdit->setObjectName("lineEdit");
+        txtEmailAddress = new QLineEdit(tabCorreos);
+        txtEmailAddress->setObjectName("txtEmailAddress");
 
-        verticalLayout_10->addWidget(lineEdit);
+        verticalLayout_10->addWidget(txtEmailAddress);
 
-        tableWidget = new QTableWidget(tabCorreos);
-        tableWidget->setObjectName("tableWidget");
+        tblEmailFiles = new QTableWidget(tabCorreos);
+        tblEmailFiles->setObjectName("tblEmailFiles");
 
-        verticalLayout_10->addWidget(tableWidget);
+        verticalLayout_10->addWidget(tblEmailFiles);
 
         horizontalLayout_12 = new QHBoxLayout();
         horizontalLayout_12->setObjectName("horizontalLayout_12");
         horizontalLayout_12->setContentsMargins(0, 10, -1, 10);
-        pushButton = new QPushButton(tabCorreos);
-        pushButton->setObjectName("pushButton");
+        btnSendEmail = new QPushButton(tabCorreos);
+        btnSendEmail->setObjectName("btnSendEmail");
 
-        horizontalLayout_12->addWidget(pushButton);
+        horizontalLayout_12->addWidget(btnSendEmail);
 
-        pushButton_2 = new QPushButton(tabCorreos);
-        pushButton_2->setObjectName("pushButton_2");
+        btnListFiles = new QPushButton(tabCorreos);
+        btnListFiles->setObjectName("btnListFiles");
 
-        horizontalLayout_12->addWidget(pushButton_2);
+        horizontalLayout_12->addWidget(btnListFiles);
 
 
         verticalLayout_10->addLayout(horizontalLayout_12);
@@ -1183,9 +1216,9 @@ public:
         btnAllInvoicesReport->setText(QCoreApplication::translate("GymOperations", "Todas las Facturas", nullptr));
         btnGenerateReport->setText(QCoreApplication::translate("GymOperations", "Generar PDF de la Factura", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabFacturas), QCoreApplication::translate("GymOperations", "Facturas", nullptr));
-        lineEdit->setPlaceholderText(QCoreApplication::translate("GymOperations", "Correo: ", nullptr));
-        pushButton->setText(QCoreApplication::translate("GymOperations", "Enviar Factura", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("GymOperations", "Limpiar Todo", nullptr));
+        txtEmailAddress->setPlaceholderText(QCoreApplication::translate("GymOperations", "Correo: ", nullptr));
+        btnSendEmail->setText(QCoreApplication::translate("GymOperations", "Enviar Correo", nullptr));
+        btnListFiles->setText(QCoreApplication::translate("GymOperations", "Listar Archivos", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabCorreos), QCoreApplication::translate("GymOperations", "Correos", nullptr));
     } // retranslateUi
 

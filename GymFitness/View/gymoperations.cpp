@@ -1,6 +1,10 @@
 #include "gymoperations.h"
 #include "ui_gymoperations.h"
 
+#include "SmtpMime"
+
+#include <QSettings>
+
 #include <QPdfWriter>
 #include <QPainter>
 
@@ -1199,4 +1203,76 @@ void GymOperations::on_tblAllInvoices_cellActivated(int row, int column)
     }
 
 }
+
+
+//EMAIL TABS
+void GymOperations::on_btnSendEmail_clicked()
+{
+    //https://www.youtube.com/watch?v=62Mzbt8QqLE
+    QSettings settings("../GymFitness/config.ini", QSettings::Format::IniFormat);
+    //settings.setValue("Group1/mail","jfkik@gmail.com");
+    //settings.setValue("Group1/password","vsd");
+
+
+    QString correo = settings.value("Group1/mail").toString();
+    QString password = settings.value("Group1/password").toString();
+
+    if( correo.isEmpty() || password.isEmpty() ){
+        qDebug() << "Couldn't find credentials for gmail";
+    }
+    qDebug() << "Correo: " << correo << "Password: " << password<< "\n";
+
+
+    MimeMessage message;
+
+    EmailAddress sender(correo, "Jose Pinos");
+    message.setSender(sender);
+
+    EmailAddress to("Reverb1@outlook.es", "Pepito Alejandro");
+    message.addRecipient(to);
+
+    message.setSubject("Hola Mundo");
+
+    // Now add some text to the email.
+    // First we create a MimeText object.
+
+    MimeText text;
+
+    text.setText("Hi,\nThis is a simple email message.\n");
+
+    // Now add it to the mail
+
+    message.addPart(&text);
+
+    // Now we can send the mail
+    SmtpClient smtp("smtp.gmail.com", 465, SmtpClient::SslConnection);
+
+    smtp.connectToHost();
+    if (!smtp.waitForReadyConnected()) {
+        qDebug() << "Failed to connect to host!";
+
+    }
+
+    smtp.login(correo, password);
+    if (!smtp.waitForAuthenticated()) {
+        qDebug() << "Failed to login!";
+
+    }
+
+    smtp.sendMail(message);
+    if (!smtp.waitForMailSent()) {
+        qDebug() << "Failed to send mail!";
+
+    }
+
+    smtp.quit();
+
+
+}
+
+
+
+
+
+
 

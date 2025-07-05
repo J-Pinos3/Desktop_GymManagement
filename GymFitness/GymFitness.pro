@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,9 +23,27 @@ SOURCES += \
     Models/servicio.cpp \
     Models/servicioelegido.cpp \
     View/gymoperations.cpp \
+    emailaddress.cpp \
     main.cpp \
     mainwindow.cpp \
     Models/rol.cpp \
+    mimeattachment.cpp \
+    mimebase64encoder.cpp \
+    mimebase64formatter.cpp \
+    mimebytearrayattachment.cpp \
+    mimecontentencoder.cpp \
+    mimecontentformatter.cpp \
+    mimefile.cpp \
+    mimehtml.cpp \
+    mimeinlinefile.cpp \
+    mimemessage.cpp \
+    mimemultipart.cpp \
+    mimepart.cpp \
+    mimeqpencoder.cpp \
+    mimeqpformatter.cpp \
+    mimetext.cpp \
+    quotedprintable.cpp \
+    smtpclient.cpp \
     sqlconnection.cpp
 
 HEADERS += \
@@ -42,9 +60,29 @@ HEADERS += \
     Models/planelegido.h \
     Models/servicio.h \
     Models/servicioelegido.h \
+    SmtpMime \
     View/gymoperations.h \
+    emailaddress.h \
     mainwindow.h \
     Models/rol.h \
+    mimeattachment.h \
+    mimebase64encoder.h \
+    mimebase64formatter.h \
+    mimebytearrayattachment.h \
+    mimecontentencoder.h \
+    mimecontentformatter.h \
+    mimefile.h \
+    mimehtml.h \
+    mimeinlinefile.h \
+    mimemessage.h \
+    mimemultipart.h \
+    mimepart.h \
+    mimeqpencoder.h \
+    mimeqpformatter.h \
+    mimetext.h \
+    quotedprintable.h \
+    smtpclient.h \
+    smtpmime_global.h \
     sqlconnection.h
 
 FORMS += \
@@ -70,3 +108,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     Resources.qrc
+
+SUBDIRS += \
+    SMTPEmail.pro

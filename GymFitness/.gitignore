@@ -1,6 +1,5 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
-
 *~
 *.autosave
 *.a
@@ -72,3 +71,4 @@ CMakeLists.txt.user*
 *.dll
 *.exe
 
+./config.ini

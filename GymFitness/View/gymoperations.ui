@@ -1307,14 +1307,14 @@ QWidget#tabCorreos QTableWidget{
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_10">
          <item>
-          <widget class="QLineEdit" name="lineEdit">
+          <widget class="QLineEdit" name="txtEmailAddress">
            <property name="placeholderText">
             <string>Correo: </string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QTableWidget" name="tableWidget"/>
+          <widget class="QTableWidget" name="tblEmailFiles"/>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_12">
@@ -1328,16 +1328,16 @@ QWidget#tabCorreos QTableWidget{
             <number>10</number>
            </property>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="btnSendEmail">
              <property name="text">
-              <string>Enviar Factura</string>
+              <string>Enviar Correo</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="btnListFiles">
              <property name="text">
-              <string>Limpiar Todo</string>
+              <string>Listar Archivos</string>
              </property>
             </widget>
            </item>

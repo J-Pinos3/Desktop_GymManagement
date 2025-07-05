@@ -126,6 +126,8 @@ private slots:
 
     void on_tblAllInvoices_cellActivated(int row, int column);
 
+    void on_btnSendEmail_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
