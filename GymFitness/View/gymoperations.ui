@@ -1314,7 +1314,13 @@ QWidget#tabCorreos QTableWidget{
           </widget>
          </item>
          <item>
-          <widget class="QTableWidget" name="tblEmailFiles"/>
+          <widget class="QTableWidget" name="tblEmailFiles">
+           <column>
+            <property name="text">
+             <string>Archivo</string>
+            </property>
+           </column>
+          </widget>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_12">
@@ -1337,7 +1343,7 @@ QWidget#tabCorreos QTableWidget{
            <item>
             <widget class="QPushButton" name="btnListFiles">
              <property name="text">
-              <string>Listar Archivos</string>
+              <string>Seleccionar Archivos</string>
              </property>
             </widget>
            </item>

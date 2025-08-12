@@ -10,6 +10,7 @@
 
 #include <QFont>
 #include <QFileDialog>
+#include <QBuffer>
 
 GymOperations::GymOperations(QWidget *parent) :
     QWidget(parent),
@@ -1213,6 +1214,7 @@ void GymOperations::on_btnSendEmail_clicked()
     //settings.setValue("Group1/mail","jfkik@gmail.com");
     //settings.setValue("Group1/password","vsd");
 
+    QMessageBox msg = QMessageBox();
 
     QString correo = settings.value("Group1/mail").toString();
     QString password = settings.value("Group1/password").toString();
@@ -1244,6 +1246,39 @@ void GymOperations::on_btnSendEmail_clicked()
 
     message.addPart(&text);
 
+
+
+    std::vector<std::unique_ptr<QFile>> openedFiles;
+    openedFiles.reserve(facturasCorreo.size());
+    for( QString& filePath  : facturasCorreo ){
+        //QFile document(file);
+
+    if (filePath == "Sin Archivos") continue; // filtrar texto de "sin archivos"
+    auto file = std::make_unique<QFile>(filePath);
+    if (!file->open(QIODevice::ReadOnly)) {
+        qDebug() << "No se pudo abrir:" << filePath << file->errorString();
+        continue;
+    }
+
+    // MimeAttachment espera un QFile*
+    MimeAttachment *attachment = new MimeAttachment(file.get());
+    attachment->setContentName(QFileInfo(filePath).fileName());
+    message.addPart(attachment);
+
+    // Guardamos el QFile en el vector para mantenerlo vivo
+    openedFiles.push_back(std::move(file));
+
+        //QFile document(file);
+        //MimeAttachment documentAttachment(&document);
+        //message.addPart(&documentAttachment);
+
+    }
+
+
+
+
+
+
     // Now we can send the mail
     SmtpClient smtp("smtp.gmail.com", 465, SmtpClient::SslConnection);
 
@@ -1251,23 +1286,72 @@ void GymOperations::on_btnSendEmail_clicked()
     if (!smtp.waitForReadyConnected()) {
         qDebug() << "Failed to connect to host!";
 
+        msg.setWindowTitle("Correo");
+        msg.setText("No se pudo enviar el correo");
+        msg.setIcon(QMessageBox::Critical);
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
     }
 
     smtp.login(correo, password);
     if (!smtp.waitForAuthenticated()) {
         qDebug() << "Failed to login!";
-
+        msg.setWindowTitle("Correo");
+        msg.setText("No se pudo enviar el correo");
+        msg.setIcon(QMessageBox::Critical);
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
     }
 
     smtp.sendMail(message);
     if (!smtp.waitForMailSent()) {
         qDebug() << "Failed to send mail!";
-
+        msg.setWindowTitle("Correo");
+        msg.setText("No se pudo enviar el correo");
+        msg.setIcon(QMessageBox::Critical);
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
     }
+
+    msg.setWindowTitle("Correo");
+    msg.setText("Correo enviado exitosamente");
+    msg.setIcon(QMessageBox::Information);
+    msg.setStyleSheet("color:white; background:black");
+    msg.exec();
 
     smtp.quit();
 
 
+}
+
+
+void GymOperations::getInvoiceFiles(){
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::ExistingFiles);
+    dialog.setNameFilter(tr("Facturas (*.pdf)"));
+    dialog.setViewMode(QFileDialog::Detail);
+    QStringList filenames;
+    if(dialog.exec())
+        filenames = dialog.selectedFiles();
+
+    if(filenames.isEmpty())
+        facturasCorreo = {"Sin Archivos"};
+    facturasCorreo = filenames;
+}
+
+
+void GymOperations::on_btnListFiles_clicked()
+{
+    getInvoiceFiles();
+    ui->tblEmailFiles->clearContents();
+    ui->tblEmailFiles->setRowCount(facturasCorreo.size());
+
+    for(size_t i =0; i < facturasCorreo.size(); i++){
+
+        ui->tblEmailFiles->setItem(
+            i,0, new QTableWidgetItem( facturasCorreo[i] )
+        );
+    }
 }
 
 

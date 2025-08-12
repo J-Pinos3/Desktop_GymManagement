@@ -65,6 +65,9 @@ public:
     //adjust the sice of the table of invoices for report
     void adjustReportInvoiceTable(QTableWidget *tableWidget);
 
+    //list pdf files to send via email
+    void getInvoiceFiles();
+
 private slots:
 
     void on_btnCustomerSearchIntro_clicked();
@@ -128,6 +131,8 @@ private slots:
 
     void on_btnSendEmail_clicked();
 
+    void on_btnListFiles_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
@@ -141,6 +146,7 @@ private:
     QList<QString> servicesList;
     std::vector<Factura> facturasReporte;
     std::vector<DetalleReporte> detallesReporte;
+    QStringList facturasCorreo;
 };
 
 #endif // GYMOPERATIONS_H

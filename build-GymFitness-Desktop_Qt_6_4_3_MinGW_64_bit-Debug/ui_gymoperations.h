@@ -1036,6 +1036,10 @@ public:
         verticalLayout_10->addWidget(txtEmailAddress);
 
         tblEmailFiles = new QTableWidget(tabCorreos);
+        if (tblEmailFiles->columnCount() < 1)
+            tblEmailFiles->setColumnCount(1);
+        QTableWidgetItem *__qtablewidgetitem48 = new QTableWidgetItem();
+        tblEmailFiles->setHorizontalHeaderItem(0, __qtablewidgetitem48);
         tblEmailFiles->setObjectName("tblEmailFiles");
 
         verticalLayout_10->addWidget(tblEmailFiles);
@@ -1217,8 +1221,10 @@ public:
         btnGenerateReport->setText(QCoreApplication::translate("GymOperations", "Generar PDF de la Factura", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabFacturas), QCoreApplication::translate("GymOperations", "Facturas", nullptr));
         txtEmailAddress->setPlaceholderText(QCoreApplication::translate("GymOperations", "Correo: ", nullptr));
+        QTableWidgetItem *___qtablewidgetitem48 = tblEmailFiles->horizontalHeaderItem(0);
+        ___qtablewidgetitem48->setText(QCoreApplication::translate("GymOperations", "Archivo", nullptr));
         btnSendEmail->setText(QCoreApplication::translate("GymOperations", "Enviar Correo", nullptr));
-        btnListFiles->setText(QCoreApplication::translate("GymOperations", "Listar Archivos", nullptr));
+        btnListFiles->setText(QCoreApplication::translate("GymOperations", "Seleccionar Archivos", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabCorreos), QCoreApplication::translate("GymOperations", "Correos", nullptr));
     } // retranslateUi
 

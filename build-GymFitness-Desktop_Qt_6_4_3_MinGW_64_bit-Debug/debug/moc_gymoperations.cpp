@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_GymOperations_t {
-    uint offsetsAndSizes[58];
+    uint offsetsAndSizes[60];
     char stringdata0[14];
     char stringdata1[34];
     char stringdata2[1];
@@ -56,6 +56,7 @@ struct qt_meta_stringdata_GymOperations_t {
     char stringdata26[32];
     char stringdata27[32];
     char stringdata28[24];
+    char stringdata29[24];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_GymOperations_t::offsetsAndSizes) + ofs), len 
@@ -89,7 +90,8 @@ Q_CONSTINIT static const qt_meta_stringdata_GymOperations_t qt_meta_stringdata_G
         QT_MOC_LITERAL(637, 28),  // "on_btnGenerateReport_clicked"
         QT_MOC_LITERAL(666, 31),  // "on_btnAllInvoicesReport_clicked"
         QT_MOC_LITERAL(698, 31),  // "on_tblAllInvoices_cellActivated"
-        QT_MOC_LITERAL(730, 23)   // "on_btnSendEmail_clicked"
+        QT_MOC_LITERAL(730, 23),  // "on_btnSendEmail_clicked"
+        QT_MOC_LITERAL(754, 23)   // "on_btnListFiles_clicked"
     },
     "GymOperations",
     "on_btnCustomerSearchIntro_clicked",
@@ -119,7 +121,8 @@ Q_CONSTINIT static const qt_meta_stringdata_GymOperations_t qt_meta_stringdata_G
     "on_btnGenerateReport_clicked",
     "on_btnAllInvoicesReport_clicked",
     "on_tblAllInvoices_cellActivated",
-    "on_btnSendEmail_clicked"
+    "on_btnSendEmail_clicked",
+    "on_btnListFiles_clicked"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -130,7 +133,7 @@ Q_CONSTINIT static const uint qt_meta_data_GymOperations[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      25,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -138,30 +141,31 @@ Q_CONSTINIT static const uint qt_meta_data_GymOperations[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  158,    2, 0x08,    1 /* Private */,
-       3,    0,  159,    2, 0x08,    2 /* Private */,
-       4,    0,  160,    2, 0x08,    3 /* Private */,
-       5,    1,  161,    2, 0x08,    4 /* Private */,
-       7,    0,  164,    2, 0x08,    6 /* Private */,
-       8,    0,  165,    2, 0x08,    7 /* Private */,
-       9,    0,  166,    2, 0x08,    8 /* Private */,
-      10,    0,  167,    2, 0x08,    9 /* Private */,
-      11,    0,  168,    2, 0x08,   10 /* Private */,
-      12,    0,  169,    2, 0x08,   11 /* Private */,
-      13,    0,  170,    2, 0x08,   12 /* Private */,
-      14,    2,  171,    2, 0x08,   13 /* Private */,
-      17,    2,  176,    2, 0x08,   16 /* Private */,
-      18,    0,  181,    2, 0x08,   19 /* Private */,
-      19,    0,  182,    2, 0x08,   20 /* Private */,
-      20,    0,  183,    2, 0x08,   21 /* Private */,
-      21,    0,  184,    2, 0x08,   22 /* Private */,
-      22,    2,  185,    2, 0x08,   23 /* Private */,
-      23,    2,  190,    2, 0x08,   26 /* Private */,
-      24,    0,  195,    2, 0x08,   29 /* Private */,
-      25,    0,  196,    2, 0x08,   30 /* Private */,
-      26,    0,  197,    2, 0x08,   31 /* Private */,
-      27,    2,  198,    2, 0x08,   32 /* Private */,
-      28,    0,  203,    2, 0x08,   35 /* Private */,
+       1,    0,  164,    2, 0x08,    1 /* Private */,
+       3,    0,  165,    2, 0x08,    2 /* Private */,
+       4,    0,  166,    2, 0x08,    3 /* Private */,
+       5,    1,  167,    2, 0x08,    4 /* Private */,
+       7,    0,  170,    2, 0x08,    6 /* Private */,
+       8,    0,  171,    2, 0x08,    7 /* Private */,
+       9,    0,  172,    2, 0x08,    8 /* Private */,
+      10,    0,  173,    2, 0x08,    9 /* Private */,
+      11,    0,  174,    2, 0x08,   10 /* Private */,
+      12,    0,  175,    2, 0x08,   11 /* Private */,
+      13,    0,  176,    2, 0x08,   12 /* Private */,
+      14,    2,  177,    2, 0x08,   13 /* Private */,
+      17,    2,  182,    2, 0x08,   16 /* Private */,
+      18,    0,  187,    2, 0x08,   19 /* Private */,
+      19,    0,  188,    2, 0x08,   20 /* Private */,
+      20,    0,  189,    2, 0x08,   21 /* Private */,
+      21,    0,  190,    2, 0x08,   22 /* Private */,
+      22,    2,  191,    2, 0x08,   23 /* Private */,
+      23,    2,  196,    2, 0x08,   26 /* Private */,
+      24,    0,  201,    2, 0x08,   29 /* Private */,
+      25,    0,  202,    2, 0x08,   30 /* Private */,
+      26,    0,  203,    2, 0x08,   31 /* Private */,
+      27,    2,  204,    2, 0x08,   32 /* Private */,
+      28,    0,  209,    2, 0x08,   35 /* Private */,
+      29,    0,  210,    2, 0x08,   36 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -187,6 +191,7 @@ Q_CONSTINIT static const uint qt_meta_data_GymOperations[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,   15,   16,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -259,6 +264,8 @@ Q_CONSTINIT const QMetaObject GymOperations::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_btnSendEmail_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_btnListFiles_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -294,6 +301,7 @@ void GymOperations::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 21: _t->on_btnAllInvoicesReport_clicked(); break;
         case 22: _t->on_tblAllInvoices_cellActivated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 23: _t->on_btnSendEmail_clicked(); break;
+        case 24: _t->on_btnListFiles_clicked(); break;
         default: ;
         }
     }
@@ -318,13 +326,13 @@ int GymOperations::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 25;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 25)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 24;
+        _id -= 25;
     }
     return _id;
 }
