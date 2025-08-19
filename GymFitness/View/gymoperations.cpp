@@ -1,9 +1,12 @@
 #include "gymoperations.h"
 #include "ui_gymoperations.h"
 
+
 #include "SmtpMime"
 
 #include <QSettings>
+
+#include <QCalendarWidget>
 
 #include <QPdfWriter>
 #include <QPainter>
@@ -18,6 +21,7 @@ GymOperations::GymOperations(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    /// wrAssistanceFile();
 
     connect( ui->tblWidPaymentInvoice, SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidPaymentInvoice_cellActivated(int, int)) );
     connect( ui->tblWidPaymentLine,    SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidPaymentLine_cellActivated(int, int)) );
@@ -25,10 +29,13 @@ GymOperations::GymOperations(QWidget *parent) :
     connect( ui->tblWidAppointLine, SIGNAL(cellClicked(int,int)), this, SLOT(on_tblWidAppointLine_cellActivated(int, int)) );
     connect(ui->tblAllInvoices, SIGNAL(cellClicked(int,int)), this, SLOT(on_tblAllInvoices_cellActivated(int, int)) );
 
+    connect(&dialogCalendar, &DialogCalendar::choosenDate, this, &GymOperations::setChoosenDate);
+
     setCustomersRoleDescription();
     listAllCustomers();
     getTrainingPackages();
     getAllGymServices();
+
 }
 
 GymOperations::~GymOperations()
@@ -127,6 +134,17 @@ void GymOperations::listAllCustomers(){
 
 
 //INTRO TAB
+void GymOperations::wrAssistanceFile(){
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::Directory );
+    dialog.setViewMode(QFileDialog::Detail);
+
+    if(dialog.exec())
+        qDebug() << "Ruta seleccionada: "
+            <<  dialog.selectedUrls()[0]<< "\n";
+
+}
+
 void GymOperations::on_btnCustomerSearchIntro_clicked()
 {
     QString userRoleDescription = "";
@@ -1230,7 +1248,8 @@ void GymOperations::on_btnSendEmail_clicked()
     EmailAddress sender(correo, "Jose Pinos");
     message.setSender(sender);
 
-    EmailAddress to("Reverb1@outlook.es", "Pepito Alejandro");
+    //EmailAddress to("Reverb1@outlook.es", "Pepito Alejandro");
+    EmailAddress to(emailAddressTo, "Pepito Alejandro");
     message.addRecipient(to);
 
     message.setSubject("Hola Mundo");
@@ -1287,7 +1306,7 @@ void GymOperations::on_btnSendEmail_clicked()
         qDebug() << "Failed to connect to host!";
 
         msg.setWindowTitle("Correo");
-        msg.setText("No se pudo enviar el correo");
+        msg.setText("No se pudo enviar el correo 1");
         msg.setIcon(QMessageBox::Critical);
         msg.setStyleSheet("color:white; background:black");
         msg.exec();
@@ -1297,7 +1316,7 @@ void GymOperations::on_btnSendEmail_clicked()
     if (!smtp.waitForAuthenticated()) {
         qDebug() << "Failed to login!";
         msg.setWindowTitle("Correo");
-        msg.setText("No se pudo enviar el correo");
+        msg.setText("No se pudo enviar el correo 2");
         msg.setIcon(QMessageBox::Critical);
         msg.setStyleSheet("color:white; background:black");
         msg.exec();
@@ -1307,7 +1326,7 @@ void GymOperations::on_btnSendEmail_clicked()
     if (!smtp.waitForMailSent()) {
         qDebug() << "Failed to send mail!";
         msg.setWindowTitle("Correo");
-        msg.setText("No se pudo enviar el correo");
+        msg.setText("No se pudo enviar el correo 3" );
         msg.setIcon(QMessageBox::Critical);
         msg.setStyleSheet("color:white; background:black");
         msg.exec();
@@ -1357,6 +1376,63 @@ void GymOperations::on_btnListFiles_clicked()
 
 
 
+void GymOperations::on_txtEmailAddress_textChanged(const QString &arg1)
+{
+    qDebug() <<"---->"<<arg1 << "\n";
+    if(arg1.isEmpty() || arg1.isNull() || arg1 == ""){
+        ui->btnSendEmail->setDisabled(true);
+        ui->btnSendEmail->setCheckable(false);
+        ui->btnSendEmail->setStyleSheet(
+            "QWidget#tabCorreos QPushButton {"
+            "background-color: #7393B3;"
+            "padding-top: 2%;"
+            "padding-bottom: 4%;"
+            "padding-right: 7%;"
+            "padding-left: 7%;"
+            "border-radius: 3px;"
+            "}"
+        );
+    }
+    ui->btnSendEmail->setDisabled(false);
+    ui->btnSendEmail->setCheckable(true);
+    ui->btnSendEmail->setStyleSheet(
+        "QWidget#tabCorreos QPushButton {"
+        "background-color: #ffd600;"
+        "padding-top: 2%;"
+        "padding-bottom: 4%;"
+        "padding-right: 7%;"
+        "padding-left: 7%;"
+        "border-radius: 3px;"
+        "}"
+    );
+
+    emailAddressTo = arg1;
+}
+
+void GymOperations::on_btnAvailableDates_clicked()
+{
+
+    dialogCalendar.exec();
+
+
+    /*
+    QCalendarWidget calendar;
+    calendar.show();
+    calendar.setGridVisible(true);
+    calendar.setDateEditEnabled(false);
+    calendar.setMaximumDate(QDate(2100,10,10));
+    calendar.setMinimumDate(QDate(2024,10,10));
+
+    QDate selectedDate = calendar.selectedDate();
+    qDebug() << "Choosen Date: " << selectedDate.year() << "-"
+    << selectedDate.month() << selectedDate.day() << "\n";
+    */
+}
+
+
+void GymOperations::setChoosenDate(const QDate &date){
+    this->ui->appointDate->setDate(date);
+}
 
 
 

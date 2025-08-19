@@ -7,6 +7,9 @@
 #include <vector>
 #include <string>
 
+#include <QFile>
+#include <QTextStream>
+
 #include "Controllers/PersonControllers/personcontroller.h"
 #include "Controllers/PaymentControllers/paymentcontrollers.h"
 #include "Controllers/AppointmentControllers/appointmentcontroller.h"
@@ -17,7 +20,10 @@
 #include "Models/factura.h"
 #include "Models/detallefactura.h"
 #include "Models/servicio.h"
+#include "View/dialogcalendar.h"
+
 #include "sqlconnection.h"
+
 
 namespace Ui {
 class GymOperations;
@@ -67,6 +73,12 @@ public:
 
     //list pdf files to send via email
     void getInvoiceFiles();
+
+    void wrAssistanceFile();
+
+public slots:
+    //set appoint date
+    void setChoosenDate(const QDate& date);
 
 private slots:
 
@@ -133,6 +145,10 @@ private slots:
 
     void on_btnListFiles_clicked();
 
+    void on_txtEmailAddress_textChanged(const QString &arg1);
+
+    void on_btnAvailableDates_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
@@ -147,6 +163,8 @@ private:
     std::vector<Factura> facturasReporte;
     std::vector<DetalleReporte> detallesReporte;
     QStringList facturasCorreo;
+    QString emailAddressTo;
+    DialogCalendar dialogCalendar;
 };
 
 #endif // GYMOPERATIONS_H

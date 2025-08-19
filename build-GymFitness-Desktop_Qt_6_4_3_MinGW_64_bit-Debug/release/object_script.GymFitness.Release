@@ -11,6 +11,7 @@ release/persona.o
 release/planelegido.o
 release/servicio.o
 release/servicioelegido.o
+release/dialogcalendar.o
 release/gymoperations.o
 release/emailaddress.o
 release/main.o
@@ -35,6 +36,7 @@ release/quotedprintable.o
 release/smtpclient.o
 release/sqlconnection.o
 release/qrc_Resources.o
+release/moc_dialogcalendar.o
 release/moc_gymoperations.o
 release/moc_mainwindow.o
 release/moc_mimecontentformatter.o

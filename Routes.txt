@@ -25,11 +25,11 @@ Progress:
 **La lógica para crear la cita, será similar a la lógica de crear un nuevo detalle de factura
 	44) Testing del proceso de generar una factura con un servicio o también con entreno con sql de momento funciona
 
+	
+	70) crear la sentencia sql para traer todas las fechas de citas
+	71) mostrar con otro color las fechas que ya están reservadas
 
 
-	66) Diseñar el pdf que contiene los datos de la factura
-	67) Modificar las funciones que traen todas las facturas, de modo que
-	en el tab citas, solo estén las facturas para citas
 
 
 Completed:
@@ -120,3 +120,8 @@ Completed:
 	63) Corregir en el report controller la función para traer los detalles de cada cabecera	
 	64) Crear un nuevo modelo de datos para los detalles del reporte para ser más organizado
 	65) Implementar la clase DetalleReporte en el reportController y traer los datos en la tabla
+	66) Diseñar el pdf que contiene los datos de la factura
+	67) Modificar las funciones que traen todas las facturas, de modo que
+	en el tab citas, solo estén las facturas para citas
+	68) Hacer que el usuario ingrese su correo para mandarle los pdf
+	69) Elegir una fecha desde el calendario

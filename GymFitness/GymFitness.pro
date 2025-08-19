@@ -22,6 +22,7 @@ SOURCES += \
     Models/planelegido.cpp \
     Models/servicio.cpp \
     Models/servicioelegido.cpp \
+    View/dialogcalendar.cpp \
     View/gymoperations.cpp \
     emailaddress.cpp \
     main.cpp \
@@ -59,9 +60,10 @@ HEADERS += \
     Models/persona.h \
     Models/planelegido.h \
     Models/servicio.h \
+    View/dialogcalendar.h \
+    View/gymoperations.h \
     Models/servicioelegido.h \
     SmtpMime \
-    View/gymoperations.h \
     emailaddress.h \
     mainwindow.h \
     Models/rol.h \
@@ -86,6 +88,7 @@ HEADERS += \
     sqlconnection.h
 
 FORMS += \
+    View/dialogcalendar.ui \
     View/gymoperations.ui \
     mainwindow.ui
 

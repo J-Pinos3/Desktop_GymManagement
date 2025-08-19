@@ -1,13 +1,11 @@
+#pragma once
 /********************************************************************************
-** Form generated from reading UI file 'gymoperations.ui'
+** Form generated from reading UI file ''
 **
 ** Created by: Qt User Interface Compiler version 6.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
-
-#ifndef UI_GYMOPERATIONS_H
-#define UI_GYMOPERATIONS_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -72,6 +70,7 @@ public:
     QLineEdit *appointInvoiceNumber;
     QLineEdit *txtAppointUserCode;
     QDateTimeEdit *appointDate;
+    QPushButton *btnAvailableDates;
     QLineEdit *appointNumber;
     QComboBox *combxAppointService;
     QSpinBox *sbAppointQuantity;
@@ -124,6 +123,7 @@ public:
     QHBoxLayout *horizontalLayout_12;
     QPushButton *btnSendEmail;
     QPushButton *btnListFiles;
+    QWidget *tabConfig;
 
     void setupUi(QWidget *GymOperations)
     {
@@ -576,6 +576,11 @@ public:
         appointDate->setCalendarPopup(true);
 
         verticalLayout_8->addWidget(appointDate);
+
+        btnAvailableDates = new QPushButton(tabCitas);
+        btnAvailableDates->setObjectName("btnAvailableDates");
+
+        verticalLayout_8->addWidget(btnAvailableDates);
 
         appointNumber = new QLineEdit(tabCitas);
         appointNumber->setObjectName("appointNumber");
@@ -1064,13 +1069,16 @@ public:
         verticalLayout_12->addLayout(verticalLayout_10);
 
         tabWidget->addTab(tabCorreos, QString());
+        tabConfig = new QWidget();
+        tabConfig->setObjectName("tab");
+        tabWidget->addTab(tabConfig, QString());
 
         verticalLayout->addWidget(tabWidget);
 
 
         retranslateUi(GymOperations);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(GymOperations);
@@ -1138,6 +1146,7 @@ public:
         btnAppointSearchInvoice->setText(QCoreApplication::translate("GymOperations", "Buscar Factura", nullptr));
         appointInvoiceNumber->setPlaceholderText(QCoreApplication::translate("GymOperations", "Factura N\302\260 10", nullptr));
         txtAppointUserCode->setPlaceholderText(QCoreApplication::translate("GymOperations", "C\303\263digo del Cliente", nullptr));
+        btnAvailableDates->setText(QCoreApplication::translate("GymOperations", "Fechas Disponibles", nullptr));
         appointNumber->setPlaceholderText(QCoreApplication::translate("GymOperations", "Cita N\302\260 22", nullptr));
         appointPayAmmount->setPlaceholderText(QCoreApplication::translate("GymOperations", "$00.00", nullptr));
         cbxAppointNew->setText(QCoreApplication::translate("GymOperations", "Nueva Cita", nullptr));
@@ -1226,6 +1235,7 @@ public:
         btnSendEmail->setText(QCoreApplication::translate("GymOperations", "Enviar Correo", nullptr));
         btnListFiles->setText(QCoreApplication::translate("GymOperations", "Seleccionar Archivos", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabCorreos), QCoreApplication::translate("GymOperations", "Correos", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tabConfig), QCoreApplication::translate("GymOperations", "Page", nullptr));
     } // retranslateUi
 
 };
@@ -1236,4 +1246,3 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_GYMOPERATIONS_H

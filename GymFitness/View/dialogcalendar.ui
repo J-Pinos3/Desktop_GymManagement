@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogCalendar</class>
+ <widget class="QDialog" name="DialogCalendar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>448</width>
+    <height>338</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QCalendarWidget" name="appointsCalendar">
+       <property name="locale">
+        <locale language="Spanish" country="Spain"/>
+       </property>
+       <property name="minimumDate">
+        <date>
+         <year>2024</year>
+         <month>9</month>
+         <day>15</day>
+        </date>
+       </property>
+       <property name="maximumDate">
+        <date>
+         <year>2060</year>
+         <month>12</month>
+         <day>31</day>
+        </date>
+       </property>
+       <property name="firstDayOfWeek">
+        <enum>Qt::Monday</enum>
+       </property>
+       <property name="gridVisible">
+        <bool>true</bool>
+       </property>
+       <property name="horizontalHeaderFormat">
+        <enum>QCalendarWidget::ShortDayNames</enum>
+       </property>
+       <property name="verticalHeaderFormat">
+        <enum>QCalendarWidget::NoVerticalHeader</enum>
+       </property>
+       <property name="navigationBarVisible">
+        <bool>true</bool>
+       </property>
+       <property name="dateEditEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="btnCloseCalendar">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Salir</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

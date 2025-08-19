@@ -85,6 +85,11 @@ select * from PlanElegido;
 select * from Servicio;
 select * from ServicioElegido;
 
+
+-- Query para traer todas las fechas donde hay una cita o servicio del gym y así marcarlas en el calendar
+select substring(fecha_serv, 1, 10) as date_service
+from ServicioElegido;
+
 /* 17/04/2024 query para traer solo las facturas que sean de planes de ENTRENO del GYM
 1	Entrenamiento Mensual	35.00	30   tabla paquete
 2	Entrenamiento Diario	3.00	1
