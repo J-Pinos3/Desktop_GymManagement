@@ -26,7 +26,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_GymOperations_t {
-    uint offsetsAndSizes[68];
+    uint offsetsAndSizes[70];
     char stringdata0[14];
     char stringdata1[15];
     char stringdata2[1];
@@ -61,6 +61,7 @@ struct qt_meta_stringdata_GymOperations_t {
     char stringdata31[24];
     char stringdata32[31];
     char stringdata33[29];
+    char stringdata34[30];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_GymOperations_t::offsetsAndSizes) + ofs), len 
@@ -99,7 +100,8 @@ Q_CONSTINIT static const qt_meta_stringdata_GymOperations_t qt_meta_stringdata_G
         QT_MOC_LITERAL(750, 23),  // "on_btnSendEmail_clicked"
         QT_MOC_LITERAL(774, 23),  // "on_btnListFiles_clicked"
         QT_MOC_LITERAL(798, 30),  // "on_txtEmailAddress_textChanged"
-        QT_MOC_LITERAL(829, 28)   // "on_btnAvailableDates_clicked"
+        QT_MOC_LITERAL(829, 28),  // "on_btnAvailableDates_clicked"
+        QT_MOC_LITERAL(858, 29)   // "on_btnSelectDirectory_clicked"
     },
     "GymOperations",
     "setChoosenDate",
@@ -134,7 +136,8 @@ Q_CONSTINIT static const qt_meta_stringdata_GymOperations_t qt_meta_stringdata_G
     "on_btnSendEmail_clicked",
     "on_btnListFiles_clicked",
     "on_txtEmailAddress_textChanged",
-    "on_btnAvailableDates_clicked"
+    "on_btnAvailableDates_clicked",
+    "on_btnSelectDirectory_clicked"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -145,7 +148,7 @@ Q_CONSTINIT static const uint qt_meta_data_GymOperations[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      28,   14, // methods
+      29,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -153,34 +156,35 @@ Q_CONSTINIT static const uint qt_meta_data_GymOperations[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  182,    2, 0x0a,    1 /* Public */,
-       4,    0,  185,    2, 0x08,    3 /* Private */,
-       5,    0,  186,    2, 0x08,    4 /* Private */,
-       6,    0,  187,    2, 0x08,    5 /* Private */,
-       7,    1,  188,    2, 0x08,    6 /* Private */,
-       9,    0,  191,    2, 0x08,    8 /* Private */,
-      10,    0,  192,    2, 0x08,    9 /* Private */,
-      11,    0,  193,    2, 0x08,   10 /* Private */,
-      12,    0,  194,    2, 0x08,   11 /* Private */,
-      13,    0,  195,    2, 0x08,   12 /* Private */,
-      14,    0,  196,    2, 0x08,   13 /* Private */,
-      15,    0,  197,    2, 0x08,   14 /* Private */,
-      16,    2,  198,    2, 0x08,   15 /* Private */,
-      19,    2,  203,    2, 0x08,   18 /* Private */,
-      20,    0,  208,    2, 0x08,   21 /* Private */,
-      21,    0,  209,    2, 0x08,   22 /* Private */,
-      22,    0,  210,    2, 0x08,   23 /* Private */,
-      23,    0,  211,    2, 0x08,   24 /* Private */,
-      24,    2,  212,    2, 0x08,   25 /* Private */,
-      25,    2,  217,    2, 0x08,   28 /* Private */,
-      26,    0,  222,    2, 0x08,   31 /* Private */,
-      27,    0,  223,    2, 0x08,   32 /* Private */,
-      28,    0,  224,    2, 0x08,   33 /* Private */,
-      29,    2,  225,    2, 0x08,   34 /* Private */,
-      30,    0,  230,    2, 0x08,   37 /* Private */,
-      31,    0,  231,    2, 0x08,   38 /* Private */,
-      32,    1,  232,    2, 0x08,   39 /* Private */,
-      33,    0,  235,    2, 0x08,   41 /* Private */,
+       1,    1,  188,    2, 0x0a,    1 /* Public */,
+       4,    0,  191,    2, 0x08,    3 /* Private */,
+       5,    0,  192,    2, 0x08,    4 /* Private */,
+       6,    0,  193,    2, 0x08,    5 /* Private */,
+       7,    1,  194,    2, 0x08,    6 /* Private */,
+       9,    0,  197,    2, 0x08,    8 /* Private */,
+      10,    0,  198,    2, 0x08,    9 /* Private */,
+      11,    0,  199,    2, 0x08,   10 /* Private */,
+      12,    0,  200,    2, 0x08,   11 /* Private */,
+      13,    0,  201,    2, 0x08,   12 /* Private */,
+      14,    0,  202,    2, 0x08,   13 /* Private */,
+      15,    0,  203,    2, 0x08,   14 /* Private */,
+      16,    2,  204,    2, 0x08,   15 /* Private */,
+      19,    2,  209,    2, 0x08,   18 /* Private */,
+      20,    0,  214,    2, 0x08,   21 /* Private */,
+      21,    0,  215,    2, 0x08,   22 /* Private */,
+      22,    0,  216,    2, 0x08,   23 /* Private */,
+      23,    0,  217,    2, 0x08,   24 /* Private */,
+      24,    2,  218,    2, 0x08,   25 /* Private */,
+      25,    2,  223,    2, 0x08,   28 /* Private */,
+      26,    0,  228,    2, 0x08,   31 /* Private */,
+      27,    0,  229,    2, 0x08,   32 /* Private */,
+      28,    0,  230,    2, 0x08,   33 /* Private */,
+      29,    2,  231,    2, 0x08,   34 /* Private */,
+      30,    0,  236,    2, 0x08,   37 /* Private */,
+      31,    0,  237,    2, 0x08,   38 /* Private */,
+      32,    1,  238,    2, 0x08,   39 /* Private */,
+      33,    0,  241,    2, 0x08,   41 /* Private */,
+      34,    0,  242,    2, 0x08,   42 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QDate,    3,
@@ -210,6 +214,7 @@ Q_CONSTINIT static const uint qt_meta_data_GymOperations[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    8,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -292,6 +297,8 @@ Q_CONSTINIT const QMetaObject GymOperations::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_btnAvailableDates_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_btnSelectDirectory_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -331,6 +338,7 @@ void GymOperations::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 25: _t->on_btnListFiles_clicked(); break;
         case 26: _t->on_txtEmailAddress_textChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 27: _t->on_btnAvailableDates_clicked(); break;
+        case 28: _t->on_btnSelectDirectory_clicked(); break;
         default: ;
         }
     }
@@ -355,13 +363,13 @@ int GymOperations::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 28)
+        if (_id < 29)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 28;
+        _id -= 29;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 28)
+        if (_id < 29)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 28;
+        _id -= 29;
     }
     return _id;
 }

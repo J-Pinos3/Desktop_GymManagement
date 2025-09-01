@@ -2,6 +2,7 @@
 
 Persona::Persona(const std::string& codigo, const std::string& nombre,
     const std::string& apellido, const std::string& fecha_registro,
+    const std::string& fecha_pago,const std::string& fecha_fin,
     double peso, int rol)
 {
     this->codigo = codigo;
@@ -9,6 +10,8 @@ Persona::Persona(const std::string& codigo, const std::string& nombre,
     this->apellido = apellido;
     this->peso = peso;
     this->fecha_registro = fecha_registro;
+    this->fecha_pago = fecha_pago;
+    this->fecha_fin = fecha_fin;
     this->rol = rol;
 }
 
@@ -19,6 +22,11 @@ std::string Persona::getNombre() const{ return nombre; }
 std::string Persona::getApellido() const{ return apellido; }
 
 std::string Persona::getFechaRegistro() const{ return fecha_registro; }
+
+std::string Persona::getFechaPago() const{ return fecha_pago; }
+
+std::string Persona::getFechaFin() const{ return fecha_fin; }
+
 
 double Persona::getPeso() const{ return peso; }
 
@@ -58,6 +66,24 @@ void Persona::setFechaRegistro(std::string fecha_registro){
         this->fecha_registro = "Bad Date";
     }
 }
+
+void Persona::setFechaPago(std::string fecha_pago){
+    if(checkStringLength(10,5, fecha_pago)){
+        this->fecha_pago = fecha_pago;
+    }else{
+        this->fecha_pago = "Bad Date";
+    }
+}
+
+
+void Persona::setFechaFin(std::string fecha_fin){
+    if(checkStringLength(10,5, fecha_fin)){
+        this->fecha_fin = fecha_fin;
+    }else{
+        this->fecha_fin = "Bad Date";
+    }
+}
+
 
 void Persona::setPeso(double peso){
     if(checkDoubleValue(peso)){

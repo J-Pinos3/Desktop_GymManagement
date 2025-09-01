@@ -87,8 +87,15 @@ void PaymentControllers::getAllPaymentInvoices(SqlConnection *con, std::vector<F
     "Pers.apellido\n"
     "FROM CabeceraFactura as CabFac\n"
     "INNER JOIN Persona as Pers on Pers.cod_persona = CabFac.cod_persona\n"
-    "LEFT JOIN DetalleFactura as DetF on CabFac.id_cab_fact = Detf.id_cab_fact\n"
-    "WHERE DetF.id_deta_fact in (select id_deta_fact from PlanElegido)");
+    "WHERE CabFac.id_cab_fact in(\n"
+    "SELECT DISTINCT CabFac2.id_cab_fact\n"
+    "FROM CabeceraFactura as CabFac2\n"
+    "JOIN DetalleFactura as Detf ON CabFac2.id_cab_fact = Detf.id_cab_fact\n"
+    "JOIN PlanElegido as PE on Detf.id_deta_fact = PE.id_deta_fact) or \n"
+    "CabFac.id_cab_fact not in (\n"
+    "SELECT DISTINCT id_cab_fact\n"
+    "FROM DetalleFactura WHERE id_cab_fact is not null);");
+
 
     Persona clienteActual;
     QSqlQuery query;

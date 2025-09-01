@@ -1,11 +1,13 @@
-#pragma once
 /********************************************************************************
-** Form generated from reading UI file ''
+** Form generated from reading UI file 'gymoperations.ui'
 **
 ** Created by: Qt User Interface Compiler version 6.4.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
+
+#ifndef UI_GYMOPERATIONS_H
+#define UI_GYMOPERATIONS_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -16,6 +18,7 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
@@ -30,7 +33,7 @@ QT_BEGIN_NAMESPACE
 class Ui_GymOperations
 {
 public:
-    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_13;
     QTabWidget *tabWidget;
     QWidget *tabInicio;
     QVBoxLayout *verticalLayout_3;
@@ -124,18 +127,26 @@ public:
     QPushButton *btnSendEmail;
     QPushButton *btnListFiles;
     QWidget *tabConfig;
+    QVBoxLayout *verticalLayout_13;
+    QVBoxLayout *verticalLayout_14;
+    QLabel *label_2;
+    QSpacerItem *horizontalSpacer_3;
+    QPushButton *btnSelectDirectory;
+    QSpacerItem *horizontalSpacer_4;
+    QLabel *lblRouteChoos;
+    QSpacerItem *verticalSpacer;
 
     void setupUi(QWidget *GymOperations)
     {
         if (GymOperations->objectName().isEmpty())
             GymOperations->setObjectName("GymOperations");
         GymOperations->setWindowModality(Qt::NonModal);
-        GymOperations->resize(1092, 645);
-        GymOperations->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 0, 0);"));
-        verticalLayout = new QVBoxLayout(GymOperations);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setObjectName("verticalLayout");
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        GymOperations->resize(1110, 658);
+        GymOperations->setStyleSheet(QString::fromUtf8("background-color: rgb(ff,ff, ff);"));
+        horizontalLayout_13 = new QHBoxLayout(GymOperations);
+        horizontalLayout_13->setSpacing(6);
+        horizontalLayout_13->setObjectName("horizontalLayout_13");
+        horizontalLayout_13->setContentsMargins(0, 0, 0, 0);
         tabWidget = new QTabWidget(GymOperations);
         tabWidget->setObjectName("tabWidget");
         QFont font;
@@ -153,8 +164,9 @@ public:
 ""));
         tabInicio = new QWidget();
         tabInicio->setObjectName("tabInicio");
-        tabInicio->setStyleSheet(QString::fromUtf8("QWidget#tabInicio QTableWidget {\n"
-"    background-color: #d1d1d1;\n"
+        tabInicio->setStyleSheet(QString::fromUtf8("QWidget#tabInicio QTableWidget#tblWidCustomersIntro{\n"
+"  background-color: #d1d1d1;\n"
+"\n"
 "}\n"
 "\n"
 "\n"
@@ -236,8 +248,8 @@ public:
         verticalLayout_2->addLayout(horizontalLayout);
 
         tblWidCustomersIntro = new QTableWidget(tabInicio);
-        if (tblWidCustomersIntro->columnCount() < 7)
-            tblWidCustomersIntro->setColumnCount(7);
+        if (tblWidCustomersIntro->columnCount() < 8)
+            tblWidCustomersIntro->setColumnCount(8);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tblWidCustomersIntro->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
@@ -252,6 +264,8 @@ public:
         tblWidCustomersIntro->setHorizontalHeaderItem(5, __qtablewidgetitem5);
         QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
         tblWidCustomersIntro->setHorizontalHeaderItem(6, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        tblWidCustomersIntro->setHorizontalHeaderItem(7, __qtablewidgetitem7);
         tblWidCustomersIntro->setObjectName("tblWidCustomersIntro");
         tblWidCustomersIntro->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
 
@@ -269,7 +283,7 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width:200px;\n"
-"	color: white;\n"
+"	color: black;\n"
 "	font-size: 16px;\n"
 "	border: 1px solid #ffd600\n"
 "}\n"
@@ -281,7 +295,7 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width:200px;\n"
-"	color: white;\n"
+"	color: black;\n"
 "	font-size: 14px;\n"
 "	border: 1px solid #ffd600\n"
 "}\n"
@@ -291,7 +305,7 @@ public:
 "	padding-bottom: 4%;\n"
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
-"	color: white;\n"
+"	color: black;\n"
 "	font-size: 14px;\n"
 "	border: 1px solid #ffd600;\n"
 "}\n"
@@ -367,6 +381,7 @@ public:
 
         cbxManageNew = new QCheckBox(tabGestion);
         cbxManageNew->setObjectName("cbxManageNew");
+        cbxManageNew->setChecked(true);
 
         verticalLayout_4->addWidget(cbxManageNew);
 
@@ -376,20 +391,20 @@ public:
         tblWidManage = new QTableWidget(tabGestion);
         if (tblWidManage->columnCount() < 7)
             tblWidManage->setColumnCount(7);
-        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
-        tblWidManage->setHorizontalHeaderItem(0, __qtablewidgetitem7);
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
-        tblWidManage->setHorizontalHeaderItem(1, __qtablewidgetitem8);
+        tblWidManage->setHorizontalHeaderItem(0, __qtablewidgetitem8);
         QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
-        tblWidManage->setHorizontalHeaderItem(2, __qtablewidgetitem9);
+        tblWidManage->setHorizontalHeaderItem(1, __qtablewidgetitem9);
         QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
-        tblWidManage->setHorizontalHeaderItem(3, __qtablewidgetitem10);
+        tblWidManage->setHorizontalHeaderItem(2, __qtablewidgetitem10);
         QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
-        tblWidManage->setHorizontalHeaderItem(4, __qtablewidgetitem11);
+        tblWidManage->setHorizontalHeaderItem(3, __qtablewidgetitem11);
         QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
-        tblWidManage->setHorizontalHeaderItem(5, __qtablewidgetitem12);
+        tblWidManage->setHorizontalHeaderItem(4, __qtablewidgetitem12);
         QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
-        tblWidManage->setHorizontalHeaderItem(6, __qtablewidgetitem13);
+        tblWidManage->setHorizontalHeaderItem(5, __qtablewidgetitem13);
+        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
+        tblWidManage->setHorizontalHeaderItem(6, __qtablewidgetitem14);
         tblWidManage->setObjectName("tblWidManage");
 
         horizontalLayout_3->addWidget(tblWidManage);
@@ -509,18 +524,18 @@ public:
         tblWidAppointInvoice = new QTableWidget(tabCitas);
         if (tblWidAppointInvoice->columnCount() < 6)
             tblWidAppointInvoice->setColumnCount(6);
-        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
-        tblWidAppointInvoice->setHorizontalHeaderItem(0, __qtablewidgetitem14);
         QTableWidgetItem *__qtablewidgetitem15 = new QTableWidgetItem();
-        tblWidAppointInvoice->setHorizontalHeaderItem(1, __qtablewidgetitem15);
+        tblWidAppointInvoice->setHorizontalHeaderItem(0, __qtablewidgetitem15);
         QTableWidgetItem *__qtablewidgetitem16 = new QTableWidgetItem();
-        tblWidAppointInvoice->setHorizontalHeaderItem(2, __qtablewidgetitem16);
+        tblWidAppointInvoice->setHorizontalHeaderItem(1, __qtablewidgetitem16);
         QTableWidgetItem *__qtablewidgetitem17 = new QTableWidgetItem();
-        tblWidAppointInvoice->setHorizontalHeaderItem(3, __qtablewidgetitem17);
+        tblWidAppointInvoice->setHorizontalHeaderItem(2, __qtablewidgetitem17);
         QTableWidgetItem *__qtablewidgetitem18 = new QTableWidgetItem();
-        tblWidAppointInvoice->setHorizontalHeaderItem(4, __qtablewidgetitem18);
+        tblWidAppointInvoice->setHorizontalHeaderItem(3, __qtablewidgetitem18);
         QTableWidgetItem *__qtablewidgetitem19 = new QTableWidgetItem();
-        tblWidAppointInvoice->setHorizontalHeaderItem(5, __qtablewidgetitem19);
+        tblWidAppointInvoice->setHorizontalHeaderItem(4, __qtablewidgetitem19);
+        QTableWidgetItem *__qtablewidgetitem20 = new QTableWidgetItem();
+        tblWidAppointInvoice->setHorizontalHeaderItem(5, __qtablewidgetitem20);
         tblWidAppointInvoice->setObjectName("tblWidAppointInvoice");
         QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy2.setHorizontalStretch(0);
@@ -619,18 +634,18 @@ public:
         tblWidAppointLine = new QTableWidget(tabCitas);
         if (tblWidAppointLine->columnCount() < 6)
             tblWidAppointLine->setColumnCount(6);
-        QTableWidgetItem *__qtablewidgetitem20 = new QTableWidgetItem();
-        tblWidAppointLine->setHorizontalHeaderItem(0, __qtablewidgetitem20);
         QTableWidgetItem *__qtablewidgetitem21 = new QTableWidgetItem();
-        tblWidAppointLine->setHorizontalHeaderItem(1, __qtablewidgetitem21);
+        tblWidAppointLine->setHorizontalHeaderItem(0, __qtablewidgetitem21);
         QTableWidgetItem *__qtablewidgetitem22 = new QTableWidgetItem();
-        tblWidAppointLine->setHorizontalHeaderItem(2, __qtablewidgetitem22);
+        tblWidAppointLine->setHorizontalHeaderItem(1, __qtablewidgetitem22);
         QTableWidgetItem *__qtablewidgetitem23 = new QTableWidgetItem();
-        tblWidAppointLine->setHorizontalHeaderItem(3, __qtablewidgetitem23);
+        tblWidAppointLine->setHorizontalHeaderItem(2, __qtablewidgetitem23);
         QTableWidgetItem *__qtablewidgetitem24 = new QTableWidgetItem();
-        tblWidAppointLine->setHorizontalHeaderItem(4, __qtablewidgetitem24);
+        tblWidAppointLine->setHorizontalHeaderItem(3, __qtablewidgetitem24);
         QTableWidgetItem *__qtablewidgetitem25 = new QTableWidgetItem();
-        tblWidAppointLine->setHorizontalHeaderItem(5, __qtablewidgetitem25);
+        tblWidAppointLine->setHorizontalHeaderItem(4, __qtablewidgetitem25);
+        QTableWidgetItem *__qtablewidgetitem26 = new QTableWidgetItem();
+        tblWidAppointLine->setHorizontalHeaderItem(5, __qtablewidgetitem26);
         tblWidAppointLine->setObjectName("tblWidAppointLine");
 
         horizontalLayout_8->addWidget(tblWidAppointLine);
@@ -752,18 +767,18 @@ public:
         tblWidPaymentInvoice = new QTableWidget(tabPagos);
         if (tblWidPaymentInvoice->columnCount() < 6)
             tblWidPaymentInvoice->setColumnCount(6);
-        QTableWidgetItem *__qtablewidgetitem26 = new QTableWidgetItem();
-        tblWidPaymentInvoice->setHorizontalHeaderItem(0, __qtablewidgetitem26);
         QTableWidgetItem *__qtablewidgetitem27 = new QTableWidgetItem();
-        tblWidPaymentInvoice->setHorizontalHeaderItem(1, __qtablewidgetitem27);
+        tblWidPaymentInvoice->setHorizontalHeaderItem(0, __qtablewidgetitem27);
         QTableWidgetItem *__qtablewidgetitem28 = new QTableWidgetItem();
-        tblWidPaymentInvoice->setHorizontalHeaderItem(2, __qtablewidgetitem28);
+        tblWidPaymentInvoice->setHorizontalHeaderItem(1, __qtablewidgetitem28);
         QTableWidgetItem *__qtablewidgetitem29 = new QTableWidgetItem();
-        tblWidPaymentInvoice->setHorizontalHeaderItem(3, __qtablewidgetitem29);
+        tblWidPaymentInvoice->setHorizontalHeaderItem(2, __qtablewidgetitem29);
         QTableWidgetItem *__qtablewidgetitem30 = new QTableWidgetItem();
-        tblWidPaymentInvoice->setHorizontalHeaderItem(4, __qtablewidgetitem30);
+        tblWidPaymentInvoice->setHorizontalHeaderItem(3, __qtablewidgetitem30);
         QTableWidgetItem *__qtablewidgetitem31 = new QTableWidgetItem();
-        tblWidPaymentInvoice->setHorizontalHeaderItem(5, __qtablewidgetitem31);
+        tblWidPaymentInvoice->setHorizontalHeaderItem(4, __qtablewidgetitem31);
+        QTableWidgetItem *__qtablewidgetitem32 = new QTableWidgetItem();
+        tblWidPaymentInvoice->setHorizontalHeaderItem(5, __qtablewidgetitem32);
         tblWidPaymentInvoice->setObjectName("tblWidPaymentInvoice");
         sizePolicy2.setHeightForWidth(tblWidPaymentInvoice->sizePolicy().hasHeightForWidth());
         tblWidPaymentInvoice->setSizePolicy(sizePolicy2);
@@ -864,18 +879,18 @@ public:
         tblWidPaymentLine = new QTableWidget(tabPagos);
         if (tblWidPaymentLine->columnCount() < 6)
             tblWidPaymentLine->setColumnCount(6);
-        QTableWidgetItem *__qtablewidgetitem32 = new QTableWidgetItem();
-        tblWidPaymentLine->setHorizontalHeaderItem(0, __qtablewidgetitem32);
         QTableWidgetItem *__qtablewidgetitem33 = new QTableWidgetItem();
-        tblWidPaymentLine->setHorizontalHeaderItem(1, __qtablewidgetitem33);
+        tblWidPaymentLine->setHorizontalHeaderItem(0, __qtablewidgetitem33);
         QTableWidgetItem *__qtablewidgetitem34 = new QTableWidgetItem();
-        tblWidPaymentLine->setHorizontalHeaderItem(2, __qtablewidgetitem34);
+        tblWidPaymentLine->setHorizontalHeaderItem(1, __qtablewidgetitem34);
         QTableWidgetItem *__qtablewidgetitem35 = new QTableWidgetItem();
-        tblWidPaymentLine->setHorizontalHeaderItem(3, __qtablewidgetitem35);
+        tblWidPaymentLine->setHorizontalHeaderItem(2, __qtablewidgetitem35);
         QTableWidgetItem *__qtablewidgetitem36 = new QTableWidgetItem();
-        tblWidPaymentLine->setHorizontalHeaderItem(4, __qtablewidgetitem36);
+        tblWidPaymentLine->setHorizontalHeaderItem(3, __qtablewidgetitem36);
         QTableWidgetItem *__qtablewidgetitem37 = new QTableWidgetItem();
-        tblWidPaymentLine->setHorizontalHeaderItem(5, __qtablewidgetitem37);
+        tblWidPaymentLine->setHorizontalHeaderItem(4, __qtablewidgetitem37);
+        QTableWidgetItem *__qtablewidgetitem38 = new QTableWidgetItem();
+        tblWidPaymentLine->setHorizontalHeaderItem(5, __qtablewidgetitem38);
         tblWidPaymentLine->setObjectName("tblWidPaymentLine");
 
         horizontalLayout_4->addWidget(tblWidPaymentLine);
@@ -938,16 +953,16 @@ public:
         tblAllInvoices = new QTableWidget(tabFacturas);
         if (tblAllInvoices->columnCount() < 5)
             tblAllInvoices->setColumnCount(5);
-        QTableWidgetItem *__qtablewidgetitem38 = new QTableWidgetItem();
-        tblAllInvoices->setHorizontalHeaderItem(0, __qtablewidgetitem38);
         QTableWidgetItem *__qtablewidgetitem39 = new QTableWidgetItem();
-        tblAllInvoices->setHorizontalHeaderItem(1, __qtablewidgetitem39);
+        tblAllInvoices->setHorizontalHeaderItem(0, __qtablewidgetitem39);
         QTableWidgetItem *__qtablewidgetitem40 = new QTableWidgetItem();
-        tblAllInvoices->setHorizontalHeaderItem(2, __qtablewidgetitem40);
+        tblAllInvoices->setHorizontalHeaderItem(1, __qtablewidgetitem40);
         QTableWidgetItem *__qtablewidgetitem41 = new QTableWidgetItem();
-        tblAllInvoices->setHorizontalHeaderItem(3, __qtablewidgetitem41);
+        tblAllInvoices->setHorizontalHeaderItem(2, __qtablewidgetitem41);
         QTableWidgetItem *__qtablewidgetitem42 = new QTableWidgetItem();
-        tblAllInvoices->setHorizontalHeaderItem(4, __qtablewidgetitem42);
+        tblAllInvoices->setHorizontalHeaderItem(3, __qtablewidgetitem42);
+        QTableWidgetItem *__qtablewidgetitem43 = new QTableWidgetItem();
+        tblAllInvoices->setHorizontalHeaderItem(4, __qtablewidgetitem43);
         tblAllInvoices->setObjectName("tblAllInvoices");
         tblAllInvoices->setStyleSheet(QString::fromUtf8(""));
 
@@ -956,16 +971,16 @@ public:
         tblInvoiceLines = new QTableWidget(tabFacturas);
         if (tblInvoiceLines->columnCount() < 5)
             tblInvoiceLines->setColumnCount(5);
-        QTableWidgetItem *__qtablewidgetitem43 = new QTableWidgetItem();
-        tblInvoiceLines->setHorizontalHeaderItem(0, __qtablewidgetitem43);
         QTableWidgetItem *__qtablewidgetitem44 = new QTableWidgetItem();
-        tblInvoiceLines->setHorizontalHeaderItem(1, __qtablewidgetitem44);
+        tblInvoiceLines->setHorizontalHeaderItem(0, __qtablewidgetitem44);
         QTableWidgetItem *__qtablewidgetitem45 = new QTableWidgetItem();
-        tblInvoiceLines->setHorizontalHeaderItem(2, __qtablewidgetitem45);
+        tblInvoiceLines->setHorizontalHeaderItem(1, __qtablewidgetitem45);
         QTableWidgetItem *__qtablewidgetitem46 = new QTableWidgetItem();
-        tblInvoiceLines->setHorizontalHeaderItem(3, __qtablewidgetitem46);
+        tblInvoiceLines->setHorizontalHeaderItem(2, __qtablewidgetitem46);
         QTableWidgetItem *__qtablewidgetitem47 = new QTableWidgetItem();
-        tblInvoiceLines->setHorizontalHeaderItem(4, __qtablewidgetitem47);
+        tblInvoiceLines->setHorizontalHeaderItem(3, __qtablewidgetitem47);
+        QTableWidgetItem *__qtablewidgetitem48 = new QTableWidgetItem();
+        tblInvoiceLines->setHorizontalHeaderItem(4, __qtablewidgetitem48);
         tblInvoiceLines->setObjectName("tblInvoiceLines");
 
         horizontalLayout_9->addWidget(tblInvoiceLines);
@@ -1043,8 +1058,8 @@ public:
         tblEmailFiles = new QTableWidget(tabCorreos);
         if (tblEmailFiles->columnCount() < 1)
             tblEmailFiles->setColumnCount(1);
-        QTableWidgetItem *__qtablewidgetitem48 = new QTableWidgetItem();
-        tblEmailFiles->setHorizontalHeaderItem(0, __qtablewidgetitem48);
+        QTableWidgetItem *__qtablewidgetitem49 = new QTableWidgetItem();
+        tblEmailFiles->setHorizontalHeaderItem(0, __qtablewidgetitem49);
         tblEmailFiles->setObjectName("tblEmailFiles");
 
         verticalLayout_10->addWidget(tblEmailFiles);
@@ -1070,15 +1085,84 @@ public:
 
         tabWidget->addTab(tabCorreos, QString());
         tabConfig = new QWidget();
-        tabConfig->setObjectName("tab");
+        tabConfig->setObjectName("tabConfig");
+        tabConfig->setStyleSheet(QString::fromUtf8("QWidget#tabConfig QPushButton {\n"
+"    background-color: #ffd600;\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 4%;\n"
+"	padding-right: 7%;\n"
+"	padding-left: 7%;\n"
+"\n"
+"	border-radius: 3px;\n"
+"}\n"
+"\n"
+"\n"
+"QWidget#tabConfig QLabel{\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 3%;\n"
+"	padding-left: 5%;\n"
+"	width: 100%;\n"
+"	min-width:200px;\n"
+"	color: white;\n"
+"	font-size: 16px;\n"
+"	border: 1px solid #ffd600\n"
+"}"));
+        verticalLayout_13 = new QVBoxLayout(tabConfig);
+        verticalLayout_13->setObjectName("verticalLayout_13");
+        verticalLayout_14 = new QVBoxLayout();
+        verticalLayout_14->setObjectName("verticalLayout_14");
+        label_2 = new QLabel(tabConfig);
+        label_2->setObjectName("label_2");
+        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
+        label_2->setSizePolicy(sizePolicy3);
+        label_2->setFont(font2);
+        label_2->setLayoutDirection(Qt::LeftToRight);
+        label_2->setAlignment(Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft);
+
+        verticalLayout_14->addWidget(label_2);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+
+        verticalLayout_14->addItem(horizontalSpacer_3);
+
+        btnSelectDirectory = new QPushButton(tabConfig);
+        btnSelectDirectory->setObjectName("btnSelectDirectory");
+        sizePolicy1.setHeightForWidth(btnSelectDirectory->sizePolicy().hasHeightForWidth());
+        btnSelectDirectory->setSizePolicy(sizePolicy1);
+        btnSelectDirectory->setFont(font1);
+
+        verticalLayout_14->addWidget(btnSelectDirectory);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        verticalLayout_14->addItem(horizontalSpacer_4);
+
+        lblRouteChoos = new QLabel(tabConfig);
+        lblRouteChoos->setObjectName("lblRouteChoos");
+        sizePolicy.setHeightForWidth(lblRouteChoos->sizePolicy().hasHeightForWidth());
+        lblRouteChoos->setSizePolicy(sizePolicy);
+        lblRouteChoos->setFont(font2);
+
+        verticalLayout_14->addWidget(lblRouteChoos);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_14->addItem(verticalSpacer);
+
+
+        verticalLayout_13->addLayout(verticalLayout_14);
+
         tabWidget->addTab(tabConfig, QString());
 
-        verticalLayout->addWidget(tabWidget);
+        horizontalLayout_13->addWidget(tabWidget);
 
 
         retranslateUi(GymOperations);
 
-        tabWidget->setCurrentIndex(6);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(GymOperations);
@@ -1104,6 +1188,8 @@ public:
         ___qtablewidgetitem5->setText(QCoreApplication::translate("GymOperations", "Fecha Pago", nullptr));
         QTableWidgetItem *___qtablewidgetitem6 = tblWidCustomersIntro->horizontalHeaderItem(6);
         ___qtablewidgetitem6->setText(QCoreApplication::translate("GymOperations", "Fecha L\303\255mite", nullptr));
+        QTableWidgetItem *___qtablewidgetitem7 = tblWidCustomersIntro->horizontalHeaderItem(7);
+        ___qtablewidgetitem7->setText(QCoreApplication::translate("GymOperations", "Estado", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabInicio), QCoreApplication::translate("GymOperations", "Inicio", nullptr));
         txtManageName->setPlaceholderText(QCoreApplication::translate("GymOperations", "Nombre:", nullptr));
         txtManageLastName->setPlaceholderText(QCoreApplication::translate("GymOperations", "Apellido:", nullptr));
@@ -1111,36 +1197,36 @@ public:
         manageInscriptionDate->setDisplayFormat(QCoreApplication::translate("GymOperations", "yyyy-MM-dd", nullptr));
         txtManageCode->setPlaceholderText(QCoreApplication::translate("GymOperations", "C\303\263digo:", nullptr));
         cbxManageNew->setText(QCoreApplication::translate("GymOperations", "Cliente Nuevo?", nullptr));
-        QTableWidgetItem *___qtablewidgetitem7 = tblWidManage->horizontalHeaderItem(0);
-        ___qtablewidgetitem7->setText(QCoreApplication::translate("GymOperations", "C\303\263digo", nullptr));
-        QTableWidgetItem *___qtablewidgetitem8 = tblWidManage->horizontalHeaderItem(1);
-        ___qtablewidgetitem8->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
-        QTableWidgetItem *___qtablewidgetitem9 = tblWidManage->horizontalHeaderItem(2);
-        ___qtablewidgetitem9->setText(QCoreApplication::translate("GymOperations", "Peso", nullptr));
-        QTableWidgetItem *___qtablewidgetitem10 = tblWidManage->horizontalHeaderItem(3);
-        ___qtablewidgetitem10->setText(QCoreApplication::translate("GymOperations", "Fecha Inicio", nullptr));
-        QTableWidgetItem *___qtablewidgetitem11 = tblWidManage->horizontalHeaderItem(4);
-        ___qtablewidgetitem11->setText(QCoreApplication::translate("GymOperations", "Rol", nullptr));
-        QTableWidgetItem *___qtablewidgetitem12 = tblWidManage->horizontalHeaderItem(5);
-        ___qtablewidgetitem12->setText(QCoreApplication::translate("GymOperations", "Fecha Pago", nullptr));
-        QTableWidgetItem *___qtablewidgetitem13 = tblWidManage->horizontalHeaderItem(6);
-        ___qtablewidgetitem13->setText(QCoreApplication::translate("GymOperations", "Fecha L\303\255mite", nullptr));
+        QTableWidgetItem *___qtablewidgetitem8 = tblWidManage->horizontalHeaderItem(0);
+        ___qtablewidgetitem8->setText(QCoreApplication::translate("GymOperations", "C\303\263digo", nullptr));
+        QTableWidgetItem *___qtablewidgetitem9 = tblWidManage->horizontalHeaderItem(1);
+        ___qtablewidgetitem9->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
+        QTableWidgetItem *___qtablewidgetitem10 = tblWidManage->horizontalHeaderItem(2);
+        ___qtablewidgetitem10->setText(QCoreApplication::translate("GymOperations", "Peso", nullptr));
+        QTableWidgetItem *___qtablewidgetitem11 = tblWidManage->horizontalHeaderItem(3);
+        ___qtablewidgetitem11->setText(QCoreApplication::translate("GymOperations", "Fecha Inicio", nullptr));
+        QTableWidgetItem *___qtablewidgetitem12 = tblWidManage->horizontalHeaderItem(4);
+        ___qtablewidgetitem12->setText(QCoreApplication::translate("GymOperations", "Rol", nullptr));
+        QTableWidgetItem *___qtablewidgetitem13 = tblWidManage->horizontalHeaderItem(5);
+        ___qtablewidgetitem13->setText(QCoreApplication::translate("GymOperations", "Fecha Pago", nullptr));
+        QTableWidgetItem *___qtablewidgetitem14 = tblWidManage->horizontalHeaderItem(6);
+        ___qtablewidgetitem14->setText(QCoreApplication::translate("GymOperations", "Fecha L\303\255mite", nullptr));
         btnManageSave->setText(QCoreApplication::translate("GymOperations", "Guardar", nullptr));
         btnManageCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
         btnManageSearch->setText(QCoreApplication::translate("GymOperations", "Buscar", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabGestion), QCoreApplication::translate("GymOperations", "Gesti\303\263n", nullptr));
-        QTableWidgetItem *___qtablewidgetitem14 = tblWidAppointInvoice->horizontalHeaderItem(0);
-        ___qtablewidgetitem14->setText(QCoreApplication::translate("GymOperations", "Id Cabecera", nullptr));
-        QTableWidgetItem *___qtablewidgetitem15 = tblWidAppointInvoice->horizontalHeaderItem(1);
-        ___qtablewidgetitem15->setText(QCoreApplication::translate("GymOperations", "Fecha de  Pago", nullptr));
-        QTableWidgetItem *___qtablewidgetitem16 = tblWidAppointInvoice->horizontalHeaderItem(2);
-        ___qtablewidgetitem16->setText(QCoreApplication::translate("GymOperations", "Codigo Usuario", nullptr));
-        QTableWidgetItem *___qtablewidgetitem17 = tblWidAppointInvoice->horizontalHeaderItem(3);
-        ___qtablewidgetitem17->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
-        QTableWidgetItem *___qtablewidgetitem18 = tblWidAppointInvoice->horizontalHeaderItem(4);
-        ___qtablewidgetitem18->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
-        QTableWidgetItem *___qtablewidgetitem19 = tblWidAppointInvoice->horizontalHeaderItem(5);
-        ___qtablewidgetitem19->setText(QCoreApplication::translate("GymOperations", "Abono", nullptr));
+        QTableWidgetItem *___qtablewidgetitem15 = tblWidAppointInvoice->horizontalHeaderItem(0);
+        ___qtablewidgetitem15->setText(QCoreApplication::translate("GymOperations", "Id Cabecera", nullptr));
+        QTableWidgetItem *___qtablewidgetitem16 = tblWidAppointInvoice->horizontalHeaderItem(1);
+        ___qtablewidgetitem16->setText(QCoreApplication::translate("GymOperations", "Fecha de  Pago", nullptr));
+        QTableWidgetItem *___qtablewidgetitem17 = tblWidAppointInvoice->horizontalHeaderItem(2);
+        ___qtablewidgetitem17->setText(QCoreApplication::translate("GymOperations", "Codigo Usuario", nullptr));
+        QTableWidgetItem *___qtablewidgetitem18 = tblWidAppointInvoice->horizontalHeaderItem(3);
+        ___qtablewidgetitem18->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
+        QTableWidgetItem *___qtablewidgetitem19 = tblWidAppointInvoice->horizontalHeaderItem(4);
+        ___qtablewidgetitem19->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
+        QTableWidgetItem *___qtablewidgetitem20 = tblWidAppointInvoice->horizontalHeaderItem(5);
+        ___qtablewidgetitem20->setText(QCoreApplication::translate("GymOperations", "Abono", nullptr));
         btnAppointNewInvoice->setText(QCoreApplication::translate("GymOperations", "Nueva Factura", nullptr));
         btnAppointAllInvoices->setText(QCoreApplication::translate("GymOperations", "Todas las Facturas", nullptr));
         btnAppointSearchInvoice->setText(QCoreApplication::translate("GymOperations", "Buscar Factura", nullptr));
@@ -1150,35 +1236,35 @@ public:
         appointNumber->setPlaceholderText(QCoreApplication::translate("GymOperations", "Cita N\302\260 22", nullptr));
         appointPayAmmount->setPlaceholderText(QCoreApplication::translate("GymOperations", "$00.00", nullptr));
         cbxAppointNew->setText(QCoreApplication::translate("GymOperations", "Nueva Cita", nullptr));
-        QTableWidgetItem *___qtablewidgetitem20 = tblWidAppointLine->horizontalHeaderItem(0);
-        ___qtablewidgetitem20->setText(QCoreApplication::translate("GymOperations", "Id Cita", nullptr));
-        QTableWidgetItem *___qtablewidgetitem21 = tblWidAppointLine->horizontalHeaderItem(1);
-        ___qtablewidgetitem21->setText(QCoreApplication::translate("GymOperations", "Servicio", nullptr));
-        QTableWidgetItem *___qtablewidgetitem22 = tblWidAppointLine->horizontalHeaderItem(2);
-        ___qtablewidgetitem22->setText(QCoreApplication::translate("GymOperations", "N\303\272mero de Sesiones", nullptr));
-        QTableWidgetItem *___qtablewidgetitem23 = tblWidAppointLine->horizontalHeaderItem(3);
-        ___qtablewidgetitem23->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
-        QTableWidgetItem *___qtablewidgetitem24 = tblWidAppointLine->horizontalHeaderItem(4);
-        ___qtablewidgetitem24->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
-        QTableWidgetItem *___qtablewidgetitem25 = tblWidAppointLine->horizontalHeaderItem(5);
-        ___qtablewidgetitem25->setText(QCoreApplication::translate("GymOperations", "Fecha Sesi\303\263n", nullptr));
+        QTableWidgetItem *___qtablewidgetitem21 = tblWidAppointLine->horizontalHeaderItem(0);
+        ___qtablewidgetitem21->setText(QCoreApplication::translate("GymOperations", "Id Cita", nullptr));
+        QTableWidgetItem *___qtablewidgetitem22 = tblWidAppointLine->horizontalHeaderItem(1);
+        ___qtablewidgetitem22->setText(QCoreApplication::translate("GymOperations", "Servicio", nullptr));
+        QTableWidgetItem *___qtablewidgetitem23 = tblWidAppointLine->horizontalHeaderItem(2);
+        ___qtablewidgetitem23->setText(QCoreApplication::translate("GymOperations", "N\303\272mero de Sesiones", nullptr));
+        QTableWidgetItem *___qtablewidgetitem24 = tblWidAppointLine->horizontalHeaderItem(3);
+        ___qtablewidgetitem24->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
+        QTableWidgetItem *___qtablewidgetitem25 = tblWidAppointLine->horizontalHeaderItem(4);
+        ___qtablewidgetitem25->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
+        QTableWidgetItem *___qtablewidgetitem26 = tblWidAppointLine->horizontalHeaderItem(5);
+        ___qtablewidgetitem26->setText(QCoreApplication::translate("GymOperations", "Fecha Sesi\303\263n", nullptr));
         btnAppointSaveAll->setText(QCoreApplication::translate("GymOperations", "Guardar Todo", nullptr));
         btnAppointAdd->setText(QCoreApplication::translate("GymOperations", "Agregar Cita", nullptr));
         btnSaveAppoint->setText(QCoreApplication::translate("GymOperations", "Guardar Cita", nullptr));
         btnAppointCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabCitas), QCoreApplication::translate("GymOperations", "Citas", nullptr));
-        QTableWidgetItem *___qtablewidgetitem26 = tblWidPaymentInvoice->horizontalHeaderItem(0);
-        ___qtablewidgetitem26->setText(QCoreApplication::translate("GymOperations", "Id Cabecera", nullptr));
-        QTableWidgetItem *___qtablewidgetitem27 = tblWidPaymentInvoice->horizontalHeaderItem(1);
-        ___qtablewidgetitem27->setText(QCoreApplication::translate("GymOperations", "Fecha de Pago", nullptr));
-        QTableWidgetItem *___qtablewidgetitem28 = tblWidPaymentInvoice->horizontalHeaderItem(2);
-        ___qtablewidgetitem28->setText(QCoreApplication::translate("GymOperations", "Codigo Usuario", nullptr));
-        QTableWidgetItem *___qtablewidgetitem29 = tblWidPaymentInvoice->horizontalHeaderItem(3);
-        ___qtablewidgetitem29->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
-        QTableWidgetItem *___qtablewidgetitem30 = tblWidPaymentInvoice->horizontalHeaderItem(4);
-        ___qtablewidgetitem30->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
-        QTableWidgetItem *___qtablewidgetitem31 = tblWidPaymentInvoice->horizontalHeaderItem(5);
-        ___qtablewidgetitem31->setText(QCoreApplication::translate("GymOperations", "Abono", nullptr));
+        QTableWidgetItem *___qtablewidgetitem27 = tblWidPaymentInvoice->horizontalHeaderItem(0);
+        ___qtablewidgetitem27->setText(QCoreApplication::translate("GymOperations", "Id Cabecera", nullptr));
+        QTableWidgetItem *___qtablewidgetitem28 = tblWidPaymentInvoice->horizontalHeaderItem(1);
+        ___qtablewidgetitem28->setText(QCoreApplication::translate("GymOperations", "Fecha de Pago", nullptr));
+        QTableWidgetItem *___qtablewidgetitem29 = tblWidPaymentInvoice->horizontalHeaderItem(2);
+        ___qtablewidgetitem29->setText(QCoreApplication::translate("GymOperations", "Codigo Usuario", nullptr));
+        QTableWidgetItem *___qtablewidgetitem30 = tblWidPaymentInvoice->horizontalHeaderItem(3);
+        ___qtablewidgetitem30->setText(QCoreApplication::translate("GymOperations", "Nombre", nullptr));
+        QTableWidgetItem *___qtablewidgetitem31 = tblWidPaymentInvoice->horizontalHeaderItem(4);
+        ___qtablewidgetitem31->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
+        QTableWidgetItem *___qtablewidgetitem32 = tblWidPaymentInvoice->horizontalHeaderItem(5);
+        ___qtablewidgetitem32->setText(QCoreApplication::translate("GymOperations", "Abono", nullptr));
         btnPaymentNewInvoice->setText(QCoreApplication::translate("GymOperations", "Nueva Factura", nullptr));
         btnPaymentAllInvoices->setText(QCoreApplication::translate("GymOperations", "Todas las Facturas", nullptr));
         btnPaymentSearchInvoice->setText(QCoreApplication::translate("GymOperations", "Buscar Factura", nullptr));
@@ -1189,53 +1275,56 @@ public:
         txtPaymentAmount->setPlaceholderText(QCoreApplication::translate("GymOperations", "$00.00", nullptr));
         checkPaymentPartial->setText(QCoreApplication::translate("GymOperations", "Abono", nullptr));
         txtPaymentPartialPay->setPlaceholderText(QCoreApplication::translate("GymOperations", "Cantidad a abonar", nullptr));
-        QTableWidgetItem *___qtablewidgetitem32 = tblWidPaymentLine->horizontalHeaderItem(0);
-        ___qtablewidgetitem32->setText(QCoreApplication::translate("GymOperations", "Id Detalle", nullptr));
-        QTableWidgetItem *___qtablewidgetitem33 = tblWidPaymentLine->horizontalHeaderItem(1);
-        ___qtablewidgetitem33->setText(QCoreApplication::translate("GymOperations", "Paquete", nullptr));
-        QTableWidgetItem *___qtablewidgetitem34 = tblWidPaymentLine->horizontalHeaderItem(2);
-        ___qtablewidgetitem34->setText(QCoreApplication::translate("GymOperations", "Cantidad", nullptr));
-        QTableWidgetItem *___qtablewidgetitem35 = tblWidPaymentLine->horizontalHeaderItem(3);
-        ___qtablewidgetitem35->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
-        QTableWidgetItem *___qtablewidgetitem36 = tblWidPaymentLine->horizontalHeaderItem(4);
-        ___qtablewidgetitem36->setText(QCoreApplication::translate("GymOperations", "Fecha de Pago", nullptr));
-        QTableWidgetItem *___qtablewidgetitem37 = tblWidPaymentLine->horizontalHeaderItem(5);
-        ___qtablewidgetitem37->setText(QCoreApplication::translate("GymOperations", "Fecha L\303\255mite", nullptr));
+        QTableWidgetItem *___qtablewidgetitem33 = tblWidPaymentLine->horizontalHeaderItem(0);
+        ___qtablewidgetitem33->setText(QCoreApplication::translate("GymOperations", "Id Detalle", nullptr));
+        QTableWidgetItem *___qtablewidgetitem34 = tblWidPaymentLine->horizontalHeaderItem(1);
+        ___qtablewidgetitem34->setText(QCoreApplication::translate("GymOperations", "Paquete", nullptr));
+        QTableWidgetItem *___qtablewidgetitem35 = tblWidPaymentLine->horizontalHeaderItem(2);
+        ___qtablewidgetitem35->setText(QCoreApplication::translate("GymOperations", "Cantidad", nullptr));
+        QTableWidgetItem *___qtablewidgetitem36 = tblWidPaymentLine->horizontalHeaderItem(3);
+        ___qtablewidgetitem36->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
+        QTableWidgetItem *___qtablewidgetitem37 = tblWidPaymentLine->horizontalHeaderItem(4);
+        ___qtablewidgetitem37->setText(QCoreApplication::translate("GymOperations", "Fecha de Pago", nullptr));
+        QTableWidgetItem *___qtablewidgetitem38 = tblWidPaymentLine->horizontalHeaderItem(5);
+        ___qtablewidgetitem38->setText(QCoreApplication::translate("GymOperations", "Fecha L\303\255mite", nullptr));
         btnPaymentSaveAll->setText(QCoreApplication::translate("GymOperations", "Guardar Todo", nullptr));
         btnPaymentAddLine->setText(QCoreApplication::translate("GymOperations", "Agregar Detalle", nullptr));
         btnSaveLine->setText(QCoreApplication::translate("GymOperations", "Guardar Detalle", nullptr));
         btnPaymentCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabPagos), QCoreApplication::translate("GymOperations", "Pagos", nullptr));
-        QTableWidgetItem *___qtablewidgetitem38 = tblAllInvoices->horizontalHeaderItem(0);
-        ___qtablewidgetitem38->setText(QCoreApplication::translate("GymOperations", "Id Cabecera", nullptr));
-        QTableWidgetItem *___qtablewidgetitem39 = tblAllInvoices->horizontalHeaderItem(1);
-        ___qtablewidgetitem39->setText(QCoreApplication::translate("GymOperations", "Fecha de Pago", nullptr));
-        QTableWidgetItem *___qtablewidgetitem40 = tblAllInvoices->horizontalHeaderItem(2);
-        ___qtablewidgetitem40->setText(QCoreApplication::translate("GymOperations", "C\303\263digo de Usuario", nullptr));
-        QTableWidgetItem *___qtablewidgetitem41 = tblAllInvoices->horizontalHeaderItem(3);
-        ___qtablewidgetitem41->setText(QCoreApplication::translate("GymOperations", "Nombres", nullptr));
-        QTableWidgetItem *___qtablewidgetitem42 = tblAllInvoices->horizontalHeaderItem(4);
-        ___qtablewidgetitem42->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
-        QTableWidgetItem *___qtablewidgetitem43 = tblInvoiceLines->horizontalHeaderItem(0);
-        ___qtablewidgetitem43->setText(QCoreApplication::translate("GymOperations", "Id Detalle", nullptr));
-        QTableWidgetItem *___qtablewidgetitem44 = tblInvoiceLines->horizontalHeaderItem(1);
-        ___qtablewidgetitem44->setText(QCoreApplication::translate("GymOperations", "Total Detalle", nullptr));
-        QTableWidgetItem *___qtablewidgetitem45 = tblInvoiceLines->horizontalHeaderItem(2);
-        ___qtablewidgetitem45->setText(QCoreApplication::translate("GymOperations", "Detalle", nullptr));
-        QTableWidgetItem *___qtablewidgetitem46 = tblInvoiceLines->horizontalHeaderItem(3);
-        ___qtablewidgetitem46->setText(QCoreApplication::translate("GymOperations", "Fecha", nullptr));
-        QTableWidgetItem *___qtablewidgetitem47 = tblInvoiceLines->horizontalHeaderItem(4);
-        ___qtablewidgetitem47->setText(QCoreApplication::translate("GymOperations", "Usuario", nullptr));
+        QTableWidgetItem *___qtablewidgetitem39 = tblAllInvoices->horizontalHeaderItem(0);
+        ___qtablewidgetitem39->setText(QCoreApplication::translate("GymOperations", "Id Cabecera", nullptr));
+        QTableWidgetItem *___qtablewidgetitem40 = tblAllInvoices->horizontalHeaderItem(1);
+        ___qtablewidgetitem40->setText(QCoreApplication::translate("GymOperations", "Fecha de Pago", nullptr));
+        QTableWidgetItem *___qtablewidgetitem41 = tblAllInvoices->horizontalHeaderItem(2);
+        ___qtablewidgetitem41->setText(QCoreApplication::translate("GymOperations", "C\303\263digo de Usuario", nullptr));
+        QTableWidgetItem *___qtablewidgetitem42 = tblAllInvoices->horizontalHeaderItem(3);
+        ___qtablewidgetitem42->setText(QCoreApplication::translate("GymOperations", "Nombres", nullptr));
+        QTableWidgetItem *___qtablewidgetitem43 = tblAllInvoices->horizontalHeaderItem(4);
+        ___qtablewidgetitem43->setText(QCoreApplication::translate("GymOperations", "Total", nullptr));
+        QTableWidgetItem *___qtablewidgetitem44 = tblInvoiceLines->horizontalHeaderItem(0);
+        ___qtablewidgetitem44->setText(QCoreApplication::translate("GymOperations", "Id Detalle", nullptr));
+        QTableWidgetItem *___qtablewidgetitem45 = tblInvoiceLines->horizontalHeaderItem(1);
+        ___qtablewidgetitem45->setText(QCoreApplication::translate("GymOperations", "Total Detalle", nullptr));
+        QTableWidgetItem *___qtablewidgetitem46 = tblInvoiceLines->horizontalHeaderItem(2);
+        ___qtablewidgetitem46->setText(QCoreApplication::translate("GymOperations", "Detalle", nullptr));
+        QTableWidgetItem *___qtablewidgetitem47 = tblInvoiceLines->horizontalHeaderItem(3);
+        ___qtablewidgetitem47->setText(QCoreApplication::translate("GymOperations", "Fecha", nullptr));
+        QTableWidgetItem *___qtablewidgetitem48 = tblInvoiceLines->horizontalHeaderItem(4);
+        ___qtablewidgetitem48->setText(QCoreApplication::translate("GymOperations", "Usuario", nullptr));
         btnAllInvoicesReport->setText(QCoreApplication::translate("GymOperations", "Todas las Facturas", nullptr));
         btnGenerateReport->setText(QCoreApplication::translate("GymOperations", "Generar PDF de la Factura", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabFacturas), QCoreApplication::translate("GymOperations", "Facturas", nullptr));
         txtEmailAddress->setPlaceholderText(QCoreApplication::translate("GymOperations", "Correo: ", nullptr));
-        QTableWidgetItem *___qtablewidgetitem48 = tblEmailFiles->horizontalHeaderItem(0);
-        ___qtablewidgetitem48->setText(QCoreApplication::translate("GymOperations", "Archivo", nullptr));
+        QTableWidgetItem *___qtablewidgetitem49 = tblEmailFiles->horizontalHeaderItem(0);
+        ___qtablewidgetitem49->setText(QCoreApplication::translate("GymOperations", "Archivo", nullptr));
         btnSendEmail->setText(QCoreApplication::translate("GymOperations", "Enviar Correo", nullptr));
         btnListFiles->setText(QCoreApplication::translate("GymOperations", "Seleccionar Archivos", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabCorreos), QCoreApplication::translate("GymOperations", "Correos", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tabConfig), QCoreApplication::translate("GymOperations", "Page", nullptr));
+        label_2->setText(QCoreApplication::translate("GymOperations", "Seleccione donde se guardar\303\241n los registros de asistencia", nullptr));
+        btnSelectDirectory->setText(QCoreApplication::translate("GymOperations", "Seleccionar Directorio", nullptr));
+        lblRouteChoos->setText(QCoreApplication::translate("GymOperations", "Ruta c:user:useradadka a dajsd", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tabConfig), QCoreApplication::translate("GymOperations", "Ajustes", nullptr));
     } // retranslateUi
 
 };
@@ -1246,3 +1335,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
+#endif // UI_GYMOPERATIONS_H

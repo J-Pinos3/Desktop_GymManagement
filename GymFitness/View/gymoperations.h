@@ -40,6 +40,8 @@ public:
     void setCustomersRoleDescription();
     void listAllCustomers();
 
+    void listNewCustomer(QString name);
+
     void getTrainingPackages();
 
     int getCurrentSelectedPackageId(const std::string &descriptionPackage);
@@ -74,7 +76,14 @@ public:
     //list pdf files to send via email
     void getInvoiceFiles();
 
-    void wrAssistanceFile();
+
+
+    //save configurations  file
+    void createAssistanceFile(QLabel* label);
+
+    //save ASSISTANCE to assistance file
+    void writeAssistanceFile(const QString& route, const QString name, const QString date );
+
 
 public slots:
     //set appoint date
@@ -149,6 +158,8 @@ private slots:
 
     void on_btnAvailableDates_clicked();
 
+    void on_btnSelectDirectory_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
@@ -165,6 +176,8 @@ private:
     QStringList facturasCorreo;
     QString emailAddressTo;
     DialogCalendar dialogCalendar;
+    QString assistFileRoute;
+    QString textoBtnMngSave;
 };
 
 #endif // GYMOPERATIONS_H

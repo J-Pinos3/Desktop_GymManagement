@@ -35,6 +35,8 @@ public:
     void searchUsersWithFields(SqlConnection *con, std::vector<Persona>& clientes,
         const QString& nombre = "", const QString& apellido = "",
         const QString& codigo = "");
+
+    bool updateExistingCustomer(SqlConnection *con, const Persona& persona);
 private:
     PersonController(){};
 };

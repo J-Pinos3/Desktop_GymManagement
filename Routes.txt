@@ -26,9 +26,9 @@ Progress:
 	44) Testing del proceso de generar una factura con un servicio o también con entreno con sql de momento funciona
 
 	
-	70) crear la sentencia sql para traer todas las fechas de citas
-	71) mostrar con otro color las fechas que ya están reservadas
+	72) Cambiar el nombre fecha registro for fecha nacimiento al mostrar todos los usuarios
 
+	74) Corregir el botón de editar los datos del cliente y revisar la funcionalidad de buscar cliente
 
 
 
@@ -125,3 +125,7 @@ Completed:
 	en el tab citas, solo estén las facturas para citas
 	68) Hacer que el usuario ingrese su correo para mandarle los pdf
 	69) Elegir una fecha desde el calendario
+	70) crear la sentencia sql para traer todas las fechas de citas
+	71) mostrar con otro color las fechas que ya están reservadas
+
+	73) Cuando se listan los usuarios al inicio, traer las fechas de inicio y fin

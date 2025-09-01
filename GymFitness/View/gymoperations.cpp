@@ -14,6 +14,8 @@
 #include <QFont>
 #include <QFileDialog>
 #include <QBuffer>
+#include <QFile>
+#include <QTextStream>
 
 GymOperations::GymOperations(QWidget *parent) :
     QWidget(parent),
@@ -30,6 +32,8 @@ GymOperations::GymOperations(QWidget *parent) :
     connect(ui->tblAllInvoices, SIGNAL(cellClicked(int,int)), this, SLOT(on_tblAllInvoices_cellActivated(int, int)) );
 
     connect(&dialogCalendar, &DialogCalendar::choosenDate, this, &GymOperations::setChoosenDate);
+
+    textoBtnMngSave ="Guardar";
 
     setCustomersRoleDescription();
     listAllCustomers();
@@ -91,7 +95,7 @@ void GymOperations::setCustomersRoleDescription(){
 
 void GymOperations::listAllCustomers(){
 
-    QString userRoleDescription = "";
+    QString userRoleDescription = "", status = "";
     std::vector<Rol>::iterator it = roles.begin();
     SqlConnection con;
     PersonController& personController = PersonController::getInstance();
@@ -99,9 +103,19 @@ void GymOperations::listAllCustomers(){
     personas.clear();
     ui->tblWidCustomersIntro->clearContents();
     personController.getAllUsers(&con, personas);
+    QBrush brush;
+
+
+
 
     ui->tblWidCustomersIntro->setRowCount(personas.size());
     for(int i = 0; i < personas.size(); i++ ){
+        QString fech_pago = QString::fromStdString(
+        personas[i].getFechaPago() );
+
+        QString fech_fin = QString::fromStdString(
+        personas[i].getFechaFin() );
+
         ui->tblWidCustomersIntro->setItem(
         i,0, new QTableWidgetItem( QString::fromStdString(personas[i].getCodigo()) )
         );
@@ -127,6 +141,35 @@ void GymOperations::listAllCustomers(){
         ui->tblWidCustomersIntro->setItem(
         i,4, new QTableWidgetItem( userRoleDescription )
         );
+
+        ui->tblWidCustomersIntro->setItem(
+        i,5, new QTableWidgetItem( fech_pago )
+        );
+
+        ui->tblWidCustomersIntro->setItem(
+        i,6, new QTableWidgetItem( fech_fin)
+        );
+
+        if(
+            QDate::currentDate() >= QDate::fromString(fech_pago,"yyyy-MM-dd") &&
+            QDate::currentDate() <= QDate::fromString(fech_fin,"yyyy-MM-dd")
+           ){
+            status = "VIGENTE";
+            brush.setColor(Qt::green);
+        }else{
+            status = "CADUCADO";
+            brush.setColor(Qt::red);
+        }
+
+
+        ui->tblWidCustomersIntro->setItem(
+        i,7, new QTableWidgetItem(status)
+        );
+
+        ui->tblWidCustomersIntro->item(i,7)->setData(Qt::ForegroundRole, brush);
+
+
+
     }
     //añadir los campos de la tabla plan elegido
 
@@ -134,16 +177,54 @@ void GymOperations::listAllCustomers(){
 
 
 //INTRO TAB
-void GymOperations::wrAssistanceFile(){
+void GymOperations::createAssistanceFile(QLabel* label){
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::Directory );
     dialog.setViewMode(QFileDialog::Detail);
+    QString route = "";
 
-    if(dialog.exec())
-        qDebug() << "Ruta seleccionada: "
-            <<  dialog.selectedUrls()[0]<< "\n";
+    if(dialog.exec()){
+        //qDebug() << "Ruta seleccionada: " <<  dialog.selectedUrls()[0]<< "\n";
+        QUrl url = dialog.selectedUrls().first();
+        route = url.toLocalFile();
+        label->setText(route);
 
+        assistFileRoute = route+"/"+"asistencias"+QDate::currentDate().toString("yyyy-MM-dd")+".txt";
+
+        QFile file( assistFileRoute );
+        QMessageBox msg = QMessageBox();
+
+        if( !file.open(QIODevice::WriteOnly | QIODevice::Text) ){
+            qDebug() << "archivo: " + assistFileRoute;
+            qDebug() << "Error al crear el archivo de asistencias: " + file.errorString();
+        }
+
+        msg.setWindowTitle("Archivo de Asistencia");
+        msg.setText("Archivo de asistencias para: " +
+        QDate::currentDate().toString("yyyy-MM-dd")+
+        " creado exitosamente" );
+        msg.setIcon(QMessageBox::Information);
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
+
+
+        file.close();
+    }
 }
+
+void GymOperations::writeAssistanceFile(const QString& route, const QString name, const QString date ){
+    //assistFileRoute is gonna be the paramenter for route
+    QFile file( route );
+
+    if( !file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append ) )
+        return;
+
+    QTextStream writer(&file);
+    writer << name << " -- " << date << '\n';
+
+    file.close();
+}
+
 
 void GymOperations::on_btnCustomerSearchIntro_clicked()
 {
@@ -160,6 +241,8 @@ void GymOperations::on_btnCustomerSearchIntro_clicked()
     PersonController& personController = PersonController::getInstance() ;
     Persona currentUser = personController.searchUser(&con, userCode);
 
+    QString nombre = QString::fromStdString(currentUser.getNombre() + " " + currentUser.getApellido());
+
     ui->tblWidCustomersIntro->setRowCount(1);
 
     ui->tblWidCustomersIntro->setItem( 0, 0,
@@ -167,7 +250,7 @@ void GymOperations::on_btnCustomerSearchIntro_clicked()
     );
 
     ui->tblWidCustomersIntro->setItem( 0, 1,
-        new QTableWidgetItem( QString::fromStdString(currentUser.getNombre() + " " + currentUser.getApellido()) )
+        new QTableWidgetItem( nombre )
     );
 
     ui->tblWidCustomersIntro->setItem( 0, 2,
@@ -189,6 +272,7 @@ void GymOperations::on_btnCustomerSearchIntro_clicked()
         new QTableWidgetItem( userRoleDescription )
     );
 
+    writeAssistanceFile(assistFileRoute,nombre, QDate::currentDate().toString("yyyy-MM-dd") );
     //añadir los campos de la tabla plan elegido
 }
 
@@ -199,23 +283,95 @@ void GymOperations::on_btnAllCustomers_clicked()
 
 
 //MANAGEMENT TAB
+
+void GymOperations::listNewCustomer(QString name){
+    SqlConnection con;
+    QString userRoleDescription = "";
+    std::vector<Rol>::iterator it = roles.begin();
+    PersonController &personController = PersonController::getInstance();
+
+    std::vector<Persona> manageCliente;
+    manageCliente.clear();
+    ui->tblWidManage->clearContents();
+    personController.searchUsersWithFields(&con, manageCliente, name,"","");
+
+    if(!manageCliente.empty() ){
+        ui->tblWidManage->setRowCount(manageCliente.size());
+
+        for(size_t i= 0; i < manageCliente.size(); i++){
+                ui->tblWidManage->setItem(
+            i, 0, new QTableWidgetItem( QString::fromStdString(manageCliente[i].getCodigo()) ));
+
+            ui->tblWidManage->setItem(
+            i, 1, new QTableWidgetItem( QString::fromStdString(manageCliente[i].getNombre() + " " + manageCliente[i].getApellido()) ));
+
+            ui->tblWidManage->setItem(
+            i, 2, new QTableWidgetItem( QString::number(manageCliente[i].getPeso()) ));
+
+            ui->tblWidManage->setItem(
+            i, 3, new QTableWidgetItem( QString::fromStdString(manageCliente[i].getFechaRegistro()) ));
+
+            for( ; it != roles.end(); it++){
+                if( (*it).getId() == manageCliente[i].getRol() ){
+                    userRoleDescription = QString::fromStdString( it->getDescription() );
+                }
+            }
+
+            ui->tblWidManage->setItem(
+            i, 4, new QTableWidgetItem(userRoleDescription));
+        }
+    }
+
+}
+
 void GymOperations::on_btnManageSave_clicked()
 {
     QString nombre = "", apellido = "", fechaRegistro = "";
     double peso = 0.0;
     int rolId= 1;
+    QMessageBox msg = QMessageBox();
 
     SqlConnection con;
     PersonController& personController = PersonController::getInstance();
 
+
     getValuesfromManageFields(nombre, apellido, fechaRegistro, peso, rolId);
-    bool executionResult = personController.registerCustomer(&con, nombre, apellido, peso, fechaRegistro, rolId);
+
+    Persona cliente=Persona(
+        ui->txtManageCode->text().toStdString(),nombre.toStdString(),
+        apellido.toStdString(), fechaRegistro.toStdString(),"","",peso,0
+    );
+    bool executionResult = false;
+    if(textoBtnMngSave == "Guardar"){
+        executionResult =personController.registerCustomer(&con, nombre, apellido, peso, fechaRegistro, rolId);
+    }else{
+    //textoBtnMngSave is Actualizar
+        executionResult = personController.updateExistingCustomer(&con, cliente);
+    }
+
+
     qDebug() << fechaRegistro << "\n";
     if(executionResult){
-        QMessageBox::information(this, tr("Saved"), tr("Customer added successfully"));
-        listAllCustomers();
+        msg.setWindowTitle(textoBtnMngSave);
+        if(textoBtnMngSave == "Guardar"){
+            msg.setText("Cliente agregado existosamente");
+        } else {  msg.setText("Cliente actualizado existosamente");   }
+
+        msg.setIcon(QMessageBox::Information);
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
+        listNewCustomer(nombre);
+        //listAllCustomers();
     }else{
-        QMessageBox::information(this, tr("Error"), tr("Customer couldn't be created"));
+        //QMessageBox::information(this, tr("Error"), tr("Customer couldn't be created"));
+        msg.setWindowTitle("Error");
+        if(textoBtnMngSave == "Guardar"){
+            msg.setText("No se pudo agregar el cliente");
+        } else {  msg.setText("No se pudo actualizar el cliente");   }
+
+        msg.setIcon(QMessageBox::Critical);
+        msg.setStyleSheet("color:white; background:black");
+        msg.exec();
     }
 
 }
@@ -280,10 +436,14 @@ void GymOperations::on_cbxManageNew_stateChanged(int arg1)
     //if cbx is checked, it means create a new user, so dont enter user code
     if(arg1 == Qt::Checked){
         ui->txtManageCode->setReadOnly(true);
+        textoBtnMngSave = "Guardar";
     }else{
     //if cbx is unchecked, it means search or update a user data, so do enter user code
         ui->txtManageCode->setReadOnly(false);
+        textoBtnMngSave = "Actualizar";
     }
+
+    ui->btnManageSave->setText(textoBtnMngSave);
 }
 
 
@@ -1435,4 +1595,10 @@ void GymOperations::setChoosenDate(const QDate &date){
 }
 
 
+
+
+void GymOperations::on_btnSelectDirectory_clicked()
+{
+    createAssistanceFile(ui->lblRouteChoos);
+}
 

@@ -9,17 +9,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1092</width>
-    <height>645</height>
+    <width>1110</width>
+    <height>658</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 0);</string>
+   <string notr="true">background-color: rgb(ff,ff, ff);</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout_13">
    <property name="spacing">
     <number>6</number>
    </property>
@@ -55,12 +55,13 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
-       <string notr="true">QWidget#tabInicio QTableWidget {
-    background-color: #d1d1d1;
+       <string notr="true">QWidget#tabInicio QTableWidget#tblWidCustomersIntro{
+  background-color: #d1d1d1;
+
 }
 
 
@@ -219,6 +220,11 @@ QWidget#tabInicio QLineEdit{
              <string>Fecha Límite</string>
             </property>
            </column>
+           <column>
+            <property name="text">
+             <string>Estado</string>
+            </property>
+           </column>
           </widget>
          </item>
         </layout>
@@ -233,7 +239,7 @@ QWidget#tabInicio QLineEdit{
 	padding-left: 5%;
 	width: 100%;
 	min-width:200px;
-	color: white;
+	color: black;
 	font-size: 16px;
 	border: 1px solid #ffd600
 }
@@ -245,7 +251,7 @@ QWidget#tabGestion QDateEdit{
 	padding-left: 5%;
 	width: 100%;
 	min-width:200px;
-	color: white;
+	color: black;
 	font-size: 14px;
 	border: 1px solid #ffd600
 }
@@ -255,7 +261,7 @@ QWidget#tabGestion QCheckBox{
 	padding-bottom: 4%;
 	padding-left: 5%;
 	width: 100%;
-	color: white;
+	color: black;
 	font-size: 14px;
 	border: 1px solid #ffd600;
 }
@@ -387,6 +393,9 @@ QWidget#tabGestion QTableWidget{
               <widget class="QCheckBox" name="cbxManageNew">
                <property name="text">
                 <string>Cliente Nuevo?</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -1361,9 +1370,140 @@ QWidget#tabCorreos QTableWidget{
       </layout>
      </widget>
      <widget class="QWidget" name="tabConfig">
+      <property name="styleSheet">
+       <string notr="true">QWidget#tabConfig QPushButton {
+    background-color: #ffd600;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+
+	border-radius: 3px;
+}
+
+
+QWidget#tabConfig QLabel{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: white;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}</string>
+      </property>
       <attribute name="title">
        <string>Ajustes</string>
       </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_13">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_14">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>Seleccione donde se guardarán los registros de asistencia</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnSelectDirectory">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Seleccionar Directorio</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="lblRouteChoos">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Ruta c:user:useradadka a dajsd</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

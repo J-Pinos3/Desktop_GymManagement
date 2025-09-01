@@ -75,6 +75,8 @@ create table if not exists ServicioElegido(
     foreign key (id_serv) references Servicio(id_serv)
 );
 
+-- select * from Persona where nombre like 'Julio%';
+
 select * from Rol;
 select * from Persona;
 select * from Paquete;
@@ -84,6 +86,73 @@ select * from Usuario;
 select * from PlanElegido;
 select * from Servicio;
 select * from ServicioElegido;
+
+/*23/08/2025 query para traer todos los usuarios al inicio y mostrar las fechas de pago y fin del plan de entreno */
+select 
+	Pers.cod_persona, Pers.nombre,
+    Pers.apellido, Pers.peso,
+    Pers.fecha_registro, Pers.id_rol,
+    Ple.fecha_pago, Ple.fecha_finalizacion
+from CabeceraFactura as CabFac
+inner join Persona as Pers on Pers.cod_persona = CabFac.cod_persona
+inner join DetalleFactura as DetF on Detf.id_cab_fact = CabFac.id_cab_fact
+inner join PlanElegido as Ple on Ple.id_deta_fact = Detf.id_deta_fact
+order by Ple.fecha_finalizacion Desc;
+
+-- ALTERNATIVO
+SELECT 
+    Pers.cod_persona, 
+    Pers.nombre,
+    Pers.apellido, 
+    Pers.peso,
+    Pers.fecha_registro, 
+    Pers.id_rol,
+    Ple.fecha_pago, 
+    Ple.fecha_finalizacion,
+    -- Calcular si el plan está vigente
+    CASE 
+        WHEN CURDATE() BETWEEN Ple.fecha_pago AND Ple.fecha_finalizacion THEN 'Vigente'
+        ELSE 'Caducado'
+    END as estado
+FROM CabeceraFactura as CabFac
+INNER JOIN Persona as Pers ON Pers.cod_persona = CabFac.cod_persona
+INNER JOIN DetalleFactura as DetF ON DetF.id_cab_fact = CabFac.id_cab_fact
+INNER JOIN PlanElegido as Ple ON Ple.id_deta_fact = DetF.id_deta_fact
+ORDER BY 
+    estado DESC,  -- Primero los vigentes
+    Ple.fecha_finalizacion DESC;  -- Luego por fecha más reciente
+
+
+
+
+
+/* 22/08/2025 query para traer solo las facturas que sean de planes de ENTRENO del GYM
+	y ttambién traer facturas nuevas vacías
+1	Entrenamiento Mensual	35.00	30   tabla paquete
+2	Entrenamiento Diario	3.00	1
+*/
+select distinct
+	CabFac.id_cab_fact,
+    CabFac.fecha_cab_fact,
+	CabFac.total_cab_fact,
+    Pers.cod_persona,
+    Pers.nombre, Pers.apellido
+from CabeceraFactura as CabFac
+inner join Persona as Pers on Pers.cod_persona = CabFac.cod_persona
+where CabFac.id_cab_fact in (
+	-- facturas con planes de entreno
+	select distinct CabFac2.id_cab_fact
+    from CabeceraFactura as CabFac2
+	JOIN DetalleFactura as DetF ON CabFac2.id_cab_fact = DetF.id_cab_fact
+    JOIN PlanElegido as PE ON DetF.id_deta_fact = PE.id_deta_fact
+    
+    -- facturas sin detalles
+) or
+CabFac.id_cab_fact not in(
+	select distinct id_cab_fact
+    from DetalleFactura where id_cab_fact is not null ) ;
+
+
 
 
 -- Query para traer todas las fechas donde hay una cita o servicio del gym y así marcarlas en el calendar
