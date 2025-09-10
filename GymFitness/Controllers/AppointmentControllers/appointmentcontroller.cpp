@@ -76,17 +76,23 @@ void AppointmentController::getAllPaymentInvoicesAP(SqlConnection *con, std::vec
 
     QString sqlSentence;
     sqlSentence.append(
-    "SELECT DISTINCT\n"
-    "CabFac.id_cab_fact,\n"
-    "CabFac.fecha_cab_fact,\n"
-    "CabFac.total_cab_fact,\n"
-    "Pers.cod_persona,\n"
-    "Pers.nombre,\n"
-    "Pers.apellido\n"
-    "FROM CabeceraFactura as CabFac\n"
-    "INNER JOIN Persona as Pers on Pers.cod_persona = CabFac.cod_persona\n"
-    "LEFT JOIN DetalleFactura as DetF on CabFac.id_cab_fact = Detf.id_cab_fact\n"
-    "WHERE DetF.id_deta_fact in (select id_deta_fact from ServicioElegido )");
+        "SELECT DISTINCT\n"
+        "CabFac.id_cab_fact,\n"
+        "CabFac.fecha_cab_fact,\n"
+        "CabFac.total_cab_fact,\n"
+        "Pers.cod_persona,\n"
+        "Pers.nombre,\n"
+        "Pers.apellido\n"
+        "FROM CabeceraFactura as CabFac\n"
+        "INNER JOIN Persona as Pers on Pers.cod_persona = CabFac.cod_persona\n"
+        "WHERE CabFac.id_cab_fact in(\n"
+        "SELECT DISTINCT CabFac2.id_cab_fact\n"
+        "FROM CabeceraFactura as CabFac2\n"
+        "JOIN DetalleFactura as Detf ON CabFac2.id_cab_fact = Detf.id_cab_fact\n"
+        "JOIN ServicioElegido as Serv ON Detf.id_deta_fact = Serv.id_deta_fact) or \n"
+        "CabFac.id_cab_fact not in (\n"
+        "SELECT DISTINCT id_cab_fact\n"
+        "From DetalleFactura WHERE id_cab_fact is not null);" );
 
     Persona clienteActual;
     QSqlQuery query;
@@ -106,14 +112,14 @@ void AppointmentController::getAllPaymentInvoicesAP(SqlConnection *con, std::vec
                     query.value("CabFac.id_cab_fact").toInt(),
                     query.value("CabFac.fecha_cab_fact").toString().toStdString(),
                     query.value("CabFac.total_cab_fact").toDouble(),
-                    query.value("pers.cod_persona").toString().toStdString(),
+                    query.value("Pers.cod_persona").toString().toStdString(),
                     clienteActual
 
                 )
             );
         }
     }else{
-        qDebug() <<"Error getting all payment invoices: "
+        qDebug() <<"Error getting all appoint invoices: "
                 << query.lastError().text();
     }
 

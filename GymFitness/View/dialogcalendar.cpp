@@ -12,9 +12,14 @@ DialogCalendar::DialogCalendar(QWidget *parent) :
     ui->appointsCalendar->setMaximumDate(QDate(2100,10,10));
     ui->appointsCalendar->setMinimumDate(QDate(2022,01,01));
     ui->appointsCalendar->setSelectionMode( QCalendarWidget::SelectionMode::SingleSelection );
+
+    connect(this,&DialogCalendar::onShowAppointsList, &appointsView, &DialogAppointsView::getAppointsList);
+
     formatCalendar();
 
     getServiceDates();
+
+
 }
 
 DialogCalendar::~DialogCalendar()
@@ -96,8 +101,11 @@ void DialogCalendar::on_appointsCalendar_clicked(const QDate &date)
 {
     if( !date.isNull() || !date.isValid() ){
         emit choosenDate(date);
+
+        emit onShowAppointsList(date);
     }
     //selectedDateAppo = date;
+    appointsView.exec();
     qDebug() << "date: " << date.day() << "**-**-**" << date.year()<<"\n";
 }
 

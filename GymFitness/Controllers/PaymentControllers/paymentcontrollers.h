@@ -33,9 +33,9 @@ public:
 
     bool updatePaymentInvoice(SqlConnection *con, int id_cab_fact);
 
+    void getAllInvoices(SqlConnection *con, std::vector<Factura>& facturas);
+
     void getAllPaymentInvoices(SqlConnection *con, std::vector<Factura>& facturas);
-
-
 
     //INVOICE LINES
     bool createEmptyInvoiceLine(SqlConnection *con, const DetalleFactura& linea);

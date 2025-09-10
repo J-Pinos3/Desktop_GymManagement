@@ -11,6 +11,7 @@ debug/persona.o
 debug/planelegido.o
 debug/servicio.o
 debug/servicioelegido.o
+debug/dialogappointsview.o
 debug/dialogcalendar.o
 debug/gymoperations.o
 debug/emailaddress.o
@@ -36,6 +37,7 @@ debug/quotedprintable.o
 debug/smtpclient.o
 debug/sqlconnection.o
 debug/qrc_Resources.o
+debug/moc_dialogappointsview.o
 debug/moc_dialogcalendar.o
 debug/moc_gymoperations.o
 debug/moc_mainwindow.o

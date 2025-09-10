@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1110</width>
-    <height>658</height>
+    <width>1286</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,7 +55,7 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
@@ -69,7 +69,7 @@ QWidget#tabInicio QHeaderView::Section {
     background-color: #00baff;
 	padding-top: 2%;
 	padding-bottom: 2%;
-	font-size:16px;
+	font-size:18px;
 	font-style: bold;
 }
 
@@ -182,6 +182,11 @@ QWidget#tabInicio QLineEdit{
          </item>
          <item>
           <widget class="QTableWidget" name="tblWidCustomersIntro">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="sizeAdjustPolicy">
             <enum>QAbstractScrollArea::AdjustIgnored</enum>
            </property>
@@ -245,6 +250,20 @@ QWidget#tabInicio QLineEdit{
 }
 
 
+QWidget#tabGestion QLineEdit#txtManageCode{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: black;
+	background-color: #8C8C8B;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}
+
+
+
 QWidget#tabGestion QDateEdit{
 	padding-top: 2%;
 	padding-bottom: 3%;
@@ -252,7 +271,7 @@ QWidget#tabGestion QDateEdit{
 	width: 100%;
 	min-width:200px;
 	color: black;
-	font-size: 14px;
+	font-size: 16px;
 	border: 1px solid #ffd600
 }
 
@@ -262,7 +281,7 @@ QWidget#tabGestion QCheckBox{
 	padding-left: 5%;
 	width: 100%;
 	color: black;
-	font-size: 14px;
+	font-size: 16px;
 	border: 1px solid #ffd600;
 }
 
@@ -449,6 +468,11 @@ QWidget#tabGestion QTableWidget{
            </property>
            <item>
             <widget class="QPushButton" name="btnManageSave">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Guardar</string>
              </property>
@@ -456,6 +480,11 @@ QWidget#tabGestion QTableWidget{
            </item>
            <item>
             <widget class="QPushButton" name="btnManageCancel">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Cancelar</string>
              </property>
@@ -463,6 +492,11 @@ QWidget#tabGestion QTableWidget{
            </item>
            <item>
             <widget class="QPushButton" name="btnManageSearch">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Buscar</string>
              </property>
@@ -494,7 +528,7 @@ QWidget#tabCitas QLineEdit{
 	padding-left: 5%;
 	width: 100%;
 	min-width:200px;
-	color: white;
+	color: black;
 	font-size: 16px;
 	border: 1px solid #ffd600
 }
@@ -506,8 +540,8 @@ QWidget#tabCitas QCheckBox{
 	padding-bottom: 4%;
 	padding-left: 5%;
 	width: 60%;
-	color: white;
-	font-size: 14px;
+	color: black;
+	font-size: 16px;
 	border: 1px solid #ffd600;
 }
 
@@ -522,8 +556,8 @@ QWidget#tabCitas QDateTimeEdit{
 	padding-left: 5%;
 	width: 100%;
 	min-width:200px;
-	color: white;
-	font-size: 14px;
+	color: black;
+	font-size: 16px;
 	border: 1px solid #ffd600
 }
 
@@ -534,8 +568,8 @@ QWidget#tabCitas QSpinBox{
 	padding-left: 5%;
 	width: 100%;
 	min-width: 200px;
-	color: white;
-	font-size: 14px;
+	color: black;
+	font-size: 16px;
 	border: 1px solid #ffd600;
 }
 
@@ -551,7 +585,7 @@ QWidget#tabCitas QComboBox::open {
 }
 
 QWidget#tabCitas QComboBox QListView {
-	background-color: white;
+	background-color: black;
 }</string>
       </property>
       <attribute name="title">
@@ -607,6 +641,11 @@ QWidget#tabCitas QComboBox QListView {
            </property>
            <item>
             <widget class="QPushButton" name="btnAppointNewInvoice">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Nueva Factura</string>
              </property>
@@ -614,6 +653,11 @@ QWidget#tabCitas QComboBox QListView {
            </item>
            <item>
             <widget class="QPushButton" name="btnAppointAllInvoices">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Todas las Facturas</string>
              </property>
@@ -621,6 +665,11 @@ QWidget#tabCitas QComboBox QListView {
            </item>
            <item>
             <widget class="QPushButton" name="btnAppointSearchInvoice">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Buscar Factura</string>
              </property>
@@ -673,6 +722,11 @@ QWidget#tabCitas QComboBox QListView {
              </item>
              <item>
               <widget class="QPushButton" name="btnAvailableDates">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
                <property name="text">
                 <string>Fechas Disponibles</string>
                </property>
@@ -765,6 +819,11 @@ QWidget#tabCitas QComboBox QListView {
           <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
             <widget class="QPushButton" name="btnAppointSaveAll">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Guardar Todo</string>
              </property>
@@ -772,6 +831,11 @@ QWidget#tabCitas QComboBox QListView {
            </item>
            <item>
             <widget class="QPushButton" name="btnAppointAdd">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Agregar Cita</string>
              </property>
@@ -779,6 +843,11 @@ QWidget#tabCitas QComboBox QListView {
            </item>
            <item>
             <widget class="QPushButton" name="btnSaveAppoint">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Guardar Cita</string>
              </property>
@@ -786,6 +855,11 @@ QWidget#tabCitas QComboBox QListView {
            </item>
            <item>
             <widget class="QPushButton" name="btnAppointCancel">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Cancelar</string>
              </property>
@@ -817,7 +891,7 @@ QWidget#tabPagos QLineEdit{
 	padding-left: 5%;
 	width: 100%;
 	min-width:200px;
-	color: white;
+	color: black;
 	font-size: 16px;
 	border: 1px solid #ffd600
 }
@@ -827,8 +901,8 @@ QWidget#tabPagos QCheckBox{
 	padding-bottom: 4%;
 	padding-left: 5%;
 	width: 60%;
-	color: white;
-	font-size: 14px;
+	color: black;
+	font-size: 16px;
 	border: 1px solid #ffd600;
 }
 
@@ -844,8 +918,8 @@ QWidget#tabPagos QDateTimeEdit{
 	padding-left: 5%;
 	width: 100%;
 	min-width: 200px;
-	color: white;
-	font-size: 14px;
+	color: black;
+	font-size: 16px;
 	border: 1px solid #ffd600;
 }
 
@@ -855,8 +929,8 @@ QWidget#tabPagos QSpinBox{
 	padding-left: 5%;
 	width: 100%;
 	min-width: 200px;
-	color: white;
-	font-size: 14px;
+	color: black;
+	font-size: 16px;
 	border: 1px solid #ffd600;
 }
 
@@ -928,6 +1002,11 @@ QWidget#tabPagos QComboBox QListView {
            </property>
            <item>
             <widget class="QPushButton" name="btnPaymentNewInvoice">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Nueva Factura</string>
              </property>
@@ -935,6 +1014,11 @@ QWidget#tabPagos QComboBox QListView {
            </item>
            <item>
             <widget class="QPushButton" name="btnPaymentAllInvoices">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Todas las Facturas</string>
              </property>
@@ -942,6 +1026,11 @@ QWidget#tabPagos QComboBox QListView {
            </item>
            <item>
             <widget class="QPushButton" name="btnPaymentSearchInvoice">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Buscar Factura</string>
              </property>
@@ -1043,32 +1132,6 @@ QWidget#tabPagos QComboBox QListView {
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QCheckBox" name="checkPaymentPartial">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Abono</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="txtPaymentPartialPay">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="placeholderText">
-                <string>Cantidad a abonar</string>
-               </property>
-              </widget>
-             </item>
             </layout>
            </item>
            <item>
@@ -1114,6 +1177,11 @@ QWidget#tabPagos QComboBox QListView {
            </property>
            <item>
             <widget class="QPushButton" name="btnPaymentSaveAll">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Guardar Todo</string>
              </property>
@@ -1121,6 +1189,11 @@ QWidget#tabPagos QComboBox QListView {
            </item>
            <item>
             <widget class="QPushButton" name="btnPaymentAddLine">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Agregar Detalle</string>
              </property>
@@ -1128,6 +1201,11 @@ QWidget#tabPagos QComboBox QListView {
            </item>
            <item>
             <widget class="QPushButton" name="btnSaveLine">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Guardar Detalle</string>
              </property>
@@ -1135,6 +1213,11 @@ QWidget#tabPagos QComboBox QListView {
            </item>
            <item>
             <widget class="QPushButton" name="btnPaymentCancel">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Cancelar</string>
              </property>
@@ -1300,7 +1383,7 @@ QWidget#tabCorreos QLineEdit{
 	padding-left: 5%;
 	width: 100%;
 	min-width:200px;
-	color: white;
+	color: black;
 	font-size: 16px;
 	border: 1px solid #ffd600
 }
@@ -1351,6 +1434,11 @@ QWidget#tabCorreos QTableWidget{
            </property>
            <item>
             <widget class="QPushButton" name="btnSendEmail">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Enviar Correo</string>
              </property>
@@ -1358,6 +1446,11 @@ QWidget#tabCorreos QTableWidget{
            </item>
            <item>
             <widget class="QPushButton" name="btnListFiles">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>Seleccionar Archivos</string>
              </property>
@@ -1388,7 +1481,7 @@ QWidget#tabConfig QLabel{
 	padding-left: 5%;
 	width: 100%;
 	min-width:200px;
-	color: white;
+	color: black;
 	font-size: 16px;
 	border: 1px solid #ffd600
 }</string>

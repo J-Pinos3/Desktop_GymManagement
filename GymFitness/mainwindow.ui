@@ -16,12 +16,15 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(ff,ff, ff);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="layoutDirection">
     <enum>Qt::LeftToRight</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(15, 15, 15);</string>
+    <string notr="true">background-color: rgb(ff,ff, ff);</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
@@ -31,7 +34,7 @@
 	margin-top: 40;
 	margin-right: 40;
 	margin-left: 40;
-	background:black;
+	//background:black;
 }
 
 </string>
@@ -43,7 +46,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="Resources.qrc">:/images/Images/GoldsGym1.png</pixmap>
+       <pixmap resource="Resources.qrc">:/images/Images/GoldenGym2.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -139,7 +142,7 @@
 }
 
 QComboBox::open {
-	background-color: yellow;
+	background-color: #ffd600;
 }
 
 QComboBox QListView {

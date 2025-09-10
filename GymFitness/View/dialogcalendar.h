@@ -6,6 +6,9 @@
 
 #include "sqlconnection.h"
 #include <QDate>
+
+#include "View/dialogappointsview.h"
+
 namespace Ui {
 class DialogCalendar;
 }
@@ -28,6 +31,8 @@ public:
 signals:
     void choosenDate(const QDate& date);
 
+    void onShowAppointsList(const QDate& date);
+
 private slots:
 
     void on_btnCloseCalendar_clicked();
@@ -37,6 +42,8 @@ private slots:
 private:
     Ui::DialogCalendar *ui;
     QStringList datesList;
+
+    DialogAppointsView appointsView;
     //QDate selectedDateAppo;
 };
 

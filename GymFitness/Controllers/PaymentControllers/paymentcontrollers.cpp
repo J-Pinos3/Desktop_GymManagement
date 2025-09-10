@@ -73,6 +73,57 @@ bool PaymentControllers::updatePaymentInvoice(SqlConnection *con, int id_cab_fac
 }
 
 
+//this query brings all invoices, combining training plans and gym services
+void PaymentControllers::getAllInvoices(SqlConnection *con, std::vector<Factura>& facturas){
+
+    con->conOpen();
+
+    QString sqlSentence;
+    sqlSentence.append(
+    "SELECT DISTINCT\n"
+    "CabFac.id_cab_fact,\n"
+    "CabFac.fecha_cab_fact,\n"
+    "CabFac.total_cab_fact,\n"
+    "Pers.cod_persona,\n"
+    "Pers.nombre,\n"
+    "Pers.apellido\n"
+    "FROM CabeceraFactura as CabFac\n"
+    "INNER JOIN Persona as Pers on Pers.cod_persona = CabFac.cod_persona"
+    );
+
+    Persona clienteActual;
+    QSqlQuery query;
+    query.prepare(sqlSentence);
+    if( query.exec() ){
+
+        while( query.next() ){
+            clienteActual.setNombre(
+                query.value("Pers.nombre").toString().toStdString()  );
+            clienteActual.setApellido(
+                query.value("Pers.apellido").toString().toStdString()  );
+
+            facturas.push_back(
+                Factura(
+                    query.value("CabFac.id_cab_fact").toInt(),
+                    query.value("CabFac.fecha_cab_fact").toString().toStdString(),
+                    query.value("CabFac.total_cab_fact").toDouble(),
+                    query.value("Pers.cod_persona").toString().toStdString(),
+                    clienteActual
+                )
+            );
+        }
+
+    }else{
+        qDebug() << "Error getting all payment invoices: "
+                 << query.lastError().text()<<"\n";
+    }
+
+
+    con->conClose();
+
+}
+
+//this query brings invoices from training plans
 void PaymentControllers::getAllPaymentInvoices(SqlConnection *con, std::vector<Factura>& facturas){
     con->conOpen();
 
@@ -116,18 +167,17 @@ void PaymentControllers::getAllPaymentInvoices(SqlConnection *con, std::vector<F
                     clienteActual
                 )
             );
-            qDebug() <<  "Factura: "
+            qDebug() <<  "Factura de Planes: "
                      <<  query.value("Pers.nombre").toString() <<"  " << query.value("Pers.apellido").toString()
                      << query.value("CabFac.id_cab_fact").toInt() << "\n";
         }
     }else{
-        qDebug() <<"Error getting all payment invoices: "
+        qDebug() <<"Error getting training payment invoices: "
                 << query.lastError().text();
     }
 
     con->conClose();
 }//GET ALL PAYMENT INVOICES
-
 
 
 bool PaymentControllers::createEmptyInvoiceLine(SqlConnection *con, const DetalleFactura& linea){

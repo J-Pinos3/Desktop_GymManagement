@@ -102,8 +102,6 @@ public:
     QComboBox *cbxPaymentPackage;
     QSpinBox *sbPaymentQuantity;
     QLineEdit *txtPaymentAmount;
-    QCheckBox *checkPaymentPartial;
-    QLineEdit *txtPaymentPartialPay;
     QTableWidget *tblWidPaymentLine;
     QHBoxLayout *horizontalLayout_6;
     QPushButton *btnPaymentSaveAll;
@@ -141,7 +139,7 @@ public:
         if (GymOperations->objectName().isEmpty())
             GymOperations->setObjectName("GymOperations");
         GymOperations->setWindowModality(Qt::NonModal);
-        GymOperations->resize(1110, 658);
+        GymOperations->resize(1286, 674);
         GymOperations->setStyleSheet(QString::fromUtf8("background-color: rgb(ff,ff, ff);"));
         horizontalLayout_13 = new QHBoxLayout(GymOperations);
         horizontalLayout_13->setSpacing(6);
@@ -174,7 +172,7 @@ public:
 "    background-color: #00baff;\n"
 "	padding-top: 2%;\n"
 "	padding-bottom: 2%;\n"
-"	font-size:16px;\n"
+"	font-size:18px;\n"
 "	font-style: bold;\n"
 "}\n"
 "\n"
@@ -267,6 +265,9 @@ public:
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         tblWidCustomersIntro->setHorizontalHeaderItem(7, __qtablewidgetitem7);
         tblWidCustomersIntro->setObjectName("tblWidCustomersIntro");
+        QFont font2;
+        font2.setPointSize(12);
+        tblWidCustomersIntro->setFont(font2);
         tblWidCustomersIntro->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
 
         verticalLayout_2->addWidget(tblWidCustomersIntro);
@@ -289,6 +290,20 @@ public:
 "}\n"
 "\n"
 "\n"
+"QWidget#tabGestion QLineEdit#txtManageCode{\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 3%;\n"
+"	padding-left: 5%;\n"
+"	width: 100%;\n"
+"	min-width:200px;\n"
+"	color: black;\n"
+"	background-color: #8C8C8B;\n"
+"	font-size: 16px;\n"
+"	border: 1px solid #ffd600\n"
+"}\n"
+"\n"
+"\n"
+"\n"
 "QWidget#tabGestion QDateEdit{\n"
 "	padding-top: 2%;\n"
 "	padding-bottom: 3%;\n"
@@ -296,7 +311,7 @@ public:
 "	width: 100%;\n"
 "	min-width:200px;\n"
 "	color: black;\n"
-"	font-size: 14px;\n"
+"	font-size: 16px;\n"
 "	border: 1px solid #ffd600\n"
 "}\n"
 "\n"
@@ -306,13 +321,14 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	color: black;\n"
-"	font-size: 14px;\n"
+"	font-size: 16px;\n"
 "	border: 1px solid #ffd600;\n"
 "}\n"
 "\n"
 "QWidget#tabGestion QPushButton {\n"
 "    background-color: #ffd600;\n"
-"	padding-top: 2%;\n"
+"	padd"
+                        "ing-top: 2%;\n"
 "	padding-bottom: 4%;\n"
 "	padding-right: 7%;\n"
 "	padding-left: 7%;\n"
@@ -343,8 +359,8 @@ public:
         sizePolicy.setHeightForWidth(txtManageName->sizePolicy().hasHeightForWidth());
         txtManageName->setSizePolicy(sizePolicy);
         txtManageName->setMinimumSize(QSize(207, 0));
-        QFont font2;
-        txtManageName->setFont(font2);
+        QFont font3;
+        txtManageName->setFont(font3);
         txtManageName->setStyleSheet(QString::fromUtf8(""));
 
         verticalLayout_4->addWidget(txtManageName);
@@ -417,16 +433,19 @@ public:
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         btnManageSave = new QPushButton(tabGestion);
         btnManageSave->setObjectName("btnManageSave");
+        btnManageSave->setFont(font1);
 
         horizontalLayout_2->addWidget(btnManageSave);
 
         btnManageCancel = new QPushButton(tabGestion);
         btnManageCancel->setObjectName("btnManageCancel");
+        btnManageCancel->setFont(font1);
 
         horizontalLayout_2->addWidget(btnManageCancel);
 
         btnManageSearch = new QPushButton(tabGestion);
         btnManageSearch->setObjectName("btnManageSearch");
+        btnManageSearch->setFont(font1);
 
         horizontalLayout_2->addWidget(btnManageSearch);
 
@@ -457,7 +476,7 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width:200px;\n"
-"	color: white;\n"
+"	color: black;\n"
 "	font-size: 16px;\n"
 "	border: 1px solid #ffd600\n"
 "}\n"
@@ -469,8 +488,8 @@ public:
 "	padding-bottom: 4%;\n"
 "	padding-left: 5%;\n"
 "	width: 60%;\n"
-"	color: white;\n"
-"	font-size: 14px;\n"
+"	color: black;\n"
+"	font-size: 16px;\n"
 "	border: 1px solid #ffd600;\n"
 "}\n"
 "\n"
@@ -485,8 +504,8 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width:200px;\n"
-"	color: white;\n"
-"	font-size: 14px;\n"
+"	color: black;\n"
+"	font-size: 16px;\n"
 "	border: 1px solid #ffd600\n"
 "}\n"
 "\n"
@@ -498,8 +517,8 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width: 200px;\n"
-"	color: white;\n"
-"	font-size: 14px;\n"
+"	color: black;\n"
+"	font-size: 16px;\n"
 "	border: 1px solid #ffd600;\n"
 "}\n"
 "\n"
@@ -515,7 +534,7 @@ public:
 "}\n"
 "\n"
 "QWidget#tabCitas QComboBox QListView {\n"
-"	background-color: white;\n"
+"	background-color: black;\n"
 "}"));
         verticalLayout_9 = new QVBoxLayout(tabCitas);
         verticalLayout_9->setObjectName("verticalLayout_9");
@@ -550,16 +569,19 @@ public:
         horizontalLayout_10->setContentsMargins(-1, 0, -1, -1);
         btnAppointNewInvoice = new QPushButton(tabCitas);
         btnAppointNewInvoice->setObjectName("btnAppointNewInvoice");
+        btnAppointNewInvoice->setFont(font1);
 
         horizontalLayout_10->addWidget(btnAppointNewInvoice);
 
         btnAppointAllInvoices = new QPushButton(tabCitas);
         btnAppointAllInvoices->setObjectName("btnAppointAllInvoices");
+        btnAppointAllInvoices->setFont(font1);
 
         horizontalLayout_10->addWidget(btnAppointAllInvoices);
 
         btnAppointSearchInvoice = new QPushButton(tabCitas);
         btnAppointSearchInvoice->setObjectName("btnAppointSearchInvoice");
+        btnAppointSearchInvoice->setFont(font1);
 
         horizontalLayout_10->addWidget(btnAppointSearchInvoice);
 
@@ -594,6 +616,7 @@ public:
 
         btnAvailableDates = new QPushButton(tabCitas);
         btnAvailableDates->setObjectName("btnAvailableDates");
+        btnAvailableDates->setFont(font1);
 
         verticalLayout_8->addWidget(btnAvailableDates);
 
@@ -657,21 +680,25 @@ public:
         horizontalLayout_7->setObjectName("horizontalLayout_7");
         btnAppointSaveAll = new QPushButton(tabCitas);
         btnAppointSaveAll->setObjectName("btnAppointSaveAll");
+        btnAppointSaveAll->setFont(font1);
 
         horizontalLayout_7->addWidget(btnAppointSaveAll);
 
         btnAppointAdd = new QPushButton(tabCitas);
         btnAppointAdd->setObjectName("btnAppointAdd");
+        btnAppointAdd->setFont(font1);
 
         horizontalLayout_7->addWidget(btnAppointAdd);
 
         btnSaveAppoint = new QPushButton(tabCitas);
         btnSaveAppoint->setObjectName("btnSaveAppoint");
+        btnSaveAppoint->setFont(font1);
 
         horizontalLayout_7->addWidget(btnSaveAppoint);
 
         btnAppointCancel = new QPushButton(tabCitas);
         btnAppointCancel->setObjectName("btnAppointCancel");
+        btnAppointCancel->setFont(font1);
 
         horizontalLayout_7->addWidget(btnAppointCancel);
 
@@ -702,7 +729,7 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width:200px;\n"
-"	color: white;\n"
+"	color: black;\n"
 "	font-size: 16px;\n"
 "	border: 1px solid #ffd600\n"
 "}\n"
@@ -712,8 +739,8 @@ public:
 "	padding-bottom: 4%;\n"
 "	padding-left: 5%;\n"
 "	width: 60%;\n"
-"	color: white;\n"
-"	font-size: 14px;\n"
+"	color: black;\n"
+"	font-size: 16px;\n"
 "	border: 1px solid #ffd600;\n"
 "}\n"
 "\n"
@@ -729,8 +756,8 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width: 200px;\n"
-"	color: white;\n"
-"	font-size: 14px;\n"
+"	color: black;\n"
+"	font-size: 16px;\n"
 "	border: 1px solid #ffd600;\n"
 "}\n"
 "\n"
@@ -741,8 +768,8 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width: 200px;\n"
-"	color: white;\n"
-"	font-size: 14px;\n"
+"	color: black;\n"
+"	font-size: 16px;\n"
 "	border: 1px solid #ffd600;\n"
 "}\n"
 "\n"
@@ -790,16 +817,19 @@ public:
         horizontalLayout_5->setContentsMargins(-1, 0, -1, -1);
         btnPaymentNewInvoice = new QPushButton(tabPagos);
         btnPaymentNewInvoice->setObjectName("btnPaymentNewInvoice");
+        btnPaymentNewInvoice->setFont(font1);
 
         horizontalLayout_5->addWidget(btnPaymentNewInvoice);
 
         btnPaymentAllInvoices = new QPushButton(tabPagos);
         btnPaymentAllInvoices->setObjectName("btnPaymentAllInvoices");
+        btnPaymentAllInvoices->setFont(font1);
 
         horizontalLayout_5->addWidget(btnPaymentAllInvoices);
 
         btnPaymentSearchInvoice = new QPushButton(tabPagos);
         btnPaymentSearchInvoice->setObjectName("btnPaymentSearchInvoice");
+        btnPaymentSearchInvoice->setFont(font1);
 
         horizontalLayout_5->addWidget(btnPaymentSearchInvoice);
 
@@ -859,20 +889,6 @@ public:
 
         verticalLayout_6->addWidget(txtPaymentAmount);
 
-        checkPaymentPartial = new QCheckBox(tabPagos);
-        checkPaymentPartial->setObjectName("checkPaymentPartial");
-        sizePolicy.setHeightForWidth(checkPaymentPartial->sizePolicy().hasHeightForWidth());
-        checkPaymentPartial->setSizePolicy(sizePolicy);
-
-        verticalLayout_6->addWidget(checkPaymentPartial);
-
-        txtPaymentPartialPay = new QLineEdit(tabPagos);
-        txtPaymentPartialPay->setObjectName("txtPaymentPartialPay");
-        sizePolicy.setHeightForWidth(txtPaymentPartialPay->sizePolicy().hasHeightForWidth());
-        txtPaymentPartialPay->setSizePolicy(sizePolicy);
-
-        verticalLayout_6->addWidget(txtPaymentPartialPay);
-
 
         horizontalLayout_4->addLayout(verticalLayout_6);
 
@@ -903,21 +919,25 @@ public:
         horizontalLayout_6->setObjectName("horizontalLayout_6");
         btnPaymentSaveAll = new QPushButton(tabPagos);
         btnPaymentSaveAll->setObjectName("btnPaymentSaveAll");
+        btnPaymentSaveAll->setFont(font1);
 
         horizontalLayout_6->addWidget(btnPaymentSaveAll);
 
         btnPaymentAddLine = new QPushButton(tabPagos);
         btnPaymentAddLine->setObjectName("btnPaymentAddLine");
+        btnPaymentAddLine->setFont(font1);
 
         horizontalLayout_6->addWidget(btnPaymentAddLine);
 
         btnSaveLine = new QPushButton(tabPagos);
         btnSaveLine->setObjectName("btnSaveLine");
+        btnSaveLine->setFont(font1);
 
         horizontalLayout_6->addWidget(btnSaveLine);
 
         btnPaymentCancel = new QPushButton(tabPagos);
         btnPaymentCancel->setObjectName("btnPaymentCancel");
+        btnPaymentCancel->setFont(font1);
 
         horizontalLayout_6->addWidget(btnPaymentCancel);
 
@@ -994,16 +1014,16 @@ public:
         horizontalLayout_11->setContentsMargins(0, 5, -1, 0);
         btnAllInvoicesReport = new QPushButton(tabFacturas);
         btnAllInvoicesReport->setObjectName("btnAllInvoicesReport");
-        QFont font3;
-        font3.setPointSize(14);
-        font3.setBold(true);
-        btnAllInvoicesReport->setFont(font3);
+        QFont font4;
+        font4.setPointSize(14);
+        font4.setBold(true);
+        btnAllInvoicesReport->setFont(font4);
 
         horizontalLayout_11->addWidget(btnAllInvoicesReport);
 
         btnGenerateReport = new QPushButton(tabFacturas);
         btnGenerateReport->setObjectName("btnGenerateReport");
-        btnGenerateReport->setFont(font3);
+        btnGenerateReport->setFont(font4);
 
         horizontalLayout_11->addWidget(btnGenerateReport);
 
@@ -1031,7 +1051,7 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width:200px;\n"
-"	color: white;\n"
+"	color: black;\n"
 "	font-size: 16px;\n"
 "	border: 1px solid #ffd600\n"
 "}\n"
@@ -1069,11 +1089,13 @@ public:
         horizontalLayout_12->setContentsMargins(0, 10, -1, 10);
         btnSendEmail = new QPushButton(tabCorreos);
         btnSendEmail->setObjectName("btnSendEmail");
+        btnSendEmail->setFont(font1);
 
         horizontalLayout_12->addWidget(btnSendEmail);
 
         btnListFiles = new QPushButton(tabCorreos);
         btnListFiles->setObjectName("btnListFiles");
+        btnListFiles->setFont(font1);
 
         horizontalLayout_12->addWidget(btnListFiles);
 
@@ -1103,7 +1125,7 @@ public:
 "	padding-left: 5%;\n"
 "	width: 100%;\n"
 "	min-width:200px;\n"
-"	color: white;\n"
+"	color: black;\n"
 "	font-size: 16px;\n"
 "	border: 1px solid #ffd600\n"
 "}"));
@@ -1118,7 +1140,7 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
         label_2->setSizePolicy(sizePolicy3);
-        label_2->setFont(font2);
+        label_2->setFont(font3);
         label_2->setLayoutDirection(Qt::LeftToRight);
         label_2->setAlignment(Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft);
 
@@ -1144,7 +1166,7 @@ public:
         lblRouteChoos->setObjectName("lblRouteChoos");
         sizePolicy.setHeightForWidth(lblRouteChoos->sizePolicy().hasHeightForWidth());
         lblRouteChoos->setSizePolicy(sizePolicy);
-        lblRouteChoos->setFont(font2);
+        lblRouteChoos->setFont(font3);
 
         verticalLayout_14->addWidget(lblRouteChoos);
 
@@ -1162,7 +1184,7 @@ public:
 
         retranslateUi(GymOperations);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(GymOperations);
@@ -1273,8 +1295,6 @@ public:
         invoiceInfoLineNumber->setPlaceholderText(QCoreApplication::translate("GymOperations", "Detalle N\302\260 22", nullptr));
         paymentDatePay->setDisplayFormat(QCoreApplication::translate("GymOperations", "yyyy/MM/dd", nullptr));
         txtPaymentAmount->setPlaceholderText(QCoreApplication::translate("GymOperations", "$00.00", nullptr));
-        checkPaymentPartial->setText(QCoreApplication::translate("GymOperations", "Abono", nullptr));
-        txtPaymentPartialPay->setPlaceholderText(QCoreApplication::translate("GymOperations", "Cantidad a abonar", nullptr));
         QTableWidgetItem *___qtablewidgetitem33 = tblWidPaymentLine->horizontalHeaderItem(0);
         ___qtablewidgetitem33->setText(QCoreApplication::translate("GymOperations", "Id Detalle", nullptr));
         QTableWidgetItem *___qtablewidgetitem34 = tblWidPaymentLine->horizontalHeaderItem(1);

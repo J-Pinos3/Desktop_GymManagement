@@ -34,6 +34,7 @@ GymOperations::GymOperations(QWidget *parent) :
     connect(&dialogCalendar, &DialogCalendar::choosenDate, this, &GymOperations::setChoosenDate);
 
     textoBtnMngSave ="Guardar";
+    ui->txtManageCode->setReadOnly(true);
 
     setCustomersRoleDescription();
     listAllCustomers();
@@ -90,7 +91,6 @@ void GymOperations::setCustomersRoleDescription(){
 
     personController.getRolesForCustomers(&con, roles);
 }
-
 
 
 void GymOperations::listAllCustomers(){
@@ -436,17 +436,42 @@ void GymOperations::on_cbxManageNew_stateChanged(int arg1)
     //if cbx is checked, it means create a new user, so dont enter user code
     if(arg1 == Qt::Checked){
         ui->txtManageCode->setReadOnly(true);
+        ui->txtManageCode->setStyleSheet(
+            "QWidget#tabGestion QLineEdit{"
+                "padding-top: 2%;"
+                "padding-bottom: 3%;"
+                "padding-left: 5%;"
+                "width: 100%;"
+                "min-width:200px;"
+                "color: black;"
+                "background-color: #8C8C8B;"
+                "font-size: 16px;"
+                "border: 1px solid #ffd600"
+            "}"
+        );
         textoBtnMngSave = "Guardar";
     }else{
+
     //if cbx is unchecked, it means search or update a user data, so do enter user code
         ui->txtManageCode->setReadOnly(false);
+        ui->txtManageCode->setStyleSheet(
+            "QWidget#tabGestion QLineEdit{"
+                "padding-top: 2%;"
+                "padding-bottom: 3%;"
+                "padding-left: 5%;"
+                "width: 100%;"
+                "min-width:200px;"
+                "color: black;"
+                "background-color: white;"
+                "font-size: 16px;"
+                "border: 1px solid #ffd600"
+            "}"
+        );
         textoBtnMngSave = "Actualizar";
     }
 
     ui->btnManageSave->setText(textoBtnMngSave);
 }
-
-
 
 
 
@@ -625,6 +650,8 @@ void GymOperations::getAllPaymentInvoicesFromDB(){
     PaymentControllers paymentController = PaymentControllers::getInstance();
 
     cabeceraFacturas.clear();
+
+
     paymentController.getAllPaymentInvoices(&con, cabeceraFacturas);
 
     ui->tblWidPaymentInvoice->clearContents();
@@ -779,8 +806,8 @@ void GymOperations::on_tblWidPaymentInvoice_cellActivated(int row, int column)
     paymentTotalTxt.isNull() || paymentTotalTxt.isEmpty() ?
         ui->txtPaymentAmount->setText("00.0") : ui->txtPaymentAmount->setText(paymentTotalTxt);
 
-    partialPaymentTxt.isNull() || partialPaymentTxt.isEmpty() ?
-        ui->txtPaymentPartialPay->setText("00.0") : ui->txtPaymentPartialPay->setText(partialPaymentTxt);
+    //partialPaymentTxt.isNull() || partialPaymentTxt.isEmpty() ?
+    //    ui->txtPaymentPartialPay->setText("00.0") : ui->txtPaymentPartialPay->setText(partialPaymentTxt);
 
     getInvoiceLinesByInvoiceId( ui->invoiceNumber->text().toInt() );
     if(detallesFactura.size() <= 0 ){
@@ -1540,11 +1567,22 @@ void GymOperations::on_txtEmailAddress_textChanged(const QString &arg1)
 {
     qDebug() <<"---->"<<arg1 << "\n";
     if(arg1.isEmpty() || arg1.isNull() || arg1 == ""){
-        ui->btnSendEmail->setDisabled(true);
-        ui->btnSendEmail->setCheckable(false);
+        ui->btnSendEmail->setEnabled(false);
         ui->btnSendEmail->setStyleSheet(
-            "QWidget#tabCorreos QPushButton {"
-            "background-color: #7393B3;"
+            "QWidget#tabCorreos QPushButton#btnSendEmail {"
+            "background-color: #8C8C8B;"
+            "padding-top: 2%;"
+            "padding-bottom: 4%;"
+            "padding-right: 7%;"
+            "padding-left: 7%;"
+            "border-radius: 3px;"
+            "}"
+        );
+    }else{
+        ui->btnSendEmail->setEnabled(true);
+        ui->btnSendEmail->setStyleSheet(
+            "QWidget#tabCorreos QPushButton#btnSendEmail {"
+            "background-color: #ffd600;"
             "padding-top: 2%;"
             "padding-bottom: 4%;"
             "padding-right: 7%;"
@@ -1553,18 +1591,7 @@ void GymOperations::on_txtEmailAddress_textChanged(const QString &arg1)
             "}"
         );
     }
-    ui->btnSendEmail->setDisabled(false);
-    ui->btnSendEmail->setCheckable(true);
-    ui->btnSendEmail->setStyleSheet(
-        "QWidget#tabCorreos QPushButton {"
-        "background-color: #ffd600;"
-        "padding-top: 2%;"
-        "padding-bottom: 4%;"
-        "padding-right: 7%;"
-        "padding-left: 7%;"
-        "border-radius: 3px;"
-        "}"
-    );
+
 
     emailAddressTo = arg1;
 }
@@ -1601,4 +1628,7 @@ void GymOperations::on_btnSelectDirectory_clicked()
 {
     createAssistanceFile(ui->lblRouteChoos);
 }
+
+
+
 

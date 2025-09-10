@@ -49,10 +49,11 @@ public:
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(638, 714);
         MainWindow->setAutoFillBackground(false);
+        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(ff,ff, ff);"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         centralwidget->setLayoutDirection(Qt::LeftToRight);
-        centralwidget->setStyleSheet(QString::fromUtf8("background-color: rgb(15, 15, 15);"));
+        centralwidget->setStyleSheet(QString::fromUtf8("background-color: rgb(ff,ff, ff);"));
         verticalLayout_2 = new QVBoxLayout(centralwidget);
         verticalLayout_2->setObjectName("verticalLayout_2");
         lblGymImage = new QLabel(centralwidget);
@@ -61,12 +62,12 @@ public:
 "	margin-top: 40;\n"
 "	margin-right: 40;\n"
 "	margin-left: 40;\n"
-"	background:black;\n"
+"	//background:black;\n"
 "}\n"
 "\n"
 ""));
         lblGymImage->setFrameShape(QFrame::Box);
-        lblGymImage->setPixmap(QPixmap(QString::fromUtf8(":/images/Images/GoldsGym1.png")));
+        lblGymImage->setPixmap(QPixmap(QString::fromUtf8(":/images/Images/GoldenGym2.png")));
         lblGymImage->setScaledContents(true);
         lblGymImage->setAlignment(Qt::AlignCenter);
         lblGymImage->setMargin(2);
@@ -116,7 +117,7 @@ public:
 "}\n"
 "\n"
 "QComboBox::open {\n"
-"	background-color: yellow;\n"
+"	background-color: #ffd600;\n"
 "}\n"
 "\n"
 "QComboBox QListView {\n"

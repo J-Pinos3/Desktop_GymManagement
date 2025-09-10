@@ -87,6 +87,19 @@ select * from PlanElegido;
 select * from Servicio;
 select * from ServicioElegido;
 
+/* 07/09/2025 query para traer cuántas citas hay en una fecha dada */
+select 
+	Servel.fecha_serv,
+    (select serv_titulo from  Servicio where Servicio.id_serv = Servel.id_serv) ,
+    Pers.nombre, Pers.apellido
+from ServicioElegido as Servel
+left join DetalleFactura as Detf on Detf.id_deta_fact = Servel.id_deta_fact
+left join CabeceraFactura as CabFac on CabFac.id_cab_fact = Detf.id_cab_fact
+left join Persona as Pers on Pers.cod_persona = CabFac.cod_persona
+where Servel.fecha_serv like '2024-09-23%';
+
+
+
 /*23/08/2025 query para traer todos los usuarios al inicio y mostrar las fechas de pago y fin del plan de entreno */
 select 
 	Pers.cod_persona, Pers.nombre,

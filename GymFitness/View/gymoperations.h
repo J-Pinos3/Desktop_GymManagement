@@ -160,6 +160,7 @@ private slots:
 
     void on_btnSelectDirectory_clicked();
 
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
