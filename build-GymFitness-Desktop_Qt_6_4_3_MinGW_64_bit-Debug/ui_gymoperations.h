@@ -1039,7 +1039,15 @@ public:
 "	padding-bottom: 4%;\n"
 "	padding-right: 7%;\n"
 "	padding-left: 7%;\n"
-"	\n"
+"	border-radius: 3px;\n"
+"}\n"
+"QWidget#tabCorreos QPushButton#btnSendEmail {\n"
+"    background-color: #8C8C8B;\n"
+"	color:white;\n"
+"	padding-top: 2%;\n"
+"	padding-bottom: 4%;\n"
+"	padding-right: 7%;\n"
+"	padding-left: 7%;\n"
 "	border-radius: 3px;\n"
 "}\n"
 "\n"
@@ -1089,6 +1097,7 @@ public:
         horizontalLayout_12->setContentsMargins(0, 10, -1, 10);
         btnSendEmail = new QPushButton(tabCorreos);
         btnSendEmail->setObjectName("btnSendEmail");
+        btnSendEmail->setEnabled(false);
         btnSendEmail->setFont(font1);
 
         horizontalLayout_12->addWidget(btnSendEmail);
@@ -1184,7 +1193,7 @@ public:
 
         retranslateUi(GymOperations);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(GymOperations);

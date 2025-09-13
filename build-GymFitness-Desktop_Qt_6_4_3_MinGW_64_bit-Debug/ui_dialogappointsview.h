@@ -29,7 +29,7 @@ public:
     {
         if (DialogAppointsView->objectName().isEmpty())
             DialogAppointsView->setObjectName("DialogAppointsView");
-        DialogAppointsView->resize(398, 380);
+        DialogAppointsView->resize(479, 355);
         gridLayout = new QGridLayout(DialogAppointsView);
         gridLayout->setObjectName("gridLayout");
         appointsListChart = new QListWidget(DialogAppointsView);

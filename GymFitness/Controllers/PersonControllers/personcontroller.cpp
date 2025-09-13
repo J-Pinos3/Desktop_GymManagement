@@ -76,7 +76,20 @@ Persona PersonController::searchUser(SqlConnection *con, const QString& cod_pers
     con->conOpen();
     QString sqlSentence;
     sqlSentence.append(
-    "SELECT * FROM Persona WHERE cod_persona = '" + cod_persona + "';");
+    "SELECT\n"
+    "Pers.cod_persona,\n"
+    "Pers.nombre,\n"
+    "Pers.apellido,\n"
+    "Pers.peso,\n"
+    "Pers.fecha_registro,\n"
+    "Pers.id_rol,\n"
+    "Ple.fecha_pago,\n"
+    "Ple.fecha_finalizacion\n"
+    "FROM CabeceraFactura as CabFac\n"
+    "INNER JOIN Persona as Pers on Pers.cod_persona = CabFac.cod_persona\n"
+    "INNER JOIN DetalleFactura as Detf on Detf.id_cab_fact = CabFac.id_cab_fact\n"
+    "INNER JOIN PlanElegido as Ple on Ple.id_deta_fact = Detf.id_deta_fact\n"
+    "WHERE CabFac.cod_persona = '" + cod_persona + "';" );
 
     QSqlQuery query;
     query.prepare(sqlSentence);
@@ -106,6 +119,12 @@ Persona PersonController::searchUser(SqlConnection *con, const QString& cod_pers
 
             buscado.setFechaRegistro(
                 query.value("fecha_registro").toString().toStdString());
+
+            buscado.setFechaPago(
+            query.value("fecha_pago").toString().toStdString() );
+
+            buscado.setFechaFin(
+            query.value("fecha_finalizacion").toString().toStdString() );
 
             buscado.setPeso(query.value("peso").toDouble());
 

@@ -55,7 +55,7 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabInicio">
       <property name="styleSheet">
@@ -1371,7 +1371,15 @@ QWidget#tabFacturas QTableWidget{
 	padding-bottom: 4%;
 	padding-right: 7%;
 	padding-left: 7%;
-	
+	border-radius: 3px;
+}
+QWidget#tabCorreos QPushButton#btnSendEmail {
+    background-color: #8C8C8B;
+	color:white;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
 	border-radius: 3px;
 }
 
@@ -1434,6 +1442,9 @@ QWidget#tabCorreos QTableWidget{
            </property>
            <item>
             <widget class="QPushButton" name="btnSendEmail">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="font">
               <font>
                <pointsize>14</pointsize>

@@ -172,7 +172,7 @@ void GymOperations::listAllCustomers(){
 
     }
     //añadir los campos de la tabla plan elegido
-
+    adjustReportInvoiceTable( ui->tblWidCustomersIntro );
 }
 
 
@@ -228,7 +228,7 @@ void GymOperations::writeAssistanceFile(const QString& route, const QString name
 
 void GymOperations::on_btnCustomerSearchIntro_clicked()
 {
-    QString userRoleDescription = "";
+    QString userRoleDescription = "", status = "";
     std::vector<Rol>::iterator it = roles.begin();
     SqlConnection con;
 
@@ -241,7 +241,12 @@ void GymOperations::on_btnCustomerSearchIntro_clicked()
     PersonController& personController = PersonController::getInstance() ;
     Persona currentUser = personController.searchUser(&con, userCode);
 
+    QBrush brush;
+
     QString nombre = QString::fromStdString(currentUser.getNombre() + " " + currentUser.getApellido());
+
+    QString fech_pago = QString::fromStdString( currentUser.getFechaPago() );
+    QString fech_fin = QString::fromStdString( currentUser.getFechaFin() );
 
     ui->tblWidCustomersIntro->setRowCount(1);
 
@@ -271,6 +276,32 @@ void GymOperations::on_btnCustomerSearchIntro_clicked()
     ui->tblWidCustomersIntro->setItem( 0, 4,
         new QTableWidgetItem( userRoleDescription )
     );
+
+    ui->tblWidCustomersIntro->setItem( 0, 5,
+        new QTableWidgetItem( fech_pago )
+    );
+
+    ui->tblWidCustomersIntro->setItem( 0, 6,
+        new QTableWidgetItem( fech_fin )
+    );
+
+
+    if(
+        QDate::currentDate() >= QDate::fromString(fech_pago,"yyyy-MM-dd") &&
+        QDate::currentDate() <= QDate::fromString(fech_fin,"yyyy-MM-dd")
+    ){
+        status="VIGENTE";
+        brush.setColor(Qt::green);
+    }else{
+        status="CADUCADO";
+        brush.setColor(Qt::red);
+    }
+
+    ui->tblWidCustomersIntro->setItem(
+    0,7, new QTableWidgetItem(status)
+    );
+
+    ui->tblWidCustomersIntro->item(0,7)->setData(Qt::ForegroundRole, brush);
 
     writeAssistanceFile(assistFileRoute,nombre, QDate::currentDate().toString("yyyy-MM-dd") );
     //añadir los campos de la tabla plan elegido
@@ -320,6 +351,7 @@ void GymOperations::listNewCustomer(QString name){
             ui->tblWidManage->setItem(
             i, 4, new QTableWidgetItem(userRoleDescription));
         }
+        adjustReportInvoiceTable( ui->tblWidManage );
     }
 
 }
@@ -427,6 +459,7 @@ void GymOperations::on_btnManageSearch_clicked()
         i, 4, new QTableWidgetItem(userRoleDescription));
     }
     //añadir los campos de la tabla plan elegido
+    adjustReportInvoiceTable( ui->tblWidManage );
 }
 
 
@@ -684,6 +717,7 @@ void GymOperations::getAllPaymentInvoicesFromDB(){
             i,5, new QTableWidgetItem( QString::number( 000.11 ) )
         );
     }
+    adjustReportInvoiceTable( ui->tblWidPaymentInvoice );
 }
 
 
@@ -744,6 +778,7 @@ void GymOperations::getInvoiceLinesByInvoiceId(const int currentHeaderId){
         );
 
     }
+    adjustReportInvoiceTable( ui->tblWidPaymentLine );
 }
 
 
@@ -939,6 +974,7 @@ void GymOperations::getAllAppointmentInvoicesFromDB(){
             i, 5, new QTableWidgetItem( QString::number(0.00) )
         );
     }
+    adjustReportInvoiceTable( ui->tblWidAppointInvoice );
 }
 
 
@@ -990,6 +1026,7 @@ void GymOperations::getAppointLinesByInvoiceId(const int currentHeaderId){
         );
 
     }
+    adjustReportInvoiceTable( ui->tblWidAppointLine );
 }
 
 
@@ -1408,6 +1445,8 @@ void GymOperations::on_tblAllInvoices_cellActivated(int row, int column)
         );
     }
 
+    adjustReportInvoiceTable( ui->tblInvoiceLines );
+
 }
 
 
@@ -1571,6 +1610,7 @@ void GymOperations::on_txtEmailAddress_textChanged(const QString &arg1)
         ui->btnSendEmail->setStyleSheet(
             "QWidget#tabCorreos QPushButton#btnSendEmail {"
             "background-color: #8C8C8B;"
+            "color:white;"
             "padding-top: 2%;"
             "padding-bottom: 4%;"
             "padding-right: 7%;"
@@ -1583,6 +1623,7 @@ void GymOperations::on_txtEmailAddress_textChanged(const QString &arg1)
         ui->btnSendEmail->setStyleSheet(
             "QWidget#tabCorreos QPushButton#btnSendEmail {"
             "background-color: #ffd600;"
+            "color:black;"
             "padding-top: 2%;"
             "padding-bottom: 4%;"
             "padding-right: 7%;"
