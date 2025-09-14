@@ -10,6 +10,7 @@
 #define UI_GYMOPERATIONS_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
@@ -140,7 +141,9 @@ public:
             GymOperations->setObjectName("GymOperations");
         GymOperations->setWindowModality(Qt::NonModal);
         GymOperations->resize(1286, 674);
-        GymOperations->setStyleSheet(QString::fromUtf8("background-color: rgb(ff,ff, ff);"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/images/Images/GoldenGym3.png"), QSize(), QIcon::Normal, QIcon::Off);
+        GymOperations->setWindowIcon(icon);
         horizontalLayout_13 = new QHBoxLayout(GymOperations);
         horizontalLayout_13->setSpacing(6);
         horizontalLayout_13->setObjectName("horizontalLayout_13");
@@ -214,7 +217,7 @@ public:
         font1.setPointSize(14);
         txtPersonCodeSearchIntro->setFont(font1);
         txtPersonCodeSearchIntro->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
-"	color: white;\n"
+"	color: black;\n"
 "}"));
 
         horizontalLayout->addWidget(txtPersonCodeSearchIntro);
@@ -269,6 +272,7 @@ public:
         font2.setPointSize(12);
         tblWidCustomersIntro->setFont(font2);
         tblWidCustomersIntro->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
+        tblWidCustomersIntro->verticalHeader()->setVisible(true);
 
         verticalLayout_2->addWidget(tblWidCustomersIntro);
 
@@ -530,11 +534,11 @@ public:
 "}\n"
 "\n"
 "QWidget#tabCitas QComboBox::open {\n"
-"	background-color: yellow;\n"
+"	background-color: #ffd600;\n"
 "}\n"
 "\n"
 "QWidget#tabCitas QComboBox QListView {\n"
-"	background-color: black;\n"
+"	background-color: white;\n"
 "}"));
         verticalLayout_9 = new QVBoxLayout(tabCitas);
         verticalLayout_9->setObjectName("verticalLayout_9");
@@ -1352,7 +1356,7 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tabCorreos), QCoreApplication::translate("GymOperations", "Correos", nullptr));
         label_2->setText(QCoreApplication::translate("GymOperations", "Seleccione donde se guardar\303\241n los registros de asistencia", nullptr));
         btnSelectDirectory->setText(QCoreApplication::translate("GymOperations", "Seleccionar Directorio", nullptr));
-        lblRouteChoos->setText(QCoreApplication::translate("GymOperations", "Ruta c:user:useradadka a dajsd", nullptr));
+        lblRouteChoos->setText(QCoreApplication::translate("GymOperations", "Ruta:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabConfig), QCoreApplication::translate("GymOperations", "Ajustes", nullptr));
     } // retranslateUi
 

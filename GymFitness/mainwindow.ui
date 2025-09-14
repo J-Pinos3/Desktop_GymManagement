@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>638</width>
-    <height>714</height>
+    <width>643</width>
+    <height>685</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,36 +17,35 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(ff,ff, ff);</string>
+   <string notr="true"> background-color: rgb(ff,ff, ff); 
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="layoutDirection">
     <enum>Qt::LeftToRight</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(ff,ff, ff);</string>
+    <string notr="true"/>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <widget class="QLabel" name="lblGymImage">
       <property name="styleSheet">
-       <string notr="true">QLabel{
-	margin-top: 40;
-	margin-right: 40;
-	margin-left: 40;
-	//background:black;
-}
+       <string notr="true">
 
 </string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Box</enum>
       </property>
+      <property name="lineWidth">
+       <number>0</number>
+      </property>
       <property name="text">
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="Resources.qrc">:/images/Images/GoldenGym2.png</pixmap>
+       <pixmap resource="Resources.qrc">:/images/Images/GoldenGym3.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -90,14 +89,18 @@
        <widget class="QLineEdit" name="txtUser">
         <property name="font">
          <font>
-          <pointsize>12</pointsize>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QLineEdit{
-	padding-left: 20;
-	height: 30;
-	background-color: white;
+         <string notr="true"> QLineEdit {
+    padding: 2% 5% 3% 5%;
+    min-width: 200px;
+    color: black;
+    font-size: 16px;
+    border: 1px solid #ffd600;
+    background-color: white;
+    border-radius: 5px;
 }</string>
         </property>
         <property name="placeholderText">
@@ -109,14 +112,18 @@
        <widget class="QLineEdit" name="txtPassword">
         <property name="font">
          <font>
-          <pointsize>12</pointsize>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">QLineEdit{
-	padding-left: 20;
-	height: 30;
-	background-color: white;
+         <string notr="true"> QLineEdit {
+    padding: 2% 5% 3% 5%;
+    min-width: 200px;
+    color: black;
+    font-size: 16px;
+    border: 1px solid #ffd600;
+    background-color: white;
+    border-radius: 5px;
 }</string>
         </property>
         <property name="echoMode">

@@ -14,10 +14,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Golds Gym</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: rgb(ff,ff, ff);</string>
+  <property name="windowIcon">
+   <iconset resource="../Resources.qrc">
+    <normaloff>:/images/Images/GoldenGym3.png</normaloff>:/images/Images/GoldenGym3.png</iconset>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_13">
    <property name="spacing">
@@ -118,7 +119,7 @@ QWidget#tabInicio QLineEdit{
              </property>
              <property name="styleSheet">
               <string notr="true">QLineEdit{
-	color: white;
+	color: black;
 }</string>
              </property>
              <property name="placeholderText">
@@ -190,6 +191,9 @@ QWidget#tabInicio QLineEdit{
            <property name="sizeAdjustPolicy">
             <enum>QAbstractScrollArea::AdjustIgnored</enum>
            </property>
+           <attribute name="verticalHeaderVisible">
+            <bool>true</bool>
+           </attribute>
            <column>
             <property name="text">
              <string>Código</string>
@@ -581,11 +585,11 @@ QWidget#tabCitas QComboBox{
 }
 
 QWidget#tabCitas QComboBox::open {
-	background-color: yellow;
+	background-color: #ffd600;
 }
 
 QWidget#tabCitas QComboBox QListView {
-	background-color: black;
+	background-color: white;
 }</string>
       </property>
       <attribute name="title">
@@ -1588,7 +1592,7 @@ QWidget#tabConfig QLabel{
             </font>
            </property>
            <property name="text">
-            <string>Ruta c:user:useradadka a dajsd</string>
+            <string>Ruta:</string>
            </property>
           </widget>
          </item>
@@ -1613,6 +1617,8 @@ QWidget#tabConfig QLabel{
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

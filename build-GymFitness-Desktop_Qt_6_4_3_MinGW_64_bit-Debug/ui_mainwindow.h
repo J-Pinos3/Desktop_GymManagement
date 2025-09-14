@@ -47,27 +47,22 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(638, 714);
+        MainWindow->resize(643, 685);
         MainWindow->setAutoFillBackground(false);
-        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(ff,ff, ff);"));
+        MainWindow->setStyleSheet(QString::fromUtf8(" background-color: rgb(ff,ff, ff); \n"
+""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         centralwidget->setLayoutDirection(Qt::LeftToRight);
-        centralwidget->setStyleSheet(QString::fromUtf8("background-color: rgb(ff,ff, ff);"));
+        centralwidget->setStyleSheet(QString::fromUtf8(""));
         verticalLayout_2 = new QVBoxLayout(centralwidget);
         verticalLayout_2->setObjectName("verticalLayout_2");
         lblGymImage = new QLabel(centralwidget);
         lblGymImage->setObjectName("lblGymImage");
-        lblGymImage->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"	margin-top: 40;\n"
-"	margin-right: 40;\n"
-"	margin-left: 40;\n"
-"	//background:black;\n"
-"}\n"
-"\n"
-""));
+        lblGymImage->setStyleSheet(QString::fromUtf8(""));
         lblGymImage->setFrameShape(QFrame::Box);
-        lblGymImage->setPixmap(QPixmap(QString::fromUtf8(":/images/Images/GoldenGym2.png")));
+        lblGymImage->setLineWidth(0);
+        lblGymImage->setPixmap(QPixmap(QString::fromUtf8(":/images/Images/GoldenGym3.png")));
         lblGymImage->setScaledContents(true);
         lblGymImage->setAlignment(Qt::AlignCenter);
         lblGymImage->setMargin(2);
@@ -85,12 +80,15 @@ public:
         txtUser = new QLineEdit(centralwidget);
         txtUser->setObjectName("txtUser");
         QFont font;
-        font.setPointSize(12);
         txtUser->setFont(font);
-        txtUser->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
-"	padding-left: 20;\n"
-"	height: 30;\n"
-"	background-color: white;\n"
+        txtUser->setStyleSheet(QString::fromUtf8(" QLineEdit {\n"
+"    padding: 2% 5% 3% 5%;\n"
+"    min-width: 200px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"    border: 1px solid #ffd600;\n"
+"    background-color: white;\n"
+"    border-radius: 5px;\n"
 "}"));
 
         verticalLayout->addWidget(txtUser);
@@ -98,10 +96,14 @@ public:
         txtPassword = new QLineEdit(centralwidget);
         txtPassword->setObjectName("txtPassword");
         txtPassword->setFont(font);
-        txtPassword->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
-"	padding-left: 20;\n"
-"	height: 30;\n"
-"	background-color: white;\n"
+        txtPassword->setStyleSheet(QString::fromUtf8(" QLineEdit {\n"
+"    padding: 2% 5% 3% 5%;\n"
+"    min-width: 200px;\n"
+"    color: black;\n"
+"    font-size: 16px;\n"
+"    border: 1px solid #ffd600;\n"
+"    background-color: white;\n"
+"    border-radius: 5px;\n"
 "}"));
         txtPassword->setEchoMode(QLineEdit::Password);
 
@@ -109,7 +111,9 @@ public:
 
         cbxRoles = new QComboBox(centralwidget);
         cbxRoles->setObjectName("cbxRoles");
-        cbxRoles->setFont(font);
+        QFont font1;
+        font1.setPointSize(12);
+        cbxRoles->setFont(font1);
         cbxRoles->setStyleSheet(QString::fromUtf8("QComboBox{\n"
 "	padding-left: 20;\n"
 "	height: 30;\n"
@@ -143,7 +147,7 @@ public:
         btnLogearse = new QPushButton(centralwidget);
         btnLogearse->setObjectName("btnLogearse");
         btnLogearse->setBaseSize(QSize(20, 20));
-        btnLogearse->setFont(font);
+        btnLogearse->setFont(font1);
         btnLogearse->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	width: 120;\n"
 "	height: 45;\n"
@@ -158,7 +162,7 @@ public:
 
         btnRegistrarse = new QPushButton(centralwidget);
         btnRegistrarse->setObjectName("btnRegistrarse");
-        btnRegistrarse->setFont(font);
+        btnRegistrarse->setFont(font1);
         btnRegistrarse->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	width: 120;\n"
 "	height: 45;\n"

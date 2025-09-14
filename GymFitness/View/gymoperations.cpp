@@ -166,6 +166,8 @@ void GymOperations::listAllCustomers(){
         i,7, new QTableWidgetItem(status)
         );
 
+
+        //ui->tblWidCustomersIntro->item(i,7)->setBackground(brush);
         ui->tblWidCustomersIntro->item(i,7)->setData(Qt::ForegroundRole, brush);
 
 

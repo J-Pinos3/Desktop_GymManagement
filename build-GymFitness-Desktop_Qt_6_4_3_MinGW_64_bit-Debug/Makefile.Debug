@@ -16,10 +16,10 @@ CXX           = g++
 DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -fno-keep-inline-dllexport -g -Wall -Wextra -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -g -std=gnu++1z -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I../GymFitness -I. -I"C:/Program Files/OpenSSL-Win64/include" -I"C:/Program Files/OpenSSL-Win64/bin" -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -Idebug -I. -I/include -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ 
+INCPATH       = -I../GymFitness -I. -I../GymFitness/OpenSSL/include -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -Idebug -I. -I/include -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,windows -mthreads
-LIBS        =        -L"C:\Program Files\OpenSSL-Win64\lib\VC\x64\MD" -llibcrypto -llibssl -L"C:\Program Files\OpenSSL-Win64\bin\libcrypto-3-x64.dll" -L"C:\Program Files\OpenSSL-Win64\bin\libssl-3-x64.dll" C:\Qt\6.4.3\mingw_64\lib\libQt6Widgets.a C:\Qt\6.4.3\mingw_64\lib\libQt6Gui.a C:\Qt\6.4.3\mingw_64\lib\libQt6Sql.a C:\Qt\6.4.3\mingw_64\lib\libQt6Network.a C:\Qt\6.4.3\mingw_64\lib\libQt6Core.a -lmingw32 C:\Qt\6.4.3\mingw_64\lib\libQt6EntryPoint.a -lshell32  
+LIBS        =        -LC:\Users\Usuario\Desktop\GymDesktop\GymFitness\OpenSSL\lib\VC\x64\MD -llibcrypto -llibssl C:\Qt\6.4.3\mingw_64\lib\libQt6Widgets.a C:\Qt\6.4.3\mingw_64\lib\libQt6Gui.a C:\Qt\6.4.3\mingw_64\lib\libQt6Sql.a C:\Qt\6.4.3\mingw_64\lib\libQt6Network.a C:\Qt\6.4.3\mingw_64\lib\libQt6Core.a -lmingw32 C:\Qt\6.4.3\mingw_64\lib\libQt6EntryPoint.a -lshell32  
 QMAKE         = C:\Qt\6.4.3\mingw_64\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -261,6 +261,7 @@ compiler_rcc_clean:
 debug/qrc_Resources.cpp: ../GymFitness/Resources.qrc \
 		C:/Qt/6.4.3/mingw_64/bin/rcc.exe \
 		../GymFitness/Images/GoldsGym1.png \
+		../GymFitness/Images/GoldenGym3.png \
 		../GymFitness/Images/GoldenGym2.png
 	C:\Qt\6.4.3\mingw_64\bin\rcc.exe -name Resources --no-zstd ..\GymFitness\Resources.qrc -o debug\qrc_Resources.cpp
 
@@ -425,10 +426,9 @@ debug/moc_dialogappointsview.cpp: ../GymFitness/View/dialogappointsview.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qcalendar.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
-		../GymFitness/View/dialogcalendar.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -I"C:/Program Files/OpenSSL-Win64/include" -I"C:/Program Files/OpenSSL-Win64/bin" -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\View\dialogappointsview.h -o debug\moc_dialogappointsview.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness/OpenSSL/include -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\View\dialogappointsview.h -o debug\moc_dialogappointsview.cpp
 
 debug/moc_dialogcalendar.cpp: ../GymFitness/View/dialogcalendar.h \
 		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QWidget \
@@ -582,9 +582,10 @@ debug/moc_dialogcalendar.cpp: ../GymFitness/View/dialogcalendar.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qcalendar.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
+		../GymFitness/View/dialogappointsview.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -I"C:/Program Files/OpenSSL-Win64/include" -I"C:/Program Files/OpenSSL-Win64/bin" -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\View\dialogcalendar.h -o debug\moc_dialogcalendar.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness/OpenSSL/include -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\View\dialogcalendar.h -o debug\moc_dialogcalendar.cpp
 
 debug/moc_gymoperations.cpp: ../GymFitness/View/gymoperations.h \
 		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QWidget \
@@ -778,9 +779,10 @@ debug/moc_gymoperations.cpp: ../GymFitness/View/gymoperations.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QDate \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qcalendar.h \
+		../GymFitness/View/dialogappointsview.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -I"C:/Program Files/OpenSSL-Win64/include" -I"C:/Program Files/OpenSSL-Win64/bin" -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\View\gymoperations.h -o debug\moc_gymoperations.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness/OpenSSL/include -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\View\gymoperations.h -o debug\moc_gymoperations.cpp
 
 debug/moc_mainwindow.cpp: ../GymFitness/mainwindow.h \
 		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QMainWindow \
@@ -923,7 +925,7 @@ debug/moc_mainwindow.cpp: ../GymFitness/mainwindow.h \
 		../GymFitness/Models/rol.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -I"C:/Program Files/OpenSSL-Win64/include" -I"C:/Program Files/OpenSSL-Win64/bin" -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\mainwindow.h -o debug\moc_mainwindow.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness/OpenSSL/include -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug/moc_mimecontentformatter.cpp: ../GymFitness/mimecontentformatter.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QObject \
@@ -1000,7 +1002,7 @@ debug/moc_mimecontentformatter.cpp: ../GymFitness/mimecontentformatter.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qiodevice.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -I"C:/Program Files/OpenSSL-Win64/include" -I"C:/Program Files/OpenSSL-Win64/bin" -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\mimecontentformatter.h -o debug\moc_mimecontentformatter.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness/OpenSSL/include -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\mimecontentformatter.h -o debug\moc_mimecontentformatter.cpp
 
 debug/moc_smtpclient.cpp: ../GymFitness/smtpclient.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QObject \
@@ -1115,7 +1117,7 @@ debug/moc_smtpclient.cpp: ../GymFitness/smtpclient.h \
 		../GymFitness/emailaddress.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.4.3/mingw_64/bin/moc.exe
-	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -I"C:/Program Files/OpenSSL-Win64/include" -I"C:/Program Files/OpenSSL-Win64/bin" -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\smtpclient.h -o debug\moc_smtpclient.cpp
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Usuario/Desktop/GymDesktop/build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness -IC:/Users/Usuario/Desktop/GymDesktop/GymFitness/OpenSSL/include -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtSql -IC:/Qt/6.4.3/mingw_64/include/QtNetwork -IC:/Qt/6.4.3/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\GymFitness\smtpclient.h -o debug\moc_smtpclient.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1321,25 +1323,25 @@ debug/logincontroller.o: ../GymFitness/Controllers/LoginControllers/logincontrol
 		C:/Qt/6.4.3/mingw_64/include/QtSql/qsqlerror.h \
 		C:/Qt/6.4.3/mingw_64/include/QtSql/QSqlQuery \
 		C:/Qt/6.4.3/mingw_64/include/QtSql/qsqlquery.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/sha.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/macros.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/opensslconf.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/configuration.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/opensslv.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/e_os2.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/err.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/types.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/safestack.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/stack.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/bio.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/crypto.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/cryptoerr.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/symhacks.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/cryptoerr_legacy.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/core.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/ebcdic.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/bioerr.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/lhash.h
+		../GymFitness/OpenSSL/include/openssl/sha.h \
+		../GymFitness/OpenSSL/include/openssl/macros.h \
+		../GymFitness/OpenSSL/include/openssl/opensslconf.h \
+		../GymFitness/OpenSSL/include/openssl/configuration.h \
+		../GymFitness/OpenSSL/include/openssl/opensslv.h \
+		../GymFitness/OpenSSL/include/openssl/e_os2.h \
+		../GymFitness/OpenSSL/include/openssl/err.h \
+		../GymFitness/OpenSSL/include/openssl/types.h \
+		../GymFitness/OpenSSL/include/openssl/safestack.h \
+		../GymFitness/OpenSSL/include/openssl/stack.h \
+		../GymFitness/OpenSSL/include/openssl/bio.h \
+		../GymFitness/OpenSSL/include/openssl/crypto.h \
+		../GymFitness/OpenSSL/include/openssl/cryptoerr.h \
+		../GymFitness/OpenSSL/include/openssl/symhacks.h \
+		../GymFitness/OpenSSL/include/openssl/cryptoerr_legacy.h \
+		../GymFitness/OpenSSL/include/openssl/core.h \
+		../GymFitness/OpenSSL/include/openssl/ebcdic.h \
+		../GymFitness/OpenSSL/include/openssl/bioerr.h \
+		../GymFitness/OpenSSL/include/openssl/lhash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\logincontroller.o ..\GymFitness\Controllers\LoginControllers\logincontroller.cpp
 
 debug/personcontroller.o: ../GymFitness/Controllers/PersonControllers/personcontroller.cpp ../GymFitness/Controllers/PersonControllers/personcontroller.h \
@@ -2141,7 +2143,6 @@ debug/dialogappointsview.o: ../GymFitness/View/dialogappointsview.cpp ../GymFitn
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qcalendar.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
-		../GymFitness/View/dialogcalendar.h \
 		ui_dialogappointsview.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QVariant \
 		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QApplication \
@@ -2347,6 +2348,7 @@ debug/dialogcalendar.o: ../GymFitness/View/dialogcalendar.cpp ../GymFitness/View
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qcalendar.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
+		../GymFitness/View/dialogappointsview.h \
 		C:/Qt/6.4.3/mingw_64/include/QtGui/qtextformat.h \
 		C:/Qt/6.4.3/mingw_64/include/QtGui/qpen.h \
 		C:/Qt/6.4.3/mingw_64/include/QtGui/qtextoption.h \
@@ -2580,6 +2582,7 @@ debug/gymoperations.o: ../GymFitness/View/gymoperations.cpp ../GymFitness/View/g
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QDate \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qcalendar.h \
+		../GymFitness/View/dialogappointsview.h \
 		ui_gymoperations.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QVariant \
 		C:/Qt/6.4.3/mingw_64/include/QtWidgets/QApplication \
@@ -3143,26 +3146,27 @@ debug/mainwindow.o: ../GymFitness/mainwindow.cpp ../GymFitness/mainwindow.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/QDate \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qdatetime.h \
 		C:/Qt/6.4.3/mingw_64/include/QtCore/qcalendar.h \
+		../GymFitness/View/dialogappointsview.h \
 		../GymFitness/Controllers/LoginControllers/logincontroller.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/sha.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/macros.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/opensslconf.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/configuration.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/opensslv.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/e_os2.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/err.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/types.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/safestack.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/stack.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/bio.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/crypto.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/cryptoerr.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/symhacks.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/cryptoerr_legacy.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/core.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/ebcdic.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/bioerr.h \
-		C:/Program\ Files/OpenSSL-Win64/include/openssl/lhash.h
+		../GymFitness/OpenSSL/include/openssl/sha.h \
+		../GymFitness/OpenSSL/include/openssl/macros.h \
+		../GymFitness/OpenSSL/include/openssl/opensslconf.h \
+		../GymFitness/OpenSSL/include/openssl/configuration.h \
+		../GymFitness/OpenSSL/include/openssl/opensslv.h \
+		../GymFitness/OpenSSL/include/openssl/e_os2.h \
+		../GymFitness/OpenSSL/include/openssl/err.h \
+		../GymFitness/OpenSSL/include/openssl/types.h \
+		../GymFitness/OpenSSL/include/openssl/safestack.h \
+		../GymFitness/OpenSSL/include/openssl/stack.h \
+		../GymFitness/OpenSSL/include/openssl/bio.h \
+		../GymFitness/OpenSSL/include/openssl/crypto.h \
+		../GymFitness/OpenSSL/include/openssl/cryptoerr.h \
+		../GymFitness/OpenSSL/include/openssl/symhacks.h \
+		../GymFitness/OpenSSL/include/openssl/cryptoerr_legacy.h \
+		../GymFitness/OpenSSL/include/openssl/core.h \
+		../GymFitness/OpenSSL/include/openssl/ebcdic.h \
+		../GymFitness/OpenSSL/include/openssl/bioerr.h \
+		../GymFitness/OpenSSL/include/openssl/lhash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\GymFitness\mainwindow.cpp
 
 debug/rol.o: ../GymFitness/Models/rol.cpp ../GymFitness/Models/rol.h
@@ -4669,9 +4673,20 @@ debug/moc_smtpclient.o: debug/moc_smtpclient.cpp
 
 ####### Install
 
-install:  FORCE
+install_dlls: first FORCE
+	@if not exist C:$(INSTALL_ROOT:@msyshack@%=%)\Users\Usuario\Desktop\GymDesktop\build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug mkdir C:$(INSTALL_ROOT:@msyshack@%=%)\Users\Usuario\Desktop\GymDesktop\build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug & if not exist C:$(INSTALL_ROOT:@msyshack@%=%)\Users\Usuario\Desktop\GymDesktop\build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug exit 1
+	$(QINSTALL) C:\Users\Usuario\Desktop\GymDesktop\GymFitness\OpenSSL\bin\libcrypto-3-x64.dll C:$(INSTALL_ROOT:@msyshack@%=%)\Users\Usuario\Desktop\GymDesktop\build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug\libcrypto-3-x64.dll
+	$(QINSTALL) C:\Users\Usuario\Desktop\GymDesktop\GymFitness\OpenSSL\bin\libssl-3-x64.dll C:$(INSTALL_ROOT:@msyshack@%=%)\Users\Usuario\Desktop\GymDesktop\build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug\libssl-3-x64.dll
 
-uninstall:  FORCE
+uninstall_dlls: FORCE
+	-$(DEL_FILE) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\Usuario\Desktop\GymDesktop\build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug\libssl-3-x64.dll
+	-$(DEL_FILE) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\Usuario\Desktop\GymDesktop\build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug\libcrypto-3-x64.dll
+	-$(DEL_DIR) C:$(INSTALL_ROOT:@msyshack@%=%)\Users\Usuario\Desktop\GymDesktop\build-GymFitness-Desktop_Qt_6_4_3_MinGW_64_bit-Debug 
+
+
+install: install_dlls  FORCE
+
+uninstall: uninstall_dlls  FORCE
 
 FORCE:
 

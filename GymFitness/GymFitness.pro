@@ -97,14 +97,30 @@ FORMS += \
 
 
 # Añadir las rutas de inclusión
-INCLUDEPATH += "C:/Program Files/OpenSSL-Win64/include/"
+# INCLUDEPATH += "C:/Program Files/OpenSSL-Win64/include/"
+INCLUDEPATH += "$$PWD/OpenSSL/include/"
 
 # Añadir las bibliotecas
-LIBS += -L"C:/Program Files/OpenSSL-Win64/lib/VC/x64/MD" -llibcrypto -llibssl
+#LIBS += -L"C:/Program Files/OpenSSL-Win64/lib/VC/x64/MD" -llibcrypto -llibssl
+LIBS += -L"$$PWD/OpenSSL/lib/VC/x64/MD" -llibcrypto -llibssl
 
-LIBS += -L"C:/Program Files/OpenSSL-Win64/bin/libcrypto-3-x64.dll"
-LIBS += -L"C:/Program Files/OpenSSL-Win64/bin/libssl-3-x64.dll"
-INCLUDEPATH += "C:/Program Files/OpenSSL-Win64/bin"
+#previous
+#LIBS += -L"C:/Program Files/OpenSSL-Win64/bin/libcrypto-3-x64.dll"
+#LIBS += -L"C:/Program Files/OpenSSL-Win64/bin/libssl-3-x64.dll"
+#INCLUDEPATH += "C:/Program Files/OpenSSL-Win64/bin"
+
+#13/09/2025
+#LIBS += -L"$$PWD/OpenSSL/bin/libcrypto-3-x64.dll"
+#LIBS += -L"$$PWD/OpenSSL/bin/libssl-3-x64.dll"
+#INCLUDEPATH += "$$PWD/OpenSSL/bin"
+
+
+win32{
+    dlls.files += $$PWD/OpenSSL/bin/libcrypto-3-x64.dll
+    dlls.files += $$PWD/OpenSSL/bin/libssl-3-x64.dll
+    dlls.path = $$OUT_PWD
+    INSTALLS += dlls
+}
 
 
 # Default rules for deployment.
