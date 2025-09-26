@@ -42,6 +42,7 @@ void MainWindow::on_btnLogearse_clicked()
 
     int rolId = 0;
     QString email = "", password = "", selectedRol = "";
+    QMessageBox msg = QMessageBox();
     email = this->ui->txtUser->text();
     password = this->ui->txtPassword->text();
     selectedRol = this->ui->cbxRoles->currentText();
@@ -55,16 +56,23 @@ void MainWindow::on_btnLogearse_clicked()
 
     int count = loginController.logInUser(email, cipheredPassword, rolId, &con);
 
+    msg.setWindowTitle("Iniciar Sesión");
+    msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+    msg.setStyleSheet("color:black; background:white");
+
     if(count == 1){
-        QMessageBox::information(this, tr("Success"), tr("Welcome to Gold's Gym"));
+        msg.setText("Bienvenido a Gold's Gym");  msg.setIcon(QMessageBox::Information);
+        msg.exec();
         this->hide();
         GymOperations* gymOperations = new GymOperations();
         gymOperations->show();
 
     }else if(count > 1){
-        QMessageBox::information(this, tr("Error"), tr("Duplicated User"));
+        msg.setText("Ese usuario ya existe");  msg.setIcon(QMessageBox::Critical);
+        msg.exec();
     }else{
-        QMessageBox::information(this, tr("Error"), tr("Wrong user or password"));
+        msg.setText("Usuario o contraseña incorrectos");  msg.setIcon(QMessageBox::Critical);
+        msg.exec();
     }
 
 
@@ -79,6 +87,7 @@ void MainWindow::on_btnRegistrarse_clicked()
     //get data
     int rolId = 0;
     QString email = "", password = "", selectedRol="";
+    QMessageBox msg = QMessageBox();
     email = this->ui->txtUser->text();//or name
     password = this->ui->txtPassword->text();
     selectedRol = this->ui->cbxRoles->currentText();
@@ -88,13 +97,18 @@ void MainWindow::on_btnRegistrarse_clicked()
 
     QString cipheredPass = QString::fromStdString( loginController.cipherMEssage(password.toStdString())  );
 
+    msg.setWindowTitle("Registrarse");
+    msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+    msg.setStyleSheet("color:black; background:white");
+
     bool executionResult = loginController.registerUser(email, cipheredPass, rolId, &con);
 
     if( executionResult ){
-        QMessageBox::information(this, tr("Saved"), tr("User created successfully"));
+        msg.setText("Usuario creado exitosamente");  msg.setIcon(QMessageBox::Information);
+        msg.exec();
     }else{
-
-        QMessageBox::information(this, tr("Error"), tr("User couldn't be created"));
+        msg.setText("No se pudo crear el usuario");  msg.setIcon(QMessageBox::Critical);
+        msg.exec();
     }
 
 }

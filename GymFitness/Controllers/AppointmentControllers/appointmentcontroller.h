@@ -49,6 +49,13 @@ public:
         std::vector<DetalleFactura>& lineas); //ya
 
 
+    //update invoice-appoint date
+    bool updateAppointDate(SqlConnection *con, int id_det_linea,
+    const QString& newDate);
+
+
+    void getFilteredAppointInvoices(SqlConnection *con, std::vector<Factura>& facturasFiltradas,
+    const QString& fechaInicio, const QString& cod_persona);
 private:
     AppointmentController(){};
 };

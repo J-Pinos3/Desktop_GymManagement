@@ -652,6 +652,7 @@ public:
         cbxAppointNew->setObjectName("cbxAppointNew");
         sizePolicy.setHeightForWidth(cbxAppointNew->sizePolicy().hasHeightForWidth());
         cbxAppointNew->setSizePolicy(sizePolicy);
+        cbxAppointNew->setChecked(true);
 
         verticalLayout_8->addWidget(cbxAppointNew);
 
@@ -1197,7 +1198,7 @@ public:
 
         retranslateUi(GymOperations);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(GymOperations);
@@ -1205,7 +1206,7 @@ public:
 
     void retranslateUi(QWidget *GymOperations)
     {
-        GymOperations->setWindowTitle(QCoreApplication::translate("GymOperations", "Form", nullptr));
+        GymOperations->setWindowTitle(QCoreApplication::translate("GymOperations", "Golds Gym", nullptr));
         txtPersonCodeSearchIntro->setPlaceholderText(QCoreApplication::translate("GymOperations", "C\303\263digo:", nullptr));
         btnCustomerSearchIntro->setText(QCoreApplication::translate("GymOperations", "Buscar Cliente", nullptr));
         btnAllCustomers->setText(QCoreApplication::translate("GymOperations", "Listar Clientes", nullptr));
@@ -1246,7 +1247,7 @@ public:
         ___qtablewidgetitem13->setText(QCoreApplication::translate("GymOperations", "Fecha Pago", nullptr));
         QTableWidgetItem *___qtablewidgetitem14 = tblWidManage->horizontalHeaderItem(6);
         ___qtablewidgetitem14->setText(QCoreApplication::translate("GymOperations", "Fecha L\303\255mite", nullptr));
-        btnManageSave->setText(QCoreApplication::translate("GymOperations", "Guardar", nullptr));
+        btnManageSave->setText(QCoreApplication::translate("GymOperations", "Agregar", nullptr));
         btnManageCancel->setText(QCoreApplication::translate("GymOperations", "Cancelar", nullptr));
         btnManageSearch->setText(QCoreApplication::translate("GymOperations", "Buscar", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabGestion), QCoreApplication::translate("GymOperations", "Gesti\303\263n", nullptr));

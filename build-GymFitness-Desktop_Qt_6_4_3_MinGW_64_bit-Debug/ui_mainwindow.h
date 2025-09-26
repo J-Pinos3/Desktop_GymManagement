@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHBoxLayout>
@@ -48,6 +49,9 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(643, 685);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/images/Images/GoldenGym3.png"), QSize(), QIcon::Normal, QIcon::Off);
+        MainWindow->setWindowIcon(icon);
         MainWindow->setAutoFillBackground(false);
         MainWindow->setStyleSheet(QString::fromUtf8(" background-color: rgb(ff,ff, ff); \n"
 ""));
@@ -196,7 +200,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Iniciar Sesi\303\263n", nullptr));
         lblGymImage->setText(QString());
         txtUser->setPlaceholderText(QCoreApplication::translate("MainWindow", "Correo ", nullptr));
         txtPassword->setPlaceholderText(QCoreApplication::translate("MainWindow", "Contrase\303\261a ", nullptr));

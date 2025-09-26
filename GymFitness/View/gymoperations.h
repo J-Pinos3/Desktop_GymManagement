@@ -161,6 +161,12 @@ private slots:
     void on_btnSelectDirectory_clicked();
 
 
+    void on_cbxAppointNew_stateChanged(int arg1);
+
+    void on_btnAppointSearchInvoice_clicked();
+
+    void on_btnPaymentSearchInvoice_clicked();
+
 private:
     Ui::GymOperations *ui;
     std::vector<Persona> personas;
@@ -179,6 +185,8 @@ private:
     DialogCalendar dialogCalendar;
     QString assistFileRoute;
     QString textoBtnMngSave;
+    QString statusCbxAppoint;
+
 };
 
 #endif // GYMOPERATIONS_H

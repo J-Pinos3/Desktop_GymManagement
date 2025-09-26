@@ -33,6 +33,7 @@ public:
 
     bool updatePaymentInvoice(SqlConnection *con, int id_cab_fact);
 
+    //NOT USED
     void getAllInvoices(SqlConnection *con, std::vector<Factura>& facturas);
 
     void getAllPaymentInvoices(SqlConnection *con, std::vector<Factura>& facturas);
@@ -54,6 +55,12 @@ public:
     void getAllInvoiceLines(SqlConnection *con, int cod_factura,
         std::vector<DetalleFactura>& lineas);
 
+
+    void getFilteredPaymentInvoices(SqlConnection *con, std::vector<Factura>& facturasFiltradas,
+    const QString& fechaInicio, const QString& cod_persona);
+
+
+    //NOT USED
     void getEmptyInvoiceLines(SqlConnection *con, int cod_factura,
         std::vector<DetalleFactura>& lineas );
 

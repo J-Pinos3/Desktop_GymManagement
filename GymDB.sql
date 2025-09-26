@@ -77,15 +77,50 @@ create table if not exists ServicioElegido(
 
 -- select * from Persona where nombre like 'Julio%';
 
-select * from Rol;
+select * from Rol; -- no eliminar
 select * from Persona;
-select * from Paquete;
+select * from Paquete; -- no eliminar
 select * from CabeceraFactura;
 select * from DetalleFactura;
 select * from Usuario;
 select * from PlanElegido;
-select * from Servicio;
+select * from Servicio; -- no eliminar
 select * from ServicioElegido;
+
+/*25/09/2025 query for searching-filtering PAYMENT invoices by date or user code*/
+SELECT DISTINCT
+    CabFac.id_cab_fact,   CabFac.fecha_cab_fact, 
+    CabFac.total_cab_fact,
+    Pers.cod_persona,   Pers.apellido
+FROM CabeceraFactura as CabFac
+INNER JOIN Persona as Pers ON Pers.cod_persona = CabFac.cod_persona
+WHERE 
+    (
+        CabFac.id_cab_fact IN (
+            SELECT DISTINCT CabFac2.id_cab_fact 
+            FROM CabeceraFactura as CabFac2
+            JOIN DetalleFactura as Detf ON CabFac2.id_cab_fact = Detf.id_cab_fact
+            JOIN PlanElegido as PE ON Detf.id_deta_fact = PE.id_deta_fact
+        )
+        OR CabFac.id_cab_fact NOT IN (
+            SELECT DISTINCT id_cab_fact 
+            FROM DetalleFactura 
+            WHERE id_cab_fact IS NOT NULL
+        )
+    )
+    AND
+    (
+        (CabFac.fecha_cab_fact BETWEEN '2024-09-23' AND CURDATE())
+        OR 
+        (Pers.cod_persona LIKE '%s5-d4f6s%')
+    );
+    
+    
+/*  DROP TABLES 24/09/2025 */
+
+
+/*  DROP TABLES 17/09/2025 */
+
 
 /* 07/09/2025 query para traer cuántas citas hay en una fecha dada */
 select 

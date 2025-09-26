@@ -29,8 +29,8 @@ Progress:
 	72) Cambiar el nombre fecha registro for fecha nacimiento al mostrar todos los usuarios
 
 	74) Corregir el botón de editar los datos del cliente y revisar la funcionalidad de buscar cliente
-	75) Añadir un slot para el estado del checkbox de planes de entreno en el tab pagos
-	76) Añadir un slot para el estado del checkbox de servicios del gym en el tab pagos
+
+	75) Corregir la función de buscar usuario en el tab gestión para traer todos los datos?
 
 
 

@@ -73,7 +73,7 @@ bool PaymentControllers::updatePaymentInvoice(SqlConnection *con, int id_cab_fac
 }
 
 
-//this query brings all invoices, combining training plans and gym services
+//not used -- this query brings all invoices, combining training plans and gym services
 void PaymentControllers::getAllInvoices(SqlConnection *con, std::vector<Factura>& facturas){
 
     con->conOpen();
@@ -122,6 +122,7 @@ void PaymentControllers::getAllInvoices(SqlConnection *con, std::vector<Factura>
     con->conClose();
 
 }
+
 
 //this query brings invoices from training plans
 void PaymentControllers::getAllPaymentInvoices(SqlConnection *con, std::vector<Factura>& facturas){
@@ -359,6 +360,78 @@ void PaymentControllers::getAllInvoiceLines(
 
     con->conClose();
 }
+
+
+
+void PaymentControllers::getFilteredPaymentInvoices(SqlConnection *con, std::vector<Factura>& facturasFiltradas,
+    const QString& fechaInicio, const QString& cod_persona){
+
+    con->conOpen();
+
+
+    QString sqlSentence;
+    sqlSentence.append(
+    "SELECT DISTINCT\n"
+    "CabFac.id_cab_fact,\n"
+    "CabFac.fecha_cab_fact,\n"
+    "CabFac.total_cab_fact,\n"
+    "Pers.cod_persona,\n"
+    "Pers.nombre,\n"
+    "Pers.apellido\n"
+    "FROM CabeceraFactura as CabFac\n"
+    "INNER JOIN Persona as Pers on Pers.cod_persona = CabFac.cod_persona\n"
+    "WHERE(\n"
+        "CabFac.id_cab_fact in (\n"
+        "SELECT DISTINT CabFac2.id_cab_fact\n"
+        "FROM CabeceraFactura as CabFac2\n"
+        "JOIN DetalleFactura as Detf ON CabFac2.id_cab_fact = Detf.id_cab_fact\n"
+        "JOIN PlanElegido as PE ON Detf.id_deta_fact = PE.id_deta_fact) or \n"
+        "CabFac.id_cab_fact not in (\n"
+        "SELECT DISTINCT id_cab_fact\n"
+        "FROM DetalleFactura WHERE id_cab_fact is not null)\n"
+        ")\n"   );
+
+    if(cod_persona == ""){
+        sqlSentence += "and (CabFac.fecha_cab_fact between '" + fechaInicio + "' and CURDATE());";
+    }else{
+        sqlSentence += "and (Pers.cod_persona = '" + cod_persona + "');";
+    }
+
+
+    Persona clienteActual;
+    QSqlQuery query;
+    query.prepare(sqlSentence);
+
+    if( query.exec() ){
+        while( query.next() ){
+            clienteActual.setNombre(
+                query.value("Pers.nombre").toString().toStdString()    );
+            clienteActual.setApellido(
+                query.value("Pers.apellido").toString().toStdString()    );
+            facturasFiltradas.push_back(
+                Factura(
+                    query.value("CabFac.id_cab_fact").toInt(),
+                    query.value("CabFac.fecha_cab_fact").toString().toStdString(),
+                    query.value("CabFac.total_cab_fact").toDouble(),
+                    query.value("Pers.cod_persona").toString().toStdString(),
+                    clienteActual
+                )
+            );
+            qDebug() <<  "Factura de Planes FILTRADA: "
+                     <<  query.value("Pers.nombre").toString() <<"  " << query.value("Pers.apellido").toString()
+                     << query.value("CabFac.id_cab_fact").toInt() << "\n";
+        }
+    }else{
+        qDebug() <<"Error getting training payment invoices: "
+                << query.lastError().text();
+    }
+
+
+    con->conClose();
+}
+
+
+
 
 
 ///↓ is not used because I've fixed the query

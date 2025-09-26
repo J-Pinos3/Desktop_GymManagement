@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Iniciar Sesión</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Resources.qrc">
+    <normaloff>:/images/Images/GoldenGym3.png</normaloff>:/images/Images/GoldenGym3.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -31,9 +35,7 @@
     <item>
      <widget class="QLabel" name="lblGymImage">
       <property name="styleSheet">
-       <string notr="true">
-
-</string>
+       <string notr="true"/>
       </property>
       <property name="frameShape">
        <enum>QFrame::Box</enum>

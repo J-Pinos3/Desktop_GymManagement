@@ -10,6 +10,7 @@
 
 #include <QPdfWriter>
 #include <QPainter>
+#include <QIcon>
 
 #include <QFont>
 #include <QFileDialog>
@@ -33,7 +34,9 @@ GymOperations::GymOperations(QWidget *parent) :
 
     connect(&dialogCalendar, &DialogCalendar::choosenDate, this, &GymOperations::setChoosenDate);
 
-    textoBtnMngSave ="Guardar";
+    textoBtnMngSave ="Agregar";
+    statusCbxAppoint="Nueva";
+
     ui->txtManageCode->setReadOnly(true);
 
     setCustomersRoleDescription();
@@ -156,6 +159,7 @@ void GymOperations::listAllCustomers(){
            ){
             status = "VIGENTE";
             brush.setColor(Qt::green);
+
         }else{
             status = "CADUCADO";
             brush.setColor(Qt::red);
@@ -201,12 +205,13 @@ void GymOperations::createAssistanceFile(QLabel* label){
             qDebug() << "Error al crear el archivo de asistencias: " + file.errorString();
         }
 
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
         msg.setWindowTitle("Archivo de Asistencia");
         msg.setText("Archivo de asistencias para: " +
         QDate::currentDate().toString("yyyy-MM-dd")+
         " creado exitosamente" );
         msg.setIcon(QMessageBox::Information);
-        msg.setStyleSheet("color:white; background:black");
+        msg.setStyleSheet("color:black; background:white");
         msg.exec();
 
 
@@ -376,7 +381,7 @@ void GymOperations::on_btnManageSave_clicked()
         apellido.toStdString(), fechaRegistro.toStdString(),"","",peso,0
     );
     bool executionResult = false;
-    if(textoBtnMngSave == "Guardar"){
+    if(textoBtnMngSave == "Agregar"){
         executionResult =personController.registerCustomer(&con, nombre, apellido, peso, fechaRegistro, rolId);
     }else{
     //textoBtnMngSave is Actualizar
@@ -387,24 +392,26 @@ void GymOperations::on_btnManageSave_clicked()
     qDebug() << fechaRegistro << "\n";
     if(executionResult){
         msg.setWindowTitle(textoBtnMngSave);
-        if(textoBtnMngSave == "Guardar"){
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        if(textoBtnMngSave == "Agregar"){
             msg.setText("Cliente agregado existosamente");
         } else {  msg.setText("Cliente actualizado existosamente");   }
 
         msg.setIcon(QMessageBox::Information);
-        msg.setStyleSheet("color:white; background:black");
+        msg.setStyleSheet("color:black; background:white");
         msg.exec();
         listNewCustomer(nombre);
         //listAllCustomers();
     }else{
         //QMessageBox::information(this, tr("Error"), tr("Customer couldn't be created"));
         msg.setWindowTitle("Error");
-        if(textoBtnMngSave == "Guardar"){
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        if(textoBtnMngSave == "Agregar"){
             msg.setText("No se pudo agregar el cliente");
         } else {  msg.setText("No se pudo actualizar el cliente");   }
 
         msg.setIcon(QMessageBox::Critical);
-        msg.setStyleSheet("color:white; background:black");
+        msg.setStyleSheet("color:black; background:white");
         msg.exec();
     }
 
@@ -484,7 +491,7 @@ void GymOperations::on_cbxManageNew_stateChanged(int arg1)
                 "border: 1px solid #ffd600"
             "}"
         );
-        textoBtnMngSave = "Guardar";
+        textoBtnMngSave = "Agregar";
     }else{
 
     //if cbx is unchecked, it means search or update a user data, so do enter user code
@@ -514,6 +521,7 @@ void GymOperations::on_cbxManageNew_stateChanged(int arg1)
 void GymOperations::on_btnPaymentNewInvoice_clicked()
 {
     SqlConnection con;
+    QMessageBox msg = QMessageBox();
     Factura nuevaFactura;
     PaymentControllers paymentController = PaymentControllers::getInstance();
 
@@ -528,10 +536,21 @@ void GymOperations::on_btnPaymentNewInvoice_clicked()
     bool executionResult = paymentController.createEmptyPaymentInvoice(&con, nuevaFactura);
 
     if(executionResult){
-        QMessageBox::information(this, "Saved", "Empty invoice created Succesfully");
+
+        msg.setWindowTitle("Nuevo");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setIcon( QMessageBox::Information );
+        msg.setText("Factura vacía creada exitosamente");
+        msg.setStyleSheet("color:black; background:white");
+        msg.exec();
         /// TODO once created the payment invoice, get its data into the table
     }else{
-        QMessageBox::information(this, "Error", "Couldn't create empty invoice");
+        msg.setWindowTitle("Error");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setIcon( QMessageBox::Critical );
+        msg.setText("No se pudo crear una nueva factura");
+        msg.setStyleSheet("color:black; background:white");
+        msg.exec();
     }
 }
 
@@ -550,10 +569,11 @@ void GymOperations::on_btnPaymentAddLine_clicked()
 
     if(executionResult){
 
-        msg.setWindowTitle("Saved");
-        msg.setText("Empty invoice line created Succesfully");
+        msg.setWindowTitle("Nuevo");
+        msg.setText("Detalle vacío creado exitosamente");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
         msg.setIcon(QMessageBox::Information);
-        msg.setStyleSheet("color:white;background:black");
+        msg.setStyleSheet("color:black; background:white");
         msg.exec();
         //QMessageBox::information(this, "Saved", "Empty invoice line created Succesfully");
 
@@ -561,9 +581,10 @@ void GymOperations::on_btnPaymentAddLine_clicked()
 
     }else{
         msg.setWindowTitle("Error");
-        msg.setText("Couldn't create empty invoice line");
-        msg.setIcon(QMessageBox::Warning);
-        msg.setStyleSheet("color:white;background:black");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setText("No se puedo crear un nuevo detalle");
+        msg.setIcon(QMessageBox::Critical);
+        msg.setStyleSheet("color:black; background:white");
         msg.exec();
         //QMessageBox::information(this, "Error", "Couldn't create empty invoice line");
     }
@@ -583,11 +604,14 @@ void GymOperations::on_btnSaveLine_clicked()
     QRegularExpression sep("días");
     int packageDays = tokens[1].remove(sep).toInt();
 
+    QMessageBox externalMessage = QMessageBox();
     int currentInvoice = 0;
     currentInvoice = this->ui->invoiceNumber->text().toInt();
 
+    int quantity = this->ui->sbPaymentQuantity->text().toInt();
+
     QDate paymentDate = this->ui->paymentDatePay->date() ;
-    QDate limitDate = this->ui->paymentDatePay->date().addDays(packageDays);
+    QDate limitDate = this->ui->paymentDatePay->date().addDays(packageDays * quantity);
 
     QString formatedPaymentDate = QString::number( paymentDate.year() ) +
             "-" + QString::number( paymentDate.month() ) +
@@ -605,7 +629,7 @@ void GymOperations::on_btnSaveLine_clicked()
     int packageId = getCurrentSelectedPackageId(packageDescription.toStdString());
     qDebug() << "\n\t--------------------------\n"
     << currentInvoiceLineId << " ** " << packageId << "\n"
-    << this->ui->sbPaymentQuantity->text().toInt() << "\n"
+    << quantity << "\n"
     << formatedPaymentDate << " ** " << formatedLimitDate
     << "\n\t--------------------------\n\n";
 
@@ -618,21 +642,43 @@ void GymOperations::on_btnSaveLine_clicked()
         );
 
     if(executionResult){
-        QMessageBox::information(this, tr("Saved"), "Line info created Succesfully");
+        externalMessage.setWindowTitle("Guardado");
+        externalMessage.setText("Detalle creado exitosamente");
+        externalMessage.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        externalMessage.setIcon(QMessageBox::Information);
+        externalMessage.setStyleSheet("color:black; background:white");
+        externalMessage.exec();
         //update this current line
 
         bool updateLineResult = paymentController
         .updateInvoiceLineInfo(&con, currentInvoiceLineId);
         if(updateLineResult){
-            QMessageBox::information(this, "Saved", "Line total updated succesfully");
+            QMessageBox msg = QMessageBox();
+            msg.setWindowTitle("Guardado");
+            msg.setText("Total del detalle actualizado");
+            msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+            msg.setIcon(QMessageBox::Information);
+            msg.setStyleSheet("color:black; background:white");
+            msg.exec();
         }else{
-            QMessageBox::information(this, "Error", "Couldn't update the total of this line");
+            QMessageBox msg = QMessageBox();
+            msg.setWindowTitle("Error");
+            msg.setText("No se pudo actualizar el total del detalle");
+            msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStyleSheet("color:black; background:white");
+            msg.exec();
         }
 
         getInvoiceLinesByInvoiceId(currentInvoice);
         /// TODO once created the invoice line, get its data into the table
     }else{
-        QMessageBox::information(this, "Error", "Couldn't create line info");
+        externalMessage.setWindowTitle("Error");
+        externalMessage.setText("No se pudo agregar el detalle");
+        externalMessage.setIcon(QMessageBox::Critical);
+        externalMessage.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        externalMessage.setStyleSheet("color:black; background:white");
+        externalMessage.exec();
     }
 
 }
@@ -642,15 +688,28 @@ void GymOperations::on_btnPaymentSaveAll_clicked()
 {
     SqlConnection con;
     int currentHeader = 0;
+    QMessageBox msg = QMessageBox();
     PaymentControllers paymentController = PaymentControllers::getInstance();
     currentHeader = this->ui->invoiceNumber->text().toInt();
 
     bool executionResult = paymentController.updatePaymentInvoice(&con, currentHeader);
     if( executionResult ){
-        QMessageBox::information(this, "Saved", "Invoice Header update succesfully");
+        //QMessageBox::information(this, "Saved", "Invoice Header update succesfully");
+        msg.setWindowTitle("Guardado");
+        msg.setText("Total de la factura actualizado");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setIcon(QMessageBox::Information);
+        msg.setStyleSheet("color:black; background:white");
+        msg.exec();
         getAllPaymentInvoicesFromDB();
     }else{
-        QMessageBox::information(this, "Error", "Couldn't update header with its lines");
+        //QMessageBox::information(this, "Error", "Couldn't update header with its lines");
+        msg.setWindowTitle("Error");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setText("No se pudo actualizar el total de la factura");
+        msg.setIcon(QMessageBox::Critical);
+        msg.setStyleSheet("color:black; background:white");
+        msg.exec();
     }
     //This function should call teh stored procedure to update the invoice header
 }
@@ -715,9 +774,6 @@ void GymOperations::getAllPaymentInvoicesFromDB(){
             i,4, new QTableWidgetItem( QString::number( cabeceraFacturas[i].getTotalCabFactura() ) )
         );
 
-        ui->tblWidPaymentInvoice->setItem(
-            i,5, new QTableWidgetItem( QString::number( 000.11 ) )
-        );
     }
     adjustReportInvoiceTable( ui->tblWidPaymentInvoice );
 }
@@ -925,15 +981,17 @@ void GymOperations::on_btnAppointNewInvoice_clicked()
 
     bool executionResult = appointmentController.createEmptyPaymentInvoiceAP(&con, nuevaFactura);
     if(executionResult){
-        msg.setWindowTitle("Saved"); msg.setText("Empty invoice created succesfully");
+        msg.setWindowTitle("Saved"); msg.setText("Factura vacía creada exitosamente");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
         msg.setIcon( QMessageBox::Information );
-        msg.setStyleSheet("color:white; background:black");
+        msg.setStyleSheet("color:black; background:white");
         msg.exec();
 
     }else{
-        msg.setWindowTitle("Error"); msg.setText("Couldn't create empty invoice");
-        msg.setIcon( QMessageBox::Warning );
-        msg.setStyleSheet("color:white; background:black");
+        msg.setWindowTitle("Error"); msg.setText("No se pudo crear una nueva factura");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setIcon( QMessageBox::Critical );
+        msg.setStyleSheet("color:black; background:white");
         msg.exec();
     }
 }
@@ -972,9 +1030,7 @@ void GymOperations::getAllAppointmentInvoicesFromDB(){
             i,4, new QTableWidgetItem( QString::number( citasFacturas[i].getTotalCabFactura() ) )
         );
 
-        ui->tblWidAppointInvoice->setItem(
-            i, 5, new QTableWidgetItem( QString::number(0.00) )
-        );
+
     }
     adjustReportInvoiceTable( ui->tblWidAppointInvoice );
 }
@@ -1052,18 +1108,20 @@ void GymOperations::on_btnAppointAdd_clicked()
 
     if(executionResult){
         msg.setWindowTitle("Saved");
-        msg.setText("Empty appointment created succesfully");
+        msg.setText("Cita creada exitosamente");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
         msg.setIcon(QMessageBox::Information);
-        msg.setStyleSheet("color:white; background:black");
+        msg.setStyleSheet("color:black; background:white");
         msg.exec();
 
         getAppointLinesByInvoiceId(currentInvoice);
 
     }else{
         msg.setWindowTitle("Error");
-        msg.setText("Couldn't create an empty appointment");
-        msg.setIcon(QMessageBox::Warning);
-        msg.setStyleSheet("color:white; background:black");
+        msg.setText("No se pudo crear la cita");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setIcon(QMessageBox::Critical);
+        msg.setStyleSheet("color:black; background:white");
         msg.exec();
     }
 }
@@ -1074,60 +1132,95 @@ void GymOperations::on_btnSaveAppoint_clicked()
     QMessageBox msg = QMessageBox();
     SqlConnection con;
     int currentInvoiceLineId = 0;
-    int numSesiones = 0;
     int currentInvoice = 0;
-    AppointmentController appointmentController = AppointmentController::getInstance();
 
-    QString selectedService = this->ui->combxAppointService->currentText();
-    QString packageTitle = selectedService.split(", ")[0];
     currentInvoiceLineId = this->ui->appointNumber->text().toInt();
+    currentInvoice = this->ui->appointInvoiceNumber->text().toInt();
 
     QDateTime appointDate = this->ui->appointDate->dateTime();
     QString dateAppointment = appointDate.toString("yyyy-MM-dd HH:mm:ss");
 
-    currentInvoice = this->ui->appointInvoiceNumber->text().toInt();
+    AppointmentController appointmentController = AppointmentController::getInstance();
 
-    numSesiones = this->ui->sbAppointQuantity->text().toInt();
-    int serviceId = getCurrentSelectedGymServiceId(packageTitle.toStdString()) ;
+
+
+
+    if(statusCbxAppoint == "Modificar"){
+        bool updateDateResult = appointmentController.updateAppointDate(&con, currentInvoiceLineId, dateAppointment);
+        if(updateDateResult){
+            msg.setWindowTitle("Modificado");
+            msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+            msg.setText("Fecha actualizada exitosamente.");
+            msg.setIcon(QMessageBox::Information);  msg.setStyleSheet("color:black; background:white");
+            msg.exec();
+
+            getAppointLinesByInvoiceId(currentInvoice);
+        }else{
+            msg.setWindowTitle("Error");
+            msg.setText("No se pudo actualizar la fecha de la cita.");
+            msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+            msg.setIcon(QMessageBox::Critical);  msg.setStyleSheet("color:black; background:white");
+            msg.exec();
+        }
+
+
+
+    }else{
+        //statusCbxAppoint is in Nueva mode
+        QString selectedService = this->ui->combxAppointService->currentText();
+        QString packageTitle = selectedService.split(", ")[0];
+        int numSesiones = 0;
+
+
+        numSesiones = this->ui->sbAppointQuantity->text().toInt();
+        int serviceId = getCurrentSelectedGymServiceId(packageTitle.toStdString()) ;
+
+
+        bool executionResult = appointmentController
+        .createInvoiceLineInfoAP(&con,currentInvoiceLineId,
+        serviceId, numSesiones, dateAppointment);
+
+        if(executionResult){
+            msg.setWindowTitle("Saved");
+            msg.setText("Cita agregada exitosamente");
+            msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+            msg.setIcon(QMessageBox::Information);
+            msg.setStyleSheet("color:black; background:white");
+            msg.exec();
+
+            //añadir la función para actualizar el detalle (cita)
+            bool updateAppointResult = appointmentController
+            .updateInvoiceLineInfoAP(&con, currentInvoiceLineId);
+            if( updateAppointResult ){
+                msg.setWindowTitle("Saved");
+                msg.setText("Total de la cita actualizado exitosamente");
+                msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+                msg.setIcon(QMessageBox::Information);
+                msg.setStyleSheet("color:black; background:white");
+                msg.exec();
+            }else{
+                msg.setWindowTitle("Error");
+                msg.setText("No se pudo actualizar el total de la cita");
+                msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+                msg.setIcon(QMessageBox::Information);
+                msg.setStyleSheet("color:black; background:white");
+                msg.exec();
+            }
+            //añadir la función para traer todas las citas (lineas - detalles) para esta factura
+            getAppointLinesByInvoiceId(currentInvoice);
+        }else{
+            msg.setWindowTitle("Error");
+            msg.setText("No se pudo agregar la cita");
+            msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+            msg.setIcon(QMessageBox::Critical);
+            msg.setStyleSheet("color:black; background:white");
+            msg.exec();
+        }
+    }
+
     /*qDebug() << "\n\t--------------------------\n"
      * << currentInvoiceLineId << " ---- " << serviceId << "\n" << packageTitle << " ---- " << appointDate.toString("yyyy-MM-dd HH:mm:ss"); */
 
-    bool executionResult = appointmentController
-    .createInvoiceLineInfoAP(&con,currentInvoiceLineId,
-    serviceId, numSesiones, dateAppointment);
-
-    if(executionResult){
-        msg.setWindowTitle("Saved");
-        msg.setText("Appoint created succesfully");
-        msg.setIcon(QMessageBox::Information);
-        msg.setStyleSheet("color:white; background:black");
-        msg.exec();
-
-        //añadir la función para actualizar el detalle (cita)
-        bool updateAppointResult = appointmentController
-        .updateInvoiceLineInfoAP(&con, currentInvoiceLineId);
-        if( updateAppointResult ){
-            msg.setWindowTitle("Saved");
-            msg.setText("Appoint total updated succesfully");
-            msg.setIcon(QMessageBox::Information);
-            msg.setStyleSheet("color:white; background:black");
-            msg.exec();
-        }else{
-            msg.setWindowTitle("Error");
-            msg.setText("Couldn't update the total of this appointment");
-            msg.setIcon(QMessageBox::Information);
-            msg.setStyleSheet("color:white; background:black");
-            msg.exec();
-        }
-        //añadir la función para traer todas las citas (lineas - detalles) para esta factura
-        getAppointLinesByInvoiceId(currentInvoice);
-    }else{
-        msg.setWindowTitle("Error");
-        msg.setText("Couldn't create an appoint");
-        msg.setIcon(QMessageBox::Critical);
-        msg.setStyleSheet("color:white; background:black");
-        msg.exec();
-    }
 }
 
 
@@ -1211,16 +1304,29 @@ void GymOperations::on_btnAppointSaveAll_clicked()
 {
     SqlConnection con;
     int currentHeader = 0;
+    QMessageBox msg = QMessageBox();
     AppointmentController appointmentController = AppointmentController::getInstance();
     currentHeader = ui->appointInvoiceNumber->text().toInt();
 
     bool executionResult = appointmentController.updatePaymentInvoiceAP(&con, currentHeader);
 
     if(executionResult){
-        QMessageBox::information(this,"Saved","Invoice Header updated succesfully");
+        msg.setWindowTitle("Nuevo");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setIcon( QMessageBox::Information );
+        msg.setText("Total de factura actualizado exitosamente");
+        msg.setStyleSheet("color:black; background:white");
+        msg.exec();
+
         getAllAppointmentInvoicesFromDB();
     }else{
-        QMessageBox::information(this,"Error","Couldn't update header with its lines");
+        //QMessageBox::information(this,"Error","Couldn't update header with its lines");
+        msg.setWindowTitle("Error");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setIcon( QMessageBox::Critical );
+        msg.setText("No se pudo actualizar el total de la factura");
+        msg.setStyleSheet("color:black; background:white");
+        msg.exec();
     }
 }
 
@@ -1461,7 +1567,8 @@ void GymOperations::on_btnSendEmail_clicked()
     //settings.setValue("Group1/password","vsd");
 
     QMessageBox msg = QMessageBox();
-
+    bool isSuccesMail = true;
+    QString errorMessage{""};
     QString correo = settings.value("Group1/mail").toString();
     QString password = settings.value("Group1/password").toString();
 
@@ -1503,6 +1610,7 @@ void GymOperations::on_btnSendEmail_clicked()
     if (filePath == "Sin Archivos") continue; // filtrar texto de "sin archivos"
     auto file = std::make_unique<QFile>(filePath);
     if (!file->open(QIODevice::ReadOnly)) {
+    isSuccesMail = false;
         qDebug() << "No se pudo abrir:" << filePath << file->errorString();
         continue;
     }
@@ -1522,49 +1630,45 @@ void GymOperations::on_btnSendEmail_clicked()
     }
 
 
-
-
-
-
     // Now we can send the mail
     SmtpClient smtp("smtp.gmail.com", 465, SmtpClient::SslConnection);
 
     smtp.connectToHost();
     if (!smtp.waitForReadyConnected()) {
-        qDebug() << "Failed to connect to host!";
-
-        msg.setWindowTitle("Correo");
-        msg.setText("No se pudo enviar el correo 1");
-        msg.setIcon(QMessageBox::Critical);
-        msg.setStyleSheet("color:white; background:black");
-        msg.exec();
+        isSuccesMail = false;
+        errorMessage += "Failed to connect to host!";
     }
 
     smtp.login(correo, password);
     if (!smtp.waitForAuthenticated()) {
-        qDebug() << "Failed to login!";
-        msg.setWindowTitle("Correo");
-        msg.setText("No se pudo enviar el correo 2");
-        msg.setIcon(QMessageBox::Critical);
-        msg.setStyleSheet("color:white; background:black");
-        msg.exec();
+        isSuccesMail = false;
+        errorMessage += "\nFailed to login!";
     }
 
     smtp.sendMail(message);
     if (!smtp.waitForMailSent()) {
-        qDebug() << "Failed to send mail!";
-        msg.setWindowTitle("Correo");
-        msg.setText("No se pudo enviar el correo 3" );
+        isSuccesMail = false;
+        errorMessage += "\nFailed to send mail!";
+    }
+
+
+    if(isSuccesMail){
+        msg.setWindowTitle("Enviar Correo");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setText("Correo enviado exitosamente");
+        msg.setIcon(QMessageBox::Information);
+        msg.setStyleSheet("color:black; background:white");
+        msg.exec();
+    }else{
+        msg.setWindowTitle("Error");
+        msg.setWindowIcon( QIcon(":/images/Images/GoldenGym3.png") );
+        msg.setText("No se pudo enviar el correo por: " + errorMessage);
         msg.setIcon(QMessageBox::Critical);
-        msg.setStyleSheet("color:white; background:black");
+        msg.setStyleSheet("color:black; background:white");
         msg.exec();
     }
 
-    msg.setWindowTitle("Correo");
-    msg.setText("Correo enviado exitosamente");
-    msg.setIcon(QMessageBox::Information);
-    msg.setStyleSheet("color:white; background:black");
-    msg.exec();
+
 
     smtp.quit();
 
@@ -1674,4 +1778,114 @@ void GymOperations::on_btnSelectDirectory_clicked()
 
 
 
+
+
+void GymOperations::on_cbxAppointNew_stateChanged(int arg1)
+{
+    //if cbx appoint is checked, it means create a new appoint
+    if(arg1 == Qt::Checked){
+        statusCbxAppoint = "Nueva";
+        ui->btnSaveAppoint->setText("Guardar Cita");
+    }else{
+    //if cbx appoint is UNchecked, it means update appoint date by its line number
+        statusCbxAppoint = "Modificar";
+        ui->btnSaveAppoint->setText("Actualizar Cita");
+    }
+}
+
+
+void GymOperations::on_btnAppointSearchInvoice_clicked()
+{
+    SqlConnection con;
+    QString initialDate = ui->appointDate->date().toString("yyyy-MM-dd");
+    QString userCode = ui->txtAppointUserCode->text();
+    AppointmentController appointmentController = AppointmentController::getInstance();
+
+    citasFacturas.clear();
+
+    if( initialDate == QDate::currentDate().toString("yyyy-MM-dd") ){
+        appointmentController.getFilteredAppointInvoices(&con, citasFacturas,"", userCode);
+    }else{
+    appointmentController.getFilteredAppointInvoices(&con, citasFacturas, initialDate,"");
+    }
+
+    ui->tblWidAppointInvoice->clearContents();
+    ui->tblWidAppointInvoice->setRowCount( citasFacturas.size() );
+
+    for( size_t i = 0; i < citasFacturas.size(); i++ ){
+        ui->tblWidAppointInvoice->setItem(
+            i,0, new QTableWidgetItem( QString::number( citasFacturas[i].getIdCabFactura() ) )
+        );
+
+        ui->tblWidAppointInvoice->setItem(
+            i,1, new QTableWidgetItem( QString::fromStdString( citasFacturas[i].getFechaCabFactura() ) )
+        );
+
+        ui->tblWidAppointInvoice->setItem(
+            i,2, new QTableWidgetItem( QString::fromStdString( citasFacturas[i].getCodPersona() ) )
+        );
+
+        ui->tblWidAppointInvoice->setItem(
+            i, 3, new QTableWidgetItem(
+                QString::fromStdString( citasFacturas[i].cliente.getNombre() + " " + citasFacturas[i].cliente.getApellido() )
+            )
+        );
+
+        ui->tblWidAppointInvoice->setItem(
+            i,4, new QTableWidgetItem( QString::number( citasFacturas[i].getTotalCabFactura() ) )
+        );
+    }
+
+    adjustReportInvoiceTable( ui->tblWidAppointInvoice );
+
+
+}
+
+
+void GymOperations::on_btnPaymentSearchInvoice_clicked()
+{
+    SqlConnection con;
+    QString initialDate = ui->paymentDatePay->date().toString("yyyy-MM-dd");
+    QString userCode = ui->txtPaymentUserCode->text();
+    AppointmentController appointmentController = AppointmentController::getInstance();
+
+    citasFacturas.clear();
+
+    if( initialDate == QDate::currentDate().toString("yyyy-MM-dd") ){
+        appointmentController.getFilteredAppointInvoices(&con, citasFacturas,"", userCode);
+    }else{
+    appointmentController.getFilteredAppointInvoices(&con, citasFacturas, initialDate,"");
+    }
+
+
+    ui->tblWidPaymentInvoice->clearContents();
+    ui->tblWidPaymentInvoice->setRowCount( citasFacturas.size() );
+
+    for( size_t i = 0; i < citasFacturas.size(); i++ ){
+        ui->tblWidPaymentInvoice->setItem(
+            i,0, new QTableWidgetItem( QString::number( citasFacturas[i].getIdCabFactura() ) )
+        );
+
+        ui->tblWidPaymentInvoice->setItem(
+            i,1, new QTableWidgetItem( QString::fromStdString( citasFacturas[i].getFechaCabFactura() ) )
+        );
+
+        ui->tblWidPaymentInvoice->setItem(
+            i,2, new QTableWidgetItem( QString::fromStdString( citasFacturas[i].getCodPersona() ) )
+        );
+
+        ui->tblWidPaymentInvoice->setItem(
+            i, 3, new QTableWidgetItem(
+                QString::fromStdString( citasFacturas[i].cliente.getNombre() + " " + citasFacturas[i].cliente.getApellido() )
+            )
+        );
+
+        ui->tblWidPaymentInvoice->setItem(
+            i,4, new QTableWidgetItem( QString::number( citasFacturas[i].getTotalCabFactura() ) )
+        );
+    }
+
+    adjustReportInvoiceTable( ui->tblWidPaymentInvoice );
+
+}
 
