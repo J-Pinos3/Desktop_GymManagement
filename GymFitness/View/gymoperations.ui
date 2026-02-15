@@ -443,22 +443,12 @@ QWidget#tabGestion QTableWidget{
              </column>
              <column>
               <property name="text">
-               <string>Fecha Inicio</string>
+               <string>Fecha de Inscripción</string>
               </property>
              </column>
              <column>
               <property name="text">
                <string>Rol</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Fecha Pago</string>
-              </property>
-             </column>
-             <column>
-              <property name="text">
-               <string>Fecha Límite</string>
               </property>
              </column>
             </widget>

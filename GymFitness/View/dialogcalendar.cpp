@@ -10,7 +10,7 @@ DialogCalendar::DialogCalendar(QWidget *parent) :
     ui->appointsCalendar->setGridVisible(true);
     ui->appointsCalendar->setDateEditEnabled(true);
     ui->appointsCalendar->setMaximumDate(QDate(2100,10,10));
-    ui->appointsCalendar->setMinimumDate(QDate(2022,01,01));
+    ui->appointsCalendar->setMinimumDate(QDate(1998,01,01));
     ui->appointsCalendar->setSelectionMode( QCalendarWidget::SelectionMode::SingleSelection );
 
     connect(this,&DialogCalendar::onShowAppointsList, &appointsView, &DialogAppointsView::getAppointsList);

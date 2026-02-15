@@ -157,11 +157,11 @@ void GymOperations::listAllCustomers(){
             QDate::currentDate() >= QDate::fromString(fech_pago,"yyyy-MM-dd") &&
             QDate::currentDate() <= QDate::fromString(fech_fin,"yyyy-MM-dd")
            ){
-            status = "VIGENTE";
-            brush.setColor(Qt::green);
+            status = "✅ VIGENTE";
+            brush.setColor( QColor(51,184,56,255) );
 
         }else{
-            status = "CADUCADO";
+            status = "❌ CADUCADO";
             brush.setColor(Qt::red);
         }
 
@@ -297,8 +297,8 @@ void GymOperations::on_btnCustomerSearchIntro_clicked()
         QDate::currentDate() >= QDate::fromString(fech_pago,"yyyy-MM-dd") &&
         QDate::currentDate() <= QDate::fromString(fech_fin,"yyyy-MM-dd")
     ){
-        status="VIGENTE";
-        brush.setColor(Qt::green);
+        status = "✅ VIGENTE";
+        brush.setColor(QColor(51,184,56,255));
     }else{
         status="CADUCADO";
         brush.setColor(Qt::red);
@@ -887,7 +887,7 @@ void GymOperations::on_tblWidPaymentInvoice_cellActivated(int row, int column)
     QString currentCabeceraTxt = ui->tblWidPaymentInvoice->item(row,0)->text();
     QString userCodeTxt = ui->tblWidPaymentInvoice->item(row,2)->text();
     QString paymentTotalTxt = ui->tblWidPaymentInvoice->item(row,4)->text();
-    QString partialPaymentTxt = ui->tblWidPaymentInvoice->item(row,5)->text();
+    //QString partialPaymentTxt = ui->tblWidPaymentInvoice->item(row,5)->text();
 
 
     currentCabeceraTxt.isNull() || currentCabeceraTxt.isEmpty() ?

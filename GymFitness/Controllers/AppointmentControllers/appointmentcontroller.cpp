@@ -252,7 +252,7 @@ const QString& fechaInicio, const QString& cod_persona){
     "INNER JOIN Persona as Pers on Pers.cod_persona = CabFac.cod_persona\n"
     "WHERE(\n"
         "CabFac.id_cab_fact in (\n"
-        "SELECT DISTINT CabFac2.id_cab_fact\n"
+        "SELECT DISTINCT CabFac2.id_cab_fact\n"
         "FROM CabeceraFactura as CabFac2\n"
         "JOIN DetalleFactura as Detf ON CabFac2.id_cab_fact = Detf.id_cab_fact\n"
         "JOIN ServicioElegido as Serv ON Detf.id_deta_fact = Serv.id_deta_fact) or \n"

@@ -42,7 +42,7 @@ public:
         appointsCalendar = new QCalendarWidget(DialogCalendar);
         appointsCalendar->setObjectName("appointsCalendar");
         appointsCalendar->setLocale(QLocale(QLocale::Spanish, QLocale::Spain));
-        appointsCalendar->setMinimumDate(QDate(2024, 9, 15));
+        appointsCalendar->setMinimumDate(QDate(1999, 9, 15));
         appointsCalendar->setMaximumDate(QDate(2060, 12, 31));
         appointsCalendar->setFirstDayOfWeek(Qt::Monday);
         appointsCalendar->setGridVisible(true);

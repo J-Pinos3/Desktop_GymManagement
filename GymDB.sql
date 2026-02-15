@@ -87,6 +87,7 @@ select * from PlanElegido;
 select * from Servicio; -- no eliminar
 select * from ServicioElegido;
 
+
 /*25/09/2025 query for searching-filtering PAYMENT invoices by date or user code*/
 SELECT DISTINCT
     CabFac.id_cab_fact,   CabFac.fecha_cab_fact, 
