@@ -1,0 +1,133 @@
+Fixed -Error: (FIE#)
+	FIE1) Tras crear un detalle (línea), no se está mostrando en la UI
+	FIE2) Tras crear un detalle, no se está mostrando en la tabla de los detalles para una factura dada
+		Solo se muestra si hay datos
+
+Todo:
+	FIE4) No se ve el mensaje de los QMessageBox
+	FIE5) Al hacer clic en los campos de una tabla, el fondo negro hace que no se vean las letras, hay que seleccionarlas para que se vean
+	FIE3) Al clickar el botón de nueva factura vacía sale error porque no hay el código del cliente, validar eso
+
+	TD1) Descartar de momento la funcionalidad del abono y mostrar con 0
+	TD2) En el tab de pagos, bloquear el modo de editar el campo del total de la factura, eso no se debe tocar, 
+		se hace el çalculo en el programa
+	TD10) Mejorar los colores y efectos en la UI
+
+
+	59) Corregir la forma en como se almacenan los valores de dinero y el servicio en los combobox
+	
+
+	XX) EN el tab de citas, solo se deberían traer las cabeceras o líneas que sean de citas.
+	
+Progress:
+
+	7) Testing de las funciones creadas con MySQL Probados los stored procedures al menos de Detalle factura con plan elegido y si funciona de momento
+**La lógica para crear la cita, será similar a la lógica de crear un nuevo detalle de factura
+	44) Testing del proceso de generar una factura con un servicio o también con entreno con sql de momento funciona
+
+	
+	72) Cambiar el nombre fecha registro for fecha nacimiento al mostrar todos los usuarios
+
+	74) Corregir el botón de editar los datos del cliente y revisar la funcionalidad de buscar cliente
+
+	75) Corregir la función de buscar usuario en el tab gestión para traer todos los datos?
+
+
+
+Completed:
+	1) Añadir los listeners de los botones del tab de pagos 
+	2) Crear las funciones para actualizar el detalle de factura en c++
+	3) Crear las funciones para actualizar la cabecera de factura en c++
+	4) Con sql crear los stored procedure para actualizar el total del detalle de factura
+	5) Con sql crear los stored procedure para actualizar el total de la cabecera de factura (YA ESTABA)
+	6) Llenar el combo box de los planes de entreno en el tab de citas
+
+	8) Llamar a la función createEmptyInvoice del payment controller dentro de GymOperations
+	9) Llamar a la función createEmptyLine del payment controller dentro de GymOperations
+	10) Una vez creada la factura (cabecera) vacía, mostrarla en su tabla (traer los datos|las facturas)
+		Ya existe la función que trae todas las cabeceras
+	11) Traer todos los detalles (líneas) que pertenecen a una cabecera con código sql
+	12) Crear la función en c++ para traer todos los detalles de una cabecera
+
+	13) Trabajar en la función en la ui de crear el plan elegido para un detalle de factura dado
+	14) Trabajar en la función que llama el procedimiento almacenado que actualiza la cabecera
+	15) Trabajar en la función que llama el procedimiento almacenado que actualiza la detalle
+	16) Traer de bd todas las cabeceras de factura y mostrar en UI
+	17) Tras crear un detalle, mostrar todos los detalles de una factura en específico en la UI
+	18) tras hacer clic en una de las facturas, poner sus campos en la parte inferior para añadir los detalles de factura
+	19) Crear una función en el paymentController para traer solo los detalles de una cabecera de factura 
+		Ya existe, es la función getAllInvoiceLines
+	20) Crear la función en la ui para que tras crear un detalle vacío se muestren todos los detalles de esa factura
+		con el método creado en 19)
+	21) Crear una función que cree un plan elegido vacío, eso tras crear una línea (detalle de factura)
+	22) Implementar la función de crear un plan elegido vacío en GymOperations
+	23) Corregir el query sql que trae los detalles para una factura dada
+	24) Corregir la función que trae los detalles de una factura en c++ en PaymentController
+	25) Crear la funcionalidad de que cuando de clic a la tabla de abajo (detalles de factura), las celdas necesarias aparezcan 
+		en los campos de texto de la derecha	
+	26) Al pulsar el botón de guardar detalle, sale error, se debería corregir el query sql o la función createInvoiceLineInfo
+		Se corregió el parámetro que se mandaba a la función createInvoiceLineInfo TEST IT
+	27) Tras actualizar una cabecera, mostrar todas las cabeceras de nuevo
+
+ 	28) Corregir el sql query o la función C++ para buscar un cliente por su código en el intro tab
+	29) Tras guardar un detalle (o actualizarlo) se deben mostrar de nuevo los detalles de esa factura
+	30) A la clase Factura, se le añade por composición un objecto de tipo Persona
+	31) Modificar el query para mostrar los datos del cliente cuando se traen las facturas
+	32) Modificar la función PaymentControllers::getAllPaymentInvoices para traer todos los campos
+	33) Cambiar la UI del tab citas, se va a poner una tabla con las facturas y otra con los detalles citas
+	34) Crear la tabla sql para el servicio de cita que ofrece el gimnasio (fisio o nutricionismo)
+	35) Crear la tabla sql llamada cita (Servicio Elegido, similar a plan elegido)
+	36) Crear los modelos de datos servicio y servicio elegido
+	37) El modelo de datos detalle de factura por composición, ahora necesita tener el objeto
+		ServicioElegido, similar a PlanElegido
+		NO SE PUEDE HEREDAR POR QUE LAS CLASES SON SINGLETONS
+	38) Declarar los métodos de la clase AppointmentController similares a los de la clase PaymentControllers
+		métodos como: 
+			createEmptyPaymentInvoice,  	ya
+			updatePaymentInvoice,	    	ya
+			getAllPaymentInvoices,  	ya
+			updateInvoiceLineInfo,		ya
+			
+		y sobreescribir métodos como: 
+			createEmptyInvoiceLine (la nueva sesión de terapia a pagar)	ya
+			createInvoiceLineInfo,						ya
+			getAllInvoiceLines						ya
+
+	39) Crear la función el AppintmentController para traer los servicios
+	40) Crear el sql query para crear el la información de la línea (info del detalle) es decir insertar en ServicioElegido (LA FUNCIÓN createInvoiceLineInfoAP)
+	42) Crear la función en AppointmentController para actualizar la cabecera de factura llamando al procedure update_cabecera_factura
+	41) Crear la función en AppointmentController para crear una línea, detalle de factura vacía
+	42) Crear el sql query para traer todos los detalles (líneas que son de los servicios) porque en el payment controller
+		en la tabla de las líneas, estas son detalles de factura también, pero muestran los datos del paquete elegido,
+		ahora se deben mostrar los datos del servicio elegido
+	43) Crear un stored procedure con sql que actualice el detalle de factura pero considerando el ServicioElegido, ya no el plan 			elegido
+	45) en gym operations, crear la función para mostrar los servicios del gym en el combo box
+	46) Crear la función en gymoperations para crear una nueva factura vacía
+	47) Crear la función en gymoperations para traer todas las facturas tras clikar el botón todas las facturas
+	48) Crear la función en gymoperations para crear una nueva línea-dewtalle(cita) vacía
+	49) Crear la función que recibe el nombre del servicio y devuelve el id del servicio elegido
+	50) Crear la función que actualiza el detalle (cita) vació con los datos seleccionados
+	51) Dentro de la función anterior traer los datos para crear el servicio elegido en bd
+	52) Crear la función para traer todos los detalles(líneas-citas) para una cabecera de factura dada
+
+	53) Corregir la función AppointmentController::getAllInvoiceLines porque en su consulta sql, se debe traer el nombre de la persona
+	54) Modificar la función  GymOperations::getAppointLinesByInvoiceId para que en ella e muestre el nombre del paciente
+	55) Añadir el listener para cuando se da clic en la tabla de las cabeceras en los appoints
+	56) Añadir el listener para cuando se da clic en la tabla de lines-detalles(citas) en los appoints
+	57) Tras hacer clic en la tabla de las citas (líneas), los datos se deben mostrar en los campos de la izquierda
+	58) Al clicar en la tabla de las citas(detalles), el servicio y la fecha, no se están poniendo en los campos de la izquierda
+	60) Corregir la excepción de cuando una cita está vacía y se le da clic para mostrarla en los campos de la izquierda
+	61) Crear la función para guardar todos los detalles y así actualizar esa cabecera de factura
+	62) En el tab de facturas, crear la función para para traer todas las facturas del lado izquierdo
+	63) Corregir en el report controller la función para traer los detalles de cada cabecera	
+	64) Crear un nuevo modelo de datos para los detalles del reporte para ser más organizado
+	65) Implementar la clase DetalleReporte en el reportController y traer los datos en la tabla
+	66) Diseñar el pdf que contiene los datos de la factura
+	67) Modificar las funciones que traen todas las facturas, de modo que
+	en el tab citas, solo estén las facturas para citas
+	68) Hacer que el usuario ingrese su correo para mandarle los pdf
+	69) Elegir una fecha desde el calendario
+	70) crear la sentencia sql para traer todas las fechas de citas
+	71) mostrar con otro color las fechas que ya están reservadas
+
+	73) Cuando se listan los usuarios al inicio, traer las fechas de inicio y fin

@@ -1,0 +1,50 @@
+#ifndef DIALOGCALENDAR_H
+#define DIALOGCALENDAR_H
+
+#include <QWidget>
+#include <QDialog>
+
+#include "sqlconnection.h"
+#include <QDate>
+
+#include "View/dialogappointsview.h"
+
+namespace Ui {
+class DialogCalendar;
+}
+
+class DialogCalendar : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit DialogCalendar(QWidget *parent = nullptr);
+    ~DialogCalendar();
+
+    //QDate getSelectedDate();
+    void formatCalendar();
+
+    void getServiceDates();
+
+    void markSelectedDates();
+
+signals:
+    void choosenDate(const QDate& date);
+
+    void onShowAppointsList(const QDate& date);
+
+private slots:
+
+    void on_btnCloseCalendar_clicked();
+
+    void on_appointsCalendar_clicked(const QDate &date);
+
+private:
+    Ui::DialogCalendar *ui;
+    QStringList datesList;
+
+    DialogAppointsView appointsView;
+    //QDate selectedDateAppo;
+};
+
+#endif // DIALOGCALENDAR_H

@@ -1,0 +1,1607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GymOperations</class>
+ <widget class="QWidget" name="GymOperations">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1286</width>
+    <height>674</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Golds Gym</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../Resources.qrc">
+    <normaloff>:/images/Images/GoldenGym3.png</normaloff>:/images/Images/GoldenGym3.png</iconset>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_13">
+   <property name="spacing">
+    <number>6</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTabBar::tab{
+	background-color: #ffd600;
+	padding-top: 10%;
+	padding-right: 20%;
+	padding-bottom: 10%;
+	padding-left: 20%;
+	border: 1px solid black
+}
+
+</string>
+     </property>
+     <property name="currentIndex">
+      <number>3</number>
+     </property>
+     <widget class="QWidget" name="tabInicio">
+      <property name="styleSheet">
+       <string notr="true">QWidget#tabInicio QTableWidget#tblWidCustomersIntro{
+  background-color: #d1d1d1;
+
+}
+
+
+QWidget#tabInicio QHeaderView::Section {
+    background-color: #00baff;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	font-size:18px;
+	font-style: bold;
+}
+
+
+
+QWidget#tabInicio QPushButton {
+    background-color: #ffd600;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+	margin-right: 20px;
+	border-radius: 3px;
+}
+
+QWidget#tabInicio QLineEdit{
+	padding-top: 1%;
+	padding-bottom: 2%;
+	padding-left: 5%;
+	border: 1px solid #ffd600
+}
+
+
+</string>
+      </property>
+      <attribute name="title">
+       <string>Inicio</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLineEdit" name="txtPersonCodeSearchIntro">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	color: black;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string>Código:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnCustomerSearchIntro">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Buscar Cliente</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAllCustomers">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Listar Clientes</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Preferred</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="tblWidCustomersIntro">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QAbstractScrollArea::AdjustIgnored</enum>
+           </property>
+           <attribute name="verticalHeaderVisible">
+            <bool>true</bool>
+           </attribute>
+           <column>
+            <property name="text">
+             <string>Código</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nombre</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Peso</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha Inicio</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Rol</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha Pago</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha Límite</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Estado</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabGestion">
+      <property name="styleSheet">
+       <string notr="true">QWidget#tabGestion QLineEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}
+
+
+QWidget#tabGestion QLineEdit#txtManageCode{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: black;
+	background-color: #8C8C8B;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}
+
+
+
+QWidget#tabGestion QDateEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}
+
+QWidget#tabGestion QCheckBox{
+	padding-top: 3%;
+	padding-bottom: 4%;
+	padding-left: 5%;
+	width: 100%;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600;
+}
+
+QWidget#tabGestion QPushButton {
+    background-color: #ffd600;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+	margin-right: 20px;
+	border-radius: 3px;
+}
+
+
+
+QWidget#tabGestion QTableWidget{
+	background-color: #d1d1d1;
+}
+
+
+</string>
+      </property>
+      <attribute name="title">
+       <string>Gestión</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="txtManageName">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>207</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>-1</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="placeholderText">
+                <string>Nombre:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtManageLastName">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="placeholderText">
+                <string>Apellido:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtManageWeight">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="placeholderText">
+                <string>Peso:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateEdit" name="manageInscriptionDate">
+               <property name="displayFormat">
+                <string>yyyy-MM-dd</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtManageCode">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>207</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="placeholderText">
+                <string>Código:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="cbxManageNew">
+               <property name="text">
+                <string>Cliente Nuevo?</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tblWidManage">
+             <column>
+              <property name="text">
+               <string>Código</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Nombre</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Peso</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Fecha de Inscripción</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Rol</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="btnManageSave">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Agregar</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnManageCancel">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Cancelar</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnManageSearch">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Buscar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabCitas">
+      <property name="styleSheet">
+       <string notr="true">QWidget#tabCitas QPushButton {
+    background-color: #ffd600;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+
+	border-radius: 3px;
+}
+
+
+
+QWidget#tabCitas QLineEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}
+
+
+
+QWidget#tabCitas QCheckBox{
+	padding-top: 3%;
+	padding-bottom: 4%;
+	padding-left: 5%;
+	width: 60%;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600;
+}
+
+
+QWidget#tabCitas QTableWidget{
+	background-color: #d1d1d1;
+}
+
+QWidget#tabCitas QDateTimeEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}
+
+
+QWidget#tabCitas QSpinBox{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width: 200px;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600;
+}
+
+
+QWidget#tabCitas QComboBox{
+	padding-left: 20;
+	height: 30;
+	background-color: white;
+}
+
+QWidget#tabCitas QComboBox::open {
+	background-color: #ffd600;
+}
+
+QWidget#tabCitas QComboBox QListView {
+	background-color: white;
+}</string>
+      </property>
+      <attribute name="title">
+       <string>Citas</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_9">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_11">
+         <item>
+          <widget class="QTableWidget" name="tblWidAppointInvoice">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <column>
+            <property name="text">
+             <string>Id Cabecera</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha de  Pago</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Codigo Usuario</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nombre</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="btnAppointNewInvoice">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Nueva Factura</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAppointAllInvoices">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Todas las Facturas</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAppointSearchInvoice">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Buscar Factura</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <widget class="QLineEdit" name="appointInvoiceNumber">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="placeholderText">
+                <string>Factura N° 10</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtAppointUserCode">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="placeholderText">
+                <string>Código del Cliente</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateTimeEdit" name="appointDate">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnAvailableDates">
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Fechas Disponibles</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="appointNumber">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="placeholderText">
+                <string>Cita N° 22</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="combxAppointService"/>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="sbAppointQuantity"/>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="appointPayAmmount">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="placeholderText">
+                <string>$00.00</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="cbxAppointNew">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Nueva Cita</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tblWidAppointLine">
+             <column>
+              <property name="text">
+               <string>Id Cita</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Servicio</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Número de Sesiones</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Total</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Nombre</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Fecha Sesión</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <widget class="QPushButton" name="btnAppointSaveAll">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Guardar Todo</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAppointAdd">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Agregar Cita</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnSaveAppoint">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Guardar Cita</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnAppointCancel">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Cancelar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabPagos">
+      <property name="styleSheet">
+       <string notr="true">QWidget#tabPagos QPushButton {
+    background-color: #ffd600;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+	
+	border-radius: 3px;
+}
+
+
+
+QWidget#tabPagos QLineEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}
+
+QWidget#tabPagos QCheckBox{
+	padding-top: 3%;
+	padding-bottom: 4%;
+	padding-left: 5%;
+	width: 60%;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600;
+}
+
+
+QWidget#tabPagos QTableWidget{
+	background-color: #d1d1d1;
+}
+
+
+QWidget#tabPagos QDateTimeEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width: 200px;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600;
+}
+
+QWidget#tabPagos QSpinBox{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width: 200px;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600;
+}
+
+
+QWidget#tabPagos QComboBox{
+	padding-left: 20;
+	height: 30;
+	background-color: white;
+}
+
+QWidget#tabPagos QComboBox::open {
+	background-color: yellow;
+}
+
+QWidget#tabPagos QComboBox QListView {
+	background-color: white;
+}</string>
+      </property>
+      <attribute name="title">
+       <string>Pagos</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QTableWidget" name="tblWidPaymentInvoice">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <column>
+            <property name="text">
+             <string>Id Cabecera</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha de Pago</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Codigo Usuario</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nombre</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="btnPaymentNewInvoice">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Nueva Factura</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnPaymentAllInvoices">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Todas las Facturas</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnPaymentSearchInvoice">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Buscar Factura</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <property name="spacing">
+              <number>6</number>
+             </property>
+             <item>
+              <widget class="QLineEdit" name="invoiceNumber">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="readOnly">
+                <bool>false</bool>
+               </property>
+               <property name="placeholderText">
+                <string>Factura N° 10 </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtPaymentUserCode">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>207</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="placeholderText">
+                <string>Código del cliente:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="invoiceInfoLineNumber">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="placeholderText">
+                <string>Detalle N° 22</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateEdit" name="paymentDatePay">
+               <property name="displayFormat">
+                <string>yyyy/MM/dd</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="cbxPaymentPackage"/>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="sbPaymentQuantity">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>207</width>
+                 <height>0</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtPaymentAmount">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="placeholderText">
+                <string>$00.00</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTableWidget" name="tblWidPaymentLine">
+             <column>
+              <property name="text">
+               <string>Id Detalle</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Paquete</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Cantidad</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Total</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Fecha de Pago</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Fecha Límite</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <property name="spacing">
+            <number>7</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="btnPaymentSaveAll">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Guardar Todo</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnPaymentAddLine">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Agregar Detalle</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnSaveLine">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Guardar Detalle</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnPaymentCancel">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Cancelar</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabFacturas">
+      <property name="styleSheet">
+       <string notr="true">QWidget#tabFacturas QPushButton {
+    background-color: #ffd600;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+
+	border-radius: 3px;
+}
+
+
+QWidget#tabFacturas QTableWidget{
+	background-color: #d1d1d1;
+}
+</string>
+      </property>
+      <attribute name="title">
+       <string>Facturas</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_9">
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item>
+          <widget class="QTableWidget" name="tblAllInvoices">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <column>
+            <property name="text">
+             <string>Id Cabecera</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha de Pago</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Código de Usuario</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Nombres</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Total</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="tblInvoiceLines">
+           <column>
+            <property name="text">
+             <string>Id Detalle</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Total Detalle</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Detalle</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Fecha</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Usuario</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <property name="spacing">
+          <number>6</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>5</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="btnAllInvoicesReport">
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Todas las Facturas</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnGenerateReport">
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Generar PDF de la Factura</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabCorreos">
+      <property name="styleSheet">
+       <string notr="true">QWidget#tabCorreos QPushButton {
+    background-color: #ffd600;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+	border-radius: 3px;
+}
+QWidget#tabCorreos QPushButton#btnSendEmail {
+    background-color: #8C8C8B;
+	color:white;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+	border-radius: 3px;
+}
+
+
+
+QWidget#tabCorreos QLineEdit{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}
+
+
+
+QWidget#tabCorreos QTableWidget{
+	background-color: #d1d1d1;
+}
+
+
+
+
+</string>
+      </property>
+      <attribute name="title">
+       <string>Correos</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_12">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_10">
+         <item>
+          <widget class="QLineEdit" name="txtEmailAddress">
+           <property name="placeholderText">
+            <string>Correo: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="tblEmailFiles">
+           <column>
+            <property name="text">
+             <string>Archivo</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_12">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>10</number>
+           </property>
+           <property name="bottomMargin">
+            <number>10</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="btnSendEmail">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Enviar Correo</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnListFiles">
+             <property name="font">
+              <font>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Seleccionar Archivos</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabConfig">
+      <property name="styleSheet">
+       <string notr="true">QWidget#tabConfig QPushButton {
+    background-color: #ffd600;
+	padding-top: 2%;
+	padding-bottom: 4%;
+	padding-right: 7%;
+	padding-left: 7%;
+
+	border-radius: 3px;
+}
+
+
+QWidget#tabConfig QLabel{
+	padding-top: 2%;
+	padding-bottom: 3%;
+	padding-left: 5%;
+	width: 100%;
+	min-width:200px;
+	color: black;
+	font-size: 16px;
+	border: 1px solid #ffd600
+}</string>
+      </property>
+      <attribute name="title">
+       <string>Ajustes</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_13">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_14">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>Seleccione donde se guardarán los registros de asistencia</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnSelectDirectory">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Seleccionar Directorio</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="lblRouteChoos">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Ruta:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../Resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
